@@ -1,4 +1,4 @@
-# Outcome-Based Education (OBE) AI Microservice Pipeline
+# OBE Evaluation Engine: Local LLM Structured Outputs and Alignment Grading Matrix
 **College of Computer Studies — University of Perpetual Help System DALTA (Molino Campus)**  
 **Student:** Christian Ezekiel L. Carvajal  
 **Evaluator:** Prof. Rob Malitao  
