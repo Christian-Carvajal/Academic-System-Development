@@ -3,7 +3,7 @@
 **Student:** Christian Ezekiel L. Carvajal  
 **Evaluator:** Prof. Rob Malitao  
 **Course Activity:** Lesson 4 Lab Activity 1.1 & 1.2  
-**Subject Focus:** CS 3110: Data Structures and Algorithms  
+**Subject:** Artificial Intelligence  
 **Submission Due Date:** September 12, 2026  
 
 ---
