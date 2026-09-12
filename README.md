@@ -41,7 +41,7 @@ The system enforces strict institutional grading schemes, active Bloom's Taxonom
 |   Final Submission Deliverable: sample_output_syllabus.json                       |
 |          │                                                                        |
 |          ▼                                                                        |
-|  [Automated Invariant Assertion: run_pipeline.bat]                                |
+|  [Automated Invariant Assertion: run_gui.py / verify_deliverables.py]             |
 |   Audits 14 Weeks, Week 7 Midterm, Week 14 Final, and Outcome Mapping             |
 +-----------------------------------------------------------------------------------+
 ```
@@ -58,46 +58,40 @@ Every file included in this submission package serves a dedicated role in genera
 | **`lab1_1_generator.py`** | **Core Deliverable #2** | Executable CLI generator for Stage 1. Queries `qwen3.5:4b` using `format="json"` to generate and validate 4 core Course Learning Outcomes. |
 | **`obe_json_generator.py`** | **Specification Alias** | Identical mirror of `lab1_1_generator.py` provided to guarantee full compatibility with automated grading harnesses referencing the Page 1 alias. |
 | **`lab1_2_pipeline.py`** | **Core Deliverable #3** | Chained multi-turn pipeline for Stage 2. Consumes Stage 1 outcomes into memory, constructs the 14-week schedule, enforces milestones, and validates full CLO coverage. |
-| **`sample_output_syllabus.json`** | **Core Deliverable #4** | The final, validated 14-week OBE syllabus JSON artifact generated for *CS 3110: Data Structures and Algorithms*. |
-| **`app.py`** | Web GUI Server & API | Zero-dependency HTTP server (`ThreadingHTTPServer`) exposing REST endpoints (`/api/status`, `/api/co`, `/api/generate-co`, `/api/syllabus`, `/api/generate-syllabus`, `/api/audit`) and serving the UI. |
+| **`sample_output_syllabus.json`** | **Core Deliverable #4** | The final, validated 14-week OBE syllabus JSON artifact generated for *CS 3110: Data Structures and Algorithms* / *Artificial Intelligence*. |
+| **`run_gui.py`** | **Universal Launcher** | Cross-platform Python bootstrap with full pre-flight verification: checks Python runtime, auto-installs missing dependencies from `requirements.txt`, checks Ollama connectivity, auto-pulls `qwen3.5:4b` if missing, starts `app.py`, and launches the browser. |
+| **`app.py`** | Web GUI Server & API | Zero-dependency HTTP server (`ThreadingHTTPServer`) exposing REST endpoints (`/api/status`, `/api/co`, `/api/generate-co`, `/api/syllabus`, `/api/generate-syllabus`, `/api/audit`, `/api/nuke`) and serving the UI. |
 | **`index.html`** | Interactive Web GUI Studio | Bespoke single-page application for Stage 1 generation/editing, Stage 2 14-week schedule inspection, live rubric invariant auditing, and syllabus preview. |
-| **`run_gui.bat`** | 1-Click GUI Studio Runner | Automated batch runner that activates the virtual environment, verifies Ollama, starts `app.py`, and launches `http://localhost:8080` in the browser. |
-| **`co_output_lab1_1.json`** | Supporting Intermediate File | Pre-generated, validated Stage 1 Course Outcomes payload. Allows `lab1_2_pipeline.py` to be tested independently without re-querying the model for Stage 1. |
+| **`run_gui.bat`** | 1-Click GUI Runner (Windows) | Lightweight 4-line launcher invoking `python run_gui.py` with automatic error pausing for Windows double-click evaluation. |
+| **`requirements.sh`** | Environment Setup (Unix/macOS) | Shell script for provisioning `.venv`, installing dependencies, and ensuring `qwen3.5:4b` is downloaded on Linux, macOS, or WSL. |
 | **`requirements.txt`** | Environment Manifest | Minimal pinned runtime dependencies (`pydantic>=2.0.0`, `ollama>=0.2.0`) enabling immediate dependency resolution on any evaluator machine. |
-| **`run_pipeline.bat`** | Evaluator Automation (CLI) | A 1-click Windows batch runner that provisions an isolated virtual environment, installs packages, checks/pulls the Ollama model, executes both scripts, and runs invariant audits. |
+| **`co_output_lab1_1.json`** | Supporting Intermediate File | Pre-generated, validated Stage 1 Course Outcomes payload. Allows `lab1_2_pipeline.py` and the GUI to be tested independently without re-querying the model. |
 | **`README.md`** | Documentation | Comprehensive reproduction instructions, rubric compliance breakdown, and execution logs for the evaluator. |
 
 ---
 
 ## 1-Click Execution Guides for the Evaluator
 
-### Option A: Interactive Web GUI Studio (`run_gui.bat`)
-For an interactive visual studio to view, audit, and trigger live model generation:
-1. Double-click **`run_gui.bat`** (or run `python app.py` in your terminal).
-2. The launcher will automatically verify dependencies, start the local server on `http://localhost:8000`, and open your default browser.
-3. The interface provides:
-   - **Stage 1 (Course Outcomes)**: Interactive view and real-time generation with `qwen3.5:4b`.
-   - **Stage 2 (14-Week Schedule)**: Visual timeline with locked Week 7 Midterm and Week 14 Final badges, Bloom's verb taxonomy pills, and LLO cards.
-   - **Stage 3 (Live Rubric Audit)**: Automated 6-point invariant checker and grading formula calculator.
-   - **Stage 4 (Syllabus Preview)**: Complete printable document view.
+### Option A: Universal Python Launcher (`python run_gui.py`) — Recommended
+Works across **Windows, macOS, and Linux**.
+```bash
+python run_gui.py
+```
+This launcher performs complete **automated pre-flight verification**:
+1. **Python Environment Verification**: Confirms Python $\ge 3.10$.
+2. **Dependency Resolution**: Automatically imports and, if missing, auto-installs `pydantic>=2.0.0` and `ollama>=0.2.0` via `pip install -r requirements.txt`.
+3. **Ollama Service Connectivity**: Connects to `http://127.0.0.1:11434`. If Ollama is installed but dormant, it attempts auto-starting `ollama serve`.
+4. **Model Auto-Pull**: Verifies whether `qwen3.5:4b` is present. If missing, it automatically pulls `qwen3.5:4b` without requiring manual commands.
+5. **Interactive Web Studio**: Launches the local HTTP server on `http://127.0.0.1:8000` and automatically opens your default web browser.
 
-### Option B: Automated CLI Batch Runner (`run_pipeline.bat`)
-For an immediate, zero-configuration headless evaluation on Windows, double-click **`run_pipeline.bat`**. 
+### Option B: Windows 1-Click Double-Click (`run_gui.bat`)
+On Windows, simply double-click **`run_gui.bat`** to execute `python run_gui.py` with automatic error capture and window retention.
 
-
-### Internal Workflow of `run_pipeline.bat`
-1. **Directory Guard (`cd /d "%~dp0"`)**: Locks the execution context strictly to the script folder to prevent broken paths when launched externally.
-2. **Runtime Verification**: Checks for an active Python 3.10+ installation in the system PATH.
-3. **Automated Virtual Environment Creation**: Checks for a local `.venv` folder. If absent, it automatically provisions a fresh isolated environment (`python -m venv .venv`) and activates it.
-4. **Dependency Resolution**: Runs `pip install -r requirements.txt --quiet` to ensure Pydantic and Ollama libraries are present.
-5. **Ollama Service & Model Auto-Pull**:
-   - Inspects `ollama --version` to ensure local inference is reachable.
-   - Runs `ollama list` to check for `qwen3.5:4b`.
-   - If missing, it automatically executes `ollama pull qwen3.5:4b` before launching the Python scripts.
-6. **Sequential Pipeline Run**:
-   - Executes `python lab1_1_generator.py` $\rightarrow$ Validates schema and saves `co_output_lab1_1.json`.
-   - Executes `python lab1_2_pipeline.py` $\rightarrow$ Consumes `co_output_lab1_1.json`, generates the schedule, and outputs `sample_output_syllabus.json`.
-7. **Automated Invariant Verification**: Runs programmatic assertions against `sample_output_syllabus.json` and displays a green terminal status upon confirming all constraints.
+### Option C: Linux / macOS / WSL Setup (`requirements.sh`)
+```bash
+bash requirements.sh
+python run_gui.py
+```
 
 ---
 
