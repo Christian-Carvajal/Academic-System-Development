@@ -36,7 +36,7 @@ def print_banner():
     banner = f"""
 ======================================================================
    UPHSD CCS - OBE AI Microservice Interactive Studio
-   Course: CS 3110 / Artificial Intelligence
+   Course: BSCS 3112 / Artificial Intelligence
    Student: Christian Ezekiel L. Carvajal
    Evaluator: Prof. Roberto L. Malitao
 ======================================================================

@@ -3,7 +3,7 @@
 **Student:** Christian Ezekiel L. Carvajal  
 **Evaluator:** Prof. Roberto L. Malitao  
 **Course Activity:** Lesson 4 Lab Activity 1.1 & 1.2  
-**Subject:** CS 3110 / Artificial Intelligence  
+**Subject:** BSCS 3112 / Artificial Intelligence  
 **Submission Due Date:** September 12, 2026  
 
 ---
@@ -105,7 +105,7 @@ Every file included in this clean submission package serves a dedicated role in 
 | **`lab1_1_generator.py`** | **Core Deliverable #2** | Executable CLI generator for Stage 1. Queries `qwen3.5:4b` with 16k context window and concise CoT constraints to generate and validate Course Learning Outcomes. |
 | **`obe_json_generator.py`** | **Specification Alias** | Identical mirror of `lab1_1_generator.py` provided to guarantee full backward compatibility with automated grading harnesses referencing the Page 1 alias. |
 | **`lab1_2_pipeline.py`** | **Core Deliverable #3** | Chained multi-turn pipeline for Stage 2. Consumes Stage 1 outcomes into memory, constructs the 14-week schedule, enforces milestones, and validates full CLO coverage. |
-| **`sample_output_syllabus.json`** | **Core Deliverable #4** | The final, validated 14-week OBE syllabus JSON artifact generated for *CS 3110: Artificial Intelligence*. |
+| **`sample_output_syllabus.json`** | **Core Deliverable #4** | The final, validated 14-week OBE syllabus JSON artifact generated for *BSCS 3112: Artificial Intelligence*. |
 | **`co_output_lab1_1.json`** | **Supporting Deliverable** | Pre-generated, validated Stage 1 Course Outcomes payload. Allows `lab1_2_pipeline.py` and the GUI to load and audit immediately offline. |
 | **`app.py`** | **Web Backend & REST API** | Zero-dependency HTTP server (`ThreadingHTTPServer`) exposing REST endpoints (`/api/status`, `/api/co`, `/api/generate-co`, `/api/syllabus`, `/api/generate-syllabus`, `/api/audit`, `/api/nuke`) and serving static assets. |
 | **`index.html`** | **Interactive Web GUI Studio** | Bespoke single-page application for Stage 1/Stage 2 generation, timeline inspection, live invariant audits, and printable syllabus views. |
@@ -184,7 +184,7 @@ In compliance with the Error Handling & Code rubric criteria, all generators fea
 ```text
 ======================================================================
    UPHSD CCS - OBE AI Microservice Interactive Studio
-   Course: CS 3110 / Artificial Intelligence
+   Course: BSCS 3112 / Artificial Intelligence
    Student: Christian Ezekiel L. Carvajal
    Evaluator: Prof. Roberto L. Malitao
 ======================================================================
