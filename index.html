@@ -388,6 +388,7 @@
       display: none;
       flex-direction: column;
       gap: 1.25rem;
+      scroll-margin-top: 100px;
     }
 
     .tab-panel.active {
@@ -1083,18 +1084,66 @@
     }
 
     /* Print media styling */
+    @page {
+      size: A4 portrait;
+      margin: 1.2cm 1cm;
+    }
+
     @media print {
       body {
-        background: #fff;
-        color: #000;
+        background: #ffffff !important;
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
-      header.app-header, .student-banner, .tab-nav, .btn-row, .status-box, .filter-bar, #offlineNoticeBanner {
+      header.app-header, 
+      .student-banner, 
+      .tab-nav, 
+      .btn-row, 
+      .status-box, 
+      .filter-bar, 
+      #offlineNoticeBanner,
+      #pdfStatusNotice,
+      .badge,
+      pre {
         display: none !important;
       }
+      /* Ensure ONLY the printable syllabus panel is displayed */
+      .tab-panel {
+        display: none !important;
+      }
+      .tab-panel#tab-doc {
+        display: block !important;
+      }
       .syllabus-doc {
-        padding: 0;
-        box-shadow: none;
-        max-width: 100%;
+        padding: 0 !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+      }
+      .doc-header h2 {
+        color: #7f1416 !important;
+      }
+      .doc-section-title {
+        color: #7f1416 !important;
+        border-bottom-color: #f59e0b !important;
+        page-break-after: avoid;
+      }
+      .doc-table {
+        page-break-inside: auto;
+      }
+      .doc-table thead {
+        display: table-header-group;
+      }
+      .doc-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+      .doc-table th {
+        background-color: #7f1416 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
     }
 
@@ -1230,9 +1279,13 @@
             <button type="submit" class="btn btn-primary" id="btnGenCO">
               <span>⚡</span> Run Lab 1.1 Generator (Qwen 3.5 4B)
             </button>
-            <button type="button" class="btn btn-secondary" onclick="loadSavedCO()">
+            <button type="button" class="btn btn-secondary" id="btnLoadSavedCO" onclick="loadSavedCO(true)">
               <span>📂</span> Load Saved co_output_lab1_1.json
             </button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('coFileInput').click()">
+              <span>📁</span> Choose Local JSON...
+            </button>
+            <input type="file" id="coFileInput" accept=".json" style="display:none;" onchange="handleCoFileUpload(event)">
             <button type="button" class="btn btn-secondary" onclick="toggleRawJson('coRawJson')">
               <span>🔍</span> Toggle Raw JSON
             </button>
@@ -1269,9 +1322,13 @@
           <button type="button" class="btn btn-primary" id="btnGenSyllabus" onclick="triggerGenerateSyllabus()">
             <span>🚀</span> Run Lab 1.2 Schedule Pipeline
           </button>
-          <button type="button" class="btn btn-secondary" onclick="loadSavedSyllabus()">
+          <button type="button" class="btn btn-secondary" id="btnLoadSavedSyllabus" onclick="loadSavedSyllabus(true)">
             <span>📂</span> Load Saved sample_output_syllabus.json
           </button>
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('sylFileInput').click()">
+            <span>📁</span> Choose Local JSON...
+          </button>
+          <input type="file" id="sylFileInput" accept=".json" style="display:none;" onchange="handleSylFileUpload(event)">
           <button type="button" class="btn btn-secondary" onclick="toggleRawJson('syllabusRawJson')">
             <span>🔍</span> Toggle Raw JSON
           </button>
@@ -1341,14 +1398,18 @@
     <!-- TAB 4: Official Syllabus Document (Printable) -->
     <section class="tab-panel" id="tab-doc">
       <div class="card" style="background:transparent; border:none; padding:0; box-shadow:none;">
-        <div class="btn-row" style="margin-top:0; margin-bottom:1rem; justify-content:flex-end;">
-          <button class="btn btn-primary" onclick="window.print()">
-            <span>🖨️</span> Print / Save as PDF
+        <div class="btn-row" style="margin-top:0; margin-bottom:1rem; justify-content:flex-end; gap:0.75rem; flex-wrap:wrap;">
+          <button class="btn btn-primary" id="btnSavePDF" onclick="exportSyllabusPDF()" style="background:linear-gradient(135deg, #b45309, #d97706); border-color:#fbbf24;">
+            <span>📄</span> Save as PDF (Direct Download)
+          </button>
+          <button class="btn btn-secondary" onclick="printSyllabus()">
+            <span>🖨️</span> Print Syllabus (Browser Dialog)
           </button>
           <a href="/api/syllabus" download="sample_output_syllabus.json" class="btn btn-secondary">
-            <span>📥</span> Download sample_output_syllabus.json
+            <span>📥</span> Download Syllabus JSON
           </a>
         </div>
+        <div id="pdfStatusNotice" style="display:none; padding:0.75rem 1rem; border-radius:8px; margin-bottom:1rem; font-size:0.9rem; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:#a7f3d0; text-align:center;"></div>
 
         <div class="syllabus-doc" id="printableSyllabus">
           <div class="doc-header">
@@ -1425,6 +1486,9 @@
     </section>
 
   </main>
+
+  <!-- Offline-ready Client-side High-Resolution PDF Generator -->
+  <script src="html2pdf.bundle.min.js"></script>
 
   <script>
     // Automatic API Base Resolution:
@@ -1909,6 +1973,8 @@
       const panel = document.getElementById(tabId);
       if (panel) panel.classList.add('active');
 
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
       if (tabId === 'tab-audit') {
         runAuditChecks();
       }
@@ -2237,46 +2303,247 @@
       }, 1500);
     }
 
-    // Load Saved CO JSON (with verified fallback)
-    async function loadSavedCO() {
+    // Apply Course Outcomes Data to Form & Dynamic UI
+    function applyCOData(data, sourceLabel = 'co_output_lab1_1.json', showNotification = false) {
+      if (!data) return;
+      activeCoData = data;
+
+      // Populate Form Inputs
+      if (data.course_title) document.getElementById('course_title').value = data.course_title;
+      if (data.course_code) document.getElementById('course_code').value = data.course_code;
+      if (data.course_description) document.getElementById('course_desc').value = data.course_description;
+
+      // Calculate Target PLOs from outcomes
+      const allPos = new Set();
+      (data.course_outcomes || []).forEach(co => (co.mapped_po || []).forEach(p => allPos.add(p)));
+      if (allPos.size > 0) {
+        const poList = Array.from(allPos).sort().map(p => `PLO ${p}`);
+        document.getElementById('target_pos').value = poList.join(', ');
+      }
+
+      renderCOCards(activeCoData);
+      renderDocPreview();
+
+      // Visual feedback highlight
+      const container = document.getElementById('coCardsContainer');
+      if (container) {
+        container.style.opacity = '0.4';
+        setTimeout(() => { container.style.opacity = '1'; }, 180);
+      }
+
+      // Notification banner
+      if (showNotification) {
+        const box = document.getElementById('coStatusBox');
+        const msg = document.getElementById('coStatusMsg');
+        const spinner = document.getElementById('coSpinner');
+        if (box && msg) {
+          box.className = 'status-box success show';
+          if (spinner) spinner.style.display = 'none';
+          msg.innerHTML = `✓ <strong>Loaded ${sourceLabel}:</strong> ${(data.course_outcomes || []).length} Course Learning Outcomes populated into form & cards.`;
+          setTimeout(() => { box.classList.remove('show'); }, 4500);
+        }
+      }
+    }
+
+    // Load Saved CO JSON (API with embedded fallback)
+    async function loadSavedCO(showNotification = false) {
+      const box = document.getElementById('coStatusBox');
+      const msg = document.getElementById('coStatusMsg');
+      const spinner = document.getElementById('coSpinner');
+
+      if (showNotification && box && msg) {
+        box.className = 'status-box running show';
+        if (spinner) spinner.style.display = 'block';
+        msg.textContent = 'Loading saved co_output_lab1_1.json...';
+      }
+
       try {
         const res = await fetch(`${API_BASE}/api/co`, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.data) {
-            activeCoData = data.data;
-            renderCOCards(activeCoData);
+            applyCOData(data.data, 'co_output_lab1_1.json', showNotification);
             return;
           }
         }
       } catch (err) {
         console.warn('API fetch for CO failed, loading embedded fallback:', err);
       }
-      activeCoData = FALLBACK_CO;
-      renderCOCards(activeCoData);
+      applyCOData(FALLBACK_CO, 'co_output_lab1_1.json', showNotification);
     }
 
-    // Load Saved Syllabus JSON (with verified fallback)
-    async function loadSavedSyllabus() {
+    // Handle Local File Upload for CO JSON
+    function handleCoFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          applyCOData(parsed, file.name, true);
+        } catch (err) {
+          alert('Invalid JSON file format: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    // Apply Syllabus Data to UI
+    function applySyllabusData(data, sourceLabel = 'sample_output_syllabus.json', showNotification = false) {
+      if (!data) return;
+      activeSyllabusData = data;
+      document.getElementById('syllabusRawJson').textContent = JSON.stringify(activeSyllabusData, null, 2);
+      renderScheduleCards(activeSyllabusData.weekly_schedule);
+      renderDocPreview();
+
+      const container = document.getElementById('scheduleCardsContainer');
+      if (container) {
+        container.style.opacity = '0.4';
+        setTimeout(() => { container.style.opacity = '1'; }, 180);
+      }
+
+      if (showNotification) {
+        const box = document.getElementById('syllabusStatusBox');
+        const msg = document.getElementById('syllabusStatusMsg');
+        const spinner = document.getElementById('syllabusSpinner');
+        if (box && msg) {
+          box.className = 'status-box success show';
+          if (spinner) spinner.style.display = 'none';
+          msg.innerHTML = `✓ <strong>Loaded ${sourceLabel}:</strong> 14 instructional weeks populated with Milestone Locks.`;
+          setTimeout(() => { box.classList.remove('show'); }, 4500);
+        }
+      }
+    }
+
+    // Load Saved Syllabus JSON (API with embedded fallback)
+    async function loadSavedSyllabus(showNotification = false) {
+      const box = document.getElementById('syllabusStatusBox');
+      const msg = document.getElementById('syllabusStatusMsg');
+      const spinner = document.getElementById('syllabusSpinner');
+
+      if (showNotification && box && msg) {
+        box.className = 'status-box running show';
+        if (spinner) spinner.style.display = 'block';
+        msg.textContent = 'Loading saved sample_output_syllabus.json...';
+      }
+
       try {
         const res = await fetch(`${API_BASE}/api/syllabus`, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.data) {
-            activeSyllabusData = data.data;
-            document.getElementById('syllabusRawJson').textContent = JSON.stringify(activeSyllabusData, null, 2);
-            renderScheduleCards(activeSyllabusData.weekly_schedule);
-            renderDocPreview();
+            applySyllabusData(data.data, 'sample_output_syllabus.json', showNotification);
             return;
           }
         }
       } catch (err) {
         console.warn('API fetch for Syllabus failed, loading embedded fallback:', err);
       }
-      activeSyllabusData = FALLBACK_SYLLABUS;
-      document.getElementById('syllabusRawJson').textContent = JSON.stringify(activeSyllabusData, null, 2);
-      renderScheduleCards(activeSyllabusData.weekly_schedule);
+      applySyllabusData(FALLBACK_SYLLABUS, 'sample_output_syllabus.json', showNotification);
+    }
+
+    // Handle Local File Upload for Syllabus JSON
+    function handleSylFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          applySyllabusData(parsed, file.name, true);
+        } catch (err) {
+          alert('Invalid JSON file format: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    // Direct High-Resolution PDF Export via html2pdf
+    async function exportSyllabusPDF() {
+      const element = document.getElementById('printableSyllabus');
+      const btn = document.getElementById('btnSavePDF');
+      const notice = document.getElementById('pdfStatusNotice');
+
+      if (!element) return;
+
+      const originalHtml = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳</span> Generating Official PDF...';
+      }
+      if (notice) {
+        notice.style.display = 'block';
+        notice.style.background = 'rgba(245, 158, 11, 0.15)';
+        notice.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+        notice.style.color = '#fcd34d';
+        notice.innerHTML = '⚙️ <strong>Rendering High-Resolution PDF:</strong> Processing syllabus document. Download will trigger automatically...';
+      }
+
+      // Ensure doc preview is up-to-date with active data
       renderDocPreview();
+
+      const code = (activeCoData && activeCoData.course_code ? activeCoData.course_code.replace(/\s+/g, '_') : 'CS3110');
+      const filename = `UPHSD_OBE_Course_Syllabus_${code}.pdf`;
+
+      const opt = {
+        margin: [12, 10, 12, 10], // mm: top, left, bottom, right
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          scrollY: 0,
+          backgroundColor: '#ffffff'
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        },
+        pagebreak: {
+          mode: ['avoid-all', 'css', 'legacy']
+        }
+      };
+
+      try {
+        if (typeof html2pdf !== 'undefined') {
+          await html2pdf().set(opt).from(element).save();
+          if (notice) {
+            notice.style.background = 'rgba(16, 185, 129, 0.15)';
+            notice.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+            notice.style.color = '#a7f3d0';
+            notice.innerHTML = `✓ <strong>PDF Download Ready:</strong> <code>${filename}</code> has been saved to your computer.`;
+            setTimeout(() => { notice.style.display = 'none'; }, 6000);
+          }
+        } else {
+          // Graceful fallback if library not available
+          window.print();
+        }
+      } catch (err) {
+        console.error('Direct PDF export error:', err);
+        if (notice) {
+          notice.style.background = 'rgba(239, 68, 68, 0.15)';
+          notice.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+          notice.style.color = '#fecdd3';
+          notice.innerHTML = '⚠️ Direct PDF generator encountered an issue. Opening system print dialog (select "Save as PDF")...';
+        }
+        window.print();
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }
+      }
+    }
+
+    // Print Syllabus Function
+    function printSyllabus() {
+      switchTab('tab-doc');
+      renderDocPreview();
+      window.print();
     }
 
     // Run Live Audit (with programmatic client-side assertion fallback)
@@ -2332,9 +2599,14 @@
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
       checkOllamaHealth();
-      loadSavedCO();
-      loadSavedSyllabus();
+      loadSavedCO(false);
+      loadSavedSyllabus(false);
       setInterval(checkOllamaHealth, 15000);
+
+      const hash = window.location.hash.replace('#', '');
+      if (hash && ['tab-co', 'tab-schedule', 'tab-audit', 'tab-doc'].includes(hash)) {
+        switchTab(hash);
+      }
     });
   </script>
 </body>
