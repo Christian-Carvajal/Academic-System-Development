@@ -74,7 +74,7 @@ Every file included in this submission package serves a dedicated role in genera
 ### Option A: Interactive Web GUI Studio (`run_gui.bat`)
 For an interactive visual studio to view, audit, and trigger live model generation:
 1. Double-click **`run_gui.bat`** (or run `python app.py` in your terminal).
-2. The launcher will automatically verify dependencies, start the local server on `http://localhost:8080`, and open your default browser.
+2. The launcher will automatically verify dependencies, start the local server on `http://localhost:8000`, and open your default browser.
 3. The interface provides:
    - **Stage 1 (Course Outcomes)**: Interactive view and real-time generation with `qwen3.5:4b`.
    - **Stage 2 (14-Week Schedule)**: Visual timeline with locked Week 7 Midterm and Week 14 Final badges, Bloom's verb taxonomy pills, and LLO cards.

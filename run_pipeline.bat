@@ -23,16 +23,23 @@ echo [+] Python installation detected.
 
 :: Step 2: Virtual Environment Setup
 if not exist ".venv" (
-    echo [*] Creating isolated virtual environment .venv...
-    python -m venv .venv
-    if errorlevel 1 (
-        color 0C
-        echo [ERROR] Failed to create .venv.
-        goto :FAIL
+    if exist "..\.venv" (
+        echo [*] Using detected virtual environment ..\.venv...
+        call ..\.venv\Scripts\activate.bat
+    ) else (
+        echo [*] Creating isolated virtual environment .venv...
+        python -m venv .venv
+        if errorlevel 1 (
+            color 0C
+            echo [ERROR] Failed to create .venv.
+            goto :FAIL
+        )
+        call .venv\Scripts\activate.bat
     )
+) else (
+    echo [*] Activating local virtual environment .venv...
+    call .venv\Scripts\activate.bat
 )
-echo [*] Activating virtual environment...
-call .venv\Scripts\activate.bat
 
 :: Step 3: Install Dependencies
 echo [*] Installing required dependencies: pydantic, ollama...
