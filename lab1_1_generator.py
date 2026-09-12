@@ -20,9 +20,13 @@ MODEL_NAME = "qwen3.5:4b"
 SYSTEM_PROMPT_LAB1_1 = """You are an expert IT/CS Curriculum Designer for the College of Computer Studies at UPHSD.
 Your task is to generate Course Learning Outcomes (COs) strictly compliant with Outcome-Based Education (OBE).
 
+IMPORTANT EFFICIENCY CONSTRAINT:
+Keep internal reasoning extremely brief (under 150 words). Immediately generate the target JSON object.
+
 STRICT COMPLIANCE RULES:
 1. NEVER use non-measurable verbs such as "understand", "learn", "know", "be exposed to", or "study".
-2. Every CO MUST begin with an active Bloom's Taxonomy verb matched to cognitive levels:
+2. Every CO MUST specify bloom_level as one of: "Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create".
+   Every CO statement MUST begin with an active Bloom's Taxonomy verb matched to cognitive levels:
    - Remember/Understand: Identify, Define, Recall, Describe.
    - Apply/Analyze: Apply, Implement, Configure, Calculate, Analyze.
    - Evaluate/Create: Design, Develop, Synthesize, Integrate, Defend.
@@ -77,21 +81,31 @@ Target Program Outcomes (POs): {target_pos}
                 model=MODEL_NAME,
                 format="json",
                 messages=messages,
-                options={"temperature": 0.2, "num_ctx": 4096}
+                options={
+                    "temperature": 0.2,
+                    "num_ctx": 16384,
+                    "num_predict": 4096
+                }
             )
-            raw_text = response["message"]["content"].strip()
+            raw_text = response["message"].get("content", "").strip()
+            if not raw_text and response["message"].get("thinking"):
+                raw_text = response["message"]["thinking"].strip()
+
             clean_json = extract_json(raw_text)
+            if not clean_json or clean_json == "{}":
+                raise ValueError("Model generated empty content. Keep reasoning short and directly output JSON.")
+
             data = json.loads(clean_json)
             validated = CourseOutcomesPayload(**data)
             print("[+] [Lab 1.1] Schema validation successful.")
             return validated
-        except (json.JSONDecodeError, ValidationError) as exc:
+        except (json.JSONDecodeError, ValidationError, ValueError) as exc:
             print(f"[-] [Lab 1.1] Attempt {attempt} validation failed: {exc}")
             if attempt == max_retries:
                 raise exc
             feedback = (
                 f"Your output failed validation with error:\n{str(exc)}\n"
-                "Regenerate the entire JSON object strictly complying with the schema and active verb constraints."
+                "Keep reasoning under 100 words. Regenerate the entire JSON object strictly complying with the schema."
             )
             messages.append({"role": "assistant", "content": raw_text if 'raw_text' in locals() else "{}"})
             messages.append({"role": "user", "content": feedback})

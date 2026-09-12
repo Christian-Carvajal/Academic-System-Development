@@ -18,6 +18,35 @@ class CourseOutcome(BaseModel):
         ..., min_items=1, description="Mapped Program Outcome (PO/PLO) indices"
     )
 
+    @field_validator("bloom_level", mode="before")
+    @classmethod
+    def normalize_bloom_level(cls, v: str) -> str:
+        if not isinstance(v, str):
+            return v
+        v_clean = v.strip().capitalize()
+        synonyms = {
+            "Design": "Create",
+            "Develop": "Create",
+            "Synthesize": "Create",
+            "Integrating": "Create",
+            "Integrate": "Create",
+            "Build": "Create",
+            "Construct": "Create",
+            "Analysis": "Analyze",
+            "Analyzing": "Analyze",
+            "Application": "Apply",
+            "Applying": "Apply",
+            "Evaluation": "Evaluate",
+            "Evaluating": "Evaluate",
+            "Assess": "Evaluate",
+            "Assessing": "Evaluate",
+            "Comprehension": "Understand",
+            "Understanding": "Understand",
+            "Knowledge": "Remember",
+            "Remembering": "Remember"
+        }
+        return synonyms.get(v_clean, v_clean)
+
     @field_validator("co_description")
     def reject_unmeasurable_verbs(cls, value: str) -> str:
         banned = ["understand", "learn", "know", "be exposed to", "study"]
