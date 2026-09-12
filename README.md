@@ -59,16 +59,31 @@ Every file included in this submission package serves a dedicated role in genera
 | **`obe_json_generator.py`** | **Specification Alias** | Identical mirror of `lab1_1_generator.py` provided to guarantee full compatibility with automated grading harnesses referencing the Page 1 alias. |
 | **`lab1_2_pipeline.py`** | **Core Deliverable #3** | Chained multi-turn pipeline for Stage 2. Consumes Stage 1 outcomes into memory, constructs the 14-week schedule, enforces milestones, and validates full CLO coverage. |
 | **`sample_output_syllabus.json`** | **Core Deliverable #4** | The final, validated 14-week OBE syllabus JSON artifact generated for *CS 3110: Data Structures and Algorithms*. |
+| **`app.py`** | Web GUI Server & API | Zero-dependency HTTP server (`ThreadingHTTPServer`) exposing REST endpoints (`/api/status`, `/api/co`, `/api/generate-co`, `/api/syllabus`, `/api/generate-syllabus`, `/api/audit`) and serving the UI. |
+| **`index.html`** | Interactive Web GUI Studio | Bespoke single-page application for Stage 1 generation/editing, Stage 2 14-week schedule inspection, live rubric invariant auditing, and syllabus preview. |
+| **`run_gui.bat`** | 1-Click GUI Studio Runner | Automated batch runner that activates the virtual environment, verifies Ollama, starts `app.py`, and launches `http://localhost:8080` in the browser. |
 | **`co_output_lab1_1.json`** | Supporting Intermediate File | Pre-generated, validated Stage 1 Course Outcomes payload. Allows `lab1_2_pipeline.py` to be tested independently without re-querying the model for Stage 1. |
 | **`requirements.txt`** | Environment Manifest | Minimal pinned runtime dependencies (`pydantic>=2.0.0`, `ollama>=0.2.0`) enabling immediate dependency resolution on any evaluator machine. |
-| **`run_pipeline.bat`** | Evaluator Automation | A 1-click Windows batch runner that provisions an isolated virtual environment, installs packages, checks/pulls the Ollama model, executes both scripts, and runs invariant audits. |
+| **`run_pipeline.bat`** | Evaluator Automation (CLI) | A 1-click Windows batch runner that provisions an isolated virtual environment, installs packages, checks/pulls the Ollama model, executes both scripts, and runs invariant audits. |
 | **`README.md`** | Documentation | Comprehensive reproduction instructions, rubric compliance breakdown, and execution logs for the evaluator. |
 
 ---
 
-## 1-Click Execution Guide for the Evaluator (`run_pipeline.bat`)
+## 1-Click Execution Guides for the Evaluator
 
-For an immediate, zero-configuration evaluation on Windows, double-click **`run_pipeline.bat`**. 
+### Option A: Interactive Web GUI Studio (`run_gui.bat`)
+For an interactive visual studio to view, audit, and trigger live model generation:
+1. Double-click **`run_gui.bat`** (or run `python app.py` in your terminal).
+2. The launcher will automatically verify dependencies, start the local server on `http://localhost:8080`, and open your default browser.
+3. The interface provides:
+   - **Stage 1 (Course Outcomes)**: Interactive view and real-time generation with `qwen3.5:4b`.
+   - **Stage 2 (14-Week Schedule)**: Visual timeline with locked Week 7 Midterm and Week 14 Final badges, Bloom's verb taxonomy pills, and LLO cards.
+   - **Stage 3 (Live Rubric Audit)**: Automated 6-point invariant checker and grading formula calculator.
+   - **Stage 4 (Syllabus Preview)**: Complete printable document view.
+
+### Option B: Automated CLI Batch Runner (`run_pipeline.bat`)
+For an immediate, zero-configuration headless evaluation on Windows, double-click **`run_pipeline.bat`**. 
+
 
 ### Internal Workflow of `run_pipeline.bat`
 1. **Directory Guard (`cd /d "%~dp0"`)**: Locks the execution context strictly to the script folder to prevent broken paths when launched externally.

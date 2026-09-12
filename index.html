@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OBE Evaluation Engine & Syllabus Studio | UPHSD CCS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #09090b;
+      --bg-surface: #121215;
+      --bg-card: #18181b;
+      --bg-card-hover: #222227;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent-emerald: #10b981;
+      --accent-emerald-bg: rgba(16, 185, 129, 0.12);
+      --accent-indigo: #6366f1;
+      --accent-indigo-bg: rgba(99, 102, 241, 0.12);
+      --accent-amber: #f59e0b;
+      --accent-amber-bg: rgba(245, 158, 11, 0.12);
+      --accent-rose: #f43f5e;
+      --accent-rose-bg: rgba(244, 63, 94, 0.12);
+      --accent-blue: #38bdf8;
+      --accent-purple: #c084fc;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top App Bar */
+    header.app-header {
+      background: rgba(18, 18, 21, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+
+    .brand-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.28rem 0.65rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+    }
+
+    .badge.emerald {
+      background: var(--accent-emerald-bg);
+      color: var(--accent-emerald);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .badge.indigo {
+      background: var(--accent-indigo-bg);
+      color: #a5b4fc;
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .badge.amber {
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .status-dot.offline {
+      background: var(--accent-rose);
+      box-shadow: 0 0 8px var(--accent-rose);
+    }
+
+    /* Container */
+    main.app-main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Student Attribution Banner */
+    .student-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .student-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .student-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #a5b4fc;
+      border: 1px solid var(--border-strong);
+    }
+
+    .student-meta h2 {
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .student-meta p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .eval-meta {
+      text-align: right;
+      font-size: 0.78rem;
+    }
+
+    .eval-meta span {
+      display: block;
+      color: var(--text-muted);
+    }
+
+    .eval-meta strong {
+      color: #a5b4fc;
+    }
+
+    /* Tabs Navigation */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      background: var(--bg-card);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: var(--bg-surface);
+      border-color: var(--border-strong);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .tab-btn.active .tab-num {
+      background: var(--accent-indigo);
+      color: #fff;
+    }
+
+    .tab-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #27272a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+    }
+
+    /* Content Panels */
+    .tab-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .tab-panel.active {
+      display: flex;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* Form Styles */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    input, textarea, select {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      padding: 0.6rem 0.85rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-indigo);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    /* Button Controls */
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.6rem 1.15rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #4338ca, #3730a3);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      border-color: var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-strong);
+    }
+
+    .btn-emerald {
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff;
+    }
+
+    .btn-emerald:hover {
+      background: linear-gradient(135deg, #047857, #065f46);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Status Banner / Feedback */
+    .status-box {
+      padding: 0.85rem 1.15rem;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid transparent;
+      margin-top: 1rem;
+    }
+
+    .status-box.show {
+      display: flex;
+    }
+
+    .status-box.running {
+      background: var(--accent-indigo-bg);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: #c7d2fe;
+    }
+
+    .status-box.success {
+      background: var(--accent-emerald-bg);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #a7f3d0;
+    }
+
+    .status-box.error {
+      background: var(--accent-rose-bg);
+      border-color: rgba(244, 63, 94, 0.3);
+      color: #fecdd3;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Course Outcomes Cards */
+    .co-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .co-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .co-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .co-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .co-num-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: #27272a;
+      color: #e4e4e7;
+    }
+
+    .bloom-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .bloom-understand { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .bloom-apply { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .bloom-analyze { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .bloom-evaluate { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
+    .bloom-create { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+
+    .co-desc {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--text-primary);
+    }
+
+    .co-desc strong.verb {
+      color: var(--accent-emerald);
+      text-decoration: underline dotted;
+    }
+
+    .po-tags {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .po-pill {
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: rgba(99, 102, 241, 0.12);
+      color: #a5b4fc;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    /* Weekly Schedule Layout */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .filter-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--accent-indigo);
+      color: #fff;
+      border-color: var(--accent-indigo);
+    }
+
+    .schedule-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .week-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: grid;
+      grid-template-columns: 100px 1.5fr 2fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+
+    .week-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .week-card.milestone-midterm {
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .week-card.milestone-final {
+      border: 1px solid rgba(192, 132, 252, 0.45);
+      background: linear-gradient(135deg, rgba(192, 132, 252, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .week-meta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .week-number {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .period-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .period-tag.prelim { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .period-tag.midterm { background: var(--accent-amber-bg); color: var(--accent-amber); }
+    .period-tag.final { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
+
+    .week-topic-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .milestone-lock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+
+    .milestone-midterm .milestone-lock-badge {
+      background: var(--accent-amber);
+      color: #000;
+    }
+
+    .milestone-final .milestone-lock-badge {
+      background: var(--accent-purple);
+      color: #000;
+    }
+
+    .tla-box {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 2px solid var(--accent-indigo);
+      padding: 0.35rem 0.6rem;
+      border-radius: 0 4px 4px 0;
+      margin-top: 0.4rem;
+    }
+
+    /* LLO Tripartite Stack */
+    .llo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .llo-item {
+      font-size: 0.78rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .llo-cat-badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .llo-k { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+    .llo-s { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .llo-a { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+    .week-assess-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .assess-label {
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .assess-val {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Invariant Audit Dashboard */
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .audit-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .audit-card.pass {
+      border-color: rgba(16, 185, 129, 0.3);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, var(--bg-card) 100%);
+    }
+
+    .audit-card.fail {
+      border-color: rgba(244, 63, 94, 0.4);
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .audit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .audit-card.pass .audit-icon {
+      background: var(--accent-emerald-bg);
+      color: var(--accent-emerald);
+    }
+
+    .audit-card.fail .audit-icon {
+      background: var(--accent-rose-bg);
+      color: var(--accent-rose);
+    }
+
+    .audit-content h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .audit-content p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    /* Grading Matrix Box */
+    .grading-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .grading-tier {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+    }
+
+    .grading-tier h4 {
+      font-size: 0.85rem;
+      color: #a5b4fc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .grading-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .grading-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Official Syllabus Document View (Print-Ready) */
+    .syllabus-doc {
+      background: #ffffff;
+      color: #111827;
+      border-radius: var(--radius-md);
+      padding: 3rem 3.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      font-family: 'Inter', Georgia, serif;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .doc-header {
+      text-align: center;
+      border-bottom: 2px solid #1e293b;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .doc-header h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.02em;
+    }
+
+    .doc-header h3 {
+      font-size: 1rem;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .doc-header p {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .doc-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .doc-meta-table td {
+      padding: 0.35rem 0.5rem;
+      vertical-align: top;
+    }
+
+    .doc-meta-table td.label {
+      font-weight: 700;
+      color: #0f172a;
+      width: 25%;
+    }
+
+    .doc-section-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 0.35rem;
+      margin: 1.5rem 0 0.75rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .doc-table th, .doc-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .doc-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Print media styling */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+      header.app-header, .student-banner, .tab-nav, .btn-row, .status-box, .filter-bar {
+        display: none !important;
+      }
+      .syllabus-doc {
+        padding: 0;
+        box-shadow: none;
+        max-width: 100%;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .week-card {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-logo">🎓</div>
+        <div class="brand-text">
+          <h1>OBE Evaluation Engine &amp; Syllabus Studio</h1>
+          <p>College of Computer Studies — UPHSD Molino Campus</p>
+        </div>
+      </div>
+
+      <div class="header-badges">
+        <div class="badge" id="ollamaHealthBadge">
+          <span class="status-dot" id="ollamaDot"></span>
+          <span id="ollamaText">Checking Ollama...</span>
+        </div>
+        <div class="badge indigo">
+          <span>🧠</span> Model: <strong>qwen3.5:4b</strong>
+        </div>
+        <div class="badge emerald">
+          <span>🛡️</span> <strong>Pydantic v2</strong> Enforced
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <main class="app-main">
+
+    <!-- Student Attribution Banner -->
+    <div class="student-banner">
+      <div class="student-info">
+        <div class="student-avatar">CC</div>
+        <div class="student-meta">
+          <h2>Christian Ezekiel L. Carvajal</h2>
+          <p>BSCS 3rd Year • Artificial Intelligence (BSCS 3112)</p>
+        </div>
+      </div>
+      <div class="eval-meta">
+        <span>Evaluator &amp; Instructor:</span>
+        <strong>Prof. Roberto L. Malitao</strong>
+      </div>
+    </div>
+
+    <!-- Tab Stepper Navigation -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('tab-co')">
+        <span class="tab-num">1</span> Course Learning Outcomes (Lab 1.1)
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-schedule')">
+        <span class="tab-num">2</span> 14-Week Schedule &amp; TLAs (Lab 1.2)
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-audit')">
+        <span class="tab-num">3</span> Accreditation &amp; Rubric Audit
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-doc')">
+        <span class="tab-num">4</span> Official Syllabus Document (PDF)
+      </button>
+    </nav>
+
+    <!-- TAB 1: Course Learning Outcomes (Lab 1.1) -->
+    <section class="tab-panel active" id="tab-co">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><span>📝</span> Stage 1: Course Outcomes Generation</div>
+            <div class="card-desc">Prompts local Ollama (format="json") to generate 4-5 measurable outcomes mapped to Bloom's Taxonomy.</div>
+          </div>
+          <div class="badge emerald">Lab 1.1 CLI &amp; API</div>
+        </div>
+
+        <form id="coForm" onsubmit="event.preventDefault(); triggerGenerateCO();">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Course Title</label>
+              <input type="text" id="course_title" value="Data Structures and Algorithms" required>
+            </div>
+            <div class="form-group">
+              <label>Course Code</label>
+              <input type="text" id="course_code" value="CS 3110" required>
+            </div>
+            <div class="form-group full-width">
+              <label>Catalogue Description</label>
+              <textarea id="course_desc" rows="2" required>Study of fundamental data structures, recursive algorithms, dynamic memory, sorting, trees, and algorithmic complexity.</textarea>
+            </div>
+            <div class="form-group full-width">
+              <label>Target Program Learning Outcomes (PLOs)</label>
+              <input type="text" id="target_pos" value="PLO 1 (Computing Knowledge), PLO 2 (Problem Analysis), PLO 3 (Systems Development)" required>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary" id="btnGenCO">
+              <span>⚡</span> Run Lab 1.1 Generator (Qwen 3.5 4B)
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="loadSavedCO()">
+              <span>📂</span> Load Saved co_output_lab1_1.json
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="toggleRawJson('coRawJson')">
+              <span>🔍</span> Toggle Raw JSON
+            </button>
+          </div>
+        </form>
+
+        <div class="status-box" id="coStatusBox">
+          <div class="spinner" id="coSpinner"></div>
+          <span id="coStatusMsg">Generating Course Outcomes...</span>
+        </div>
+
+        <!-- Raw JSON Inspector -->
+        <pre id="coRawJson" style="display:none; margin-top:1rem; padding:1rem; background:#000; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#38bdf8; overflow:auto; max-height:260px;"></pre>
+
+        <!-- Dynamic CO Cards Container -->
+        <div class="co-grid" id="coCardsContainer">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 14-Week Schedule (Lab 1.2) -->
+    <section class="tab-panel" id="tab-schedule">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><span>🗓️</span> Stage 2: 14-Week Syllabus &amp; Milestones Pipeline</div>
+            <div class="card-desc">Chains Stage 1 outcomes into a strict 14-week schedule with Week 7 Midterm and Week 14 Final locks.</div>
+          </div>
+          <div class="badge indigo">Lab 1.2 Pipeline</div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" id="btnGenSyllabus" onclick="triggerGenerateSyllabus()">
+            <span>🚀</span> Run Lab 1.2 Schedule Pipeline
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="loadSavedSyllabus()">
+            <span>📂</span> Load Saved sample_output_syllabus.json
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="toggleRawJson('syllabusRawJson')">
+            <span>🔍</span> Toggle Raw JSON
+          </button>
+        </div>
+
+        <div class="status-box" id="syllabusStatusBox">
+          <div class="spinner" id="syllabusSpinner"></div>
+          <span id="syllabusStatusMsg">Generating 14-Week Schedule...</span>
+        </div>
+
+        <!-- Raw JSON Inspector -->
+        <pre id="syllabusRawJson" style="display:none; margin-top:1rem; padding:1rem; background:#000; border-radius:8px; font-family:var(--font-mono); font-size:0.75rem; color:#a5b4fc; overflow:auto; max-height:280px;"></pre>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" style="margin-top: 1.25rem;">
+          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">FILTER PERIOD:</span>
+          <button class="filter-pill active" onclick="filterSchedule('ALL')">All Weeks (1-14)</button>
+          <button class="filter-pill" onclick="filterSchedule('PRELIM')">Prelim (Weeks 1-6)</button>
+          <button class="filter-pill" onclick="filterSchedule('MIDTERM')">Midterm (Week 7 Lock)</button>
+          <button class="filter-pill" onclick="filterSchedule('FINAL')">Finals (Weeks 8-14)</button>
+        </div>
+
+        <!-- Schedule Cards List -->
+        <div class="schedule-grid" id="scheduleCardsContainer">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Accreditation & Invariant Audit -->
+    <section class="tab-panel" id="tab-audit">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title"><span>🛡️</span> Prof. Rob Malitao OBE Rubric Compliance Audit</div>
+            <div class="card-desc">Programmatic verification testing for 100% adherence to institutional accreditation invariants.</div>
+          </div>
+          <button class="btn btn-emerald" onclick="runAuditChecks()">
+            <span>🔄</span> Re-Run Live Audit
+          </button>
+        </div>
+
+        <div class="audit-grid" id="auditGridContainer">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Institutional Grading Breakdown -->
+        <div style="margin-top: 1.5rem;">
+          <h3 style="font-size:0.95rem; font-weight:700; margin-bottom:0.5rem;">UPHSD CCS Institutional Grading Matrix</h3>
+          <div class="grading-box">
+            <div class="grading-tier">
+              <h4><span>Class Standing</span> <strong>70%</strong></h4>
+              <div class="grading-item"><span>Quizzes &amp; Mastery Tests</span> <strong>30%</strong></div>
+              <div class="grading-item"><span>Research &amp; Assignments</span> <strong>20%</strong></div>
+              <div class="grading-item"><span>Seatwork &amp; Hands-on Lab</span> <strong>50%</strong></div>
+            </div>
+            <div class="grading-tier">
+              <h4><span>Major Exam Factor</span> <strong>30%</strong></h4>
+              <div class="grading-item"><span>Departmental Midterm / Final Exam</span> <strong>100%</strong></div>
+              <div class="grading-item"><span>Assessment Rigor</span> <strong>Departmental</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Official Syllabus Document (Printable) -->
+    <section class="tab-panel" id="tab-doc">
+      <div class="card" style="background:transparent; border:none; padding:0; box-shadow:none;">
+        <div class="btn-row" style="margin-top:0; margin-bottom:1rem; justify-content:flex-end;">
+          <button class="btn btn-primary" onclick="window.print()">
+            <span>🖨️</span> Print / Save as PDF
+          </button>
+          <a href="/api/syllabus" download="sample_output_syllabus.json" class="btn btn-secondary">
+            <span>📥</span> Download sample_output_syllabus.json
+          </a>
+        </div>
+
+        <div class="syllabus-doc" id="printableSyllabus">
+          <div class="doc-header">
+            <h2>UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA</h2>
+            <h3>COLLEGE OF COMPUTER STUDIES — MOLINO CAMPUS</h3>
+            <p>Outcome-Based Education (OBE) Course Syllabus</p>
+          </div>
+
+          <table class="doc-meta-table">
+            <tr>
+              <td class="label">Course Code:</td>
+              <td id="docCourseCode">CS 3110</td>
+              <td class="label">Academic Term:</td>
+              <td>First Semester, SY 2026-2027</td>
+            </tr>
+            <tr>
+              <td class="label">Course Title:</td>
+              <td id="docCourseTitle">Data Structures and Algorithms</td>
+              <td class="label">Instructor:</td>
+              <td>Prof. Roberto L. Malitao</td>
+            </tr>
+            <tr>
+              <td class="label">Course Description:</td>
+              <td colspan="3" id="docCourseDesc">Study of fundamental data structures, recursive algorithms, dynamic memory, sorting, trees, and algorithmic complexity.</td>
+            </tr>
+          </table>
+
+          <div class="doc-section-title">I. Course Learning Outcomes (CLOs)</div>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th style="width:10%;">CLO #</th>
+                <th style="width:20%;">Bloom's Level</th>
+                <th style="width:55%;">Course Outcome Statement</th>
+                <th style="width:15%;">Mapped POs</th>
+              </tr>
+            </thead>
+            <tbody id="docCoTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+
+          <div class="doc-section-title">II. 14-Week Learning &amp; Assessment Schedule</div>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th style="width:8%;">Wk</th>
+                <th style="width:12%;">Period</th>
+                <th style="width:22%;">Topic Covered</th>
+                <th style="width:30%;">Lesson Outcomes (K / S / A)</th>
+                <th style="width:20%;">Teaching &amp; Assessment</th>
+                <th style="width:8%;">CLO</th>
+              </tr>
+            </thead>
+            <tbody id="docScheduleTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+
+          <div class="doc-section-title">III. Institutional Grading System</div>
+          <p style="font-size:0.82rem; color:#334155; line-height:1.6;">
+            <strong>Class Standing (70%):</strong> Quizzes (30%) + Research/Assignments (20%) + Seatwork/Lab Work (50%)<br>
+            <strong>Term Grade:</strong> (Class Standing × 70%) + (Major Exam × 30%)
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // State management
+    let activeSyllabusData = null;
+    let activeCoData = null;
+    let pollInterval = null;
+
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+      
+      const panel = document.getElementById(tabId);
+      if (panel) panel.classList.add('active');
+
+      if (tabId === 'tab-audit') {
+        runAuditChecks();
+      }
+    }
+
+    // Toggle Raw JSON display
+    function toggleRawJson(elementId) {
+      const el = document.getElementById(elementId);
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Ping Ollama Health
+    async function checkOllamaHealth() {
+      const badge = document.getElementById('ollamaHealthBadge');
+      const dot = document.getElementById('ollamaDot');
+      const text = document.getElementById('ollamaText');
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        if (data.ollama && data.ollama.running) {
+          dot.className = 'status-dot';
+          badge.className = 'badge emerald';
+          text.textContent = data.ollama.has_model ? 'Ollama: qwen3.5:4b Ready' : 'Ollama Online (Missing Model)';
+        } else {
+          dot.className = 'status-dot offline';
+          badge.className = 'badge amber';
+          text.textContent = 'Ollama Service Offline';
+        }
+      } catch (err) {
+        dot.className = 'status-dot offline';
+        badge.className = 'badge amber';
+        text.textContent = 'Ollama Offline';
+      }
+    }
+
+    // Render Stage 1 CO Cards
+    function renderCOCards(data) {
+      const container = document.getElementById('coCardsContainer');
+      const rawEl = document.getElementById('coRawJson');
+      rawEl.textContent = JSON.stringify(data, null, 2);
+
+      if (!data || !data.course_outcomes) {
+        container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No course outcomes generated yet.</p>';
+        return;
+      }
+
+      container.innerHTML = data.course_outcomes.map(co => {
+        const bLevel = (co.bloom_level || 'Apply').toLowerCase();
+        const pos = (co.mapped_po || []).map(p => `<span class="po-pill">PLO ${p}</span>`).join('');
+        
+        // Highlight active verb (first word)
+        const words = (co.co_description || '').split(' ');
+        const first = words[0];
+        const rest = words.slice(1).join(' ');
+        const descFormatted = `<strong class="verb">${first}</strong> ${rest}`;
+
+        return `
+          <div class="co-card">
+            <div class="co-card-header">
+              <span class="co-num-tag">CLO ${co.clo_number}</span>
+              <span class="bloom-pill bloom-${bLevel}">${co.bloom_level}</span>
+            </div>
+            <div class="co-desc">${descFormatted}</div>
+            <div class="po-tags">
+              <span style="font-size:0.68rem; color:var(--text-muted); margin-right:0.2rem;">Mapped:</span>
+              ${pos}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Update doc preview
+      renderDocPreview();
+    }
+
+    // Render Stage 2 Schedule Cards
+    function renderScheduleCards(scheduleItems, filterPeriod = 'ALL') {
+      const container = document.getElementById('scheduleCardsContainer');
+      if (!scheduleItems || scheduleItems.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No schedule generated yet. Run Stage 2 pipeline.</p>';
+        return;
+      }
+
+      const filtered = scheduleItems.filter(item => {
+        if (filterPeriod === 'ALL') return true;
+        return item.period === filterPeriod;
+      });
+
+      container.innerHTML = filtered.map(item => {
+        const isMidterm = item.week_number === 7;
+        const isFinal = item.week_number === 14;
+        let cardClass = 'week-card';
+        let lockBadge = '';
+
+        if (isMidterm) {
+          cardClass += ' milestone-midterm';
+          lockBadge = '<div class="milestone-lock-badge">🔒 MIDTERM EXAMINATION LOCK</div>';
+        } else if (isFinal) {
+          cardClass += ' milestone-final';
+          lockBadge = '<div class="milestone-lock-badge">🔒 FINAL EXAMINATION / CAPSTONE DEFENSE</div>';
+        }
+
+        const periodClass = (item.period || 'PRELIM').toLowerCase();
+
+        // LLOs
+        const llosHtml = (item.llos || []).map(l => `
+          <div class="llo-item">
+            <span class="llo-cat-badge llo-${(l.category||'K').toLowerCase()}">${l.category}</span>
+            <span>${l.outcome_text}</span>
+          </div>
+        `).join('');
+
+        const cosHtml = (item.aligned_co || []).map(c => `<span class="po-pill">CLO ${c}</span>`).join(' ');
+
+        return `
+          <div class="${cardClass}">
+            <div class="week-meta-col">
+              <span class="week-number">Wk ${item.week_number}</span>
+              <span class="period-tag ${periodClass}">${item.period}</span>
+            </div>
+
+            <div class="week-topic-col">
+              ${lockBadge}
+              <h4>${item.topic}</h4>
+              <div class="tla-box"><strong>TLA:</strong> ${item.teaching_learning_activity}</div>
+            </div>
+
+            <div class="llo-stack">
+              ${llosHtml}
+            </div>
+
+            <div class="week-assess-col">
+              <div>
+                <span class="assess-label">Tool</span>
+                <div class="assess-val">${item.assessment_tool}</div>
+              </div>
+              <div>
+                <span class="assess-label">Evidence</span>
+                <div class="assess-val">${item.evidence}</div>
+              </div>
+              <div style="margin-top:0.3rem;">
+                <span class="assess-label">Aligned</span>
+                <div>${cosHtml}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Filter Schedule
+    function filterSchedule(period) {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.filter-pill')).find(p => p.textContent.includes(period) || (period==='ALL' && p.textContent.includes('All')));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (activeSyllabusData && activeSyllabusData.weekly_schedule) {
+        renderScheduleCards(activeSyllabusData.weekly_schedule, period);
+      }
+    }
+
+    // Render Document Tab Preview
+    function renderDocPreview() {
+      if (activeCoData) {
+        document.getElementById('docCourseCode').textContent = activeCoData.course_code || 'CS 3110';
+        document.getElementById('docCourseTitle').textContent = activeCoData.course_title || 'Data Structures and Algorithms';
+        document.getElementById('docCourseDesc').textContent = activeCoData.course_description || '';
+
+        const tbody = document.getElementById('docCoTableBody');
+        tbody.innerHTML = (activeCoData.course_outcomes || []).map(c => `
+          <tr>
+            <td><strong>CLO ${c.clo_number}</strong></td>
+            <td>${c.bloom_level}</td>
+            <td>${c.co_description}</td>
+            <td>${(c.mapped_po || []).map(p=>'PLO '+p).join(', ')}</td>
+          </tr>
+        `).join('');
+      }
+
+      if (activeSyllabusData && activeSyllabusData.weekly_schedule) {
+        const sbody = document.getElementById('docScheduleTableBody');
+        sbody.innerHTML = activeSyllabusData.weekly_schedule.map(w => {
+          const llosFormatted = (w.llos || []).map(l => `<strong>(${l.category})</strong> ${l.outcome_text}`).join('<br>');
+          return `
+            <tr>
+              <td><strong>${w.week_number}</strong></td>
+              <td>${w.period}</td>
+              <td><strong>${w.topic}</strong></td>
+              <td>${llosFormatted}</td>
+              <td><em>TLA:</em> ${w.teaching_learning_activity}<br><em>Assessment:</em> ${w.assessment_tool}</td>
+              <td>${(w.aligned_co || []).join(', ')}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    // Trigger Stage 1 Generation
+    async function triggerGenerateCO() {
+      const btn = document.getElementById('btnGenCO');
+      const box = document.getElementById('coStatusBox');
+      const msg = document.getElementById('coStatusMsg');
+      const spinner = document.getElementById('coSpinner');
+
+      btn.disabled = true;
+      box.className = 'status-box running show';
+      spinner.style.display = 'block';
+      msg.textContent = 'Submitting Stage 1 request to Ollama qwen3.5:4b...';
+
+      const payload = {
+        course_title: document.getElementById('course_title').value,
+        course_code: document.getElementById('course_code').value,
+        description: document.getElementById('course_desc').value,
+        target_pos: document.getElementById('target_pos').value
+      };
+
+      try {
+        const res = await fetch('/api/generate-co', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Generation failed');
+
+        startPollingStage(1);
+      } catch (err) {
+        box.className = 'status-box error show';
+        spinner.style.display = 'none';
+        msg.textContent = 'Error: ' + err.message;
+        btn.disabled = false;
+      }
+    }
+
+    // Trigger Stage 2 Generation
+    async function triggerGenerateSyllabus() {
+      const btn = document.getElementById('btnGenSyllabus');
+      const box = document.getElementById('syllabusStatusBox');
+      const msg = document.getElementById('syllabusStatusMsg');
+      const spinner = document.getElementById('syllabusSpinner');
+
+      btn.disabled = true;
+      box.className = 'status-box running show';
+      spinner.style.display = 'block';
+      msg.textContent = 'Submitting Stage 2 14-week schedule request...';
+
+      try {
+        const res = await fetch('/api/generate-syllabus', { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Generation failed');
+
+        startPollingStage(2);
+      } catch (err) {
+        box.className = 'status-box error show';
+        spinner.style.display = 'none';
+        msg.textContent = 'Error: ' + err.message;
+        btn.disabled = false;
+      }
+    }
+
+    // Polling Helper
+    function startPollingStage(stageNum) {
+      if (pollInterval) clearInterval(pollInterval);
+
+      pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch('/api/generation-status');
+          const state = await res.json();
+
+          if (stageNum === 1) {
+            const msg = document.getElementById('coStatusMsg');
+            msg.textContent = state.message || 'Generating...';
+
+            if (state.status === 'success') {
+              clearInterval(pollInterval);
+              document.getElementById('coSpinner').style.display = 'none';
+              document.getElementById('coStatusBox').className = 'status-box success show';
+              document.getElementById('btnGenCO').disabled = false;
+              loadSavedCO();
+            } else if (state.status === 'error') {
+              clearInterval(pollInterval);
+              document.getElementById('coSpinner').style.display = 'none';
+              document.getElementById('coStatusBox').className = 'status-box error show';
+              msg.textContent = 'Failed: ' + state.error;
+              document.getElementById('btnGenCO').disabled = false;
+            }
+          } else if (stageNum === 2) {
+            const msg = document.getElementById('syllabusStatusMsg');
+            msg.textContent = state.message || 'Generating...';
+
+            if (state.status === 'success') {
+              clearInterval(pollInterval);
+              document.getElementById('syllabusSpinner').style.display = 'none';
+              document.getElementById('syllabusStatusBox').className = 'status-box success show';
+              document.getElementById('btnGenSyllabus').disabled = false;
+              loadSavedSyllabus();
+            } else if (state.status === 'error') {
+              clearInterval(pollInterval);
+              document.getElementById('syllabusSpinner').style.display = 'none';
+              document.getElementById('syllabusStatusBox').className = 'status-box error show';
+              msg.textContent = 'Failed: ' + state.error;
+              document.getElementById('btnGenSyllabus').disabled = false;
+            }
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }, 1500);
+    }
+
+    // Load Saved CO JSON
+    async function loadSavedCO() {
+      try {
+        const res = await fetch('/api/co');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.success && data.data) {
+          activeCoData = data.data;
+          renderCOCards(activeCoData);
+        }
+      } catch (err) {
+        console.warn('Could not load saved CO:', err);
+      }
+    }
+
+    // Load Saved Syllabus JSON
+    async function loadSavedSyllabus() {
+      try {
+        const res = await fetch('/api/syllabus');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.success && data.data) {
+          activeSyllabusData = data.data;
+          document.getElementById('syllabusRawJson').textContent = JSON.stringify(activeSyllabusData, null, 2);
+          renderScheduleCards(activeSyllabusData.weekly_schedule);
+          renderDocPreview();
+        }
+      } catch (err) {
+        console.warn('Could not load saved Syllabus:', err);
+      }
+    }
+
+    // Run Live Audit
+    async function runAuditChecks() {
+      const container = document.getElementById('auditGridContainer');
+      container.innerHTML = '<p style="color:var(--text-muted);">Running audit assertions...</p>';
+
+      try {
+        const res = await fetch('/api/audit');
+        const data = await res.json();
+
+        if (!res.ok) {
+          container.innerHTML = `<div class="audit-card fail"><div class="audit-icon">❌</div><div class="audit-content"><h4>Audit Failed</h4><p>${data.error || 'Syllabus file not found.'}</p></div></div>`;
+          return;
+        }
+
+        container.innerHTML = data.checks.map(c => `
+          <div class="audit-card ${c.passed ? 'pass' : 'fail'}">
+            <div class="audit-icon">${c.passed ? '✓' : '✗'}</div>
+            <div class="audit-content">
+              <h4>${c.label}</h4>
+              <p>${c.detail}</p>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<div class="audit-card fail"><div class="audit-icon">❌</div><div class="audit-content"><h4>Audit Error</h4><p>${err.message}</p></div></div>`;
+      }
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      checkOllamaHealth();
+      loadSavedCO();
+      loadSavedSyllabus();
+      setInterval(checkOllamaHealth, 15000);
+    });
+  </script>
+</body>
+</html>
