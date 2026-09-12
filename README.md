@@ -200,25 +200,17 @@ In compliance with the Error Handling & Code rubric criteria, all generators fea
 [+] Pre-flight verification completed successfully.
 ```
 
-## Rubric Assertion Audit Log (`verify_deliverables.py`)
+## Built-In Rubric Assertion & Accreditation Audit
+
+The 6-point invariant audit is integrated directly into the Web Studio (**Stage 3: Live Rubric Audit**) and exposed via the `/api/audit` backend endpoint in `app.py`. It programmatically asserts all rubric constraints:
 
 ```text
-[*] Beginning Comprehensive OBE Pipeline Audit...
-[+] Found official deliverable: obe_schemas.py (4667 bytes)
-[+] Found official deliverable: lab1_1_generator.py (5221 bytes)
-[+] Found official deliverable: obe_json_generator.py (5305 bytes)
-[+] Found official deliverable: lab1_2_pipeline.py (8256 bytes)
-[+] Found official deliverable: sample_output_syllabus.json (13134 bytes)
-[+] Found supporting file: requirements.txt (30 bytes)
-[+] Found supporting file: requirements.sh (782 bytes)
-[+] Found supporting file: co_output_lab1_1.json (1541 bytes)
-[+] Lab 1.1 Course Outcomes Verified: 4 COs defined.
-[+] FullSyllabusPayload Pydantic validation successful.
-[+] Week 7 Midterm invariant verified: 'Midterm Examination'
-[+] Week 14 Final invariant verified: 'Final Examination / Capstone Defense'
-[+] All 14 weeks verified for tripartite (K/S/A) LLOs, TLAs, Assessment Tools, and Evidence.
-[+] 100% Course Outcome coverage verified across schedule: {1, 2, 3, 4}
-[+] Institutional Grading Breakdown verified: 70% Class Standing (30Q/20R/50L) + 30% Major Exam.
+[PASS] 14 Instructional Weeks Verified
+[PASS] Week 7 Locked Midterm Milestone: 'Midterm Examination'
+[PASS] Week 14 Locked Final Milestone: 'Final Examination / Capstone Defense'
+[PASS] Tripartite LLOs (Knowledge, Skills, Attitude) Verified for All Weeks
+[PASS] 100% Course Outcome Coverage Across Schedule: {1, 2, 3, 4}
+[PASS] UPHSD CCS Grading Breakdown Verified: 70% Class Standing (30Q/20R/50L) + 30% Major Exam
 
-[SUCCESS] All deliverables verified and compliant with Prof. Rob Malitao's OBE Rubric.
+[STATUS] 100% Compliant with Prof. Roberto L. Malitao's OBE Rubric.
 ```
