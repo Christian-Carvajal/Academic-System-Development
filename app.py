@@ -339,20 +339,29 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
             self.send_json(202, {"success": True, "message": "Stage 2 generation started."})
             return
 
-        # POST /api/clear or /api/reset
-        if path in ("/api/clear", "/api/reset"):
-            co_file = BASE_DIR / "co_output_lab1_1.json"
-            s_file = BASE_DIR / "sample_output_syllabus.json"
+        # POST /api/nuke, /api/clear, or /api/reset
+        if path in ("/api/nuke", "/api/clear", "/api/reset"):
             deleted_files = []
-            if co_file.exists():
-                co_file.unlink()
-                deleted_files.append("co_output_lab1_1.json")
-            if s_file.exists():
-                s_file.unlink()
-                deleted_files.append("sample_output_syllabus.json")
+            target_patterns = ["co_output_lab1_1.json", "sample_output_syllabus.json", "*.pdf", "*.tmp"]
+            for pattern in target_patterns:
+                for fpath in BASE_DIR.glob(pattern):
+                    try:
+                        fpath.unlink()
+                        deleted_files.append(fpath.name)
+                    except Exception as e:
+                        print(f"Warning deleting {fpath}: {e}")
+
+            # Reset in-memory generation state
+            generation_state["status"] = "idle"
+            generation_state["progress"] = 0
+            generation_state["message"] = ""
+            generation_state["log"] = []
+            generation_state["stage"] = None
+            generation_state["error"] = None
+
             self.send_json(200, {
                 "success": True,
-                "message": "All generated files wiped successfully.",
+                "message": "Nuke operation successful. All generated files and pipeline states wiped.",
                 "deleted": deleted_files
             })
             return

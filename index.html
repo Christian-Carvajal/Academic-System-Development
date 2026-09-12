@@ -577,6 +577,148 @@
       transform: none;
     }
 
+    /* Nuke Button & Modal */
+    .btn-nuke {
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.25) 0%, rgba(153, 27, 27, 0.45) 100%) !important;
+      border: 1px solid rgba(239, 68, 68, 0.65) !important;
+      color: #fca5a5 !important;
+      font-weight: 700 !important;
+      transition: all 0.25s ease !important;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-nuke:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
+      color: #ffffff !important;
+      border-color: #f87171 !important;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+      transform: scale(1.04);
+    }
+
+    .nuke-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1.5rem;
+    }
+
+    .nuke-modal {
+      background: #180a0c;
+      border: 2px solid rgba(239, 68, 68, 0.65);
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      padding: 1.85rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(239, 68, 68, 0.3);
+      animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.92); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .nuke-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .nuke-modal-icon {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.8));
+    }
+
+    .nuke-modal-header h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fecdd3;
+      letter-spacing: 0.02em;
+    }
+
+    .nuke-modal-body p {
+      font-size: 0.92rem;
+      color: #e2c8cb;
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    .nuke-list {
+      list-style: none;
+      margin: 0.85rem 0;
+      padding: 0.85rem 1rem;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid #ef4444;
+    }
+
+    .nuke-list li {
+      font-size: 0.85rem;
+      color: #fecdd3;
+      margin-bottom: 0.4rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .nuke-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .nuke-list code {
+      font-family: var(--font-mono);
+      background: rgba(239, 68, 68, 0.15);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      color: #fca5a5;
+    }
+
+    .nuke-warning {
+      font-size: 0.84rem !important;
+      color: #fcd34d !important;
+      font-style: italic;
+    }
+
+    .nuke-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.85rem;
+      margin-top: 1.35rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .btn-nuke-confirm {
+      background: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%);
+      color: #fff;
+      border: 1px solid #f87171;
+      font-weight: 700;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-nuke-confirm:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+      box-shadow: 0 6px 22px rgba(239, 68, 68, 0.6);
+      transform: translateY(-1px);
+    }
+
     /* Status Banner / Feedback */
     .status-box {
       padding: 0.95rem 1.25rem;
@@ -1241,8 +1383,8 @@
         <div class="badge gold">
           <span>🛡️</span> <strong>Pydantic v2</strong> Enforced
         </div>
-        <button type="button" class="badge" onclick="wipeWorkspace()" style="cursor:pointer; background:rgba(239,68,68,0.18); border-color:rgba(239,68,68,0.45); color:#fca5a5; font-weight:700;" title="Delete all generated files and reset UI to clean state">
-          <span>🗑️</span> Reset / Wipe All
+        <button type="button" class="badge btn-nuke" onclick="openNukeModal()" title="Nuke all generated deliverables, reset pipeline state, and clear browser caches">
+          <span>☢️</span> NUKE WORKSPACE
         </button>
       </div>
     </div>
@@ -2449,29 +2591,120 @@
       renderDocPreview();
     }
 
-    async function wipeWorkspace() {
-      if (!confirm('Are you sure you want to delete all generated files and reset the workspace as new?')) {
-        return;
+    // Nuke Workspace Modal Handlers & Browser State Execution
+    function openNukeModal() {
+      const modal = document.getElementById('nukeModalOverlay');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+          const cancelBtn = modal.querySelector('.btn-secondary');
+          if (cancelBtn) cancelBtn.focus();
+        }, 50);
       }
+    }
+
+    function closeNukeModal() {
+      const modal = document.getElementById('nukeModalOverlay');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleOverlayClick(event) {
+      if (event.target && event.target.id === 'nukeModalOverlay') {
+        closeNukeModal();
+      }
+    }
+
+    // Global keyboard listener for Escape key to close nuke modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeNukeModal();
+      }
+    });
+
+    // Execute complete Nuke action with full browser handling
+    async function executeNukeWorkspace() {
+      const btnConfirm = document.getElementById('btnConfirmNuke');
+      const originalText = btnConfirm ? btnConfirm.innerHTML : '';
+      if (btnConfirm) {
+        btnConfirm.disabled = true;
+        btnConfirm.innerHTML = '<span>⏳</span> Nuking Workspace...';
+      }
+
       try {
-        await fetch(`${API_BASE}/api/clear`, { method: 'POST' });
-      } catch (e) {
-        console.warn('API clear error:', e);
+        // 1. Backend physical deletion of all generated files & state reset
+        const res = await fetch(`${API_BASE}/api/nuke`, { method: 'POST' });
+        if (!res.ok) {
+          console.warn('API nuke returned non-200 status:', res.status);
+        }
+      } catch (err) {
+        console.warn('API nuke network error (offline fallback mode):', err);
       }
+
+      // 2. Clear Browser Storage (localStorage & sessionStorage)
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+      } catch (e) {
+        console.warn('Could not clear web storage:', e);
+      }
+
+      // 3. Reset form inputs in Tab 1 to default values
+      const coForm = document.getElementById('coForm');
+      if (coForm) {
+        coForm.reset();
+        // Restore standard default syllabus parameters
+        const defaultCode = document.getElementById('course_code');
+        const defaultTitle = document.getElementById('course_title');
+        const defaultDesc = document.getElementById('course_desc');
+        if (defaultCode) defaultCode.value = 'CS 3110';
+        if (defaultTitle) defaultTitle.value = 'Data Structures and Algorithms';
+        if (defaultDesc) defaultDesc.value = 'Analysis of algorithms, abstract data types, trees, graphs, sorting, and hashing for robust software systems.';
+      }
+
+      // 4. Reset in-memory state variables and UI panels across all tabs
+      activeCoData = null;
+      activeSyllabusData = null;
       resetCOState();
       resetSyllabusState();
+
+      // 5. Browser Navigation: Switch to Tab 1, update URL history hash, and smooth scroll to top
+      switchTab('tab-co');
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + '#tab-co');
+      } else {
+        window.location.hash = 'tab-co';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // 6. Close the confirmation modal
+      closeNukeModal();
+      if (btnConfirm) {
+        btnConfirm.disabled = false;
+        btnConfirm.innerHTML = originalText;
+      }
+
+      // 7. Render prominent Nuked Danger notification banner on Tab 1
       const notice = document.getElementById('coStatusBox');
       const msg = document.getElementById('coStatusMsg');
       const spinner = document.getElementById('coSpinner');
       if (notice && msg) {
         notice.className = 'status-box show';
-        notice.style.background = 'rgba(239, 68, 68, 0.15)';
-        notice.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+        notice.style.background = 'rgba(220, 38, 38, 0.18)';
+        notice.style.borderColor = 'rgba(239, 68, 68, 0.65)';
         notice.style.color = '#fecdd3';
         if (spinner) spinner.style.display = 'none';
-        msg.innerHTML = '🗑️ <strong>Workspace Wiped:</strong> All generated files deleted. Ready for fresh generation.';
-        setTimeout(() => { notice.classList.remove('show'); }, 4000);
+        msg.innerHTML = '☢️ <strong>Workspace Nuked Clean:</strong> All generated JSON files, PDF exports, and browser caches have been wiped. Ready to regenerate freshly.';
+        setTimeout(() => { notice.classList.remove('show'); }, 6500);
       }
+    }
+
+    // Backward-compatible alias for any legacy triggers
+    function wipeWorkspace() {
+      openNukeModal();
     }
 
     // Load Saved CO JSON (strict check: only load if real file exists on server)
@@ -3120,5 +3353,35 @@
       }
     });
   </script>
+
+  <!-- Nuke Confirmation Modal Dialog -->
+  <div id="nukeModalOverlay" class="nuke-modal-overlay" style="display: none;" onclick="handleOverlayClick(event)">
+    <div class="nuke-modal" role="dialog" aria-modal="true" aria-labelledby="nukeModalTitle">
+      <div class="nuke-modal-header">
+        <span class="nuke-modal-icon">☢️</span>
+        <div>
+          <h3 id="nukeModalTitle">Nuke Workspace & Deliverables</h3>
+          <span style="font-size:0.75rem; color:#f87171; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.05em;">Destructive Action</span>
+        </div>
+      </div>
+      <div class="nuke-modal-body">
+        <p>This action will permanently delete all generated outputs and wipe browser session cache so you can regenerate everything fresh from scratch:</p>
+        <ul class="nuke-list">
+          <li><span>🗑️</span> <code>co_output_lab1_1.json</code> (Stage 1 Course Outcomes)</li>
+          <li><span>🗑️</span> <code>sample_output_syllabus.json</code> (Stage 2 14-Week OBE Syllabus)</li>
+          <li><span>🗑️</span> Any generated PDF exports (<code>*.pdf</code>) & temporary files (<code>*.tmp</code>)</li>
+          <li><span>🔄</span> Active in-memory pipeline state & generation logs</li>
+          <li><span>🧹</span> Browser <code>localStorage</code> & <code>sessionStorage</code> caches</li>
+        </ul>
+        <p class="nuke-warning">⚠️ The workspace will be restored to an empty initial state. You can immediately trigger fresh LLM generations afterwards.</p>
+      </div>
+      <div class="nuke-modal-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeNukeModal()">Cancel</button>
+        <button type="button" class="btn-nuke-confirm" id="btnConfirmNuke" onclick="executeNukeWorkspace()">
+          <span>☢️</span> Yes, Nuke Everything
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
