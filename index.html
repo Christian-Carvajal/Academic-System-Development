@@ -6,7 +6,7 @@
   <title>OBE Evaluation Engine & Syllabus Studio | UPHSD CCS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       /* Perpetual DALTA Brand Tokens */
@@ -113,40 +113,71 @@
       flex-wrap: wrap;
     }
 
-    .perpetual-logo-capsule {
+    .perpetual-brand-capsule {
       background: #ffffff;
-      padding: 4px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(245, 158, 11, 0.5);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-      display: flex;
+      padding: 6px 14px 6px 10px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(245, 158, 11, 0.6);
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      height: 44px;
+      gap: 0.75rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .perpetual-logo-capsule img {
-      height: 32px;
+    .perpetual-brand-capsule:hover {
+      box-shadow: 0 5px 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .perpetual-seal-img {
+      height: 52px;
       width: auto;
       object-fit: contain;
       display: block;
+      flex-shrink: 0;
+    }
+
+    .uphsd-typography-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.08;
+    }
+
+    .uphsd-uni-name {
+      font-family: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+      font-size: 1.32rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.015em;
+      color: #7f1416;
+      white-space: nowrap;
+    }
+
+    .uphsd-campus-name {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #7f1416;
+      letter-spacing: 0.02em;
+      margin-top: 1px;
     }
 
     .brand-divider {
       width: 1px;
-      height: 36px;
+      height: 38px;
       background: rgba(245, 158, 11, 0.3);
     }
 
     .brand-text h1 {
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: -0.01em;
       color: #fff;
     }
 
     .brand-text p {
-      font-size: 0.76rem;
+      font-size: 0.88rem;
       color: var(--text-secondary);
       display: flex;
       align-items: center;
@@ -166,17 +197,17 @@
     .header-badges {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.72rem;
+      gap: 0.45rem;
+      font-size: 0.84rem;
       font-weight: 600;
-      padding: 0.3rem 0.7rem;
+      padding: 0.38rem 0.85rem;
       border-radius: 9999px;
       border: 1px solid var(--border-subtle);
       background: var(--bg-card);
@@ -209,8 +240,8 @@
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--accent-emerald);
       box-shadow: 0 0 8px var(--accent-emerald);
@@ -238,7 +269,7 @@
       background: linear-gradient(135deg, rgba(127, 20, 22, 0.32) 0%, rgba(26, 12, 16, 0.85) 50%, rgba(245, 158, 11, 0.12) 100%);
       border: 1px solid rgba(245, 158, 11, 0.35);
       border-radius: var(--radius-lg);
-      padding: 1rem 1.35rem;
+      padding: 1.15rem 1.45rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -254,43 +285,46 @@
     }
 
     .student-avatar {
-      width: 46px;
-      height: 46px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--perpetual-maroon), var(--perpetual-maroon-dark));
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
+      font-size: 1.1rem;
       color: #fde68a;
       border: 2px solid var(--perpetual-gold);
       box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
     }
 
     .student-meta h2 {
-      font-size: 0.95rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #fff;
     }
 
     .student-meta p {
-      font-size: 0.78rem;
+      font-size: 0.92rem;
       color: var(--text-secondary);
     }
 
     .eval-meta {
       text-align: right;
-      font-size: 0.78rem;
+      font-size: 0.9rem;
     }
 
     .eval-meta span {
       display: block;
       color: var(--text-muted);
+      font-size: 0.82rem;
     }
 
     .eval-meta strong {
       color: #fcd34d;
       font-weight: 700;
+      font-size: 1.05rem;
     }
 
     /* Tabs Navigation */
@@ -307,16 +341,17 @@
       border: 1px solid transparent;
       color: var(--text-secondary);
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 0.98rem;
       font-weight: 600;
-      padding: 0.6rem 1.15rem;
+      padding: 0.72rem 1.35rem;
       border-radius: var(--radius-md);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.65rem;
       transition: all 0.2s ease;
       white-space: nowrap;
+      min-height: 44px;
     }
 
     .tab-btn:hover {
@@ -339,15 +374,15 @@
     }
 
     .tab-num {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #2a1418;
       color: #e2c8cb;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.68rem;
+      font-size: 0.8rem;
       font-weight: 700;
     }
 
@@ -367,7 +402,7 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.35rem;
+      padding: 1.45rem;
       box-shadow: 0 4px 22px rgba(0,0,0,0.25);
     }
 
@@ -381,7 +416,7 @@
     }
 
     .card-title {
-      font-size: 1rem;
+      font-size: 1.18rem;
       font-weight: 700;
       color: #ffffff;
       display: flex;
@@ -390,7 +425,7 @@
     }
 
     .card-desc {
-      font-size: 0.8rem;
+      font-size: 0.92rem;
       color: var(--text-secondary);
       margin-top: 0.25rem;
     }
@@ -405,7 +440,7 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.45rem;
     }
 
     .form-group.full-width {
@@ -413,7 +448,7 @@
     }
 
     label {
-      font-size: 0.76rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--text-gold);
       text-transform: uppercase;
@@ -426,8 +461,8 @@
       border-radius: var(--radius-sm);
       color: var(--text-primary);
       font-family: var(--font-sans);
-      font-size: 0.85rem;
-      padding: 0.6rem 0.85rem;
+      font-size: 0.96rem;
+      padding: 0.72rem 1rem;
       transition: all 0.2s;
     }
 
@@ -440,7 +475,7 @@
 
     textarea {
       resize: vertical;
-      min-height: 70px;
+      min-height: 75px;
     }
 
     /* Button Controls */
@@ -457,14 +492,16 @@
       align-items: center;
       gap: 0.5rem;
       font-family: var(--font-sans);
-      font-size: 0.84rem;
+      font-size: 0.96rem;
       font-weight: 600;
-      padding: 0.62rem 1.25rem;
+      padding: 0.72rem 1.35rem;
       border-radius: var(--radius-sm);
       border: 1px solid transparent;
       cursor: pointer;
       transition: all 0.2s ease;
       text-decoration: none;
+      min-height: 44px;
+    }
     }
 
     .btn-primary {
@@ -512,9 +549,9 @@
 
     /* Status Banner / Feedback */
     .status-box {
-      padding: 0.85rem 1.15rem;
+      padding: 0.95rem 1.25rem;
       border-radius: var(--radius-md);
-      font-size: 0.82rem;
+      font-size: 0.92rem;
       display: none;
       align-items: center;
       gap: 0.75rem;
@@ -545,8 +582,8 @@
     }
 
     .spinner {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border: 2px solid rgba(255, 255, 255, 0.2);
       border-top-color: #fff;
       border-radius: 50%;
@@ -569,10 +606,10 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.25rem;
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.75rem;
       position: relative;
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
@@ -590,9 +627,9 @@
     }
 
     .co-num-tag {
-      font-size: 0.72rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      padding: 0.25rem 0.6rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 4px;
       background: linear-gradient(135deg, #580c0e, #7f1416);
       color: #fde68a;
@@ -600,9 +637,9 @@
     }
 
     .bloom-pill {
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      padding: 0.18rem 0.55rem;
+      padding: 0.25rem 0.65rem;
       border-radius: 9999px;
       text-transform: uppercase;
       letter-spacing: 0.03em;
@@ -615,8 +652,8 @@
     .bloom-create { background: rgba(239, 68, 68, 0.18); color: #f87171; }
 
     .co-desc {
-      font-size: 0.88rem;
-      line-height: 1.5;
+      font-size: 1rem;
+      line-height: 1.55;
       color: var(--text-primary);
     }
 
@@ -628,19 +665,19 @@
 
     .po-tags {
       display: flex;
-      gap: 0.35rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
       margin-top: auto;
-      padding-top: 0.6rem;
+      padding-top: 0.65rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .po-pill {
-      font-size: 0.68rem;
+      font-size: 0.82rem;
       font-weight: 600;
       background: rgba(127, 20, 22, 0.25);
       color: #fca5a5;
-      padding: 0.18rem 0.5rem;
+      padding: 0.22rem 0.6rem;
       border-radius: 4px;
       border: 1px solid rgba(127, 20, 22, 0.45);
     }
@@ -658,9 +695,9 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       font-weight: 600;
-      padding: 0.4rem 0.95rem;
+      padding: 0.48rem 1.1rem;
       border-radius: 9999px;
       cursor: pointer;
       transition: all 0.2s;
@@ -683,9 +720,9 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.1rem 1.35rem;
+      padding: 1.25rem 1.45rem;
       display: grid;
-      grid-template-columns: 100px 1.5fr 2fr 1fr;
+      grid-template-columns: 110px 1.5fr 2fr 1fr;
       gap: 1.25rem;
       align-items: start;
       transition: border-color 0.2s, box-shadow 0.2s;
@@ -711,20 +748,20 @@
     .week-meta-col {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.4rem;
     }
 
     .week-number {
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #fff;
     }
 
     .period-tag {
-      font-size: 0.65rem;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 0.18rem 0.5rem;
+      padding: 0.25rem 0.6rem;
       border-radius: 4px;
       width: fit-content;
     }
@@ -734,21 +771,21 @@
     .period-tag.final { background: linear-gradient(135deg, rgba(127, 20, 22, 0.4), rgba(245, 158, 11, 0.2)); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.5); }
 
     .week-topic-col h4 {
-      font-size: 0.96rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
     }
 
     .milestone-lock-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      font-size: 0.72rem;
+      gap: 0.4rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      padding: 0.22rem 0.55rem;
+      padding: 0.28rem 0.65rem;
       border-radius: 4px;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
       letter-spacing: 0.02em;
     }
 
@@ -766,11 +803,11 @@
     }
 
     .tla-box {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       color: var(--text-secondary);
       background: rgba(245, 158, 11, 0.05);
       border-left: 3px solid var(--perpetual-gold);
-      padding: 0.4rem 0.65rem;
+      padding: 0.48rem 0.75rem;
       border-radius: 0 4px 4px 0;
       margin-top: 0.45rem;
     }
@@ -779,22 +816,22 @@
     .llo-stack {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
 
     .llo-item {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       display: flex;
       align-items: flex-start;
       gap: 0.5rem;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .llo-cat-badge {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       border-radius: 4px;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       font-weight: 800;
       display: inline-flex;
       align-items: center;
@@ -809,13 +846,13 @@
     .week-assess-col {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      font-size: 0.75rem;
+      gap: 0.45rem;
+      font-size: 0.88rem;
     }
 
     .assess-label {
       color: var(--text-muted);
-      font-size: 0.68rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
       font-weight: 600;
     }
@@ -836,10 +873,10 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.1rem 1.35rem;
+      padding: 1.25rem 1.45rem;
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.15rem;
       transition: all 0.2s;
     }
 
@@ -854,13 +891,13 @@
     }
 
     .audit-icon {
-      width: 34px;
-      height: 34px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       font-weight: 800;
       flex-shrink: 0;
     }
@@ -878,14 +915,14 @@
     }
 
     .audit-content h4 {
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       font-weight: 700;
     }
 
     .audit-content p {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       color: var(--text-secondary);
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
     }
 
     /* Grading Matrix Box */
@@ -900,13 +937,13 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.25rem;
+      padding: 1.35rem;
     }
 
     .grading-tier h4 {
-      font-size: 0.88rem;
+      font-size: 1rem;
       color: var(--text-gold);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
       display: flex;
       justify-content: space-between;
       font-weight: 700;
@@ -915,8 +952,8 @@
     .grading-item {
       display: flex;
       justify-content: space-between;
-      font-size: 0.8rem;
-      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      padding: 0.48rem 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -932,7 +969,7 @@
       padding: 3rem 3.5rem;
       box-shadow: 0 12px 40px rgba(0,0,0,0.6);
       font-family: 'Inter', Georgia, serif;
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
@@ -943,28 +980,57 @@
       margin-bottom: 1.5rem;
     }
 
-    .doc-perpetual-banner {
-      max-height: 65px;
+    .doc-brand-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .doc-seal-img {
+      height: 64px;
       width: auto;
-      margin: 0 auto 0.85rem auto;
       display: block;
     }
 
+    .doc-typography-block {
+      text-align: left;
+      line-height: 1.12;
+    }
+
+    .doc-uni-name {
+      font-family: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #7f1416;
+      letter-spacing: 0.02em;
+    }
+
+    .doc-campus-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #7f1416;
+      letter-spacing: 0.02em;
+    }
+
     .doc-header h2 {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #7f1416;
       letter-spacing: 0.03em;
     }
 
     .doc-header h3 {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #1e293b;
       font-weight: 700;
     }
 
     .doc-header p {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: #64748b;
       margin-top: 0.25rem;
     }
@@ -973,11 +1039,11 @@
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 1.5rem;
-      font-size: 0.85rem;
+      font-size: 0.92rem;
     }
 
     .doc-meta-table td {
-      padding: 0.4rem 0.6rem;
+      padding: 0.45rem 0.65rem;
       vertical-align: top;
     }
 
@@ -988,12 +1054,12 @@
     }
 
     .doc-section-title {
-      font-size: 0.98rem;
+      font-size: 1.08rem;
       font-weight: 800;
       color: #7f1416;
       border-bottom: 2px solid #f59e0b;
-      padding-bottom: 0.35rem;
-      margin: 1.5rem 0 0.75rem 0;
+      padding-bottom: 0.4rem;
+      margin: 1.5rem 0 0.85rem 0;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -1001,13 +1067,13 @@
     .doc-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.8rem;
+      font-size: 0.88rem;
       margin-bottom: 1.25rem;
     }
 
     .doc-table th, .doc-table td {
       border: 1px solid #cbd5e1;
-      padding: 0.55rem 0.7rem;
+      padding: 0.62rem 0.75rem;
       text-align: left;
       vertical-align: top;
     }
@@ -1041,8 +1107,18 @@
         grid-template-columns: 1fr;
         gap: 0.75rem;
       }
-      .perpetual-logo-capsule img {
-        height: 26px;
+      .perpetual-brand-capsule {
+        padding: 4px 10px 4px 8px;
+        gap: 0.5rem;
+      }
+      .perpetual-seal-img {
+        height: 42px;
+      }
+      .uphsd-uni-name {
+        font-size: 1.1rem;
+      }
+      .uphsd-campus-name {
+        font-size: 0.78rem;
       }
       .brand-divider {
         display: none;
@@ -1056,8 +1132,12 @@
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-section">
-        <div class="perpetual-logo-capsule">
-          <img src="uphsd_header_logo.png" alt="University of Perpetual Help System DALTA - Molino Campus">
+        <div class="perpetual-brand-capsule">
+          <img src="logo/uphsd.svg" alt="UPHSD Seal" class="perpetual-seal-img">
+          <div class="uphsd-typography-block">
+            <div class="uphsd-uni-name">UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA</div>
+            <div class="uphsd-campus-name">Molino Campus</div>
+          </div>
         </div>
         <div class="brand-divider"></div>
         <div class="brand-text">
@@ -1276,7 +1356,13 @@
 
         <div class="syllabus-doc" id="printableSyllabus">
           <div class="doc-header">
-            <img src="uphsd_header_logo.png" alt="University of Perpetual Help System DALTA Molino Campus" class="doc-perpetual-banner">
+            <div class="doc-brand-banner">
+              <img src="logo/uphsd.svg" alt="UPHSD Seal" class="doc-seal-img">
+              <div class="doc-typography-block">
+                <div class="doc-uni-name">UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA</div>
+                <div class="doc-campus-name">Molino Campus</div>
+              </div>
+            </div>
             <h2>COLLEGE OF COMPUTER STUDIES</h2>
             <h3>Outcome-Based Education (OBE) Course Syllabus</h3>
             <p>Character Building is Nation Building • Molino Campus</p>

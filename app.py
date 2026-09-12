@@ -136,21 +136,31 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
                 self.send_error(HTTPStatus.NOT_FOUND, "index.html not found.")
                 return
 
-        # Static assets (.png, .ico, .svg)
-        if path.endswith(".png"):
-            asset_file = BASE_DIR / path.lstrip("/")
-            if asset_file.exists():
+        # Static assets (.svg, .png, .ico, .css, .js)
+        clean_rel = path.lstrip("/")
+        if clean_rel:
+            asset_file = (BASE_DIR / clean_rel).resolve()
+            if str(asset_file).startswith(str(BASE_DIR)) and asset_file.is_file():
+                mime_type = "application/octet-stream"
+                if path.endswith(".svg"):
+                    mime_type = "image/svg+xml; charset=utf-8"
+                elif path.endswith(".png"):
+                    mime_type = "image/png"
+                elif path.endswith(".ico"):
+                    mime_type = "image/x-icon"
+                elif path.endswith(".css"):
+                    mime_type = "text/css; charset=utf-8"
+                elif path.endswith(".js"):
+                    mime_type = "application/javascript; charset=utf-8"
+                
                 with open(asset_file, "rb") as f:
                     content = f.read()
                 self.send_response(HTTPStatus.OK)
-                self.send_header("Content-Type", "image/png")
+                self.send_header("Content-Type", mime_type)
                 self.send_header("Content-Length", str(len(content)))
                 self.send_header("Cache-Control", "public, max-age=86400")
                 self.end_headers()
                 self.wfile.write(content)
-                return
-            else:
-                self.send_error(HTTPStatus.NOT_FOUND, f"Image {path} not found.")
                 return
 
         # API: Status
