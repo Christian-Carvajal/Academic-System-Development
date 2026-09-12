@@ -8,22 +8,28 @@
 
 ---
 
-## ⚡ Quick Start: 1-Step Execution
+## ⚡ Quick Start: Choose Your Execution Mode
 
-You can launch the entire interactive studio with a single command:
-
+### Mode 1: Interactive Web Studio (Recommended)
+Launch the full visual studio in your browser with one command:
 ```bash
 python run_gui.py
 ```
-
-> **That's it!** `run_gui.py` handles everything out of the box. It automatically:
-> 1. Verifies Python runtime ($\ge 3.10$).
-> 2. Auto-installs required packages (`pydantic`, `ollama`) from `requirements.txt` if missing.
-> 3. Verifies local Ollama service connectivity (`http://127.0.0.1:11434`) and auto-starts `ollama serve` if dormant.
-> 4. Verifies whether `qwen3.5:4b` is downloaded; if not, automatically executes `ollama pull qwen3.5:4b`.
-> 5. Launches the local HTTP server on `http://127.0.0.1:8000` and automatically opens your default browser.
-
 *(On Windows, you can also simply double-click **`run_gui.bat`**).*
+
+> **What `run_gui.py` does automatically:**
+> 1. Verifies Python runtime ($\ge 3.10$).
+> 2. Auto-installs missing packages (`pydantic`, `ollama`) from `requirements.txt`.
+> 3. Connects to Ollama service (`http://127.0.0.1:11434`) and auto-starts `ollama serve` if dormant.
+> 4. Verifies whether `qwen3.5:4b` is present; if not, automatically downloads it via `ollama pull qwen3.5:4b`.
+> 5. Starts local server on `http://127.0.0.1:8000` and automatically opens your default browser.
+
+### Mode 2: Headless Command Prompt Execution (`run_pipeline.bat`)
+To run the automated pipeline **purely inside the terminal/CMD** without launching a web browser:
+```bat
+run_pipeline.bat
+```
+*(Double-clicking **`run_pipeline.bat`** executes Lab 1.1, Lab 1.2, and runs terminal invariant assertions, keeping the window open upon completion).*
 
 ---
 
@@ -42,6 +48,7 @@ The system enforces strict institutional grading schemes, active Bloom's Taxonom
 |          ▼                                                                        |
 |   Queries Ollama (format="json") with Qwen 3.5 4B (16k Context Window)            |
 |   Validates Bloom's Action Verbs & Normalizes Levels via Pydantic v2              |
+|   Multi-Turn Self-Healing Feedback Loop (Attempt 1 -> Attempt 2 Recovery)        |
 |          │                                                                        |
 |          ▼                                                                        |
 |   Serialized Output: co_output_lab1_1.json                                        |
@@ -59,9 +66,12 @@ The system enforces strict institutional grading schemes, active Bloom's Taxonom
 |          ▼                                                                        |
 |   Final Submission Deliverable: sample_output_syllabus.json                       |
 |          │                                                                        |
-|          ▼                                                                        |
-|  [Interactive Web GUI Studio: run_gui.py]                                         |
-|   Live Generation, Invariant Audits, Nuke/Reset, and Institutional PDF Export     |
+|          ├───────────────────────────────────────────────────────┐                |
+|          ▼                                                       ▼                |
+|  [Headless CMD: run_pipeline.bat]                       [Interactive Studio: run_gui.py]
+|   Terminal Invariant Assertions:                         Web GUI, Live Audits, Nuke Reset,
+|   14 Weeks, W7 Midterm, W14 Final,                       and Official Vector PDF Export   |
+|   100% Coverage, and UPHSD Grading                                                        |
 +-----------------------------------------------------------------------------------+
 ```
 
@@ -72,11 +82,11 @@ The system enforces strict institutional grading schemes, active Bloom's Taxonom
 The web-based studio (`run_gui.py`) provides an end-to-end curriculum engineering workspace:
 
 1. **Flexible Course Customization:**
-   - Pre-configured for **Artificial Intelligence** and **Data Structures and Algorithms**.
+   - Pre-configured for **Artificial Intelligence** (`BSCS 3112`) and **Data Structures and Algorithms** (`CS 3110`).
    - Accepts custom Course Title, Course Code, Catalogue Description, and Target Program Learning Outcomes (PLOs).
 2. **Stage 1 (Course Learning Outcomes Generator):**
    - Generates 4–5 measurable Course Learning Outcomes using `qwen3.5:4b`.
-   - Real-time progress bar, live token streaming logs, and interactive outcome cards with Bloom's cognitive taxonomy pills.
+   - Real-time progress bar, live token streaming logs, and interactive outcome cards with active Bloom's verbs highlighted in gold and cognitive taxonomy pills.
 3. **Stage 2 (14-Week Syllabus Pipeline):**
    - Automatically chains Stage 1 outcomes into a comprehensive 14-week schedule.
    - Strict milestone locking: **Week 7 Midterm Examination** and **Week 14 Final Examination / Defense**.
@@ -98,7 +108,8 @@ Every file included in this clean submission package serves a dedicated role in 
 | File Name | Category | Primary Function & Architectural Purpose |
 | :--- | :--- | :--- |
 | **`run_gui.py`** | **Universal Launcher** | Cross-platform bootstrap script. Verifies Python runtime, auto-installs missing dependencies from `requirements.txt`, checks Ollama service connectivity, auto-pulls `qwen3.5:4b` if missing, starts `app.py`, and launches default browser. |
-| **`run_gui.bat`** | **1-Click Launcher (Windows)** | Lightweight 6-line wrapper invoking `python run_gui.py %*` with automatic error pausing for Windows double-click evaluation. |
+| **`run_gui.bat`** | **1-Click GUI Launcher (Windows)** | Lightweight 6-line wrapper invoking `python run_gui.py %*` with automatic error pausing for Windows double-click evaluation. |
+| **`run_pipeline.bat`** | **1-Click Headless Runner (CMD)** | Automated Windows batch runner executing Lab 1.1, Lab 1.2, and terminal rubric invariant assertions without opening a browser. |
 | **`requirements.sh`** | **Environment Setup (Linux/macOS)** | Shell script for provisioning `.venv`, installing dependencies, and verifying `qwen3.5:4b` on Linux, macOS, or WSL. |
 | **`requirements.txt`** | **Dependency Manifest** | Minimal pinned runtime dependencies (`pydantic>=2.0.0`, `ollama>=0.2.0`). |
 | **`obe_schemas.py`** | **Core Deliverable #1** | Pydantic v2 data models defining the strict contracts for Course Outcomes, Lesson Learning Outcomes (LLOs), 14-Week Schedule Items, Bloom level normalization, and the UPHSD Grading Breakdown. |
@@ -114,13 +125,11 @@ Every file included in this clean submission package serves a dedicated role in 
 | **`uphsd_header_logo.png`** | **Branding Asset** | Official University of Perpetual Help System DALTA Molino Campus header logo embedded in both web preview and PDF exports. |
 | **`README.md`** | **Documentation** | Comprehensive reproduction instructions, rubric compliance breakdown, and execution logs for the evaluator. |
 
-*(Note: Obsolete batch files such as `run_pipeline.bat` have been removed to ensure a clean, uncluttered submission package).*
-
 ---
 
 ## Execution Options for the Evaluator
 
-### Option 1: Universal Python Launcher (Recommended)
+### Option 1: Universal Python Launcher (Web Studio)
 Works seamlessly across **Windows, macOS, and Linux**:
 ```bash
 python run_gui.py
@@ -129,17 +138,19 @@ python run_gui.py
 - `python run_gui.py --no-browser` : Starts server without opening a browser window.
 - `python run_gui.py --check-only` : Runs pre-flight verification checks and exits.
 
-### Option 2: Windows 1-Click Double-Click
-On Windows, simply double-click **`run_gui.bat`**.
+### Option 2: Headless Command Prompt Pipeline (`run_pipeline.bat`)
+On Windows, double-click **`run_pipeline.bat`** to execute the pipeline entirely in CMD and view terminal assertions.
 
-### Option 3: Linux / macOS / WSL Automated Setup
+### Option 3: Windows 1-Click GUI Runner (`run_gui.bat`)
+On Windows, double-click **`run_gui.bat`** to start the interactive studio.
+
+### Option 4: Linux / macOS / WSL Automated Setup
 ```bash
 bash requirements.sh
 python run_gui.py
 ```
 
-### Option 4: Headless CLI Script Execution
-If you prefer testing individual lab scripts directly in terminal:
+### Option 5: Direct CLI Script Execution
 ```bash
 # Step 1: Generate & Validate Course Outcomes (Stage 1)
 python lab1_1_generator.py
@@ -179,6 +190,58 @@ In compliance with the Error Handling & Code rubric criteria, all generators fea
 
 ---
 
+## Live CLI Pipeline Execution & Self-Healing Recovery Log (`run_pipeline.bat`)
+
+```text
+======================================================================
+   UPHSD CCS - OBE AI Microservice Pipeline CLI Automated Runner
+   Course: BSCS 3112 / Artificial Intelligence
+   Student: Christian Ezekiel L. Carvajal
+   Evaluator: Prof. Roberto L. Malitao
+======================================================================
+
+[+] Python installation detected.
+[+] Dependencies installed and verified.
+[+] Ollama CLI and local service active.
+[+] Model 'qwen3.5:4b' is ready.
+
+======================================================================
+   [1/2] RUNNING LAB 1.1: Course Outcomes Generator (qwen3.5:4b)
+======================================================================
+[*] [Lab 1.1] Querying qwen3.5:4b with format='json' (Attempt 1/4)...
+[-] [Lab 1.1] Attempt 1 validation failed: 1 validation error for CourseOutcomesPayload
+course_outcomes.2.bloom_level
+  Input should be 'Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate' or 'Create' [type=literal_error, input_value='Design', input_type=str]
+[*] [Lab 1.1] Feeding error traceback into self-healing feedback prompt...
+[*] [Lab 1.1] Querying qwen3.5:4b with format='json' (Attempt 2/4)...
+[+] [Lab 1.1] Schema validation successful.
+[+] Saved validated Course Outcomes to co_output_lab1_1.json
+[+] Lab 1.1 executed successfully. Output saved to co_output_lab1_1.json.
+
+======================================================================
+   [2/2] RUNNING LAB 1.2: 14-Week Syllabus Pipeline
+======================================================================
+[*] [Lab 1.2] Generating 14-Week Schedule (Attempt 1/4)...
+[+] [Lab 1.2] Schedule validation and pedagogical alignment passed.
+[+] Final deliverable saved to sample_output_syllabus.json
+[+] Lab 1.2 executed successfully. Output saved to sample_output_syllabus.json.
+
+======================================================================
+   VERIFYING RUBRIC ADHERENCE AND INVARIANTS
+======================================================================
+[PASS] 14 Weeks Verified
+[PASS] Week 7 Midterm Milestone Verified
+[PASS] Week 14 Final Milestone Verified
+[PASS] 100% Course Outcome Coverage Verified
+[PASS] UPHSD CCS Institutional Grading Verified
+
+======================================================================
+   SUCCESS: All deliverables executed and verified without errors!
+======================================================================
+```
+
+---
+
 ## Live Pre-Flight Verification Log (`run_gui.py`)
 
 ```text
@@ -199,6 +262,8 @@ In compliance with the Error Handling & Code rubric criteria, all generators fea
 
 [+] Pre-flight verification completed successfully.
 ```
+
+---
 
 ## Built-In Rubric Assertion & Accreditation Audit
 
