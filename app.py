@@ -136,6 +136,23 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
                 self.send_error(HTTPStatus.NOT_FOUND, "index.html not found.")
                 return
 
+        # Static assets (.png, .ico, .svg)
+        if path.endswith(".png"):
+            asset_file = BASE_DIR / path.lstrip("/")
+            if asset_file.exists():
+                with open(asset_file, "rb") as f:
+                    content = f.read()
+                self.send_response(HTTPStatus.OK)
+                self.send_header("Content-Type", "image/png")
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Cache-Control", "public, max-age=86400")
+                self.end_headers()
+                self.wfile.write(content)
+                return
+            else:
+                self.send_error(HTTPStatus.NOT_FOUND, f"Image {path} not found.")
+                return
+
         # API: Status
         if path == "/api/status":
             ollama_info = check_ollama_status()

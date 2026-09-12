@@ -9,25 +9,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #09090b;
-      --bg-surface: #121215;
-      --bg-card: #18181b;
-      --bg-card-hover: #222227;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(255, 255, 255, 0.16);
-      --text-primary: #f4f4f5;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
+      /* Perpetual DALTA Brand Tokens */
+      --perpetual-maroon: #7f1416;
+      --perpetual-maroon-dark: #580c0e;
+      --perpetual-maroon-deep: #3b0708;
+      --perpetual-maroon-light: #9e1b1e;
+      --perpetual-maroon-bright: #b91c1c;
+      --perpetual-maroon-bg: rgba(127, 20, 22, 0.18);
+      --perpetual-maroon-border: rgba(127, 20, 22, 0.45);
+
+      --perpetual-gold: #f59e0b;
+      --perpetual-gold-bright: #fbbf24;
+      --perpetual-gold-dark: #d97706;
+      --perpetual-gold-deep: #b45309;
+      --perpetual-gold-bg: rgba(245, 158, 11, 0.14);
+      --perpetual-gold-border: rgba(245, 158, 11, 0.4);
+
+      /* Elite Dark Theme Surfaces with Perpetual Maroon Ambience */
+      --bg-base: #0c0607;
+      --bg-surface: #140a0c;
+      --bg-card: #1c0e11;
+      --bg-card-hover: #261317;
+      --bg-card-subtle: #180c0f;
+
+      /* Borders & Accents */
+      --border-subtle: rgba(127, 20, 22, 0.3);
+      --border-strong: rgba(245, 158, 11, 0.35);
+      --border-gold: rgba(245, 158, 11, 0.5);
+      --border-maroon: rgba(158, 27, 30, 0.55);
+
+      /* High-Contrast Typography */
+      --text-primary: #fff5f5;
+      --text-secondary: #e2c8cb;
+      --text-muted: #9e8286;
+      --text-gold: #fcd34d;
+      --text-maroon: #fca5a5;
+
+      /* Functional Status Accents */
       --accent-emerald: #10b981;
-      --accent-emerald-bg: rgba(16, 185, 129, 0.12);
-      --accent-indigo: #6366f1;
-      --accent-indigo-bg: rgba(99, 102, 241, 0.12);
+      --accent-emerald-bg: rgba(16, 185, 129, 0.14);
+      --accent-emerald-border: rgba(16, 185, 129, 0.35);
+      --accent-indigo: #9e1b1e;
+      --accent-indigo-bg: rgba(158, 27, 30, 0.2);
       --accent-amber: #f59e0b;
-      --accent-amber-bg: rgba(245, 158, 11, 0.12);
-      --accent-rose: #f43f5e;
-      --accent-rose-bg: rgba(244, 63, 94, 0.12);
+      --accent-amber-bg: rgba(245, 158, 11, 0.15);
+      --accent-rose: #ef4444;
+      --accent-rose-bg: rgba(239, 68, 68, 0.15);
       --accent-blue: #38bdf8;
       --accent-purple: #c084fc;
+
+      /* Layout Geometry */
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 14px;
@@ -54,13 +85,15 @@
 
     /* Top App Bar */
     header.app-header {
-      background: rgba(18, 18, 21, 0.85);
-      backdrop-filter: blur(14px);
+      background: rgba(18, 8, 10, 0.92);
+      backdrop-filter: blur(16px);
+      border-top: 4px solid var(--perpetual-gold);
       border-bottom: 1px solid var(--border-subtle);
       position: sticky;
       top: 0;
       z-index: 100;
       padding: 0.75rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     .header-inner {
@@ -69,37 +102,65 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: 1.25rem;
+      flex-wrap: wrap;
     }
 
     .brand-section {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(135deg, #4f46e5, #06b6d4);
-      border-radius: var(--radius-md);
+    .perpetual-logo-capsule {
+      background: #ffffff;
+      padding: 4px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.35rem;
-      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+      height: 44px;
+    }
+
+    .perpetual-logo-capsule img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(245, 158, 11, 0.3);
     }
 
     .brand-text h1 {
       font-size: 1.05rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.01em;
       color: #fff;
     }
 
     .brand-text p {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-ccs {
+      color: #fca5a5;
+      font-weight: 700;
+    }
+
+    .brand-motto {
+      color: #fcd34d;
+      font-style: italic;
     }
 
     .header-badges {
@@ -115,29 +176,36 @@
       gap: 0.4rem;
       font-size: 0.72rem;
       font-weight: 600;
-      padding: 0.28rem 0.65rem;
+      padding: 0.3rem 0.7rem;
       border-radius: 9999px;
       border: 1px solid var(--border-subtle);
       background: var(--bg-card);
       color: var(--text-secondary);
+      transition: all 0.2s;
     }
 
     .badge.emerald {
       background: var(--accent-emerald-bg);
-      color: var(--accent-emerald);
-      border-color: rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      border-color: var(--accent-emerald-border);
     }
 
-    .badge.indigo {
-      background: var(--accent-indigo-bg);
-      color: #a5b4fc;
-      border-color: rgba(99, 102, 241, 0.3);
+    .badge.maroon {
+      background: var(--perpetual-maroon-bg);
+      color: #fca5a5;
+      border-color: var(--perpetual-maroon-border);
+    }
+
+    .badge.gold {
+      background: var(--perpetual-gold-bg);
+      color: #fde68a;
+      border-color: var(--perpetual-gold-border);
     }
 
     .badge.amber {
       background: var(--accent-amber-bg);
       color: var(--accent-amber);
-      border-color: rgba(245, 158, 11, 0.3);
+      border-color: rgba(245, 158, 11, 0.4);
     }
 
     .status-dot {
@@ -167,15 +235,16 @@
 
     /* Student Attribution Banner */
     .student-banner {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(16, 185, 129, 0.05) 100%);
-      border: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, rgba(127, 20, 22, 0.32) 0%, rgba(26, 12, 16, 0.85) 50%, rgba(245, 158, 11, 0.12) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.35);
       border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
+      padding: 1rem 1.35rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.85rem;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     }
 
     .student-info {
@@ -185,21 +254,23 @@
     }
 
     .student-avatar {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      background: #27272a;
+      background: linear-gradient(135deg, var(--perpetual-maroon), var(--perpetual-maroon-dark));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      color: #a5b4fc;
-      border: 1px solid var(--border-strong);
+      font-weight: 800;
+      color: #fde68a;
+      border: 2px solid var(--perpetual-gold);
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
     }
 
     .student-meta h2 {
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
     }
 
     .student-meta p {
@@ -218,7 +289,8 @@
     }
 
     .eval-meta strong {
-      color: #a5b4fc;
+      color: #fcd34d;
+      font-weight: 700;
     }
 
     /* Tabs Navigation */
@@ -237,12 +309,12 @@
       font-family: var(--font-sans);
       font-size: 0.85rem;
       font-weight: 600;
-      padding: 0.55rem 1rem;
+      padding: 0.6rem 1.15rem;
       border-radius: var(--radius-md);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
       transition: all 0.2s ease;
       white-space: nowrap;
     }
@@ -250,29 +322,33 @@
     .tab-btn:hover {
       color: #fff;
       background: var(--bg-card);
+      border-color: var(--perpetual-maroon-border);
     }
 
     .tab-btn.active {
-      color: #fff;
-      background: var(--bg-surface);
-      border-color: var(--border-strong);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      color: #ffffff;
+      background: linear-gradient(135deg, #7f1416 0%, #9e1b1e 100%);
+      border-color: rgba(245, 158, 11, 0.55);
+      box-shadow: 0 4px 16px rgba(127, 20, 22, 0.45);
     }
 
     .tab-btn.active .tab-num {
-      background: var(--accent-indigo);
-      color: #fff;
+      background: var(--perpetual-gold);
+      color: #3b0708;
+      font-weight: 800;
     }
 
     .tab-num {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      background: #27272a;
+      background: #2a1418;
+      color: #e2c8cb;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 0.68rem;
+      font-weight: 700;
     }
 
     /* Content Panels */
@@ -291,8 +367,8 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      padding: 1.35rem;
+      box-shadow: 0 4px 22px rgba(0,0,0,0.25);
     }
 
     .card-header {
@@ -307,6 +383,7 @@
     .card-title {
       font-size: 1rem;
       font-weight: 700;
+      color: #ffffff;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -337,8 +414,8 @@
 
     label {
       font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--text-secondary);
+      font-weight: 700;
+      color: var(--text-gold);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -351,13 +428,14 @@
       font-family: var(--font-sans);
       font-size: 0.85rem;
       padding: 0.6rem 0.85rem;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
     input:focus, textarea:focus {
       outline: none;
-      border-color: var(--accent-indigo);
-      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+      border-color: var(--perpetual-gold);
+      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+      background: var(--bg-card-hover);
     }
 
     textarea {
@@ -381,21 +459,25 @@
       font-family: var(--font-sans);
       font-size: 0.84rem;
       font-weight: 600;
-      padding: 0.6rem 1.15rem;
+      padding: 0.62rem 1.25rem;
       border-radius: var(--radius-sm);
       border: 1px solid transparent;
       cursor: pointer;
       transition: all 0.2s ease;
+      text-decoration: none;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      background: linear-gradient(135deg, #7f1416 0%, #9e1b1e 100%);
       color: #fff;
-      box-shadow: 0 2px 10px rgba(79, 70, 229, 0.35);
+      border-color: rgba(245, 158, 11, 0.45);
+      box-shadow: 0 3px 12px rgba(127, 20, 22, 0.4);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #4338ca, #3730a3);
+      background: linear-gradient(135deg, #9e1b1e 0%, #b91c1c 100%);
+      border-color: var(--perpetual-gold-bright);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
       transform: translateY(-1px);
     }
 
@@ -407,16 +489,19 @@
 
     .btn-secondary:hover {
       background: var(--bg-card-hover);
-      border-color: var(--border-strong);
+      border-color: var(--perpetual-maroon-border);
+      color: #fff;
     }
 
     .btn-emerald {
       background: linear-gradient(135deg, #059669, #047857);
+      border: 1px solid rgba(16, 185, 129, 0.4);
       color: #fff;
     }
 
     .btn-emerald:hover {
       background: linear-gradient(135deg, #047857, #065f46);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
     }
 
     .btn:disabled {
@@ -442,20 +527,20 @@
     }
 
     .status-box.running {
-      background: var(--accent-indigo-bg);
-      border-color: rgba(99, 102, 241, 0.3);
-      color: #c7d2fe;
+      background: var(--perpetual-maroon-bg);
+      border-color: var(--perpetual-maroon-border);
+      color: #fecdd3;
     }
 
     .status-box.success {
       background: var(--accent-emerald-bg);
-      border-color: rgba(16, 185, 129, 0.3);
+      border-color: rgba(16, 185, 129, 0.35);
       color: #a7f3d0;
     }
 
     .status-box.error {
       background: var(--accent-rose-bg);
-      border-color: rgba(244, 63, 94, 0.3);
+      border-color: rgba(239, 68, 68, 0.35);
       color: #fecdd3;
     }
 
@@ -484,16 +569,17 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.15rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 0.65rem;
       position: relative;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
 
     .co-card:hover {
-      border-color: rgba(99, 102, 241, 0.4);
+      border-color: var(--perpetual-maroon-border);
+      box-shadow: 0 6px 20px rgba(127, 20, 22, 0.3);
       transform: translateY(-2px);
     }
 
@@ -506,36 +592,38 @@
     .co-num-tag {
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 0.2rem 0.55rem;
+      padding: 0.25rem 0.6rem;
       border-radius: 4px;
-      background: #27272a;
-      color: #e4e4e7;
+      background: linear-gradient(135deg, #580c0e, #7f1416);
+      color: #fde68a;
+      border: 1px solid rgba(245, 158, 11, 0.35);
     }
 
     .bloom-pill {
       font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.15rem 0.5rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
       border-radius: 9999px;
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
 
-    .bloom-understand { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
-    .bloom-apply { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .bloom-analyze { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-    .bloom-evaluate { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
-    .bloom-create { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+    .bloom-understand { background: rgba(56, 189, 248, 0.18); color: #38bdf8; }
+    .bloom-apply { background: rgba(16, 185, 129, 0.18); color: #34d399; }
+    .bloom-analyze { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
+    .bloom-evaluate { background: rgba(244, 114, 182, 0.18); color: #f472b6; }
+    .bloom-create { background: rgba(239, 68, 68, 0.18); color: #f87171; }
 
     .co-desc {
       font-size: 0.88rem;
-      line-height: 1.45;
+      line-height: 1.5;
       color: var(--text-primary);
     }
 
     .co-desc strong.verb {
-      color: var(--accent-emerald);
-      text-decoration: underline dotted;
+      color: var(--perpetual-gold);
+      font-weight: 700;
+      text-decoration: underline dotted var(--perpetual-gold-dark);
     }
 
     .po-tags {
@@ -543,18 +631,18 @@
       gap: 0.35rem;
       flex-wrap: wrap;
       margin-top: auto;
-      padding-top: 0.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .po-pill {
       font-size: 0.68rem;
       font-weight: 600;
-      background: rgba(99, 102, 241, 0.12);
-      color: #a5b4fc;
-      padding: 0.15rem 0.45rem;
+      background: rgba(127, 20, 22, 0.25);
+      color: #fca5a5;
+      padding: 0.18rem 0.5rem;
       border-radius: 4px;
-      border: 1px solid rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(127, 20, 22, 0.45);
     }
 
     /* Weekly Schedule Layout */
@@ -572,16 +660,17 @@
       color: var(--text-secondary);
       font-size: 0.78rem;
       font-weight: 600;
-      padding: 0.35rem 0.85rem;
+      padding: 0.4rem 0.95rem;
       border-radius: 9999px;
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .filter-pill:hover, .filter-pill.active {
-      background: var(--accent-indigo);
-      color: #fff;
-      border-color: var(--accent-indigo);
+      background: linear-gradient(135deg, #7f1416, #9e1b1e);
+      color: #fde68a;
+      border-color: rgba(245, 158, 11, 0.5);
+      box-shadow: 0 2px 10px rgba(127, 20, 22, 0.4);
     }
 
     .schedule-grid {
@@ -594,26 +683,29 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1rem 1.25rem;
+      padding: 1.1rem 1.35rem;
       display: grid;
       grid-template-columns: 100px 1.5fr 2fr 1fr;
       gap: 1.25rem;
       align-items: start;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .week-card:hover {
-      border-color: var(--border-strong);
+      border-color: var(--perpetual-maroon-border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
 
     .week-card.milestone-midterm {
-      border: 1px solid rgba(245, 158, 11, 0.45);
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, var(--bg-card) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.55);
+      background: linear-gradient(135deg, rgba(127, 20, 22, 0.28) 0%, var(--bg-card) 100%);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.12);
     }
 
     .week-card.milestone-final {
-      border: 1px solid rgba(192, 132, 252, 0.45);
-      background: linear-gradient(135deg, rgba(192, 132, 252, 0.05) 0%, var(--bg-card) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.65);
+      background: linear-gradient(135deg, rgba(127, 20, 22, 0.38) 0%, rgba(245, 158, 11, 0.08) 100%);
+      box-shadow: 0 0 22px rgba(127, 20, 22, 0.3);
     }
 
     .week-meta-col {
@@ -623,7 +715,7 @@
     }
 
     .week-number {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #fff;
     }
@@ -632,17 +724,17 @@
       font-size: 0.65rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 0.15rem 0.45rem;
+      padding: 0.18rem 0.5rem;
       border-radius: 4px;
       width: fit-content;
     }
 
-    .period-tag.prelim { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
-    .period-tag.midterm { background: var(--accent-amber-bg); color: var(--accent-amber); }
-    .period-tag.final { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
+    .period-tag.prelim { background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .period-tag.midterm { background: rgba(127, 20, 22, 0.35); color: #fca5a5; border: 1px solid rgba(127, 20, 22, 0.5); }
+    .period-tag.final { background: linear-gradient(135deg, rgba(127, 20, 22, 0.4), rgba(245, 158, 11, 0.2)); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.5); }
 
     .week-topic-col h4 {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.35rem;
@@ -651,32 +743,36 @@
     .milestone-lock-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.35rem;
       font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.2rem 0.5rem;
+      font-weight: 800;
+      padding: 0.22rem 0.55rem;
       border-radius: 4px;
       margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
     }
 
     .milestone-midterm .milestone-lock-badge {
-      background: var(--accent-amber);
-      color: #000;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #3b0708;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
     }
 
     .milestone-final .milestone-lock-badge {
-      background: var(--accent-purple);
-      color: #000;
+      background: linear-gradient(135deg, #7f1416, #9e1b1e);
+      color: #fde68a;
+      border: 1px solid #f59e0b;
+      box-shadow: 0 2px 8px rgba(127, 20, 22, 0.45);
     }
 
     .tla-box {
       font-size: 0.78rem;
       color: var(--text-secondary);
-      background: rgba(255, 255, 255, 0.02);
-      border-left: 2px solid var(--accent-indigo);
-      padding: 0.35rem 0.6rem;
+      background: rgba(245, 158, 11, 0.05);
+      border-left: 3px solid var(--perpetual-gold);
+      padding: 0.4rem 0.65rem;
       border-radius: 0 4px 4px 0;
-      margin-top: 0.4rem;
+      margin-top: 0.45rem;
     }
 
     /* LLO Tripartite Stack */
@@ -708,7 +804,7 @@
 
     .llo-k { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
     .llo-s { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .llo-a { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .llo-a { background: rgba(245, 158, 11, 0.22); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
 
     .week-assess-col {
       display: flex;
@@ -740,45 +836,49 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1rem 1.25rem;
+      padding: 1.1rem 1.35rem;
       display: flex;
       align-items: flex-start;
       gap: 1rem;
+      transition: all 0.2s;
     }
 
     .audit-card.pass {
-      border-color: rgba(16, 185, 129, 0.3);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, var(--bg-card) 100%);
+      border-color: rgba(16, 185, 129, 0.35);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, var(--bg-card) 100%);
     }
 
     .audit-card.fail {
-      border-color: rgba(244, 63, 94, 0.4);
-      background: linear-gradient(135deg, rgba(244, 63, 94, 0.05) 0%, var(--bg-card) 100%);
+      border-color: rgba(239, 68, 68, 0.45);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, var(--bg-card) 100%);
     }
 
     .audit-icon {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.05rem;
+      font-weight: 800;
       flex-shrink: 0;
     }
 
     .audit-card.pass .audit-icon {
       background: var(--accent-emerald-bg);
       color: var(--accent-emerald);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
     }
 
     .audit-card.fail .audit-icon {
       background: var(--accent-rose-bg);
       color: var(--accent-rose);
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
     }
 
     .audit-content h4 {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
     }
 
@@ -800,23 +900,24 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.15rem;
+      padding: 1.25rem;
     }
 
     .grading-tier h4 {
-      font-size: 0.85rem;
-      color: #a5b4fc;
-      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text-gold);
+      margin-bottom: 0.6rem;
       display: flex;
       justify-content: space-between;
+      font-weight: 700;
     }
 
     .grading-item {
       display: flex;
       justify-content: space-between;
       font-size: 0.8rem;
-      padding: 0.35rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .grading-item:last-child {
@@ -829,7 +930,7 @@
       color: #111827;
       border-radius: var(--radius-md);
       padding: 3rem 3.5rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
       font-family: 'Inter', Georgia, serif;
       max-width: 960px;
       margin: 0 auto;
@@ -837,22 +938,29 @@
 
     .doc-header {
       text-align: center;
-      border-bottom: 2px solid #1e293b;
+      border-bottom: 2px solid #7f1416;
       padding-bottom: 1.25rem;
       margin-bottom: 1.5rem;
+    }
+
+    .doc-perpetual-banner {
+      max-height: 65px;
+      width: auto;
+      margin: 0 auto 0.85rem auto;
+      display: block;
     }
 
     .doc-header h2 {
       font-size: 1.25rem;
       font-weight: 800;
-      color: #0f172a;
-      letter-spacing: 0.02em;
+      color: #7f1416;
+      letter-spacing: 0.03em;
     }
 
     .doc-header h3 {
       font-size: 1rem;
-      color: #334155;
-      font-weight: 600;
+      color: #1e293b;
+      font-weight: 700;
     }
 
     .doc-header p {
@@ -869,21 +977,21 @@
     }
 
     .doc-meta-table td {
-      padding: 0.35rem 0.5rem;
+      padding: 0.4rem 0.6rem;
       vertical-align: top;
     }
 
     .doc-meta-table td.label {
       font-weight: 700;
-      color: #0f172a;
+      color: #7f1416;
       width: 25%;
     }
 
     .doc-section-title {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 800;
-      color: #0f172a;
-      border-bottom: 1px solid #cbd5e1;
+      color: #7f1416;
+      border-bottom: 2px solid #f59e0b;
       padding-bottom: 0.35rem;
       margin: 1.5rem 0 0.75rem 0;
       text-transform: uppercase;
@@ -899,15 +1007,16 @@
 
     .doc-table th, .doc-table td {
       border: 1px solid #cbd5e1;
-      padding: 0.5rem 0.65rem;
+      padding: 0.55rem 0.7rem;
       text-align: left;
       vertical-align: top;
     }
 
     .doc-table th {
-      background: #f1f5f9;
+      background: #7f1416;
+      color: #ffffff;
       font-weight: 700;
-      color: #0f172a;
+      border-color: #580c0e;
     }
 
     /* Print media styling */
@@ -916,7 +1025,7 @@
         background: #fff;
         color: #000;
       }
-      header.app-header, .student-banner, .tab-nav, .btn-row, .status-box, .filter-bar {
+      header.app-header, .student-banner, .tab-nav, .btn-row, .status-box, .filter-bar, #offlineNoticeBanner {
         display: none !important;
       }
       .syllabus-doc {
@@ -932,6 +1041,12 @@
         grid-template-columns: 1fr;
         gap: 0.75rem;
       }
+      .perpetual-logo-capsule img {
+        height: 26px;
+      }
+      .brand-divider {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -941,10 +1056,13 @@
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-section">
-        <div class="brand-logo">🎓</div>
+        <div class="perpetual-logo-capsule">
+          <img src="uphsd_header_logo.png" alt="University of Perpetual Help System DALTA - Molino Campus">
+        </div>
+        <div class="brand-divider"></div>
         <div class="brand-text">
           <h1>OBE Evaluation Engine &amp; Syllabus Studio</h1>
-          <p>College of Computer Studies — UPHSD Molino Campus</p>
+          <p><span class="brand-ccs">College of Computer Studies</span> • <span class="brand-motto">Character Building is Nation Building</span></p>
         </div>
       </div>
 
@@ -953,10 +1071,10 @@
           <span class="status-dot" id="ollamaDot"></span>
           <span id="ollamaText">Checking Ollama...</span>
         </div>
-        <div class="badge indigo">
+        <div class="badge maroon">
           <span>🧠</span> Model: <strong>qwen3.5:4b</strong>
         </div>
-        <div class="badge emerald">
+        <div class="badge gold">
           <span>🛡️</span> <strong>Pydantic v2</strong> Enforced
         </div>
       </div>
@@ -1158,9 +1276,10 @@
 
         <div class="syllabus-doc" id="printableSyllabus">
           <div class="doc-header">
-            <h2>UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA</h2>
-            <h3>COLLEGE OF COMPUTER STUDIES — MOLINO CAMPUS</h3>
-            <p>Outcome-Based Education (OBE) Course Syllabus</p>
+            <img src="uphsd_header_logo.png" alt="University of Perpetual Help System DALTA Molino Campus" class="doc-perpetual-banner">
+            <h2>COLLEGE OF COMPUTER STUDIES</h2>
+            <h3>Outcome-Based Education (OBE) Course Syllabus</h3>
+            <p>Character Building is Nation Building • Molino Campus</p>
           </div>
 
           <table class="doc-meta-table">
