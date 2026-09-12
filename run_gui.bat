@@ -76,11 +76,11 @@ echo.
 
 :: Step 5: Launch GUI Server & Open Browser
 echo ======================================================================
-echo    STARTING LOCAL HTTP SERVER ON http://localhost:8000
+echo    STARTING LOCAL HTTP SERVER ON http://127.0.0.1:8000
 echo ======================================================================
 echo.
 echo Launching default web browser...
-start http://localhost:8000
+start http://127.0.0.1:8000
 
 echo.
 echo The OBE Web Studio is running. Keep this console window open!

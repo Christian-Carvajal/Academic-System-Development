@@ -106,6 +106,9 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
         self.send_response(HTTPStatus.NO_CONTENT)
         self.end_headers()
 
+    def do_HEAD(self):
+        self.do_GET()
+
     def send_json(self, status_code: int, data: dict):
         body = json.dumps(data, indent=2).encode("utf-8")
         self.send_response(status_code)
