@@ -1067,6 +1067,9 @@
       border-collapse: collapse;
       font-size: 0.88rem;
       margin-bottom: 1.25rem;
+      table-layout: fixed;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .doc-table th, .doc-table td {
@@ -1130,6 +1133,10 @@
         page-break-after: avoid;
       }
       .doc-table {
+        table-layout: fixed !important;
+        width: 100% !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
         page-break-inside: auto;
       }
       .doc-table thead {
@@ -1487,8 +1494,9 @@
 
   </main>
 
-  <!-- Offline-ready Client-side High-Resolution PDF Generator -->
-  <script src="html2pdf.bundle.min.js"></script>
+  <!-- Offline-ready Vector PDF Engine with Institutional Layout -->
+  <script src="jspdf.umd.min.js"></script>
+  <script src="jspdf.plugin.autotable.min.js"></script>
 
   <script>
     // Automatic API Base Resolution:
@@ -2460,13 +2468,10 @@
       event.target.value = '';
     }
 
-    // Direct High-Resolution PDF Export via html2pdf
+    // Direct High-Resolution Vector PDF Export via jsPDF + autoTable
     async function exportSyllabusPDF() {
-      const element = document.getElementById('printableSyllabus');
       const btn = document.getElementById('btnSavePDF');
       const notice = document.getElementById('pdfStatusNotice');
-
-      if (!element) return;
 
       const originalHtml = btn ? btn.innerHTML : '';
       if (btn) {
@@ -2478,57 +2483,388 @@
         notice.style.background = 'rgba(245, 158, 11, 0.15)';
         notice.style.borderColor = 'rgba(245, 158, 11, 0.4)';
         notice.style.color = '#fcd34d';
-        notice.innerHTML = '⚙️ <strong>Rendering High-Resolution PDF:</strong> Processing syllabus document. Download will trigger automatically...';
+        notice.innerHTML = '⚙️ <strong>Rendering Official PDF:</strong> Building vector-formatted syllabus with repeating headers and exact margins...';
       }
 
-      // Ensure doc preview is up-to-date with active data
+      // Ensure doc preview is rendered
       renderDocPreview();
 
-      const code = (activeCoData && activeCoData.course_code ? activeCoData.course_code.replace(/\s+/g, '_') : 'CS3110');
-      const filename = `UPHSD_OBE_Course_Syllabus_${code}.pdf`;
-
-      const opt = {
-        margin: [12, 10, 12, 10], // mm: top, left, bottom, right
-        filename: filename,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-          scrollY: 0,
-          backgroundColor: '#ffffff'
-        },
-        jsPDF: {
-          unit: 'mm',
-          format: 'a4',
-          orientation: 'portrait'
-        },
-        pagebreak: {
-          mode: ['avoid-all', 'css', 'legacy']
-        }
-      };
-
       try {
-        if (typeof html2pdf !== 'undefined') {
-          await html2pdf().set(opt).from(element).save();
-          if (notice) {
-            notice.style.background = 'rgba(16, 185, 129, 0.15)';
-            notice.style.borderColor = 'rgba(16, 185, 129, 0.4)';
-            notice.style.color = '#a7f3d0';
-            notice.innerHTML = `✓ <strong>PDF Download Ready:</strong> <code>${filename}</code> has been saved to your computer.`;
-            setTimeout(() => { notice.style.display = 'none'; }, 6000);
+        let jsPDFClass = null;
+        if (window.jspdf && window.jspdf.jsPDF) {
+          jsPDFClass = window.jspdf.jsPDF;
+        } else if (typeof jsPDF !== 'undefined') {
+          jsPDFClass = jsPDF;
+        }
+
+        if (!jsPDFClass) {
+          throw new Error('jsPDF library not loaded');
+        }
+
+        // Apply autotable plugin if needed
+        if (window.jspdfAutotable && window.jspdfAutotable.applyPlugin) {
+          window.jspdfAutotable.applyPlugin(jsPDFClass);
+        }
+
+        const doc = new jsPDFClass({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        if (typeof doc.autoTable !== 'function') {
+          throw new Error('autoTable plugin not available on jsPDF');
+        }
+
+        const pageWidth = doc.internal.pageSize.getWidth(); // 210
+        const pageHeight = doc.internal.pageSize.getHeight(); // 297
+        const margin = 14;
+        const contentWidth = pageWidth - (margin * 2); // 182
+
+        // Brand colors
+        const MAROON = [127, 20, 22];     // #7f1416
+        const GOLD = [217, 119, 6];       // #d97706
+        const TEXT_MAIN = [17, 24, 39];   // #111827
+        const TEXT_MUTED = [100, 116, 139];// #64748b
+        const BORDER_COLOR = [203, 213, 225]; // #cbd5e1
+
+        let y = margin;
+
+        // Extract seal logo as base64 from image element
+        let logoBase64 = null;
+        const logoImg = document.querySelector('.doc-seal-img') || document.querySelector('.perpetual-seal-img');
+        if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = logoImg.naturalWidth;
+            canvas.height = logoImg.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(logoImg, 0, 0);
+            logoBase64 = canvas.toDataURL('image/png');
+          } catch (e) {
+            console.warn('Canvas logo export note:', e);
           }
+        }
+
+        // 1. INSTITUTIONAL HEADER
+        if (logoBase64) {
+          doc.addImage(logoBase64, 'PNG', margin + 2, y - 2, 18, 18);
+        }
+
+        const headerLeft = logoBase64 ? margin + 24 : margin;
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(13);
+        doc.setTextColor(...MAROON);
+        doc.text('UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA', headerLeft, y + 3);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...GOLD);
+        doc.text('MOLINO CAMPUS  •  COLLEGE OF COMPUTER STUDIES', headerLeft, y + 7.5);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(...TEXT_MAIN);
+        doc.text('Outcome-Based Education (OBE) Course Syllabus', headerLeft, y + 12.5);
+
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...TEXT_MUTED);
+        doc.text('Character Building is Nation Building  |  CHED CMO Compliant  |  Official Document', headerLeft, y + 16.5);
+
+        y += 20;
+
+        // Gold divider bar
+        doc.setDrawColor(...GOLD);
+        doc.setLineWidth(0.7);
+        doc.line(margin, y, margin + contentWidth, y);
+        y += 4;
+
+        // 2. COURSE METADATA TABLE
+        const courseCode = (activeCoData && activeCoData.course_code) || (document.getElementById('docCourseCode') ? document.getElementById('docCourseCode').textContent.trim() : 'CS 3110');
+        const courseTitle = (activeCoData && activeCoData.course_title) || (document.getElementById('docCourseTitle') ? document.getElementById('docCourseTitle').textContent.trim() : 'Data Structures and Algorithms');
+        const courseDesc = (activeCoData && activeCoData.course_description) || (document.getElementById('docCourseDesc') ? document.getElementById('docCourseDesc').textContent.trim() : '');
+
+        doc.autoTable({
+          startY: y,
+          margin: { left: margin, right: margin },
+          theme: 'plain',
+          styles: {
+            font: 'helvetica',
+            fontSize: 8.5,
+            cellPadding: 1.8,
+            textColor: TEXT_MAIN,
+            lineColor: BORDER_COLOR,
+            lineWidth: 0.15
+          },
+          columnStyles: {
+            0: { fontStyle: 'bold', textColor: MAROON, width: 28 },
+            1: { width: 63 },
+            2: { fontStyle: 'bold', textColor: MAROON, width: 28 },
+            3: { width: 63 }
+          },
+          body: [
+            [
+              'Course Code:', courseCode,
+              'Academic Term:', 'First Semester, SY 2026-2027'
+            ],
+            [
+              'Course Title:', courseTitle,
+              'Instructor:', 'Prof. Roberto L. Malitao'
+            ],
+            [
+              { content: 'Course Description:', styles: { fontStyle: 'bold', textColor: MAROON } },
+              { content: courseDesc, colSpan: 3, styles: { fontStyle: 'normal' } }
+            ]
+          ]
+        });
+
+        y = doc.lastAutoTable.finalY + 5;
+
+        // 3. SECTION I: COURSE LEARNING OUTCOMES (CLOs)
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...MAROON);
+        doc.text('I. Course Learning Outcomes (CLOs)', margin, y);
+        y += 2;
+
+        let cloRows = [];
+        if (activeCoData && activeCoData.course_outcomes && activeCoData.course_outcomes.length) {
+          cloRows = activeCoData.course_outcomes.map(clo => {
+            const cloId = clo.clo_number ? `CLO ${clo.clo_number}` : (clo.id || 'CLO');
+            const bloom = clo.bloom_level || clo.bloom_taxonomy_level || clo.blooms_level || 'Apply';
+            const stmt = clo.co_description || clo.outcome_statement || clo.statement || clo.description || '';
+            const rawPos = clo.mapped_po || clo.mapped_pos || clo.mapped_program_outcomes || [];
+            const pos = (Array.isArray(rawPos) ? rawPos : [rawPos]).map(p => typeof p === 'number' ? `PLO ${p}` : String(p)).join(', ');
+            return [cloId, bloom, stmt, pos];
+          });
         } else {
-          // Graceful fallback if library not available
-          window.print();
+          document.querySelectorAll('#docCoTableBody tr').forEach(tr => {
+            const tds = tr.querySelectorAll('td');
+            if (tds.length >= 4) {
+              cloRows.push([tds[0].innerText.trim(), tds[1].innerText.trim(), tds[2].innerText.trim(), tds[3].innerText.trim()]);
+            }
+          });
+        }
+
+        doc.autoTable({
+          startY: y,
+          margin: { left: margin, right: margin },
+          theme: 'grid',
+          head: [['CLO #', "Bloom's Level", 'Course Outcome Statement', 'Mapped POs']],
+          body: cloRows,
+          rowPageBreak: 'avoid',
+          headStyles: {
+            fillColor: MAROON,
+            textColor: [255, 255, 255],
+            fontStyle: 'bold',
+            fontSize: 8.5,
+            halign: 'center'
+          },
+          bodyStyles: {
+            font: 'helvetica',
+            fontSize: 8,
+            cellPadding: 2,
+            textColor: TEXT_MAIN,
+            lineColor: BORDER_COLOR
+          },
+          columnStyles: {
+            0: { halign: 'center', fontStyle: 'bold', width: 18 },
+            1: { halign: 'center', width: 24 },
+            2: { width: 116 },
+            3: { halign: 'center', fontStyle: 'bold', width: 24 }
+          }
+        });
+
+        y = doc.lastAutoTable.finalY + 6;
+
+        // 4. SECTION II: 14-WEEK LEARNING & ASSESSMENT SCHEDULE
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...MAROON);
+        doc.text('II. 14-Week Learning & Assessment Schedule (Detailed Learning Plan)', margin, y);
+        y += 2;
+
+        let scheduleRows = [];
+        if (activeSyllabusData && activeSyllabusData.weekly_schedule && activeSyllabusData.weekly_schedule.length) {
+          scheduleRows = activeSyllabusData.weekly_schedule.map(w => {
+            const llosText = (w.llos || []).map(l => `(${l.category}) ${l.outcome_text}`).join('\n');
+            const tlaAssessment = `TLA: ${w.teaching_learning_activity || ''}\nAssessment: ${w.assessment_tool || ''}`;
+            const alignedCo = (w.aligned_co || []).map(c => typeof c === 'number' ? `CLO ${c}` : String(c)).join(', ');
+            return [
+              String(w.week_number || ''),
+              String(w.period || ''),
+              String(w.topic || ''),
+              llosText,
+              tlaAssessment,
+              alignedCo
+            ];
+          });
+        } else {
+          document.querySelectorAll('#docScheduleTableBody tr').forEach(tr => {
+            const tds = tr.querySelectorAll('td');
+            if (tds.length >= 6) {
+              scheduleRows.push([
+                tds[0].innerText.trim(),
+                tds[1].innerText.trim(),
+                tds[2].innerText.trim(),
+                tds[3].innerText.trim(),
+                tds[4].innerText.trim(),
+                tds[5].innerText.trim()
+              ]);
+            }
+          });
+        }
+
+        doc.autoTable({
+          startY: y,
+          margin: { left: margin, right: margin, bottom: 16 },
+          theme: 'grid',
+          showHead: 'everyPage', // Repeats thead on every page
+          rowPageBreak: 'avoid',  // Never split a weekly row across pages
+          head: [['Wk', 'Period', 'Topic Covered', 'Intended Learning Outcomes (K / S / A)', 'Teaching & Assessment', 'CLO']],
+          body: scheduleRows,
+          headStyles: {
+            fillColor: MAROON,
+            textColor: [255, 255, 255],
+            fontStyle: 'bold',
+            fontSize: 8,
+            halign: 'center',
+            valign: 'middle'
+          },
+          bodyStyles: {
+            font: 'helvetica',
+            fontSize: 7.5,
+            cellPadding: 1.8,
+            textColor: TEXT_MAIN,
+            lineColor: BORDER_COLOR,
+            valign: 'top'
+          },
+          columnStyles: {
+            0: { halign: 'center', fontStyle: 'bold', width: 10 },
+            1: { halign: 'center', fontStyle: 'bold', width: 18 },
+            2: { fontStyle: 'bold', width: 38 },
+            3: { width: 62 },
+            4: { width: 42 },
+            5: { halign: 'center', fontStyle: 'bold', width: 12 }
+          }
+        });
+
+        y = doc.lastAutoTable.finalY + 6;
+
+        // If remaining height on current page is less than 45mm, add page for grading & signatures
+        if (pageHeight - y < 45) {
+          doc.addPage();
+          y = margin + 6;
+        }
+
+        // 5. SECTION III: INSTITUTIONAL GRADING SYSTEM
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...MAROON);
+        doc.text('III. Institutional Grading System & Academic Policies', margin, y);
+        y += 2.5;
+
+        doc.autoTable({
+          startY: y,
+          margin: { left: margin, right: margin },
+          theme: 'plain',
+          styles: {
+            font: 'helvetica',
+            fontSize: 8,
+            cellPadding: 1.5,
+            lineColor: BORDER_COLOR,
+            lineWidth: 0.15
+          },
+          columnStyles: {
+            0: { fontStyle: 'bold', textColor: MAROON, width: 48 },
+            1: { width: 134 }
+          },
+          body: [
+            ['Class Standing (70%):', 'Quizzes (30%) + Research / Special Assignments (20%) + Seatwork / Laboratory Exercises (50%)'],
+            ['Term Grade Calculation:', '(Class Standing × 70%) + (Major Periodical Examination × 30%)'],
+            ['Final Grade Standard:', '(Prelim Grade × 20%) + (Midterm Grade × 30%) + (Finals Grade × 50%)  |  Passing Threshold: 75.0%']
+          ]
+        });
+
+        y = doc.lastAutoTable.finalY + 7;
+
+        // If remaining height on current page is less than 32mm, add page for signatures
+        if (pageHeight - y < 35) {
+          doc.addPage();
+          y = margin + 6;
+        }
+
+        // 6. OFFICIAL SIGNATURES & ENDORSEMENTS
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...MAROON);
+        doc.text('IV. Document Verification & Administrative Endorsement', margin, y);
+        y += 3;
+
+        doc.autoTable({
+          startY: y,
+          margin: { left: margin, right: margin },
+          theme: 'plain',
+          styles: {
+            font: 'helvetica',
+            fontSize: 8,
+            cellPadding: 2,
+            lineColor: BORDER_COLOR,
+            lineWidth: 0.15
+          },
+          body: [
+            [
+              { content: 'Prepared by:\n\n\n_____________________________\nProf. Roberto L. Malitao\nFaculty Course Specialist', styles: { halign: 'center' } },
+              { content: 'Reviewed by:\n\n\n_____________________________\nDr. Jane C. Doe\nDepartment Chair, Computer Studies', styles: { halign: 'center' } },
+              { content: 'Approved by:\n\n\n_____________________________\nDean, College of Computer Studies\nUPHSD Molino Campus', styles: { halign: 'center' } }
+            ]
+          ]
+        });
+
+        // 7. RUNNING HEADERS & FOOTERS ON ALL PAGES
+        const totalPages = doc.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+          doc.setPage(i);
+
+          // Top header on subsequent pages (2+)
+          if (i > 1) {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(7.5);
+            doc.setTextColor(...TEXT_MUTED);
+            doc.text(`UPHSD College of Computer Studies  •  OBE Course Syllabus: ${courseCode}`, margin, 9);
+            doc.setDrawColor(...GOLD);
+            doc.setLineWidth(0.3);
+            doc.line(margin, 11, margin + contentWidth, 11);
+          }
+
+          // Footer on all pages
+          doc.setFont('helvetica', 'italic');
+          doc.setFontSize(7.5);
+          doc.setTextColor(...TEXT_MUTED);
+          doc.text('University of Perpetual Help System DALTA — Molino Campus  |  OBE Evaluation Engine & Syllabus Studio', margin, pageHeight - 7);
+
+          doc.setFont('helvetica', 'bold');
+          doc.text(`Page ${i} of ${totalPages}`, margin + contentWidth - 18, pageHeight - 7);
+        }
+
+        const filename = `UPHSD_OBE_Course_Syllabus_${courseCode.replace(/\s+/g, '_')}.pdf`;
+        doc.save(filename);
+
+        if (notice) {
+          notice.style.background = 'rgba(16, 185, 129, 0.15)';
+          notice.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+          notice.style.color = '#a7f3d0';
+          notice.innerHTML = `✓ <strong>Official PDF Exported:</strong> <code>${filename}</code> (${totalPages} pages) downloaded with repeating table headers and zero clipping.`;
+          setTimeout(() => { notice.style.display = 'none'; }, 7000);
         }
       } catch (err) {
-        console.error('Direct PDF export error:', err);
+        console.error('Vector PDF generation error:', err);
         if (notice) {
           notice.style.background = 'rgba(239, 68, 68, 0.15)';
           notice.style.borderColor = 'rgba(239, 68, 68, 0.4)';
           notice.style.color = '#fecdd3';
-          notice.innerHTML = '⚠️ Direct PDF generator encountered an issue. Opening system print dialog (select "Save as PDF")...';
+          notice.innerHTML = '⚠️ Vector PDF engine encountered an issue. Launching browser print dialog...';
         }
         window.print();
       } finally {
