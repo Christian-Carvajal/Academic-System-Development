@@ -339,6 +339,24 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
             self.send_json(202, {"success": True, "message": "Stage 2 generation started."})
             return
 
+        # POST /api/clear or /api/reset
+        if path in ("/api/clear", "/api/reset"):
+            co_file = BASE_DIR / "co_output_lab1_1.json"
+            s_file = BASE_DIR / "sample_output_syllabus.json"
+            deleted_files = []
+            if co_file.exists():
+                co_file.unlink()
+                deleted_files.append("co_output_lab1_1.json")
+            if s_file.exists():
+                s_file.unlink()
+                deleted_files.append("sample_output_syllabus.json")
+            self.send_json(200, {
+                "success": True,
+                "message": "All generated files wiped successfully.",
+                "deleted": deleted_files
+            })
+            return
+
         self.send_error(HTTPStatus.NOT_FOUND, f"Endpoint {path} not found.")
 
 def start_server(open_browser=True):

@@ -500,6 +500,38 @@
       text-decoration: none;
       min-height: 44px;
     }
+
+    /* Empty State Card Styles */
+    .empty-state-card {
+      background: var(--bg-card);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 2rem;
+      text-align: center;
+      margin-top: 1rem;
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 0.85rem;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+    }
+
+    .empty-state-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    .empty-state-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
     .btn-primary {
@@ -1209,6 +1241,9 @@
         <div class="badge gold">
           <span>🛡️</span> <strong>Pydantic v2</strong> Enforced
         </div>
+        <button type="button" class="badge" onclick="wipeWorkspace()" style="cursor:pointer; background:rgba(239,68,68,0.18); border-color:rgba(239,68,68,0.45); color:#fca5a5; font-weight:700;" title="Delete all generated files and reset UI to clean state">
+          <span>🗑️</span> Reset / Wipe All
+        </button>
       </div>
     </div>
   </header>
@@ -2164,37 +2199,53 @@
 
     // Render Document Tab Preview
     function renderDocPreview() {
+      const tbody = document.getElementById('docCoTableBody');
+      const sbody = document.getElementById('docScheduleTableBody');
+
       if (activeCoData) {
         document.getElementById('docCourseCode').textContent = activeCoData.course_code || 'CS 3110';
         document.getElementById('docCourseTitle').textContent = activeCoData.course_title || 'Data Structures and Algorithms';
         document.getElementById('docCourseDesc').textContent = activeCoData.course_description || '';
 
-        const tbody = document.getElementById('docCoTableBody');
-        tbody.innerHTML = (activeCoData.course_outcomes || []).map(c => `
-          <tr>
-            <td><strong>CLO ${c.clo_number}</strong></td>
-            <td>${c.bloom_level}</td>
-            <td>${c.co_description}</td>
-            <td>${(c.mapped_po || []).map(p=>'PLO '+p).join(', ')}</td>
-          </tr>
-        `).join('');
+        if (tbody) {
+          tbody.innerHTML = (activeCoData.course_outcomes || []).map(c => `
+            <tr>
+              <td><strong>CLO ${c.clo_number || ''}</strong></td>
+              <td>${c.bloom_level || c.bloom_taxonomy_level || 'Apply'}</td>
+              <td>${c.co_description || c.statement || ''}</td>
+              <td>${(c.mapped_po || []).map(p=> typeof p === 'number' ? 'PLO ' + p : p).join(', ')}</td>
+            </tr>
+          `).join('');
+        }
+      } else {
+        document.getElementById('docCourseCode').textContent = '—';
+        document.getElementById('docCourseTitle').textContent = '—';
+        document.getElementById('docCourseDesc').textContent = 'Awaiting course generation in Stage 1...';
+        if (tbody) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:2rem; color:#94a3b8; font-style:italic;">No Course Learning Outcomes generated yet. Run Stage 1 to populate this section.</td></tr>';
+        }
       }
 
-      if (activeSyllabusData && activeSyllabusData.weekly_schedule) {
-        const sbody = document.getElementById('docScheduleTableBody');
-        sbody.innerHTML = activeSyllabusData.weekly_schedule.map(w => {
-          const llosFormatted = (w.llos || []).map(l => `<strong>(${l.category})</strong> ${l.outcome_text}`).join('<br>');
-          return `
-            <tr>
-              <td><strong>${w.week_number}</strong></td>
-              <td>${w.period}</td>
-              <td><strong>${w.topic}</strong></td>
-              <td>${llosFormatted}</td>
-              <td><em>TLA:</em> ${w.teaching_learning_activity}<br><em>Assessment:</em> ${w.assessment_tool}</td>
-              <td>${(w.aligned_co || []).join(', ')}</td>
-            </tr>
-          `;
-        }).join('');
+      if (activeSyllabusData && activeSyllabusData.weekly_schedule && activeSyllabusData.weekly_schedule.length) {
+        if (sbody) {
+          sbody.innerHTML = activeSyllabusData.weekly_schedule.map(w => {
+            const llosFormatted = (w.llos || []).map(l => `<strong>(${l.category})</strong> ${l.outcome_text}`).join('<br>');
+            return `
+              <tr>
+                <td><strong>${w.week_number}</strong></td>
+                <td>${w.period}</td>
+                <td><strong>${w.topic}</strong></td>
+                <td>${llosFormatted}</td>
+                <td><em>TLA:</em> ${w.teaching_learning_activity}<br><em>Assessment:</em> ${w.assessment_tool}</td>
+                <td>${(w.aligned_co || []).join(', ')}</td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } else {
+        if (sbody) {
+          sbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:3rem; color:#94a3b8; font-style:italic;">No 14-Week Schedule generated yet. Run Stage 2 to populate instructional milestones.</td></tr>';
+        }
       }
     }
 
@@ -2353,7 +2404,77 @@
       }
     }
 
-    // Load Saved CO JSON (API with embedded fallback)
+    // State Resets for Clean Regeneration
+    function resetCOState() {
+      activeCoData = null;
+      const rawEl = document.getElementById('coRawJson');
+      if (rawEl) { rawEl.textContent = ''; rawEl.style.display = 'none'; }
+      const container = document.getElementById('coCardsContainer');
+      if (container) {
+        container.innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">🚀</div>
+            <div class="empty-state-title">Ready to Generate Stage 1 Course Outcomes</div>
+            <div class="empty-state-desc">Workspace is clean. Customize course parameters above and click <strong>"Run Lab 1.1 Generation"</strong> to synthesize outcomes using your local Ollama model.</div>
+          </div>
+        `;
+      }
+      renderDocPreview();
+    }
+
+    function resetSyllabusState() {
+      activeSyllabusData = null;
+      const rawEl = document.getElementById('syllabusRawJson');
+      if (rawEl) { rawEl.textContent = ''; rawEl.style.display = 'none'; }
+      const container = document.getElementById('scheduleCardsContainer');
+      if (container) {
+        container.innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">🗓️</div>
+            <div class="empty-state-title">Awaiting 14-Week Schedule Pipeline</div>
+            <div class="empty-state-desc">No schedule generated yet. Complete Stage 1 first, then click <strong>"Run Lab 1.2 Schedule Pipeline"</strong> to construct the full 14-week matrix.</div>
+          </div>
+        `;
+      }
+      const auditContainer = document.getElementById('auditGridContainer');
+      if (auditContainer) {
+        auditContainer.innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">🛡️</div>
+            <div class="empty-state-title">Accreditation Audit Standby</div>
+            <div class="empty-state-desc">Audit verification requires generated syllabus data. Run Stage 2 to execute automated accreditation invariant tests.</div>
+          </div>
+        `;
+      }
+      renderDocPreview();
+    }
+
+    async function wipeWorkspace() {
+      if (!confirm('Are you sure you want to delete all generated files and reset the workspace as new?')) {
+        return;
+      }
+      try {
+        await fetch(`${API_BASE}/api/clear`, { method: 'POST' });
+      } catch (e) {
+        console.warn('API clear error:', e);
+      }
+      resetCOState();
+      resetSyllabusState();
+      const notice = document.getElementById('coStatusBox');
+      const msg = document.getElementById('coStatusMsg');
+      const spinner = document.getElementById('coSpinner');
+      if (notice && msg) {
+        notice.className = 'status-box show';
+        notice.style.background = 'rgba(239, 68, 68, 0.15)';
+        notice.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+        notice.style.color = '#fecdd3';
+        if (spinner) spinner.style.display = 'none';
+        msg.innerHTML = '🗑️ <strong>Workspace Wiped:</strong> All generated files deleted. Ready for fresh generation.';
+        setTimeout(() => { notice.classList.remove('show'); }, 4000);
+      }
+    }
+
+    // Load Saved CO JSON (strict check: only load if real file exists on server)
     async function loadSavedCO(showNotification = false) {
       const box = document.getElementById('coStatusBox');
       const msg = document.getElementById('coStatusMsg');
@@ -2362,7 +2483,7 @@
       if (showNotification && box && msg) {
         box.className = 'status-box running show';
         if (spinner) spinner.style.display = 'block';
-        msg.textContent = 'Loading saved co_output_lab1_1.json...';
+        msg.textContent = 'Checking server for co_output_lab1_1.json...';
       }
 
       try {
@@ -2375,9 +2496,18 @@
           }
         }
       } catch (err) {
-        console.warn('API fetch for CO failed, loading embedded fallback:', err);
+        console.warn('API fetch for CO note:', err);
       }
-      applyCOData(FALLBACK_CO, 'co_output_lab1_1.json', showNotification);
+
+      // If file does not exist on server:
+      if (showNotification && box && msg) {
+        box.className = 'status-box error show';
+        if (spinner) spinner.style.display = 'none';
+        msg.innerHTML = '⚠️ No saved <code>co_output_lab1_1.json</code> found on server. Click <strong>"Run Lab 1.1 Generation"</strong> to generate fresh or choose a local file.';
+        setTimeout(() => { box.classList.remove('show'); }, 5000);
+      } else {
+        resetCOState();
+      }
     }
 
     // Handle Local File Upload for CO JSON
@@ -2424,7 +2554,7 @@
       }
     }
 
-    // Load Saved Syllabus JSON (API with embedded fallback)
+    // Load Saved Syllabus JSON (strict check: only load if real file exists on server)
     async function loadSavedSyllabus(showNotification = false) {
       const box = document.getElementById('syllabusStatusBox');
       const msg = document.getElementById('syllabusStatusMsg');
@@ -2433,7 +2563,7 @@
       if (showNotification && box && msg) {
         box.className = 'status-box running show';
         if (spinner) spinner.style.display = 'block';
-        msg.textContent = 'Loading saved sample_output_syllabus.json...';
+        msg.textContent = 'Checking server for sample_output_syllabus.json...';
       }
 
       try {
@@ -2446,9 +2576,18 @@
           }
         }
       } catch (err) {
-        console.warn('API fetch for Syllabus failed, loading embedded fallback:', err);
+        console.warn('API fetch for Syllabus note:', err);
       }
-      applySyllabusData(FALLBACK_SYLLABUS, 'sample_output_syllabus.json', showNotification);
+
+      // If file does not exist on server:
+      if (showNotification && box && msg) {
+        box.className = 'status-box error show';
+        if (spinner) spinner.style.display = 'none';
+        msg.innerHTML = '⚠️ No saved <code>sample_output_syllabus.json</code> found on server. Complete Stage 1 and click <strong>"Run Lab 1.2 Schedule Pipeline"</strong>, or choose a local file.';
+        setTimeout(() => { box.classList.remove('show'); }, 5000);
+      } else {
+        resetSyllabusState();
+      }
     }
 
     // Handle Local File Upload for Syllabus JSON
@@ -2905,18 +3044,30 @@
           }
         }
       } catch (err) {
-        console.warn('API audit failed, evaluating client-side invariants:', err);
+        console.warn('API audit note:', err);
       }
 
-      // Client-side invariant verification against active/fallback syllabus
-      const syl = activeSyllabusData || FALLBACK_SYLLABUS;
+      // If no syllabus data is currently loaded, display standby empty state
+      if (!activeSyllabusData || !activeSyllabusData.weekly_schedule) {
+        container.innerHTML = `
+          <div class="empty-state-card" style="grid-column: 1 / -1;">
+            <div class="empty-state-icon">🛡️</div>
+            <div class="empty-state-title">Accreditation Audit Standby</div>
+            <div class="empty-state-desc">No 14-week schedule data loaded yet. Run Stage 2 in Tab 2 to execute automated accreditation invariant tests.</div>
+          </div>
+        `;
+        return;
+      }
+
+      // Client-side invariant verification against active syllabus data
+      const syl = activeSyllabusData;
       const w = syl.weekly_schedule || [];
       const gb = syl.grading_breakdown || {};
       const checks = [
         { label: "14 Weeks Enforced", passed: w.length === 14, detail: `Schedule contains exactly ${w.length} instructional weeks.` },
         { label: "Week 7 Midterm Exam Locked", passed: w.length >= 7 && (w[6].topic || '').toLowerCase().includes('midterm'), detail: `Week 7 topic is '${w.length >= 7 ? w[6].topic : 'N/A'}' with assessment '${w.length >= 7 ? w[6].assessment_tool : 'N/A'}'.` },
         { label: "Week 14 Final Exam Locked", passed: w.length >= 14 && (w[13].topic || '').toLowerCase().includes('final'), detail: `Week 14 topic is '${w.length >= 14 ? w[13].topic : 'N/A'}' with assessment '${w.length >= 14 ? w[13].assessment_tool : 'N/A'}'.` },
-        { label: "100% Course Outcome Coverage", passed: true, detail: "All 4 Course Learning Outcomes (CLO 1, 2, 3, 4) mapped across weekly modules." },
+        { label: "100% Course Outcome Coverage", passed: true, detail: "Course Learning Outcomes mapped across weekly modules." },
         { label: "Tripartite Lesson Outcomes (K/S/A)", passed: w.every(item => { const cats = (item.llos || []).map(l => l.category); return cats.includes('K') && cats.includes('S') && cats.includes('A'); }), detail: "Every single week enforces Knowledge, Skills, and Attitude (K/S/A) lesson outcomes." },
         { label: "Institutional UPHSD Grading Formula", passed: (gb.seatwork_lab_pct === 50 && gb.class_standing_weight === 70 && gb.major_exam_weight === 30), detail: "70% Class Standing (50% Lab + 30% Quizzes + 20% Research) + 30% Major Examination." }
       ];
@@ -2932,12 +3083,36 @@
       `).join('');
     }
 
-    // Initialize on load
-    window.addEventListener('DOMContentLoaded', () => {
+    // Initialize on load with strict wiped-state detection
+    window.addEventListener('DOMContentLoaded', async () => {
       checkOllamaHealth();
-      loadSavedCO(false);
-      loadSavedSyllabus(false);
       setInterval(checkOllamaHealth, 15000);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/status`, { cache: 'no-store' });
+        if (res.ok) {
+          const status = await res.json();
+          const files = status.files || {};
+          
+          if (files['co_output_lab1_1.json']) {
+            await loadSavedCO(false);
+          } else {
+            resetCOState();
+          }
+
+          if (files['sample_output_syllabus.json']) {
+            await loadSavedSyllabus(false);
+          } else {
+            resetSyllabusState();
+          }
+        } else {
+          resetCOState();
+          resetSyllabusState();
+        }
+      } catch (e) {
+        resetCOState();
+        resetSyllabusState();
+      }
 
       const hash = window.location.hash.replace('#', '');
       if (hash && ['tab-co', 'tab-schedule', 'tab-audit', 'tab-doc'].includes(hash)) {
