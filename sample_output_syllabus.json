@@ -1,12 +1,12 @@
 {
-  "course_code": "CS 3112",
-  "course_title": "Artificial Intelligence",
-  "course_description": "A comprehensive study of artificial intelligence foundations, focusing on rational agents, uninformed and heuristic search strategies, adversarial game playing, constraint satisfaction problems, classical knowledge representation, probabilistic reasoning, supervised and unsupervised machine learning algorithms, and ethical considerations in AI systems design.",
+  "course_code": "CS 3110",
+  "course_title": "Data Structures and Algorithms",
+  "course_description": "Study of fundamental data structures, recursive algorithms, dynamic memory, sorting, trees, and algorithmic complexity.",
   "course_outcomes": [
     {
       "clo_number": 1,
       "bloom_level": "Apply",
-      "co_description": "Implement uninformed and heuristic search strategies to solve complex problem spaces within specified time constraints.",
+      "co_description": "Implement fundamental data structures using dynamic memory management techniques for specific application requirements.",
       "mapped_po": [
         1,
         2
@@ -14,28 +14,38 @@
     },
     {
       "clo_number": 2,
-      "bloom_level": "Create",
-      "co_description": "Develop supervised and unsupervised machine learning algorithms to predict outcomes from structured datasets.",
-      "mapped_po": [
-        2,
-        3
-      ]
-    },
-    {
-      "clo_number": 3,
-      "bloom_level": "Create",
-      "co_description": "Design knowledge representation systems that effectively model real-world constraints and logical relationships.",
+      "bloom_level": "Analyze",
+      "co_description": "Analyze the time and space complexity of sorting algorithms to determine efficiency in varying input scenarios.",
       "mapped_po": [
         1,
         3
       ]
     },
     {
+      "clo_number": 3,
+      "bloom_level": "Create",
+      "co_description": "Design efficient tree-based data structures for hierarchical storage systems and network routing applications.",
+      "mapped_po": [
+        2,
+        3
+      ]
+    },
+    {
       "clo_number": 4,
       "bloom_level": "Evaluate",
-      "co_description": "Evaluate the ethical implications of AI system design regarding bias, privacy, and societal impact.",
+      "co_description": "Evaluate recursive algorithm performance against iterative approaches based on computational cost metrics.",
       "mapped_po": [
-        5
+        1,
+        2
+      ]
+    },
+    {
+      "clo_number": 5,
+      "bloom_level": "Create",
+      "co_description": "Synthesize complex problem solutions using integrated data structures and algorithms for system development.",
+      "mapped_po": [
+        2,
+        3
       ]
     }
   ],
@@ -43,44 +53,19 @@
     {
       "week_number": 1,
       "period": "PRELIM",
-      "topic": "Introduction to Artificial Intelligence & Search Fundamentals",
+      "topic": "Introduction to Data Structures & Abstract Data Types",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Define the scope of AI and identify uninformed search strategies."
+          "outcome_text": "Define abstract data types and distinguish between linear and non-linear structures."
         },
         {
           "category": "S",
-          "outcome_text": "Implement basic graph traversal algorithms in Python."
+          "outcome_text": "Implement array-based list operations using dynamic memory allocation in C++."
         },
         {
           "category": "A",
-          "outcome_text": "Discuss the ethical implications of automated decision making."
-        }
-      ],
-      "teaching_learning_activity": "Lecture on AI history and search algorithm theory",
-      "assessment_tool": "Weekly Quiz Rubric",
-      "evidence": "Quiz Submission and Lab Notebook",
-      "aligned_co": [
-        1
-      ]
-    },
-    {
-      "week_number": 2,
-      "period": "PRELIM",
-      "topic": "Heuristic Search & A* Algorithm Implementation",
-      "llos": [
-        {
-          "category": "K",
-          "outcome_text": "Explain the difference between uninformed and heuristic search."
-        },
-        {
-          "category": "S",
-          "outcome_text": "Develop an A* pathfinding algorithm with custom heuristics."
-        },
-        {
-          "category": "A",
-          "outcome_text": "Evaluate the efficiency of different heuristic functions."
+          "outcome_text": "Demonstrate precision in memory management and pointer debugging techniques."
         }
       ],
       "teaching_learning_activity": "Hands-on coding lab on dynamic memory and pointers",
@@ -91,103 +76,129 @@
       ]
     },
     {
-      "week_number": 3,
+      "week_number": 2,
       "period": "PRELIM",
-      "topic": "Knowledge Representation Systems (Frames & Semantics)",
+      "topic": "Linked Lists and Dynamic Memory Management",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Identify different types of knowledge representation."
+          "outcome_text": "Explain the internal structure of singly and doubly linked lists."
         },
         {
           "category": "S",
-          "outcome_text": "Construct a semantic network for a specific domain."
+          "outcome_text": "Develop insertion, deletion, and traversal functions for linked lists."
         },
         {
           "category": "A",
-          "outcome_text": "Assess the adequacy of representational models for constraints."
+          "outcome_text": "Show responsibility in managing memory leaks during list operations."
         }
       ],
-      "teaching_learning_activity": "Case study analysis on knowledge modeling",
-      "assessment_tool": "Knowledge Modeling Rubric",
-      "evidence": "Semantic Network Diagram and Documentation",
+      "teaching_learning_activity": "Linked List implementation workshop",
+      "assessment_tool": "Code Review Checklist & Lab Rubric",
+      "evidence": "Source Code with Memory Analysis Reports",
       "aligned_co": [
-        3
+        1
+      ]
+    },
+    {
+      "week_number": 3,
+      "period": "PRELIM",
+      "topic": "Sorting Algorithms and Complexity Analysis",
+      "llos": [
+        {
+          "category": "K",
+          "outcome_text": "Identify time and space complexity of common sorting algorithms."
+        },
+        {
+          "category": "S",
+          "outcome_text": "Analyze Big-O notation for Bubble Sort, Quick Sort, and Merge Sort."
+        },
+        {
+          "category": "A",
+          "outcome_text": "Evaluate efficiency in varying input scenarios based on computational cost."
+        }
+      ],
+      "teaching_learning_activity": "Algorithm complexity benchmarking lab",
+      "assessment_tool": "Performance Analysis Rubric",
+      "evidence": "Benchmark Logs and Complexity Calculations",
+      "aligned_co": [
+        2
       ]
     },
     {
       "week_number": 4,
       "period": "PRELIM",
-      "topic": "Logic & Inference Engines",
+      "topic": "Recursion vs Iteration in Algorithms",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Explain logical operators and inference rules."
+          "outcome_text": "Differentiate between recursive and iterative algorithmic approaches."
         },
         {
           "category": "S",
-          "outcome_text": "Write a Prolog-based inference engine script."
+          "outcome_text": "Convert iterative solutions to recursive functions for factorial and Fibonacci."
         },
         {
           "category": "A",
-          "outcome_text": "Demonstrate precision in logical reasoning validity."
+          "outcome_text": "Assess computational cost metrics of recursive calls versus loops."
         }
       ],
-      "teaching_learning_activity": "Logic programming workshop",
-      "assessment_tool": "Code Review Rubric",
-      "evidence": "Source Code and Logic Trace Logs",
+      "teaching_learning_activity": "Recursive algorithm transformation session",
+      "assessment_tool": "Code Conversion Rubric",
+      "evidence": "Refactored Code and Complexity Comparison Table",
       "aligned_co": [
-        3
+        4
       ]
     },
     {
       "week_number": 5,
       "period": "PRELIM",
-      "topic": "Supervised Learning Algorithms (Regression & Classification)",
+      "topic": "Tree-Based Data Structures Introduction",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Classify machine learning tasks as supervised or unsupervised."
+          "outcome_text": "Describe hierarchical storage systems and binary tree properties."
         },
         {
           "category": "S",
-          "outcome_text": "Train a linear regression model on structured datasets."
+          "outcome_text": "Construct balanced binary search trees for data organization."
         },
         {
           "category": "A",
-          "outcome_text": "Interpret model bias and accuracy metrics."
+          "outcome_text": "Demonstrate design efficiency in hierarchical network routing applications."
         }
       ],
-      "teaching_learning_activity": "Data analysis lab with scikit-learn",
-      "assessment_tool": "Model Performance Rubric",
-      "evidence": "Trained Model Weights and Accuracy Report",
+      "teaching_learning_activity": "Tree construction and traversal lab",
+      "assessment_tool": "Structure Design Rubric",
+      "evidence": "Tree Diagrams and Traversal Code",
       "aligned_co": [
-        2
+        3
       ]
     },
     {
       "week_number": 6,
       "period": "PRELIM",
-      "topic": "Unsupervised Learning & Clustering Techniques",
+      "topic": "Advanced Tree Structures and Optimization",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Explain clustering methods like K-Means and DBSCAN."
+          "outcome_text": "Analyze heap structures and their role in priority queues."
         },
         {
           "category": "S",
-          "outcome_text": "Apply unsupervised learning to identify data patterns."
+          "outcome_text": "Implement heapify operations for efficient data retrieval."
         },
         {
           "category": "A",
-          "outcome_text": "Critique the privacy implications of clustering algorithms."
+          "outcome_text": "Evaluate recursive algorithm performance against iterative approaches."
         }
       ],
-      "teaching_learning_activity": "Clustering algorithm implementation session",
-      "assessment_tool": "Algorithm Implementation Rubric",
-      "evidence": "Cluster Visualization and Code Repository",
+      "teaching_learning_activity": "Heap and Tree optimization workshop",
+      "assessment_tool": "Algorithm Efficiency Rubric",
+      "evidence": "Optimized Code and Performance Metrics",
       "aligned_co": [
-        2
+        3,
+        4
       ]
     },
     {
@@ -197,15 +208,15 @@
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Review and evaluate midterm competencies on search algorithms."
+          "outcome_text": "Review and evaluate midterm competencies regarding data structure theory."
         },
         {
           "category": "S",
-          "outcome_text": "Debug practical code submissions for search logic errors."
+          "outcome_text": "Demonstrate practical application of sorting and tree algorithms under exam conditions."
         },
         {
           "category": "A",
-          "outcome_text": "Reflect on algorithmic efficiency and ethical constraints."
+          "outcome_text": "Assess precision in debugging and memory management during the midterm."
         }
       ],
       "teaching_learning_activity": "Departmental Midterm Practical and Theoretical Exam",
@@ -214,83 +225,83 @@
       "aligned_co": [
         1,
         2,
-        3
+        3,
+        4
       ]
     },
     {
       "week_number": 8,
       "period": "FINAL",
-      "topic": "Deep Learning & Neural Networks Architecture",
+      "topic": "Capstone Project Initiation and Planning",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Explain neural network architecture and activation functions."
+          "outcome_text": "Identify system requirements for complex problem solutions."
         },
         {
           "category": "S",
-          "outcome_text": "Build a deep learning model for image recognition."
+          "outcome_text": "Synthesize integrated data structures and algorithms for project design."
         },
         {
           "category": "A",
-          "outcome_text": "Discuss risks of overfitting in complex models."
+          "outcome_text": "Demonstrate professional collaboration in team-based development."
         }
       ],
-      "teaching_learning_activity": "Neural network construction lab",
-      "assessment_tool": "Model Architecture Rubric",
-      "evidence": "PyTorch/TensorFlow Project Files",
+      "teaching_learning_activity": "Capstone Project Kickoff and Requirement Analysis",
+      "assessment_tool": "Project Proposal Rubric",
+      "evidence": "Project Charter and Design Document",
       "aligned_co": [
-        2
+        5
       ]
     },
     {
       "week_number": 9,
       "period": "FINAL",
-      "topic": "AI Ethics & Societal Impact Assessment",
+      "topic": "Graph Algorithms and Complexity Analysis",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Identify ethical issues in AI system design."
+          "outcome_text": "Analyze time and space complexity of graph traversal algorithms."
         },
         {
           "category": "S",
-          "outcome_text": "Propose mitigation strategies for algorithmic bias."
+          "outcome_text": "Implement BFS, DFS, and shortest path algorithms for graphs."
         },
         {
           "category": "A",
-          "outcome_text": "Demonstrate ethical reasoning regarding privacy and fairness."
+          "outcome_text": "Evaluate efficiency in varying input scenarios for network routing."
         }
       ],
-      "teaching_learning_activity": "Ethics seminar and case study discussion",
-      "assessment_tool": "Ethical Reasoning Rubric",
-      "evidence": "Ethics Report and Case Study Analysis",
+      "teaching_learning_activity": "Graph algorithm implementation lab",
+      "assessment_tool": "Algorithm Performance Rubric",
+      "evidence": "Graph Code and Complexity Logs",
       "aligned_co": [
-        4
+        2,
+        3
       ]
     },
     {
       "week_number": 10,
       "period": "FINAL",
-      "topic": "Capstone Project Development Phase I",
+      "topic": "Advanced Data Structures and Optimization",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Map project requirements to course learning outcomes."
+          "outcome_text": "Design efficient tree-based structures for hierarchical storage."
         },
         {
           "category": "S",
-          "outcome_text": "Integrate search and machine learning modules into a system."
+          "outcome_text": "Implement balanced trees and hash maps for system development."
         },
         {
           "category": "A",
-          "outcome_text": "Review project design against ethical guidelines."
+          "outcome_text": "Demonstrate design efficiency in complex problem solutions."
         }
       ],
-      "teaching_learning_activity": "Capstone project sprint planning and coding",
-      "assessment_tool": "Project Milestone Rubric",
-      "evidence": "Project Repository and Design Document",
+      "teaching_learning_activity": "Advanced structure design workshop",
+      "assessment_tool": "Design Pattern Rubric",
+      "evidence": "Architecture Diagrams and Code Modules",
       "aligned_co": [
-        1,
-        2,
         3,
         4
       ]
@@ -298,83 +309,77 @@
     {
       "week_number": 11,
       "period": "FINAL",
-      "topic": "Capstone Project Development Phase II",
+      "topic": "Algorithm Optimization and Integration",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Test system constraints and performance limits."
+          "outcome_text": "Compare recursive performance against iterative approaches."
         },
         {
           "category": "S",
-          "outcome_text": "Optimize codebase for efficiency and scalability."
+          "outcome_text": "Optimize existing code for computational cost metrics."
         },
         {
           "category": "A",
-          "outcome_text": "Assess societal impact of the developed AI system."
+          "outcome_text": "Assess precision in algorithmic efficiency evaluation."
         }
       ],
-      "teaching_learning_activity": "System testing and optimization workshop",
-      "assessment_tool": "Performance Testing Rubric",
-      "evidence": "Test Logs and Optimization Reports",
+      "teaching_learning_activity": "Code optimization sprint",
+      "assessment_tool": "Optimization Rubric",
+      "evidence": "Before and After Performance Reports",
       "aligned_co": [
-        1,
-        2,
-        3,
-        4
+        4,
+        5
       ]
     },
     {
       "week_number": 12,
       "period": "FINAL",
-      "topic": "Capstone Documentation & Ethics Review",
+      "topic": "System Integration and Testing",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Document system design and knowledge representation."
+          "outcome_text": "Synthesize complex problem solutions using integrated data structures."
         },
         {
           "category": "S",
-          "outcome_text": "Create a comprehensive ethics report for the project."
+          "outcome_text": "Develop functional modules for system development projects."
         },
         {
           "category": "A",
-          "outcome_text": "Justify design choices based on societal impact."
+          "outcome_text": "Demonstrate responsibility in code quality assurance."
         }
       ],
-      "teaching_learning_activity": "Documentation writing and peer review session",
-      "assessment_tool": "Documentation Rubric",
-      "evidence": "Final Project Repository and Ethics Report",
+      "teaching_learning_activity": "Capstone Project Integration Phase",
+      "assessment_tool": "Integration Testing Rubric",
+      "evidence": "Integrated System Modules and Test Cases",
       "aligned_co": [
-        3,
-        4
+        5
       ]
     },
     {
       "week_number": 13,
       "period": "FINAL",
-      "topic": "Final Project Preparation & Review",
+      "topic": "Final Project Debugging and Refinement",
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Review all course learning outcomes and competencies."
+          "outcome_text": "Review full course competencies regarding data structures."
         },
         {
           "category": "S",
-          "outcome_text": "Finalize codebase and prepare defense presentation."
+          "outcome_text": "Refine final project code for production readiness."
         },
         {
           "category": "A",
-          "outcome_text": "Prepare for technical exam and project defense."
+          "outcome_text": "Demonstrate synthesis of complex problem solutions in defense."
         }
       ],
-      "teaching_learning_activity": "Final review session and mock defense",
-      "assessment_tool": "Mock Defense Rubric",
-      "evidence": "Presentation Slides and Final Codebase",
+      "teaching_learning_activity": "Final Project Debugging and Refinement Session",
+      "assessment_tool": "Refinement Rubric",
+      "evidence": "Debug Logs and Finalized Codebase",
       "aligned_co": [
-        1,
-        2,
-        3,
-        4
+        5
       ]
     },
     {
@@ -384,15 +389,15 @@
       "llos": [
         {
           "category": "K",
-          "outcome_text": "Synthesize AI concepts including search, ML, and ethics."
+          "outcome_text": "Synthesize full course competencies regarding data structures and algorithms."
         },
         {
           "category": "S",
-          "outcome_text": "Defend project logic and technical implementation."
+          "outcome_text": "Demonstrate practical application of integrated solutions in defense."
         },
         {
           "category": "A",
-          "outcome_text": "Reflect on career ethics and societal responsibility."
+          "outcome_text": "Assess precision in technical exam performance and project presentation."
         }
       ],
       "teaching_learning_activity": "Comprehensive Final Project Defense and Technical Exam",
@@ -402,7 +407,8 @@
         1,
         2,
         3,
-        4
+        4,
+        5
       ]
     }
   ],

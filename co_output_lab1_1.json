@@ -1,12 +1,12 @@
 {
-  "course_title": "Artificial Intelligence",
-  "course_code": "CS 3112",
-  "course_description": "A comprehensive study of artificial intelligence foundations, focusing on rational agents, uninformed and heuristic search strategies, adversarial game playing, constraint satisfaction problems, classical knowledge representation, probabilistic reasoning, supervised and unsupervised machine learning algorithms, and ethical considerations in AI systems design.",
+  "course_title": "Data Structures and Algorithms",
+  "course_code": "CS 3110",
+  "course_description": "Study of fundamental data structures, recursive algorithms, dynamic memory, sorting, trees, and algorithmic complexity.",
   "course_outcomes": [
     {
       "clo_number": 1,
       "bloom_level": "Apply",
-      "co_description": "Implement uninformed and heuristic search strategies to solve complex problem spaces within specified time constraints.",
+      "co_description": "Implement fundamental data structures using dynamic memory management techniques for specific application requirements.",
       "mapped_po": [
         1,
         2
@@ -14,28 +14,38 @@
     },
     {
       "clo_number": 2,
-      "bloom_level": "Create",
-      "co_description": "Develop supervised and unsupervised machine learning algorithms to predict outcomes from structured datasets.",
-      "mapped_po": [
-        2,
-        3
-      ]
-    },
-    {
-      "clo_number": 3,
-      "bloom_level": "Create",
-      "co_description": "Design knowledge representation systems that effectively model real-world constraints and logical relationships.",
+      "bloom_level": "Analyze",
+      "co_description": "Analyze the time and space complexity of sorting algorithms to determine efficiency in varying input scenarios.",
       "mapped_po": [
         1,
         3
       ]
     },
     {
+      "clo_number": 3,
+      "bloom_level": "Create",
+      "co_description": "Design efficient tree-based data structures for hierarchical storage systems and network routing applications.",
+      "mapped_po": [
+        2,
+        3
+      ]
+    },
+    {
       "clo_number": 4,
       "bloom_level": "Evaluate",
-      "co_description": "Evaluate the ethical implications of AI system design regarding bias, privacy, and societal impact.",
+      "co_description": "Evaluate recursive algorithm performance against iterative approaches based on computational cost metrics.",
       "mapped_po": [
-        5
+        1,
+        2
+      ]
+    },
+    {
+      "clo_number": 5,
+      "bloom_level": "Create",
+      "co_description": "Synthesize complex problem solutions using integrated data structures and algorithms for system development.",
+      "mapped_po": [
+        2,
+        3
       ]
     }
   ]
