@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ course.course_code }} - {{ course.course_title }} | Official OBE Syllabus</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #0D9488;
+      --accent: #D97706;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+      --border: #CBD5E1;
+      --border-dark: #64748B;
+      --text: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #F1F5F9;
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    .syllabus-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      padding: 40px;
+    }
+
+    /* Institutional Header */
+    .inst-header {
+      text-align: center;
+      border-bottom: 3px double var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .inst-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .inst-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .inst-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #EFF6FF;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #F8FAFC;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .meta-table td:first-child {
+      font-weight: 600;
+      background-color: #F8FAFC;
+      width: 25%;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bloom {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 1px solid #C7D2FE;
+    }
+
+    .badge-k { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-s { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .badge-a { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+    .exam-row {
+      background-color: #FFFBEB;
+      font-weight: 600;
+    }
+
+    .exam-row td {
+      border-color: #FCD34D;
+    }
+
+    /* Signatory Box */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-dark);
+    }
+
+    .sign-box {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--dark);
+      margin-top: 45px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .syllabus-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="syllabus-container">
+  
+  <!-- Institutional Header -->
+  <div class="inst-header">
+    <h1>University of Perpetual Help System DALTA</h1>
+    <h2>Molino Campus &bull; Bacoor City, Cavite</h2>
+    <h3>College of Computer Studies</h3>
+    <div class="doc-title">Course Syllabus: {{ course.course_code }}</div>
+  </div>
+
+  <!-- I. Course Overview & Metadata -->
+  <div class="section-title">I. Course Identification &amp; Specification</div>
+  <table class="meta-table">
+    <tr>
+      <td>Course Code</td>
+      <td><strong>{{ course.course_code }}</strong></td>
+      <td>Course Title</td>
+      <td><strong>{{ course.course_title }}</strong></td>
+    </tr>
+    <tr>
+      <td>Credit Units</td>
+      <td>{{ course.credit_units }} Units (Lecture: {{ course.lecture_hours }} hrs/wk, Lab: {{ course.lab_hours }} hrs/wk)</td>
+      <td>Prerequisites</td>
+      <td>{{ course.prerequisites }}</td>
+    </tr>
+    <tr>
+      <td>Course Description</td>
+      <td colspan="3">{{ course.course_description }}</td>
+    </tr>
+  </table>
+
+  <!-- II. Course Learning Outcomes -->
+  <div class="section-title">II. Course Learning Outcomes (CLOs)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 10%;">CLO ID</th>
+        <th style="width: 60%;">Outcome Statement (Measurable Bloom's Verb)</th>
+        <th style="width: 15%;">Cognitive Level</th>
+        <th style="width: 15%;">Mapped POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for clo in clos %}
+      <tr>
+        <td><strong>{{ clo.clo_id }}</strong></td>
+        <td>{{ clo.description }}</td>
+        <td><span class="badge badge-bloom">{{ clo.bloom_level }}</span></td>
+        <td>{{ clo.program_outcomes_mapped | join(', ') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- III. 18-Week Academic Schedule Matrix -->
+  <div class="section-title">III. 18-Week Semester Instructional Matrix</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 7%;">Wk</th>
+        <th style="width: 25%;">Topics Covered</th>
+        <th style="width: 32%;">Lesson Learning Outcomes (LLOs)</th>
+        <th style="width: 18%;">TLAs &amp; Exercises</th>
+        <th style="width: 18%;">Assessment &amp; Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in schedule %}
+      {% set is_exam = (week.week_number == 9 or week.week_number == 18) %}
+      <tr class="{{ 'exam-row' if is_exam else '' }}">
+        <td style="text-align: center;"><strong>{{ week.week_number }}</strong></td>
+        <td>
+          <strong>{{ week.topics if week.topics is string else week.topics | join(', ') }}</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            {% for llo in week.lesson_outcomes %}
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-{{ llo.domain | lower }}">{{ llo.domain }}</span>
+              {{ llo.description }}
+            </li>
+            {% endfor %}
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            {% for tla in week.teaching_learning_activities %}
+            <li>{{ tla }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            {% for task in week.assessment_tasks %}
+            <li><strong>{{ task }}</strong></li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- IV. Institutional Grading Scheme -->
+  <div class="section-title">IV. Institutional Grading System (UPHSD CCS 70/30 Formula)</div>
+  <table class="meta-table">
+    <tr>
+      <td>Class Standing (70%)</td>
+      <td>Quizzes &amp; Drills (30%) + Research / Case Analysis (20%) + Laboratory Hands-on Tasks (50%)</td>
+    </tr>
+    <tr>
+      <td>Major Examinations (30%)</td>
+      <td>Midterm Examination (Week 9) + Final Examination &amp; Defense (Week 18)</td>
+    </tr>
+    <tr>
+      <td>Passing Criterion</td>
+      <td>Final Computed Grade &ge; 75.0% (Transmuted Rating &ge; 3.00)</td>
+    </tr>
+  </table>
+
+  <!-- Signatory Blocks -->
+  <div class="sign-grid">
+    <div class="sign-box">
+      <div class="sign-title">Prepared by:</div>
+      <div class="sign-line">Christian Ezekiel L. Carvajal &amp; John Miko P. Sarsalijo</div>
+      <div class="sign-title">BSCS 3112 Lead Systems Architects</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Reviewed by:</div>
+      <div class="sign-line">Curriculum &amp; Instruction Committee</div>
+      <div class="sign-title">Department of Computer Science</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Approved by:</div>
+      <div class="sign-line">Prof. Roberto L. Malitao</div>
+      <div class="sign-title">Dean / Course Evaluator, College of Computer Studies</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

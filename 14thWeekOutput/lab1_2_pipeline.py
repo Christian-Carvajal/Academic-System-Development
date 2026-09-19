@@ -83,7 +83,13 @@ def extract_json(text: str) -> str:
     if "<think>" in cleaned:
         end_think = cleaned.find("</think>")
         if end_think != -1:
-            cleaned = cleaned[end_think + len("</think>"):].strip()
+            after_think = cleaned[end_think + len("</think>"):].strip()
+            if "{" in after_think and "}" in after_think:
+                cleaned = after_think
+            else:
+                inside_think = cleaned[len("<think>"):end_think].strip()
+                if "{" in inside_think and "}" in inside_think:
+                    cleaned = inside_think
     start = cleaned.find("{")
     end = cleaned.rfind("}")
     if start != -1 and end != -1 and end > start:
@@ -119,7 +125,11 @@ Output the complete JSON object with the "weekly_schedule" array containing all 
                     "num_predict": 8192
                 }
             )
-            raw_text = response["message"]["content"].strip()
+            raw_text = response["message"].get("content", "").strip()
+            if not raw_text and response["message"].get("thinking"):
+                raw_text = response["message"]["thinking"].strip()
+            elif raw_text and response["message"].get("thinking") and "{" not in raw_text and "{" in response["message"]["thinking"]:
+                raw_text = response["message"]["thinking"].strip()
             clean_json = extract_json(raw_text)
             data = json.loads(clean_json)
 
@@ -177,17 +187,25 @@ Output the complete JSON object with the "weekly_schedule" array containing all 
             ]
 
 if __name__ == "__main__":
-    co_file = BASE_DIR / "co_output_lab1_1.json"
+    outputs_dir = BASE_DIR / "outputs"
+    outputs_dir.mkdir(parents=True, exist_ok=True)
+
+    # Check outputs/co_output_lab1_1.json first, fallback to BASE_DIR / co_output_lab1_1.json
+    co_file = outputs_dir / "co_output_lab1_1.json"
     if not co_file.exists():
-        print(f"[-] Error: '{co_file.name}' was not found in '{BASE_DIR}'.")
+        co_file = BASE_DIR / "co_output_lab1_1.json"
+
+    if not co_file.exists():
+        print(f"[-] Error: 'co_output_lab1_1.json' was not found in '{outputs_dir}' or '{BASE_DIR}'.")
         print("[-] Please run 'python lab1_1_generator.py' first to generate the Course Outcomes context.")
         sys.exit(1)
 
+    print(f"[*] Loading Course Outcomes context from '{co_file}'...")
     with open(co_file, "r", encoding="utf-8") as f:
         co_payload = CourseOutcomesPayload(**json.load(f))
 
     syllabus = generate_weekly_schedule(co_payload)
-    output_deliverable = BASE_DIR / "sample_output_syllabus.json"
+    output_deliverable = outputs_dir / "sample_output_syllabus.json"
     with open(output_deliverable, "w", encoding="utf-8") as f:
         f.write(syllabus.model_dump_json(indent=2))
-    print(f"[+] Final deliverable saved to {output_deliverable.name}")
+    print(f"[+] Final deliverable saved to {output_deliverable}")

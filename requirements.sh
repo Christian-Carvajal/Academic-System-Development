@@ -51,6 +51,7 @@ fi
 
 echo ""
 echo "======================================================================"
-echo "  Setup complete! You can now start the studio with:"
-echo "    python run_gui.py"
+echo "  Setup complete! You can now start the studios with:"
+echo "    18-Week Studio (Port 8001): cd 18thWeekOutput && python run_18thweek.py"
+echo "    14-Week Studio (Port 8000): cd 14thWeekOutput && python run_14thweek.py"
 echo "======================================================================"

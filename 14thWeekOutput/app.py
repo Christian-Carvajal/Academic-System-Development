@@ -18,6 +18,16 @@ BASE_DIR = Path(__file__).resolve().parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
+OUTPUTS_DIR = BASE_DIR / "outputs"
+ASSETS_DIR = BASE_DIR / "assets"
+DOCS_DIR = BASE_DIR / "docs"
+TEMPLATES_DIR = BASE_DIR / "templates"
+DATABASE_DIR = BASE_DIR / "database"
+
+OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+DATABASE_DIR.mkdir(parents=True, exist_ok=True)
+
 from obe_schemas import CourseOutcomesPayload, FullSyllabusPayload
 from lab1_1_generator import generate_course_outcomes
 from lab1_2_pipeline import generate_weekly_schedule
@@ -59,7 +69,7 @@ def run_stage1_worker(course_data):
     generation_state["error"] = None
     try:
         payload = generate_course_outcomes(**course_data)
-        out_file = BASE_DIR / "co_output_lab1_1.json"
+        out_file = OUTPUTS_DIR / "co_output_lab1_1.json"
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(payload.model_dump_json(indent=2))
         generation_state["status"] = "success"
@@ -77,14 +87,16 @@ def run_stage2_worker():
     generation_state["message"] = "Generating 14-Week Schedule with Week 7/14 locks (Stage 2)..."
     generation_state["error"] = None
     try:
-        co_file = BASE_DIR / "co_output_lab1_1.json"
+        co_file = OUTPUTS_DIR / "co_output_lab1_1.json"
         if not co_file.exists():
-            raise FileNotFoundError("co_output_lab1_1.json not found. Run Stage 1 first.")
+            co_file = BASE_DIR / "co_output_lab1_1.json"
+        if not co_file.exists():
+            raise FileNotFoundError("co_output_lab1_1.json not found in outputs/ or root. Run Stage 1 first.")
         with open(co_file, "r", encoding="utf-8") as f:
             co_payload = CourseOutcomesPayload(**json.load(f))
         
         syllabus = generate_weekly_schedule(co_payload)
-        out_file = BASE_DIR / "sample_output_syllabus.json"
+        out_file = OUTPUTS_DIR / "sample_output_syllabus.json"
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(syllabus.model_dump_json(indent=2))
         generation_state["status"] = "success"
@@ -94,6 +106,13 @@ def run_stage2_worker():
         generation_state["status"] = "error"
         generation_state["message"] = f"Stage 2 failed: {str(exc)}"
         generation_state["error"] = str(exc)
+
+def resolve_output_path(filename: str) -> Path:
+    """Returns the path to an output file, checking outputs/ first and falling back to BASE_DIR."""
+    out_p = OUTPUTS_DIR / filename
+    if out_p.exists():
+        return out_p
+    return BASE_DIR / filename
 
 class OBEHttpHandler(BaseHTTPRequestHandler):
     def end_headers(self):
@@ -140,6 +159,11 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
         clean_rel = path.lstrip("/")
         if clean_rel:
             asset_file = (BASE_DIR / clean_rel).resolve()
+            if not (str(asset_file).startswith(str(BASE_DIR)) and asset_file.is_file()):
+                fallback_file = (ASSETS_DIR / clean_rel).resolve()
+                if str(fallback_file).startswith(str(BASE_DIR)) and fallback_file.is_file():
+                    asset_file = fallback_file
+
             if str(asset_file).startswith(str(BASE_DIR)) and asset_file.is_file():
                 mime_type = "application/octet-stream"
                 if path.endswith(".svg"):
@@ -166,13 +190,13 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
         # API: Status
         if path == "/api/status":
             ollama_info = check_ollama_status()
-            co_exists = (BASE_DIR / "co_output_lab1_1.json").exists()
-            syllabus_exists = (BASE_DIR / "sample_output_syllabus.json").exists()
+            co_p = resolve_output_path("co_output_lab1_1.json")
+            s_p = resolve_output_path("sample_output_syllabus.json")
             self.send_json(200, {
                 "ollama": ollama_info,
                 "files": {
-                    "co_output_lab1_1.json": co_exists,
-                    "sample_output_syllabus.json": syllabus_exists
+                    "co_output_lab1_1.json": co_p.exists(),
+                    "sample_output_syllabus.json": s_p.exists()
                 },
                 "generation_state": generation_state
             })
@@ -185,7 +209,7 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
 
         # API: Get Stage 1 COs
         if path == "/api/co":
-            co_file = BASE_DIR / "co_output_lab1_1.json"
+            co_file = resolve_output_path("co_output_lab1_1.json")
             if co_file.exists():
                 with open(co_file, "r", encoding="utf-8") as f:
                     data = json.load(f)
@@ -196,7 +220,7 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
 
         # API: Get Stage 2 Syllabus
         if path == "/api/syllabus":
-            s_file = BASE_DIR / "sample_output_syllabus.json"
+            s_file = resolve_output_path("sample_output_syllabus.json")
             if s_file.exists():
                 with open(s_file, "r", encoding="utf-8") as f:
                     data = json.load(f)
@@ -207,7 +231,7 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
 
         # API: Run Rubric & Invariant Audit
         if path == "/api/audit":
-            s_file = BASE_DIR / "sample_output_syllabus.json"
+            s_file = resolve_output_path("sample_output_syllabus.json")
             if not s_file.exists():
                 self.send_json(400, {"success": False, "error": "sample_output_syllabus.json not found."})
                 return
@@ -343,13 +367,14 @@ class OBEHttpHandler(BaseHTTPRequestHandler):
         if path in ("/api/nuke", "/api/clear", "/api/reset"):
             deleted_files = []
             target_patterns = ["co_output_lab1_1.json", "sample_output_syllabus.json", "*.pdf", "*.tmp"]
-            for pattern in target_patterns:
-                for fpath in BASE_DIR.glob(pattern):
-                    try:
-                        fpath.unlink()
-                        deleted_files.append(fpath.name)
-                    except Exception as e:
-                        print(f"Warning deleting {fpath}: {e}")
+            for target_dir in (OUTPUTS_DIR, BASE_DIR):
+                for pattern in target_patterns:
+                    for fpath in target_dir.glob(pattern):
+                        try:
+                            fpath.unlink()
+                            deleted_files.append(fpath.name)
+                        except Exception as e:
+                            print(f"Warning deleting {fpath}: {e}")
 
             # Reset in-memory generation state
             generation_state["status"] = "idle"

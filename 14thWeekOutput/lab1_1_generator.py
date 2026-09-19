@@ -1,7 +1,6 @@
 """
-obe_json_generator.py (Lab 1.1)
+lab1_1_generator.py
 CLI script for generating and validating core course details and OBE Course Outcomes.
-Maintained in sync with lab1_1_generator.py for backward compatibility.
 """
 import json
 import sys
@@ -56,7 +55,13 @@ def extract_json(text: str) -> str:
     if "<think>" in cleaned:
         end_think = cleaned.find("</think>")
         if end_think != -1:
-            cleaned = cleaned[end_think + len("</think>"):].strip()
+            after_think = cleaned[end_think + len("</think>"):].strip()
+            if "{" in after_think and "}" in after_think:
+                cleaned = after_think
+            else:
+                inside_think = cleaned[len("<think>"):end_think].strip()
+                if "{" in inside_think and "}" in inside_think:
+                    cleaned = inside_think
     start = cleaned.find("{")
     end = cleaned.rfind("}")
     if start != -1 and end != -1 and end > start:
@@ -119,7 +124,9 @@ if __name__ == "__main__":
         "target_pos": "PLO 1 (Computing Knowledge), PLO 2 (Problem Analysis), PLO 3 (Systems Development)"
     }
     result = generate_course_outcomes(**course_data)
-    output_path = BASE_DIR / "co_output_lab1_1.json"
+    outputs_dir = BASE_DIR / "outputs"
+    outputs_dir.mkdir(parents=True, exist_ok=True)
+    output_path = outputs_dir / "co_output_lab1_1.json"
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(result.model_dump_json(indent=2))
-    print(f"[+] Saved validated Course Outcomes to {output_path.name}")
+    print(f"[+] Saved validated Course Outcomes to {output_path}")

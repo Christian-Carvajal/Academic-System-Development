@@ -1359,7 +1359,7 @@
     <div class="header-inner">
       <div class="brand-section">
         <div class="perpetual-brand-capsule">
-          <img src="logo/uphsd.png" alt="UPHSD Seal" class="perpetual-seal-img">
+          <img src="assets/logo/uphsd.png" alt="UPHSD Seal" class="perpetual-seal-img">
           <div class="uphsd-typography-block">
             <div class="uphsd-uni-name">UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA</div>
             <div class="uphsd-campus-name">Molino Campus</div>
@@ -1598,7 +1598,7 @@
         <div class="syllabus-doc" id="printableSyllabus">
           <div class="doc-header">
             <div class="doc-brand-banner">
-              <img src="logo/uphsd.png" alt="UPHSD Seal" class="doc-seal-img">
+              <img src="assets/logo/uphsd.png" alt="UPHSD Seal" class="doc-seal-img">
               <div class="doc-typography-block">
                 <div class="doc-uni-name">UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA</div>
                 <div class="doc-campus-name">Molino Campus</div>
@@ -1672,8 +1672,8 @@
   </main>
 
   <!-- Offline-ready Vector PDF Engine with Institutional Layout -->
-  <script src="jspdf.umd.min.js"></script>
-  <script src="jspdf.plugin.autotable.min.js"></script>
+  <script src="assets/jspdf.umd.min.js"></script>
+  <script src="assets/jspdf.plugin.autotable.min.js"></script>
 
   <script>
     // Automatic API Base Resolution:
@@ -2198,16 +2198,16 @@
         dot.className = 'status-dot offline';
         badge.className = 'badge amber';
         if (window.location.protocol === 'file:') {
-          text.textContent = 'Backend Offline (Run run_gui.bat)';
+          text.textContent = 'Backend Offline (Run run_14thweek.bat)';
           if (banner) {
             banner.style.display = 'block';
-            banner.innerHTML = '💡 <strong>Viewing in Static File Mode:</strong> You opened <code>index.html</code> directly. To enable live model generation, double-click <strong><code>run_gui.bat</code></strong> (or run <code>python app.py</code>) and visit <a href="http://127.0.0.1:8000" style="color:#06b6d4; text-decoration:underline; font-weight:bold;">http://127.0.0.1:8000</a>.';
+            banner.innerHTML = '💡 <strong>Viewing in Static File Mode:</strong> You opened <code>index.html</code> directly. To enable live model generation, double-click <strong><code>run_14thweek.bat</code></strong> (or run <code>python app.py</code>) and visit <a href="http://127.0.0.1:8000" style="color:#06b6d4; text-decoration:underline; font-weight:bold;">http://127.0.0.1:8000</a>.';
           }
         } else {
           text.textContent = 'Backend / Ollama Offline';
           if (banner) {
             banner.style.display = 'block';
-            banner.innerHTML = '⚠️ <strong>Cannot reach local microservice backend.</strong> Please ensure <code>run_gui.bat</code> or <code>python app.py</code> is running in your terminal.';
+            banner.innerHTML = '⚠️ <strong>Cannot reach local microservice backend.</strong> Please ensure <code>run_14thweek.bat</code> or <code>python app.py</code> is running in your terminal.';
           }
         }
       }

@@ -1,0 +1,643 @@
+{
+  "course_metadata": {
+    "course_code": "CS 3110",
+    "course_title": "Data Structures and Algorithms",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "CS 2110 (Computer Programming 2)",
+    "course_description": "Comprehensive study of abstract data types, recursive algorithms, dynamic memory allocation, trees, sorting algorithms, and Big-O computational complexity."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Analyze the fundamental properties of abstract data types and their implementation using dynamic memory allocation.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO2"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Design recursive algorithms to solve complex computational problems efficiently.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Evaluate the time and space complexity of sorting algorithms using Big-O notation.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO4"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Implement tree data structures to organize and retrieve hierarchical information systematically.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO3"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Data Structures & Algorithms"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Define abstract data types and their real-world applications.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Design a memory allocation strategy for dynamic arrays.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Appreciate the efficiency of structured data management.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on ADT Concepts"
+      ],
+      "assessment_tasks": [
+        "Quiz on Data Structures"
+      ],
+      "resources": [
+        "Course LMS",
+        "Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Arrays and Linked Lists"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Compare array indexing versus linked list traversal.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Implement insertion and deletion in linked lists.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Value the importance of data organization.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab: Linked List Operations"
+      ],
+      "assessment_tasks": [
+        "Laboratory Report"
+      ],
+      "resources": [
+        "IDE",
+        "Online Tutorials"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Stacks and Queues"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Explain LIFO and FIFO data structures.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Code stack-based expression evaluators.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Respect the order of operations in computing.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Simulation Lab"
+      ],
+      "assessment_tasks": [
+        "Stack Operations Quiz"
+      ],
+      "resources": [
+        "Course LMS",
+        "Simulation Software"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Recursion Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Identify base cases and recursive steps.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Develop recursive functions for factorial calculation.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Acknowledge the elegance of recursive logic.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Recursion Workshop"
+      ],
+      "assessment_tasks": [
+        "Function Design Project"
+      ],
+      "resources": [
+        "Course LMS",
+        "Code Editor"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Sorting Algorithms: Bubble & Selection"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Analyze comparison-based sorting mechanisms.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Implement bubble sort in C++.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Appreciate algorithmic optimization needs.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Sorting Algorithm Lab"
+      ],
+      "assessment_tasks": [
+        "Code Review"
+      ],
+      "resources": [
+        "IDE",
+        "Algorithm Visualizer"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Sorting Algorithms: Merge & Quick"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Contrast divide-and-conquer strategies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Code merge sort and quick sort implementations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Value the efficiency of divide-and-conquer.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Advanced Sorting Lab"
+      ],
+      "assessment_tasks": [
+        "Performance Comparison Report"
+      ],
+      "resources": [
+        "IDE",
+        "Algorithm Visualizer"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Binary Search Trees (BST)"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Describe BST properties and search complexity.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Construct balanced binary trees.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Respect data integrity in hierarchical structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "BST Construction Lab"
+      ],
+      "assessment_tasks": [
+        "Tree Traversal Quiz"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Assess mastery of sorting and tree structures.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Demonstrate proficiency in algorithmic design.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Reflect on learning progress.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Binary Search Trees (BST) - Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Analyze BST balancing techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Implement AVL tree rotations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Appreciate the need for balanced data structures.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Balancing Algorithms Lab"
+      ],
+      "assessment_tasks": [
+        "Rotation Implementation Project"
+      ],
+      "resources": [
+        "IDE",
+        "Graphing Tool"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Evaluate final algorithmic performance.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Defend capstone project solutions.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Reflect on course achievements.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Defense"
+      ],
+      "assessment_tasks": [
+        "Final Exam & Project Defense"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSCS 3111 - Data Mining | Official OBE Syllabus</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #0D9488;
+      --accent: #D97706;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+      --border: #CBD5E1;
+      --border-dark: #64748B;
+      --text: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #F1F5F9;
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    .syllabus-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      padding: 40px;
+    }
+
+    /* Institutional Header */
+    .inst-header {
+      text-align: center;
+      border-bottom: 3px double var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .inst-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .inst-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .inst-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #EFF6FF;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #F8FAFC;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .meta-table td:first-child {
+      font-weight: 600;
+      background-color: #F8FAFC;
+      width: 25%;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bloom {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 1px solid #C7D2FE;
+    }
+
+    .badge-k { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-s { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .badge-a { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+    .exam-row {
+      background-color: #FFFBEB;
+      font-weight: 600;
+    }
+
+    .exam-row td {
+      border-color: #FCD34D;
+    }
+
+    /* Signatory Box */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-dark);
+    }
+
+    .sign-box {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--dark);
+      margin-top: 45px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .syllabus-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="syllabus-container">
+  
+  <!-- Institutional Header -->
+  <div class="inst-header">
+    <h1>University of Perpetual Help System DALTA</h1>
+    <h2>Molino Campus &bull; Bacoor City, Cavite</h2>
+    <h3>College of Computer Studies</h3>
+    <div class="doc-title">Course Syllabus: BSCS 3111</div>
+  </div>
+
+  <!-- I. Course Overview & Metadata -->
+  <div class="section-title">I. Course Identification &amp; Specification</div>
+  <table class="meta-table">
+    <tr>
+      <td>Course Code</td>
+      <td><strong>BSCS 3111</strong></td>
+      <td>Course Title</td>
+      <td><strong>Data Mining</strong></td>
+    </tr>
+    <tr>
+      <td>Credit Units</td>
+      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>Prerequisites</td>
+      <td>CS 3112 (Database Systems 1)</td>
+    </tr>
+    <tr>
+      <td>Course Description</td>
+      <td colspan="3">Principles, algorithms, and applications of knowledge discovery in databases (KDD), including data cleaning and preprocessing, exploratory data analysis, ETL pipelines, association rule mining (Apriori, FP-Growth), classification algorithms (Decision Trees, Naive Bayes, SVM), clustering techniques (K-Means, DBSCAN), and evaluation metrics.</td>
+    </tr>
+  </table>
+
+  <!-- II. Course Learning Outcomes -->
+  <div class="section-title">II. Course Learning Outcomes (CLOs)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 10%;">CLO ID</th>
+        <th style="width: 60%;">Outcome Statement (Measurable Bloom's Verb)</th>
+        <th style="width: 15%;">Cognitive Level</th>
+        <th style="width: 15%;">Mapped POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><strong>CLO1</strong></td>
+        <td>Analyze raw datasets to identify patterns, anomalies, and data quality issues for preprocessing.</td>
+        <td><span class="badge badge-bloom">Analyze</span></td>
+        <td>PLO1, PLO2</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO2</strong></td>
+        <td>Design and implement ETL pipelines to transform, clean, and integrate data for mining operations.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO1, PLO3</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO3</strong></td>
+        <td>Evaluate classification algorithms (Decision Trees, Naive Bayes, SVM) using accuracy, precision, and recall metrics.</td>
+        <td><span class="badge badge-bloom">Evaluate</span></td>
+        <td>PLO2, PLO4</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO4</strong></td>
+        <td>Formulate clustering solutions (K-Means, DBSCAN) to segment data and extract meaningful groupings.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO1, PLO3</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- III. 18-Week Academic Schedule Matrix -->
+  <div class="section-title">III. 18-Week Semester Instructional Matrix</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 7%;">Wk</th>
+        <th style="width: 25%;">Topics Covered</th>
+        <th style="width: 32%;">Lesson Learning Outcomes (LLOs)</th>
+        <th style="width: 18%;">TLAs &amp; Exercises</th>
+        <th style="width: 18%;">Assessment &amp; Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>1</strong></td>
+        <td>
+          <strong>Introduction to Data Mining &amp; Data Preprocessing</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Define data mining concepts and preprocessing requirements.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Identify patterns in raw datasets using exploratory analysis tools.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate professional ethics in data handling and privacy compliance.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on Data Mining Fundamentals</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Data Concepts</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>2</strong></td>
+        <td>
+          <strong>Data Cleaning &amp; Preprocessing Techniques</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Classify data quality issues and missing value types.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply imputation strategies to clean datasets effectively.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adhere to data integrity standards during cleaning processes.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Data Cleaning with Pandas</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Lab Report: Cleaned Dataset</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>
+          <strong>Data Transformation &amp; Feature Engineering</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Map data types to appropriate mining formats.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Construct feature vectors for predictive modeling.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Prioritize accuracy over speed in data transformation tasks.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Feature Engineering Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Feature Selection</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>4</strong></td>
+        <td>
+          <strong>Introduction to ETL Pipelines</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Explain Extract, Transform, Load pipeline architecture.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Design basic ETL workflows for data integration.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate reliability in automated data processing systems.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture: ETL Architecture</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Design Project Draft</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>5</strong></td>
+        <td>
+          <strong>ETL Pipeline Implementation &amp; Testing</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Identify bottlenecks in data extraction processes.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement error handling mechanisms in ETL scripts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Maintain accountability for pipeline failures and recovery.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: ETL Pipeline Testing</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Code Review: ETL Scripts</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>6</strong></td>
+        <td>
+          <strong>Supervised Learning: Classification Algorithms</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Compare classification algorithms and their use cases.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement Decision Trees, Naive Bayes, and SVM models.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Evaluate model performance with bias-variance tradeoff awareness.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Classification Algorithms</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Algorithm Comparison</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>7</strong></td>
+        <td>
+          <strong>Classification Metrics &amp; Model Evaluation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Calculate accuracy, precision, and recall metrics.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Generate confusion matrices for model analysis.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Commit to objective evaluation of algorithmic performance.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Model Evaluation Dashboard</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Metrics Calculation</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>8</strong></td>
+        <td>
+          <strong>Unsupervised Learning: Clustering Algorithms</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Describe K-Means and DBSCAN clustering principles.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Formulate clustering solutions for data segmentation.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect user privacy in cluster-based profiling.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Clustering Algorithms</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Clustering Concepts</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>9</strong></td>
+        <td>
+          <strong>Midterm Examination</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess understanding of Data Mining fundamentals.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Evaluate proficiency in ETL and classification techniques.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate integrity during examination administration.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Midterm Examination</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Midterm Exam Paper</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>10</strong></td>
+        <td>
+          <strong>Review &amp; Remediation of Midterm Concepts</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze midterm performance gaps and misconceptions.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Reinforce ETL and classification skills through practice.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Reflect on learning strategies for improvement.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Review Session: Midterm Analysis</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Remediation Practice</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>11</strong></td>
+        <td>
+          <strong>Advanced Classification &amp; Ensemble Methods</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Explain ensemble methods for improved accuracy.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement Random Forest and Gradient Boosting models.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Commit to continuous improvement in model performance.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Ensemble Methods</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Ensemble Concepts</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>12</strong></td>
+        <td>
+          <strong>Clustering Applications &amp; Visualization</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Map clustering algorithms to real-world scenarios.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Visualize cluster distributions using heatmaps and scatter plots.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Communicate findings clearly to non-technical stakeholders.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Clustering Visualization</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz: Visualization Tools</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>13</strong></td>
+        <td>
+          <strong>Data Mining Capstone Project Planning</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Define capstone project scope and objectives.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Draft ETL pipeline and model architecture designs.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate project management discipline in planning.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Workshop: Capstone Planning</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Project Proposal Draft</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>14</strong></td>
+        <td>
+          <strong>Capstone Project Implementation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Execute data preprocessing and ETL pipelines.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement classification and clustering models in production.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Maintain code quality and documentation standards.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Capstone Implementation</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Code Review: Capstone Scripts</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>15</strong></td>
+        <td>
+          <strong>Capstone Project Testing &amp; Optimization</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Validate model accuracy and generalization performance.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Optimize ETL pipelines for scalability and efficiency.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Ensure ethical use of data in final applications.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Capstone Testing</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Performance Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>16</strong></td>
+        <td>
+          <strong>Capstone Project Documentation &amp; Presentation Prep</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Compile project documentation and technical reports.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Prepare presentation materials for defense.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate professionalism in public speaking.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Workshop: Presentation Prep</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Presentation Draft Review</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>17</strong></td>
+        <td>
+          <strong>Capstone Project Defense Rehearsal</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Refine project presentation based on peer feedback.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Simulate Q&amp;A sessions for defense readiness.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adhere to academic integrity during rehearsals.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Rehearsal: Capstone Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Peer Feedback Form</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>18</strong></td>
+        <td>
+          <strong>Final Examination &amp; Capstone Defense</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess comprehensive mastery of Data Mining concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Demonstrate application of ETL and mining techniques in final project.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Exhibit academic integrity during final defense.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Examination &amp; Capstone Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Final Exam Paper</strong></li>
+            
+            <li><strong>Capstone Defense</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- IV. Institutional Grading Scheme -->
+  <div class="section-title">IV. Institutional Grading System (UPHSD CCS 70/30 Formula)</div>
+  <table class="meta-table">
+    <tr>
+      <td>Class Standing (70%)</td>
+      <td>Quizzes &amp; Drills (30%) + Research / Case Analysis (20%) + Laboratory Hands-on Tasks (50%)</td>
+    </tr>
+    <tr>
+      <td>Major Examinations (30%)</td>
+      <td>Midterm Examination (Week 9) + Final Examination &amp; Defense (Week 18)</td>
+    </tr>
+    <tr>
+      <td>Passing Criterion</td>
+      <td>Final Computed Grade &ge; 75.0% (Transmuted Rating &ge; 3.00)</td>
+    </tr>
+  </table>
+
+  <!-- Signatory Blocks -->
+  <div class="sign-grid">
+    <div class="sign-box">
+      <div class="sign-title">Prepared by:</div>
+      <div class="sign-line">Christian Ezekiel L. Carvajal &amp; John Miko P. Sarsalijo</div>
+      <div class="sign-title">BSCS 3112 Lead Systems Architects</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Reviewed by:</div>
+      <div class="sign-line">Curriculum &amp; Instruction Committee</div>
+      <div class="sign-title">Department of Computer Science</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Approved by:</div>
+      <div class="sign-line">Prof. Roberto L. Malitao</div>
+      <div class="sign-title">Dean / Course Evaluator, College of Computer Studies</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

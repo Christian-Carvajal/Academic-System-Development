@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPHSD CCS — 18-Week Automated OBE Syllabus Studio (Lesson 5)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* UPHSD DALTA Brand Colors */
+      --maroon-primary: #7f1416;
+      --maroon-dark: #580c0e;
+      --maroon-deep: #3b0708;
+      --maroon-light: #9e1b1e;
+      --maroon-bright: #b91c1c;
+      --maroon-bg: rgba(127, 20, 22, 0.18);
+      --maroon-border: rgba(127, 20, 22, 0.45);
+
+      --gold-primary: #f59e0b;
+      --gold-bright: #fbbf24;
+      --gold-dark: #d97706;
+      --gold-bg: rgba(245, 158, 11, 0.12);
+      --gold-border: rgba(245, 158, 11, 0.45);
+
+      /* Dark Background Surfaces */
+      --bg-base: #0a0506;
+      --bg-surface: #12090b;
+      --bg-card: #1a0d10;
+      --bg-card-hover: #261317;
+      --bg-card-active: #2e161b;
+
+      /* Borders */
+      --border-subtle: rgba(127, 20, 22, 0.35);
+      --border-gold: rgba(245, 158, 11, 0.5);
+
+      /* High-Contrast Typography */
+      --text-primary: #fff5f5;
+      --text-secondary: #e2c8cb;
+      --text-muted: #9e8286;
+      --text-gold: #fcd34d;
+
+      /* Domain Status Colors */
+      --domain-k: #38bdf8;
+      --domain-s: #34d399;
+      --domain-a: #fbbf24;
+      --accent-emerald: #10b981;
+      --accent-rose: #ef4444;
+
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar */
+    header.app-header {
+      background: rgba(18, 9, 11, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 4px solid var(--gold-primary);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-inner {
+      max-width: 1500px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-seal {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--maroon-primary);
+      border: 2px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+    }
+
+    .brand-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--gold-bright);
+      font-family: var(--font-mono);
+    }
+
+    .meta-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      background: var(--bg-card);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+    .status-dot.busy { background: var(--gold-primary); box-shadow: 0 0 8px var(--gold-primary); animation: pulse 1s infinite; }
+    .status-dot.offline { background: var(--accent-rose); box-shadow: 0 0 8px var(--accent-rose); }
+
+    @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+    /* Main Container */
+    main.main-content {
+      max-width: 1500px;
+      margin: 1.5rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Section Headers */
+    .section-title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-title-bar h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: var(--text-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .section-title-bar p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Subject Cards Grid */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .subject-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.1rem;
+      cursor: pointer;
+      transition: all 0.22s ease-in-out;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .subject-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .subject-card.active {
+      background: var(--bg-card-active);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.28);
+    }
+
+    .subject-card.featured::before {
+      content: "★ FEATURED AI COURSE";
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      background: linear-gradient(90deg, #b45309, #f59e0b);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
+
+    .subject-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subject-icon {
+      font-size: 1.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .subject-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .subject-code {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+
+    .subject-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .badge-unit {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold-bright);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .badge-sem {
+      background: rgba(127, 20, 22, 0.4);
+      color: var(--text-secondary);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .subject-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin: 0.6rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    .subject-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.75rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+    }
+
+    .pill-status {
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .pill-ready { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .pill-pending { background: rgba(255, 255, 255, 0.07); color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+    /* Action Control Panel */
+    .control-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 1.25rem 1.75rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .selected-summary h3 {
+      font-size: 1.25rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .selected-summary p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--maroon-primary), #9e1b1e);
+      color: #fff;
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #9e1b1e, #b91c1c);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      color: #fff;
+      border-color: var(--gold-border);
+    }
+
+    .btn-batch {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold-bright);
+      border: 1px solid var(--gold-border);
+    }
+    .btn-batch:hover {
+      background: rgba(245, 158, 11, 0.25);
+      color: #fff;
+    }
+
+    /* Live Progress Card */
+    .progress-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--maroon-primary), var(--gold-primary));
+      transition: width 0.3s ease;
+    }
+
+    .log-box {
+      background: #000;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #34d399;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+
+    /* Workspace Tabs */
+    .workspace-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 1.25rem;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      color: var(--gold-bright);
+      border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* CLO Outcome Cards */
+    .clos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 1rem;
+    }
+
+    .clo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .clo-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .clo-id {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--gold-bright);
+      font-weight: 800;
+    }
+
+    .bloom-pill {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(245, 158, 11, 0.18);
+      color: var(--gold-bright);
+      border: 1px solid var(--gold-border);
+    }
+
+    .clo-text {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.45;
+    }
+
+    .clo-pos {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .po-badge {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--text-secondary);
+    }
+
+    .clo-actions {
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 0.6rem;
+    }
+
+    .btn-edit-clo {
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      color: var(--gold-bright);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .btn-edit-clo:hover {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fff;
+    }
+
+    /* 18-Week Schedule Table */
+    .schedule-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      background: var(--bg-card);
+    }
+
+    table.schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    table.schedule-table th {
+      background: var(--bg-surface);
+      color: var(--text-gold);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-heading);
+      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+      border-bottom: 2px solid var(--border-subtle);
+    }
+
+    table.schedule-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: top;
+    }
+
+    table.schedule-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr.milestone-exam td {
+      background: rgba(245, 158, 11, 0.08) !important;
+      border-left: 3px solid var(--gold-primary);
+    }
+
+    .badge-ksa {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      width: 18px;
+      height: 18px;
+      text-align: center;
+      line-height: 18px;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
+    .badge-k { background: rgba(56, 189, 248, 0.2); color: var(--domain-k); }
+    .badge-s { background: rgba(52, 211, 153, 0.2); color: var(--domain-s); }
+    .badge-a { background: rgba(251, 191, 36, 0.2); color: var(--domain-a); }
+
+    .llo-item {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    /* Relational DB View */
+    .db-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Iframe preview */
+    .preview-frame {
+      width: 100%;
+      height: 750px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    /* Modal dialog */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--bg-surface);
+      border: 1px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 1.75rem;
+      max-width: 650px;
+      width: 90%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .modal-header h3 {
+      color: var(--text-gold);
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+    }
+
+    .modal-body textarea {
+      width: 100%;
+      height: 110px;
+      background: #000;
+      color: #fff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      resize: vertical;
+      margin: 0.75rem 0;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+    }
+    .empty-state span {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-seal">🏛️</div>
+        <div class="brand-text">
+          <h1>UPHSD CCS — 18-Week OBE Syllabus Studio</h1>
+          <p>Lesson 5 Midterm Mini-Project (Milestones 1 & 2) • University of Perpetual Help System DALTA</p>
+        </div>
+      </div>
+
+      <div class="meta-badges">
+        <div class="meta-badge">
+          <div class="status-dot" id="ollamaStatusDot"></div>
+          <span id="ollamaStatusText">Ollama: Checking...</span>
+        </div>
+        <div class="meta-badge">
+          <span>🧠 Model:</span>
+          <strong style="color:var(--gold-bright);">qwen3.5:4b</strong>
+        </div>
+        <div class="meta-badge">
+          <span>👨‍🏫 Evaluator:</span>
+          <strong style="color:#fff;">Prof. Roberto L. Malitao</strong>
+        </div>
+        <div class="meta-badge">
+          <span>👥 Students:</span>
+          <strong style="color:#fff;">Carvajal & Sarsalijo</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- Section 1: Curriculum Subjects -->
+    <div class="section-title-bar">
+      <div>
+        <h2><span>📚</span> 3rd-Year Computer Science Curriculum Subjects</h2>
+        <p>Select any subject below to generate or inspect its official 18-week Outcome-Based Education syllabus.</p>
+      </div>
+      <div class="action-buttons">
+        <button class="btn btn-secondary" onclick="loadSubjects()">🔄 Refresh</button>
+        <button class="btn btn-batch" onclick="triggerBatchGenerate()">🚀 Batch Generate All (8 Subjects)</button>
+      </div>
+    </div>
+
+    <div class="subject-grid" id="subjectGrid">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Action Control Panel -->
+    <div class="control-panel" id="controlPanel">
+      <div class="selected-summary">
+        <h3 id="selectedTitle"><span>🤖</span> Select a Subject to Begin</h3>
+        <p id="selectedMeta">Choose one of the 8 curriculum subjects above to generate with qwen3.5:4b.</p>
+      </div>
+      <div class="action-buttons">
+        <button class="btn btn-primary" id="btnGenerate" onclick="triggerSingleGenerate()" disabled>
+          <span>⚡</span> Generate 18-Week OBE Syllabus
+        </button>
+        <button class="btn btn-secondary" id="btnOpenHtml" onclick="openOfficialHtml()" disabled>
+          <span>📄</span> View Official Syllabus (HTML)
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Progress Card -->
+    <div class="progress-card" id="progressCard">
+      <div class="progress-header">
+        <strong id="progressStage" style="color:var(--gold-bright);">Initializing AI Pipeline...</strong>
+        <span id="progressPctText" style="font-family:var(--font-mono); color:var(--text-gold);">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      <div class="log-box" id="logBox">
+        <div>[*] Waiting for generation steps...</div>
+      </div>
+    </div>
+
+    <!-- Workspace Inspection Tabs -->
+    <div class="workspace-tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-clos')">🎯 Course Outcomes (CLOs)</button>
+      <button class="tab-btn" onclick="switchTab('tab-matrix')">🗓️ 18-Week Schedule Matrix</button>
+      <button class="tab-btn" onclick="switchTab('tab-db')">🗄️ Relational Database (SQLite)</button>
+      <button class="tab-btn" onclick="switchTab('tab-doc')">📜 Official Jinja2 HTML Document</button>
+    </div>
+
+    <!-- Tab 1: CLOs -->
+    <div class="tab-content active" id="tab-clos">
+      <div class="clos-grid" id="closGrid">
+        <div class="empty-state">
+          <span>🎯</span>
+          <p>No Course Outcomes loaded yet. Select a subject and click "Generate 18-Week OBE Syllabus".</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: 18-Week Matrix -->
+    <div class="tab-content" id="tab-matrix">
+      <div class="schedule-table-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Week</th>
+              <th style="width: 100px;">Period</th>
+              <th style="width: 260px;">Module Topic</th>
+              <th>Lesson Learning Outcomes (K/S/A)</th>
+              <th style="width: 220px;">Teaching-Learning Activities (TLA)</th>
+              <th style="width: 180px;">Assessment & Evidence</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleTableBody">
+            <tr>
+              <td colspan="6" class="empty-state">
+                <span>🗓️</span>
+                <p>No 18-week schedule loaded. Select a subject above to view.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 3: SQLite Database Inspector -->
+    <div class="tab-content" id="tab-db">
+      <div class="db-card">
+        <h3 style="color:var(--text-gold); margin-bottom: 0.75rem;">SQLite Normalized Tables (database/obe_syllabus.db)</h3>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom: 1rem;">
+          Verified relational schema adhering to Prof. Roberto L. Malitao's Milestone 2 rubric with <code>PRAGMA foreign_keys = ON</code> and cascading deletes.
+        </p>
+        <div id="dbCoursesList">
+          <p style="color:var(--text-muted);">Loading database records...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Official HTML Document Preview -->
+    <div class="tab-content" id="tab-doc">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+        <span style="font-size:0.85rem; color:var(--text-secondary);">
+          Rendered from <code>templates/uphsd_ccs_template.html</code> via Jinja2:
+        </span>
+        <div class="action-buttons">
+          <button class="btn btn-secondary" onclick="openOfficialHtml()">↗ Open in New Window</button>
+          <button class="btn btn-primary" onclick="printOfficialHtml()">🖨️ Print / Save Vector PDF</button>
+        </div>
+      </div>
+      <iframe class="preview-frame" id="docPreviewFrame" src="about:blank"></iframe>
+    </div>
+
+  </main>
+
+  <!-- CLO Edit Modal (Human-in-the-Loop Milestone 2) -->
+  <div class="modal-overlay" id="cloEditModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalCloTitle">✏️ Faculty Human-in-the-Loop CLO Editor</h3>
+        <button class="btn btn-secondary" style="padding: 0.2rem 0.5rem;" onclick="closeCloModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.8rem; color:var(--text-secondary);">
+          Modify Course Outcome description. The microservice validates that your revision begins with an active Bloom's Taxonomy verb and rejects passive verbs (e.g. <em>understand</em>, <em>know</em>, <em>learn</em>) before committing to SQLite.
+        </p>
+        <textarea id="modalCloTextarea" placeholder="Enter updated outcome statement starting with an active verb (e.g., Analyze, Formulate, Design)..."></textarea>
+        <div id="modalCloError" style="color:var(--accent-rose); font-size:0.8rem; display:none; margin-top:0.4rem;"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeCloModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitCloUpdate()">💾 Save to SQLite Database</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = "";
+    let subjects = [];
+    let selectedSubject = null;
+    let activeEditingClo = null;
+    let pollInterval = null;
+
+    // 1. Load Subjects on Startup
+    async function loadSubjects() {
+      try {
+        const res = await fetch(`${API_BASE}/api/subjects`);
+        if (res.ok) {
+          const data = await res.json();
+          subjects = data.subjects || [];
+          renderSubjects();
+          
+          // Default select BSCS 3112 (AI) or first
+          if (!selectedSubject && subjects.length > 0) {
+            const aiSubj = subjects.find(s => s.course_code.includes("3112")) || subjects[0];
+            selectSubject(aiSubj.course_code);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load subjects:", err);
+      }
+    }
+
+    function renderSubjects() {
+      const grid = document.getElementById("subjectGrid");
+      grid.innerHTML = subjects.map(s => {
+        const isAI = s.course_code.includes("3112");
+        const isActive = selectedSubject && selectedSubject.course_code === s.course_code;
+        const statusClass = s.is_persisted ? "pill-ready" : "pill-pending";
+        const statusText = s.is_persisted ? "✓ Persisted in SQLite & HTML" : "Ready to Generate";
+
+        return `
+          <div class="subject-card ${isAI ? 'featured' : ''} ${isActive ? 'active' : ''}" onclick="selectSubject('${s.course_code}')">
+            <div>
+              <div class="subject-header">
+                <div class="subject-icon">${s.icon || '📘'}</div>
+                <div class="subject-info">
+                  <span class="subject-code">${s.course_code}</span>
+                  <h3>${s.course_title}</h3>
+                  <div class="subject-meta">
+                    <span class="badge-unit">${s.credit_units}.0 Units (${s.lecture_hours}Lec / ${s.lab_hours}Lab)</span>
+                    <span class="badge-sem">${s.semester}</span>
+                  </div>
+                </div>
+              </div>
+              <p class="subject-desc">${s.course_description}</p>
+            </div>
+            <div class="subject-status">
+              <span class="pill-status ${statusClass}">${statusText}</span>
+              <span style="color:var(--text-muted); font-size:0.68rem;">${s.category}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 2. Select Subject
+    async function selectSubject(courseCode) {
+      selectedSubject = subjects.find(s => s.course_code === courseCode) || null;
+      renderSubjects();
+
+      if (selectedSubject) {
+        document.getElementById("selectedTitle").innerHTML = `<span>${selectedSubject.icon || '📘'}</span> ${selectedSubject.course_code}: ${selectedSubject.course_title}`;
+        document.getElementById("selectedMeta").innerText = `${selectedSubject.credit_units}.0 Units (${selectedSubject.lecture_hours} Lec / ${selectedSubject.lab_hours} Lab) • Prerequisite: ${selectedSubject.prerequisites}`;
+        document.getElementById("btnGenerate").disabled = false;
+        document.getElementById("btnOpenHtml").disabled = !selectedSubject.has_html;
+
+        // Fetch syllabus data if exists
+        await loadSyllabusForCourse(selectedSubject.course_code);
+      }
+    }
+
+    // 3. Load Syllabus for selected course
+    async function loadSyllabusForCourse(courseCode) {
+      try {
+        const res = await fetch(`${API_BASE}/api/syllabus?code=${encodeURIComponent(courseCode)}`);
+        if (res.ok) {
+          const json = await res.json();
+          renderSyllabusData(json.data);
+          document.getElementById("btnOpenHtml").disabled = false;
+
+          // Update iframe
+          const clean = courseCode.replace(/ /g, '_').replace(/\//g, '-');
+          document.getElementById("docPreviewFrame").src = `${API_BASE}/outputs/official_syllabus_${clean}.html?t=${Date.now()}`;
+        } else {
+          renderEmptySyllabus();
+          document.getElementById("btnOpenHtml").disabled = true;
+          document.getElementById("docPreviewFrame").src = "about:blank";
+        }
+      } catch (err) {
+        renderEmptySyllabus();
+      }
+    }
+
+    function renderSyllabusData(syllabus) {
+      if (!syllabus) {
+        renderEmptySyllabus();
+        return;
+      }
+
+      // Render CLOs
+      const closGrid = document.getElementById("closGrid");
+      const clos = syllabus.course_outcomes || [];
+      if (clos.length > 0) {
+        closGrid.innerHTML = clos.map(c => `
+          <div class="clo-card">
+            <div class="clo-card-header">
+              <span class="clo-id">${c.clo_id}</span>
+              <span class="bloom-pill">${c.bloom_level}</span>
+            </div>
+            <p class="clo-text">${highlightBloomVerbs(c.description)}</p>
+            <div class="clo-pos">
+              ${(c.program_outcomes_mapped || []).map(po => `<span class="po-badge">${po}</span>`).join('')}
+            </div>
+            <div class="clo-actions">
+              <button class="btn-edit-clo" onclick="openCloModal('${c.clo_id}', \`${escapeText(c.description)}\`)">
+                <span>✏️</span> Edit CLO
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        closGrid.innerHTML = '<div class="empty-state"><p>No Course Outcomes defined.</p></div>';
+      }
+
+      // Render 18-Week Schedule
+      const scheduleBody = document.getElementById("scheduleTableBody");
+      const sched = syllabus.weekly_schedule || [];
+      if (sched.length > 0) {
+        scheduleBody.innerHTML = sched.map(w => {
+          const isMilestone = (w.topic || '').toLowerCase().includes('exam') || (w.topic || '').toLowerCase().includes('midterm') || (w.topic || '').toLowerCase().includes('final');
+          return `
+            <tr class="${isMilestone ? 'milestone-exam' : ''}">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--gold-bright);">W${w.week_number}</td>
+              <td style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">${w.period}</td>
+              <td><strong style="color:#fff;">${w.topic}</strong></td>
+              <td>
+                ${(w.llos || []).map(l => `
+                  <div class="llo-item">
+                    <span class="badge-ksa badge-${l.category.toLowerCase()}">${l.category}</span>
+                    <span>${l.outcome_text}</span>
+                  </div>
+                `).join('')}
+              </td>
+              <td>${w.teaching_learning_activity}</td>
+              <td>
+                <div style="font-weight:600; color:var(--text-gold);">${w.assessment_tool}</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">${w.evidence}</div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } else {
+        scheduleBody.innerHTML = '<tr><td colspan="6" class="empty-state"><p>No weekly schedule items loaded.</p></td></tr>';
+      }
+    }
+
+    function renderEmptySyllabus() {
+      document.getElementById("closGrid").innerHTML = `
+        <div class="empty-state">
+          <span>🎯</span>
+          <p>This course has not yet been generated. Click "Generate 18-Week OBE Syllabus" to create it with qwen3.5:4b.</p>
+        </div>
+      `;
+      document.getElementById("scheduleTableBody").innerHTML = `
+        <tr>
+          <td colspan="6" class="empty-state">
+            <span>🗓️</span>
+            <p>No 18-week schedule generated yet for this course.</p>
+          </td>
+        </tr>
+      `;
+    }
+
+    function highlightBloomVerbs(desc) {
+      if (!desc) return '';
+      const words = desc.split(' ');
+      if (words.length > 0) {
+        words[0] = `<strong style="color:var(--gold-bright); text-decoration: underline;">${words[0]}</strong>`;
+      }
+      return words.join(' ');
+    }
+
+    function escapeText(str) {
+      return (str || '').replace(/"/g, '&quot;').replace(/'/g, "\'");
+    }
+
+    // 4. Trigger 1-Click Generation
+    async function triggerSingleGenerate() {
+      if (!selectedSubject) return;
+      const code = selectedSubject.course_code;
+
+      document.getElementById("btnGenerate").disabled = true;
+      showProgressHUD(`Starting AI Generation for ${code}...`);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/generate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ course_code: code })
+        });
+        if (res.ok) {
+          startProgressPolling();
+        } else {
+          const err = await res.json();
+          alert("Could not start generation: " + (err.error || "Unknown error"));
+          document.getElementById("btnGenerate").disabled = false;
+        }
+      } catch (e) {
+        alert("Error connecting to server: " + e);
+        document.getElementById("btnGenerate").disabled = false;
+      }
+    }
+
+    // 5. Trigger Batch Generation
+    async function triggerBatchGenerate() {
+      if (!confirm("Are you sure you want to batch-generate all 8 curriculum subjects? This will run qwen3.5:4b sequentially for each subject.")) {
+        return;
+      }
+
+      showProgressHUD("Starting Batch Generation Queue for all 8 subjects...");
+      try {
+        const res = await fetch(`${API_BASE}/api/generate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ batch: true })
+        });
+        if (res.ok) {
+          startProgressPolling();
+        }
+      } catch (e) {
+        alert("Error starting batch generation: " + e);
+      }
+    }
+
+    function showProgressHUD(initialMsg) {
+      const card = document.getElementById("progressCard");
+      card.style.display = "block";
+      document.getElementById("progressStage").innerText = initialMsg;
+      document.getElementById("progressPctText").innerText = "5%";
+      document.getElementById("progressBarFill").style.width = "5%";
+      document.getElementById("logBox").innerHTML = `<div>[*] ${initialMsg}</div>`;
+      card.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function startProgressPolling() {
+      if (pollInterval) clearInterval(pollInterval);
+      pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch(`${API_BASE}/api/generation-state`);
+          if (res.ok) {
+            const state = await res.json();
+            document.getElementById("progressStage").innerText = state.stage || state.message;
+            document.getElementById("progressPctText").innerText = `${state.progress_pct}%`;
+            document.getElementById("progressBarFill").style.width = `${state.progress_pct}%`;
+
+            const logs = state.logs || [];
+            document.getElementById("logBox").innerHTML = logs.map(l => `<div>${l}</div>`).join('');
+            document.getElementById("logBox").scrollTop = document.getElementById("logBox").scrollHeight;
+
+            if (state.status === "success") {
+              clearInterval(pollInterval);
+              document.getElementById("btnGenerate").disabled = false;
+              await loadSubjects();
+              if (selectedSubject) {
+                await loadSyllabusForCourse(selectedSubject.course_code);
+              }
+              await loadDatabaseStats();
+            } else if (state.status === "error") {
+              clearInterval(pollInterval);
+              document.getElementById("btnGenerate").disabled = false;
+              alert("Generation error: " + state.error);
+            }
+          }
+        } catch (e) {
+          console.error("Polling error:", e);
+        }
+      }, 2000);
+    }
+
+    // 6. Human-in-the-Loop CLO Modal
+    function openCloModal(cloId, currentDesc) {
+      activeEditingClo = cloId;
+      document.getElementById("modalCloTitle").innerText = `✏️ Edit ${cloId} (${selectedSubject ? selectedSubject.course_code : ''})`;
+      document.getElementById("modalCloTextarea").value = currentDesc;
+      document.getElementById("modalCloError").style.display = "none";
+      document.getElementById("cloEditModal").style.display = "flex";
+    }
+
+    function closeCloModal() {
+      document.getElementById("cloEditModal").style.display = "none";
+      activeEditingClo = null;
+    }
+
+    async function submitCloUpdate() {
+      const newDesc = document.getElementById("modalCloTextarea").value.trim();
+      if (!newDesc) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/update-clo`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            clo_id: activeEditingClo,
+            course_code: selectedSubject.course_code,
+            new_description: newDesc
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          closeCloModal();
+          await loadSyllabusForCourse(selectedSubject.course_code);
+          await loadDatabaseStats();
+          alert(`[+] ${data.message}`);
+        } else {
+          document.getElementById("modalCloError").innerText = data.error || "Update rejected.";
+          document.getElementById("modalCloError").style.display = "block";
+        }
+      } catch (e) {
+        alert("Error updating CLO: " + e);
+      }
+    }
+
+    // 7. Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+      
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add("active");
+
+      const btns = document.querySelectorAll(".tab-btn");
+      btns.forEach(b => {
+        if (b.getAttribute("onclick").includes(tabId)) b.classList.add("active");
+      });
+
+      if (tabId === "tab-db") {
+        loadDatabaseStats();
+      }
+    }
+
+    // 8. Load SQLite Database Stats
+    async function loadDatabaseStats() {
+      try {
+        const res = await fetch(`${API_BASE}/api/database`);
+        if (res.ok) {
+          const data = await res.json();
+          const list = document.getElementById("dbCoursesList");
+          const courses = data.courses || [];
+          if (courses.length > 0) {
+            list.innerHTML = `
+              <p style="margin-bottom:0.75rem; color:var(--text-gold);">Total Courses Persisted in SQLite: <strong>${courses.length}</strong></p>
+              ${courses.map(c => `
+                <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:6px; padding:0.75rem 1rem; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <strong style="color:var(--gold-bright); font-family:var(--font-mono);">[ID ${c.id}] ${c.course_code}</strong> — ${c.course_title}
+                    <div style="font-size:0.75rem; color:var(--text-muted);">${c.credit_units}.0 Units • ${c.weeks_count} Weeks in Schedule • ${c.clos.length} CLOs</div>
+                  </div>
+                  <button class="btn btn-secondary" style="font-size:0.75rem; padding:0.25rem 0.5rem;" onclick="selectSubject('${c.course_code}')">Select Course</button>
+                </div>
+              `).join('')}
+            `;
+          } else {
+            list.innerHTML = '<p style="color:var(--text-muted);">Database is initialized but contains 0 course records.</p>';
+          }
+        }
+      } catch (e) {
+        console.error("Database fetch failed:", e);
+      }
+    }
+
+    // 9. Document Actions
+    function openOfficialHtml() {
+      if (!selectedSubject) return;
+      const clean = selectedSubject.course_code.replace(/ /g, '_').replace(/\//g, '-');
+      window.open(`${API_BASE}/outputs/official_syllabus_${clean}.html`, '_blank');
+    }
+
+    function printOfficialHtml() {
+      const frame = document.getElementById("docPreviewFrame");
+      if (frame && frame.contentWindow) {
+        frame.contentWindow.print();
+      } else {
+        openOfficialHtml();
+      }
+    }
+
+    // 10. Check Ollama Status
+    async function checkOllama() {
+      try {
+        const res = await fetch(`${API_BASE}/api/status`);
+        if (res.ok) {
+          const data = await res.json();
+          const dot = document.getElementById("ollamaStatusDot");
+          const text = document.getElementById("ollamaStatusText");
+          if (data.ollama && data.ollama.running) {
+            dot.className = "status-dot";
+            text.innerText = `Ollama Online (${data.model})`;
+          } else {
+            dot.className = "status-dot offline";
+            text.innerText = "Ollama Offline";
+          }
+        }
+      } catch (e) {
+        document.getElementById("ollamaStatusDot").className = "status-dot offline";
+        document.getElementById("ollamaStatusText").innerText = "Server Unreachable";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      checkOllama();
+      setInterval(checkOllama, 10000);
+      loadSubjects();
+    });
+  </script>
+</body>
+</html>

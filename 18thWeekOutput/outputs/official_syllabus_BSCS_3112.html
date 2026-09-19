@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSCS 3112 - Artificial Intelligence | Official OBE Syllabus</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #0D9488;
+      --accent: #D97706;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+      --border: #CBD5E1;
+      --border-dark: #64748B;
+      --text: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #F1F5F9;
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    .syllabus-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      padding: 40px;
+    }
+
+    /* Institutional Header */
+    .inst-header {
+      text-align: center;
+      border-bottom: 3px double var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .inst-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .inst-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .inst-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #EFF6FF;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #F8FAFC;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .meta-table td:first-child {
+      font-weight: 600;
+      background-color: #F8FAFC;
+      width: 25%;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bloom {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 1px solid #C7D2FE;
+    }
+
+    .badge-k { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-s { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .badge-a { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+    .exam-row {
+      background-color: #FFFBEB;
+      font-weight: 600;
+    }
+
+    .exam-row td {
+      border-color: #FCD34D;
+    }
+
+    /* Signatory Box */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-dark);
+    }
+
+    .sign-box {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--dark);
+      margin-top: 45px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .syllabus-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="syllabus-container">
+  
+  <!-- Institutional Header -->
+  <div class="inst-header">
+    <h1>University of Perpetual Help System DALTA</h1>
+    <h2>Molino Campus &bull; Bacoor City, Cavite</h2>
+    <h3>College of Computer Studies</h3>
+    <div class="doc-title">Course Syllabus: BSCS 3112</div>
+  </div>
+
+  <!-- I. Course Overview & Metadata -->
+  <div class="section-title">I. Course Identification &amp; Specification</div>
+  <table class="meta-table">
+    <tr>
+      <td>Course Code</td>
+      <td><strong>BSCS 3112</strong></td>
+      <td>Course Title</td>
+      <td><strong>Artificial Intelligence</strong></td>
+    </tr>
+    <tr>
+      <td>Credit Units</td>
+      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>Prerequisites</td>
+      <td>CS 3110 (Data Structures and Algorithms)</td>
+    </tr>
+    <tr>
+      <td>Course Description</td>
+      <td colspan="3">Foundational and modern principles of artificial intelligence, including intelligent agents, state-space search heuristics (A*, Minimax), knowledge representation, first-order logic, probabilistic reasoning, machine learning pipelines, deep neural networks, computer vision, natural language processing, and ethical considerations in autonomous systems.</td>
+    </tr>
+  </table>
+
+  <!-- II. Course Learning Outcomes -->
+  <div class="section-title">II. Course Learning Outcomes (CLOs)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 10%;">CLO ID</th>
+        <th style="width: 60%;">Outcome Statement (Measurable Bloom's Verb)</th>
+        <th style="width: 15%;">Cognitive Level</th>
+        <th style="width: 15%;">Mapped POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><strong>CLO1</strong></td>
+        <td>Formulate advanced intelligent agents using heuristic search algorithms.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO1, PLO2</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO2</strong></td>
+        <td>Evaluate the effectiveness of knowledge representation methods and probabilistic reasoning in first-order logic.</td>
+        <td><span class="badge badge-bloom">Analyze</span></td>
+        <td>PLO1, PLO3</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO3</strong></td>
+        <td>Create machine learning pipelines integrating deep neural networks for computer vision and natural language processing tasks.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO1, PLO4</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO4</strong></td>
+        <td>Assess ethical implications of autonomous systems and formulate guidelines for responsible AI deployment.</td>
+        <td><span class="badge badge-bloom">Evaluate</span></td>
+        <td>PLO2, PLO5</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- III. 18-Week Academic Schedule Matrix -->
+  <div class="section-title">III. 18-Week Semester Instructional Matrix</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 7%;">Wk</th>
+        <th style="width: 25%;">Topics Covered</th>
+        <th style="width: 32%;">Lesson Learning Outcomes (LLOs)</th>
+        <th style="width: 18%;">TLAs &amp; Exercises</th>
+        <th style="width: 18%;">Assessment &amp; Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>1</strong></td>
+        <td>
+          <strong>Introduction to AI and Search Problems</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Define intelligent agents and state-space search problems.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Model search problems using graph representations.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate professional curiosity in AI applications.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on Agent Frameworks</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz on Search Concepts</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>2</strong></td>
+        <td>
+          <strong>Uninformed Search Algorithms</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Compare Breadth-First and Depth-First search strategies.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement uninformed search algorithms in Python.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Appreciate algorithmic efficiency in problem solving.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Search Implementation</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Code Review</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>
+          <strong>Heuristic Search and A* Algorithm</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze admissible and consistent heuristics.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Design A* search agents for pathfinding tasks.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Value heuristic accuracy in real-world scenarios.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Heuristic Design</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Search Algorithm Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>4</strong></td>
+        <td>
+          <strong>Minimax and Alpha-Beta Pruning</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Explain game-theoretic decision making.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Code Minimax agents with pruning techniques.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect computational constraints in game design.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Game AI</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Game Simulation Output</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>5</strong></td>
+        <td>
+          <strong>Informed Search Optimization</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate search algorithm performance metrics.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Optimize search paths using bidirectional methods.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate commitment to efficient resource usage.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Optimization</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Performance Analysis</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>6</strong></td>
+        <td>
+          <strong>Constraint Satisfaction Problems</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Formulate CSPs for scheduling scenarios.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement backtracking algorithms for CSPs.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Acknowledge complexity in constraint management.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on CSP Solving</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Constraint Solver Code</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>7</strong></td>
+        <td>
+          <strong>Probabilistic Reasoning and Logic</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Represent uncertainty using probability theory.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Construct Bayesian networks for inference.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adopt evidence-based decision making.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Probability Modeling</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Bayesian Network Diagram</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>8</strong></td>
+        <td>
+          <strong>First-Order Logic and Knowledge Representation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Translate natural language to logical formulas.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply resolution theorem proving techniques.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate precision in logical reasoning.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Logic Translation</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Logical Proof Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>9</strong></td>
+        <td>
+          <strong>Midterm Examination</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess mastery of search and logic concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Evaluate problem-solving skills under pressure.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Reflect on academic integrity standards.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Midterm Examination</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>10</strong></td>
+        <td>
+          <strong>Introduction to Machine Learning Pipelines</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Describe ML pipeline architecture components.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Construct data preprocessing workflows.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Value reproducibility in machine learning.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Pipeline Design</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Pipeline Documentation</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>11</strong></td>
+        <td>
+          <strong>Deep Neural Networks for Computer Vision</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze CNN architectures and feature extraction.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Train CNN models for image classification.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Appreciate visual pattern recognition importance.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Image Classification</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Model Accuracy Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>12</strong></td>
+        <td>
+          <strong>Natural Language Processing Fundamentals</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Explain tokenization and embedding techniques.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement NLP preprocessing pipelines.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect linguistic diversity in text processing.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Text Processing</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>NLP Pipeline Code</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>13</strong></td>
+        <td>
+          <strong>Sequence Models and Transformers</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Compare RNNs with Transformer architectures.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Build transformer-based language models.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate adaptability to sequential data.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Transformer Training</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Sequence Model Output</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>14</strong></td>
+        <td>
+          <strong>Ethics in Autonomous Systems</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Identify ethical dilemmas in AI deployment.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Formulate policy guidelines for autonomous agents.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Uphold social responsibility in technology use.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Seminar on AI Ethics</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Ethics Policy Draft</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>15</strong></td>
+        <td>
+          <strong>Responsible AI Deployment Strategies</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess bias and fairness in ML models.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement debiasing techniques in pipelines.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Commit to equitable technology distribution.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab on Bias Mitigation</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Fairness Audit Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>16</strong></td>
+        <td>
+          <strong>Capstone Project Development</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design end-to-end AI systems for real-world problems.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Integrate search, ML, and ethics into projects.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate innovation in AI applications.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Capstone Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Project Prototype</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>17</strong></td>
+        <td>
+          <strong>Final Project Review and Refinement</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Critique capstone project methodologies.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Refine AI implementations based on feedback.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Practice collaborative peer review skills.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Peer Review Sessions</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Feedback Form</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>18</strong></td>
+        <td>
+          <strong>Final Examination &amp; Capstone Defense</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate comprehensive AI knowledge and skills.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Defend capstone project before panel.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Exhibit confidence in professional presentation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Examination &amp; Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Summative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- IV. Institutional Grading Scheme -->
+  <div class="section-title">IV. Institutional Grading System (UPHSD CCS 70/30 Formula)</div>
+  <table class="meta-table">
+    <tr>
+      <td>Class Standing (70%)</td>
+      <td>Quizzes &amp; Drills (30%) + Research / Case Analysis (20%) + Laboratory Hands-on Tasks (50%)</td>
+    </tr>
+    <tr>
+      <td>Major Examinations (30%)</td>
+      <td>Midterm Examination (Week 9) + Final Examination &amp; Defense (Week 18)</td>
+    </tr>
+    <tr>
+      <td>Passing Criterion</td>
+      <td>Final Computed Grade &ge; 75.0% (Transmuted Rating &ge; 3.00)</td>
+    </tr>
+  </table>
+
+  <!-- Signatory Blocks -->
+  <div class="sign-grid">
+    <div class="sign-box">
+      <div class="sign-title">Prepared by:</div>
+      <div class="sign-line">Christian Ezekiel L. Carvajal &amp; John Miko P. Sarsalijo</div>
+      <div class="sign-title">BSCS 3112 Lead Systems Architects</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Reviewed by:</div>
+      <div class="sign-line">Curriculum &amp; Instruction Committee</div>
+      <div class="sign-title">Department of Computer Science</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Approved by:</div>
+      <div class="sign-line">Prof. Roberto L. Malitao</div>
+      <div class="sign-title">Dean / Course Evaluator, College of Computer Studies</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

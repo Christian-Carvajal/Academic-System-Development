@@ -1,7 +1,11 @@
 """
-run_gui.py
+run_14thweek.py
 Universal cross-platform launcher & pre-flight verification system for the
-UPHSD CCS OBE AI Microservice Interactive Studio.
+UPHSD CCS 14-Week OBE AI Microservice Interactive Studio (Lesson 4).
+
+Authors:
+- Christian Ezekiel L. Carvajal (Lead Systems Architect & Engineer)
+- John Miko P. Sarsalijo (Collaborative Partner & Systems Engineer)
 
 Performs automatic environment verification:
  1. Verifies Python runtime (>= 3.10).
@@ -13,9 +17,9 @@ Performs automatic environment verification:
  5. Launches Web GUI Studio via app.py and opens the default web browser.
 
 Usage:
-  python run_gui.py                 # Full launch with browser
-  python run_gui.py --no-browser    # Launch server without opening browser
-  python run_gui.py --check-only    # Perform verification check only and exit
+  python run_14thweek.py                 # Full launch with browser
+  python run_14thweek.py --no-browser    # Launch server without opening browser
+  python run_14thweek.py --check-only    # Perform verification check only and exit
 """
 import sys
 import os
@@ -35,10 +39,11 @@ PORT = 8000
 def print_banner():
     banner = f"""
 ======================================================================
-   UPHSD CCS - OBE AI Microservice Interactive Studio
+   UPHSD CCS - OBE 14-Week Microservice Studio (Lesson 4)
    Course: BSCS 3112 / Artificial Intelligence
-   Student: Christian Ezekiel L. Carvajal
+   Students: Christian Ezekiel L. Carvajal & John Miko P. Sarsalijo
    Evaluator: Prof. Roberto L. Malitao
+   Port: 8000 (Lesson 4 Interactive Studio)
 ======================================================================
 """
     print(banner.strip())
@@ -56,28 +61,22 @@ def check_and_install_dependencies():
     missing = []
     try:
         import pydantic
-    except ImportError:
+    except Exception:
         missing.append("pydantic")
     try:
         import ollama
-    except ImportError:
+    except Exception:
         missing.append("ollama")
 
     if missing:
         print(f"[!] Missing packages detected: {', '.join(missing)}")
         print("[*] Installing required packages via pip...")
-        req_file = BASE_DIR / "requirements.txt"
-        cmd = [sys.executable, "-m", "pip", "install"]
-        if req_file.exists():
-            cmd += ["-r", str(req_file)]
-        else:
-            cmd += REQUIRED_PACKAGES
+        cmd = [sys.executable, "-m", "pip", "install"] + REQUIRED_PACKAGES
         try:
             subprocess.check_call(cmd)
             print("[+] Dependencies successfully installed.")
         except Exception as e:
             print(f"[-] Error installing dependencies: {e}")
-            print("    Please run: pip install -r requirements.txt")
             sys.exit(1)
     else:
         print("[+] All Python dependencies (pydantic, ollama) are installed.")
@@ -102,7 +101,6 @@ def check_ollama_and_model():
     if data is not None:
         ollama_online = True
     else:
-        # Check if ollama CLI is available
         ollama_bin = shutil.which("ollama")
         if ollama_bin:
             print("[!] Ollama daemon is not responding. Attempting to start background service (ollama serve)...")
@@ -113,13 +111,8 @@ def check_ollama_and_model():
                         creationflags=subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
                     )
                 else:
-                    subprocess.Popen(
-                        ["ollama", "serve"],
-                        stdout=subprocess.DEVNULL,
-                        stderr=subprocess.DEVNULL
-                    )
-                # Poll for up to 6 seconds
-                for _ in range(12):
+                    subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                for _ in range(10):
                     time.sleep(0.5)
                     data = ping_ollama()
                     if data is not None:
@@ -131,28 +124,26 @@ def check_ollama_and_model():
     if not ollama_online:
         print("=" * 70)
         print("[WARNING] Ollama service is not reachable at http://127.0.0.1:11434.")
-        print("          If you wish to perform live AI syllabus generation, please")
-        print("          install and launch Ollama from: https://ollama.com")
-        print("          NOTE: The GUI Studio will still launch, allowing full audit")
-        print("          and PDF export of cached syllabi without Ollama running.")
+        print("          If you wish to perform live AI generation, please launch")
+        print("          Ollama in another window: ollama serve")
+        print("          NOTE: The GUI Studio will still launch, allowing manual review")
+        print("          and mock generation mode.")
         print("=" * 70)
         return
 
     print("[+] Ollama service is active and responsive.")
 
-    # Check model list
     models = [m.get("name", "") for m in data.get("models", [])]
     model_installed = any(m.startswith(MODEL_TAG) or MODEL_TAG in m for m in models)
 
     if not model_installed:
         print(f"[!] Required model '{MODEL_TAG}' was not found in local Ollama repository.")
-        print(f"[*] Pulling '{MODEL_TAG}' now (this may take a few minutes depending on connection)...")
+        print(f"[*] Pulling '{MODEL_TAG}' now...")
         try:
             subprocess.run(["ollama", "pull", MODEL_TAG], check=True)
             print(f"[+] Model '{MODEL_TAG}' downloaded and ready.")
         except Exception as e:
             print(f"[-] Error auto-pulling '{MODEL_TAG}': {e}")
-            print(f"    You can manually pull it by running: ollama pull {MODEL_TAG}")
     else:
         print(f"[+] Model '{MODEL_TAG}' is verified and ready for live generation.")
 
@@ -167,12 +158,11 @@ def main():
         return
 
     print("\n" + "=" * 70)
-    print("  LAUNCHING OBE AI MICROSERVICE INTERACTIVE STUDIO")
+    print("  LAUNCHING 14-WEEK OBE MICROSERVICE INTERACTIVE STUDIO")
     print(f"  URL: http://{HOST}:{PORT}")
     print("  Press Ctrl+C in this console to terminate the server.")
     print("=" * 70 + "\n")
 
-    # Add BASE_DIR to sys.path
     if str(BASE_DIR) not in sys.path:
         sys.path.insert(0, str(BASE_DIR))
 

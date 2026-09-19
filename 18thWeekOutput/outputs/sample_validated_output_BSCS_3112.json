@@ -1,0 +1,628 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3112",
+    "course_title": "Artificial Intelligence",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "CS 3110 (Data Structures and Algorithms)",
+    "course_description": "Foundational and modern principles of artificial intelligence, including intelligent agents, state-space search heuristics (A*, Minimax), knowledge representation, first-order logic, probabilistic reasoning, machine learning pipelines, deep neural networks, computer vision, natural language processing, and ethical considerations in autonomous systems."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Design and implement intelligent agents using state-space search algorithms including A* and Minimax.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO2"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Evaluate the effectiveness of knowledge representation methods and probabilistic reasoning in first-order logic.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Create machine learning pipelines integrating deep neural networks for computer vision and natural language processing tasks.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO4"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Assess ethical implications of autonomous systems and formulate guidelines for responsible AI deployment.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to AI and Search Problems"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Define intelligent agents and state-space search problems.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Model search problems using graph representations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Demonstrate professional curiosity in AI applications.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Agent Frameworks"
+      ],
+      "assessment_tasks": [
+        "Quiz on Search Concepts"
+      ],
+      "resources": [
+        "Course LMS",
+        "Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Uninformed Search Algorithms"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Compare Breadth-First and Depth-First search strategies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Implement uninformed search algorithms in Python.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Appreciate algorithmic efficiency in problem solving.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Search Implementation"
+      ],
+      "assessment_tasks": [
+        "Code Review"
+      ],
+      "resources": [
+        "GitHub Repository"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Heuristic Search and A* Algorithm"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Analyze admissible and consistent heuristics.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Design A* search agents for pathfinding tasks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Value heuristic accuracy in real-world scenarios.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Heuristic Design"
+      ],
+      "assessment_tasks": [
+        "Search Algorithm Report"
+      ],
+      "resources": [
+        "Visual Studio Code"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Minimax and Alpha-Beta Pruning"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Explain game-theoretic decision making.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Code Minimax agents with pruning techniques.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Respect computational constraints in game design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Game AI"
+      ],
+      "assessment_tasks": [
+        "Game Simulation Output"
+      ],
+      "resources": [
+        "Python Libraries"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Informed Search Optimization"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Evaluate search algorithm performance metrics.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Optimize search paths using bidirectional methods.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Demonstrate commitment to efficient resource usage.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Optimization"
+      ],
+      "assessment_tasks": [
+        "Performance Analysis"
+      ],
+      "resources": [
+        "Benchmark Tools"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Constraint Satisfaction Problems"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Formulate CSPs for scheduling scenarios.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Implement backtracking algorithms for CSPs.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Acknowledge complexity in constraint management.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on CSP Solving"
+      ],
+      "assessment_tasks": [
+        "Constraint Solver Code"
+      ],
+      "resources": [
+        "Constraint Libraries"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Probabilistic Reasoning and Logic"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Represent uncertainty using probability theory.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Construct Bayesian networks for inference.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Adopt evidence-based decision making.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Probability Modeling"
+      ],
+      "assessment_tasks": [
+        "Bayesian Network Diagram"
+      ],
+      "resources": [
+        "Statistical Software"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "First-Order Logic and Knowledge Representation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Translate natural language to logical formulas.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Apply resolution theorem proving techniques.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Demonstrate precision in logical reasoning.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Logic Translation"
+      ],
+      "assessment_tasks": [
+        "Logical Proof Submission"
+      ],
+      "resources": [
+        "Logic Textbooks"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Assess mastery of search and logic concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Evaluate problem-solving skills under pressure.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Reflect on academic integrity standards.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Exam Proctoring System"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Introduction to Machine Learning Pipelines"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Describe ML pipeline architecture components.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Construct data preprocessing workflows.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Value reproducibility in machine learning.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Pipeline Design"
+      ],
+      "assessment_tasks": [
+        "Pipeline Documentation"
+      ],
+      "resources": [
+        "Jupyter Notebooks"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Deep Neural Networks for Computer Vision"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Analyze CNN architectures and feature extraction.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Train CNN models for image classification.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Appreciate visual pattern recognition importance.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Image Classification"
+      ],
+      "assessment_tasks": [
+        "Model Accuracy Report"
+      ],
+      "resources": [
+        "TensorFlow/Keras"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Natural Language Processing Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Explain tokenization and embedding techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Implement NLP preprocessing pipelines.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Respect linguistic diversity in text processing.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Text Processing"
+      ],
+      "assessment_tasks": [
+        "NLP Pipeline Code"
+      ],
+      "resources": [
+        "NLTK/Spacy"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Sequence Models and Transformers"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Compare RNNs with Transformer architectures.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Build transformer-based language models.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Demonstrate adaptability to sequential data.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Transformer Training"
+      ],
+      "assessment_tasks": [
+        "Sequence Model Output"
+      ],
+      "resources": [
+        "PyTorch"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Ethics in Autonomous Systems"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Identify ethical dilemmas in AI deployment.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Formulate policy guidelines for autonomous agents.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Uphold social responsibility in technology use.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Seminar on AI Ethics"
+      ],
+      "assessment_tasks": [
+        "Ethics Policy Draft"
+      ],
+      "resources": [
+        "Ethics Case Studies"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Responsible AI Deployment Strategies"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Assess bias and fairness in ML models.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Implement debiasing techniques in pipelines.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Commit to equitable technology distribution.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab on Bias Mitigation"
+      ],
+      "assessment_tasks": [
+        "Fairness Audit Report"
+      ],
+      "resources": [
+        "Bias Detection Tools"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Project Development"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Design end-to-end AI systems for real-world problems.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Integrate search, ML, and ethics into projects.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Demonstrate innovation in AI applications.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Workshop"
+      ],
+      "assessment_tasks": [
+        "Project Prototype"
+      ],
+      "resources": [
+        "Development Environment"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Final Project Review and Refinement"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Critique capstone project methodologies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Refine AI implementations based on feedback.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Practice collaborative peer review skills.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Peer Review Sessions"
+      ],
+      "assessment_tasks": [
+        "Feedback Form"
+      ],
+      "resources": [
+        "Review Guidelines"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Evaluate comprehensive AI knowledge and skills.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Defend capstone project before panel.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Exhibit confidence in professional presentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Examination & Defense"
+      ],
+      "assessment_tasks": [
+        "Summative Assessment Rubric"
+      ],
+      "resources": [
+        "Defense Panel"
+      ]
+    }
+  ]
+}
