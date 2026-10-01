@@ -168,6 +168,53 @@ def run_batch_generation_worker():
         generation_state["logs"].append(f"[+] All {total} subjects generated and persisted to SQLite.")
 
 
+def perform_nuke() -> Dict[str, Any]:
+    """Wipes all generated deliverable files, cleans SQLite tables, and resets in-memory pipeline state."""
+    deleted_files = []
+    if OUTPUTS_DIR.exists():
+        for fpath in OUTPUTS_DIR.iterdir():
+            if fpath.is_file() and fpath.name != ".gitkeep":
+                try:
+                    fpath.unlink()
+                    deleted_files.append(fpath.name)
+                except Exception as e:
+                    print(f"[!] Warning deleting {fpath}: {e}")
+
+    # Reset database tables
+    db_cleared = False
+    try:
+        with get_connection() as conn:
+            conn.execute("PRAGMA foreign_keys = OFF;")
+            conn.execute("DELETE FROM lesson_outcomes;")
+            conn.execute("DELETE FROM weekly_schedules;")
+            conn.execute("DELETE FROM course_outcomes;")
+            conn.execute("DELETE FROM courses;")
+            conn.execute("PRAGMA foreign_keys = ON;")
+            conn.commit()
+        init_db()
+        db_cleared = True
+    except Exception as e:
+        print(f"[!] Warning clearing database: {e}")
+
+    # Reset in-memory generation state
+    with generation_lock:
+        generation_state["status"] = "idle"
+        generation_state["progress_pct"] = 0
+        generation_state["stage"] = "Workspace Nuked Clean"
+        generation_state["message"] = "All generated deliverables, database records, and pipeline states wiped."
+        generation_state["logs"] = ["[!] Workspace nuked clean. Ready for fresh generation."]
+        generation_state["course_code"] = None
+        generation_state["result"] = None
+        generation_state["error"] = None
+
+    return {
+        "success": True,
+        "message": "Nuke operation successful. All 18-week generated syllabi, HTML documents, and SQLite tables wiped.",
+        "deleted": deleted_files,
+        "db_cleared": db_cleared
+    }
+
+
 class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -190,6 +237,12 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path.split("?")[0]
         query = self.path.split("?")[1] if "?" in self.path else ""
+
+        # Nuke workspace endpoint via GET
+        if path in ("/api/nuke", "/api/clear", "/api/reset"):
+            result = perform_nuke()
+            self.send_json(HTTPStatus.OK, result)
+            return
         
         # 1. Static index.html
         if path == "/" or path == "/index.html":
@@ -617,60 +670,8 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
 
         # 4. Nuclear Wipe Workspace endpoint
         if path in ("/api/nuke", "/api/clear", "/api/reset"):
-            deleted_files = []
-            target_patterns = [
-                "official_syllabus_*.html",
-                "sample_validated_output_*.json",
-                "sample_validated_output.json",
-                "*.html",
-                "*.json",
-                "*.tmp",
-                "*.pdf"
-            ]
-            if OUTPUTS_DIR.exists():
-                for pattern in target_patterns:
-                    for fpath in OUTPUTS_DIR.glob(pattern):
-                        try:
-                            if fpath.is_file():
-                                fpath.unlink()
-                                if fpath.name not in deleted_files:
-                                    deleted_files.append(fpath.name)
-                        except Exception as e:
-                            print(f"[!] Warning deleting {fpath}: {e}")
-
-            # Reset database tables
-            db_cleared = False
-            try:
-                with get_connection() as conn:
-                    conn.execute("PRAGMA foreign_keys = OFF;")
-                    conn.execute("DELETE FROM lesson_outcomes;")
-                    conn.execute("DELETE FROM weekly_schedules;")
-                    conn.execute("DELETE FROM course_outcomes;")
-                    conn.execute("DELETE FROM courses;")
-                    conn.execute("PRAGMA foreign_keys = ON;")
-                    conn.commit()
-                init_db()
-                db_cleared = True
-            except Exception as e:
-                print(f"[!] Warning clearing database: {e}")
-
-            # Reset in-memory generation state
-            with generation_lock:
-                generation_state["status"] = "idle"
-                generation_state["progress_pct"] = 0
-                generation_state["stage"] = "Workspace Nuked Clean"
-                generation_state["message"] = "All generated deliverables, database records, and pipeline states wiped."
-                generation_state["logs"] = ["[!] Workspace nuked clean. Ready for fresh generation."]
-                generation_state["course_code"] = None
-                generation_state["result"] = None
-                generation_state["error"] = None
-
-            self.send_json(HTTPStatus.OK, {
-                "success": True,
-                "message": "Nuke operation successful. All 18-week generated syllabi, HTML documents, and SQLite tables wiped.",
-                "deleted": deleted_files,
-                "db_cleared": db_cleared
-            })
+            result = perform_nuke()
+            self.send_json(HTTPStatus.OK, result)
             return
 
         self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found.")

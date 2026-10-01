@@ -1389,16 +1389,25 @@
 
     <!-- Tab 4: Official HTML Document Preview -->
     <div class="tab-content" id="tab-doc">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
-        <span style="font-size:0.85rem; color:var(--text-secondary);">
-          Rendered from <code>templates/uphsd_ccs_template.html</code> via Jinja2:
-        </span>
-        <div class="action-buttons">
-          <button class="btn btn-secondary" onclick="openOfficialHtml()">↗ Open in New Window</button>
-          <button class="btn btn-primary" onclick="printOfficialHtml()">🖨️ Print / Save Vector PDF</button>
-        </div>
+      <div id="docEmptyState" class="empty-state" style="display:none; padding: 4rem 1rem;">
+        <span style="font-size:3.5rem;">📄</span>
+        <h3 style="color:#fff; margin-bottom:0.5rem; font-family:var(--font-heading);">Official HTML Syllabus Standby</h3>
+        <p style="color:var(--text-muted); max-width:550px; margin:0 auto 1.5rem auto;">
+          No institutional HTML document loaded or generated yet. Select any subject above and generate its 18-week syllabus to render the official print-ready UPHSD CCS syllabus.
+        </p>
       </div>
-      <iframe class="preview-frame" id="docPreviewFrame" src="about:blank"></iframe>
+      <div id="docPreviewWrapper">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <span style="font-size:0.85rem; color:var(--text-secondary);">
+            Rendered from <code>templates/uphsd_ccs_template.html</code> via Jinja2:
+          </span>
+          <div class="action-buttons">
+            <button class="btn btn-secondary" id="btnOpenInNewWin" onclick="openOfficialHtml()">↗ Open in New Window</button>
+            <button class="btn btn-primary" id="btnPrintPdf" onclick="printOfficialHtml()">🖨️ Print / Save Vector PDF</button>
+          </div>
+        </div>
+        <iframe class="preview-frame" id="docPreviewFrame" src="about:blank"></iframe>
+      </div>
     </div>
 
     <!-- Tab 5: Accreditation & Rubric Invariant Audit -->
@@ -1483,7 +1492,7 @@
     let pollInterval = null;
 
     // 1. Load Subjects on Startup
-    async function loadSubjects() {
+    async function loadSubjects(autoSelect = true) {
       try {
         const res = await fetch(`${API_BASE}/api/subjects`);
         if (res.ok) {
@@ -1491,13 +1500,16 @@
           subjects = data.subjects || [];
           renderSubjects();
           
-          // Select current selected subject or default to BSCS 3112 (AI) or first
-          const currentCode = selectedSubject ? selectedSubject.course_code : null;
-          if (currentCode && subjects.some(s => s.course_code === currentCode)) {
-            selectSubject(currentCode);
-          } else if (subjects.length > 0) {
-            const aiSubj = subjects.find(s => s.course_code.includes("3112")) || subjects[0];
-            selectSubject(aiSubj.course_code);
+          if (autoSelect) {
+            const currentCode = selectedSubject ? selectedSubject.course_code : null;
+            if (currentCode && subjects.some(s => s.course_code === currentCode)) {
+              selectSubject(currentCode);
+            } else if (subjects.length > 0) {
+              const generatedSubj = subjects.find(s => s.is_persisted);
+              const aiSubj = subjects.find(s => s.course_code.includes("3112")) || subjects[0];
+              const target = generatedSubj || aiSubj;
+              if (target) selectSubject(target.course_code);
+            }
           }
         }
       } catch (err) {
@@ -1543,17 +1555,48 @@
     function updateCourseSelectorDropdown() {
       const dropdown = document.getElementById("syllabusCourseSelector");
       if (!dropdown) return;
-      dropdown.innerHTML = subjects.map(s => {
-        const status = s.is_persisted ? "✓ Generated" : "Ready";
-        return `<option value="${s.course_code}">${s.course_code}: ${s.course_title} [${status}]</option>`;
-      }).join('');
+      dropdown.innerHTML = (!selectedSubject ? `<option value="">-- No Subject Selected (Click Any Subject Above) --</option>` : '') +
+        subjects.map(s => {
+          const status = s.is_persisted ? "✓ Generated" : "Ready";
+          return `<option value="${s.course_code}">${s.course_code}: ${s.course_title} [${status}]</option>`;
+        }).join('');
       if (selectedSubject) {
         dropdown.value = selectedSubject.course_code;
+      } else {
+        dropdown.value = "";
       }
+    }
+
+    function clearFormFields() {
+      selectedSubject = null;
+      activeSyllabusData = null;
+      document.getElementById("formCourseTitle").value = "";
+      document.getElementById("formCourseCode").value = "";
+      document.getElementById("formCourseDesc").value = "";
+      document.getElementById("formTargetPlos").value = "";
+      
+      document.getElementById("formMetaUnits").innerText = "- Units";
+      document.getElementById("formMetaHours").innerText = "- Lec / - Lab";
+      document.getElementById("formMetaPrereq").innerText = "None";
+      document.getElementById("formMetaCategory").innerText = "Computer Science";
+      document.getElementById("formStatusBadge").innerText = "☢️ Workspace Nuked Clean (Standby)";
+      document.getElementById("formStatusBadge").style.background = "rgba(220, 38, 38, 0.18)";
+      document.getElementById("formStatusBadge").style.color = "#fca5a5";
+      document.getElementById("formStatusBadge").style.borderColor = "rgba(239, 68, 68, 0.5)";
+
+      document.getElementById("btnGenerate").disabled = true;
+      document.getElementById("btnOpenHtml").disabled = true;
+
+      updateCourseSelectorDropdown();
+      renderSubjects();
     }
 
     // 2. Select Subject — Auto-fills Form & Immediately Loads Syllabus
     async function selectSubject(courseCode) {
+      if (!courseCode) {
+        clearFormFields();
+        return;
+      }
       selectedSubject = subjects.find(s => s.course_code === courseCode) || null;
       renderSubjects();
 
@@ -1576,6 +1619,9 @@
         document.getElementById("formMetaPrereq").innerText = selectedSubject.prerequisites || 'None';
         document.getElementById("formMetaCategory").innerText = selectedSubject.category || 'Computer Science';
         document.getElementById("formStatusBadge").innerText = selectedSubject.is_persisted ? '✓ Persisted in SQLite & HTML' : '⚡ Auto-Filled from Curriculum Catalog';
+        document.getElementById("formStatusBadge").style.background = selectedSubject.is_persisted ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
+        document.getElementById("formStatusBadge").style.color = selectedSubject.is_persisted ? '#34d399' : 'var(--gold-bright)';
+        document.getElementById("formStatusBadge").style.borderColor = selectedSubject.is_persisted ? 'rgba(16, 185, 129, 0.3)' : 'rgba(245, 158, 11, 0.3)';
 
         document.getElementById("btnGenerate").disabled = false;
         document.getElementById("btnOpenHtml").disabled = !selectedSubject.has_html;
@@ -1611,9 +1657,15 @@
           renderSyllabusData(json.data);
           document.getElementById("btnOpenHtml").disabled = false;
 
-          // Update iframe
+          // Update iframe & tab preview
           const clean = courseCode.replace(/ /g, '_').replace(/\//g, '-');
+          const docEmpty = document.getElementById("docEmptyState");
+          const docWrap = document.getElementById("docPreviewWrapper");
+          if (docEmpty) docEmpty.style.display = "none";
+          if (docWrap) docWrap.style.display = "block";
           document.getElementById("docPreviewFrame").src = `${API_BASE}/outputs/official_syllabus_${clean}.html?t=${Date.now()}`;
+          if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = false;
+          if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = false;
           
           // Render Audit
           renderAuditTab(json.data);
@@ -1621,12 +1673,25 @@
           activeSyllabusData = null;
           renderEmptySyllabus();
           document.getElementById("btnOpenHtml").disabled = true;
+          const docEmpty = document.getElementById("docEmptyState");
+          const docWrap = document.getElementById("docPreviewWrapper");
+          if (docEmpty) docEmpty.style.display = "block";
+          if (docWrap) docWrap.style.display = "none";
           document.getElementById("docPreviewFrame").src = "about:blank";
+          if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = true;
+          if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = true;
           renderAuditTab(null);
         }
       } catch (err) {
         activeSyllabusData = null;
         renderEmptySyllabus();
+        const docEmpty = document.getElementById("docEmptyState");
+        const docWrap = document.getElementById("docPreviewWrapper");
+        if (docEmpty) docEmpty.style.display = "block";
+        if (docWrap) docWrap.style.display = "none";
+        document.getElementById("docPreviewFrame").src = "about:blank";
+        if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = true;
+        if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = true;
         renderAuditTab(null);
       }
     }
@@ -1741,11 +1806,31 @@
 
     // 4. Render Accreditation & Rubric Audit
     async function renderAuditTab(syllabus) {
-      const code = syllabus && syllabus.course_metadata ? syllabus.course_metadata.course_code : (selectedSubject ? selectedSubject.course_code : 'BSCS 3112');
       const container = document.getElementById("auditGridContainer");
       const scoreBadge = document.getElementById("auditScoreBadge");
       if (!container) return;
 
+      if (!syllabus || !syllabus.weekly_schedule) {
+        if (scoreBadge) {
+          scoreBadge.innerText = "Standby (No Data)";
+          scoreBadge.className = "audit-score-pill";
+          scoreBadge.style.background = "rgba(255, 255, 255, 0.08)";
+          scoreBadge.style.color = "var(--text-muted)";
+          scoreBadge.style.borderColor = "var(--border-subtle)";
+        }
+        container.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1; padding: 3.5rem 1rem;">
+            <span style="font-size:3.5rem; display:block; margin-bottom:0.75rem;">🛡️</span>
+            <h4 style="color:#fff; margin-bottom:0.5rem; font-size:1.15rem;">Accreditation Audit Standby</h4>
+            <p style="color:var(--text-muted); max-width:520px; margin:0 auto;">
+              Audit verification requires generated syllabus data. Select a subject above and click "Generate 18-Week OBE Syllabus" to execute automated accreditation invariant tests.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      const code = syllabus.course_metadata ? syllabus.course_metadata.course_code : (selectedSubject ? selectedSubject.course_code : 'BSCS 3112');
       container.innerHTML = '<p style="color:var(--text-muted); padding:1rem;">Evaluating accreditation invariants against UPHSD & CHED guidelines...</p>';
 
       try {
@@ -1755,6 +1840,9 @@
           if (scoreBadge) {
             scoreBadge.innerText = `✓ ${data.compliance_score} Compliant (${data.passed_count}/${data.total_checks} Invariants)`;
             scoreBadge.className = data.all_passed ? "audit-score-pill pass" : "audit-score-pill fail";
+            scoreBadge.style.background = "";
+            scoreBadge.style.color = "";
+            scoreBadge.style.borderColor = "";
           }
           container.innerHTML = (data.checks || []).map(c => `
             <div class="audit-card ${c.passed ? 'pass' : 'fail'}">
@@ -1769,21 +1857,6 @@
         }
       } catch (e) {
         console.warn("Audit endpoint fetch notice:", e);
-      }
-
-      // Client-side fallback audit
-      if (!syllabus || !syllabus.weekly_schedule) {
-        if (scoreBadge) {
-          scoreBadge.innerText = "Standby";
-          scoreBadge.className = "audit-score-pill";
-        }
-        container.innerHTML = `
-          <div class="empty-state">
-            <span>🛡️</span>
-            <p>Select a subject and generate its 18-week syllabus to run live accreditation audit checks.</p>
-          </div>
-        `;
-        return;
       }
 
       const weeks = syllabus.weekly_schedule || [];
@@ -2163,7 +2236,7 @@
         console.warn('API nuke network error:', err);
       }
 
-      // Clear browser cache & session storage
+      // 1. Clear browser web storage
       try {
         localStorage.clear();
         sessionStorage.clear();
@@ -2171,38 +2244,53 @@
         console.warn('Could not clear web storage:', e);
       }
 
-      // Reset in-memory state
+      // 2. Wipe in-memory active syllabus and selection
       activeSyllabusData = null;
+      selectedSubject = null;
+
+      // 3. Reset form inputs & dropdown switcher to clean empty state
+      clearFormFields();
+
+      // 4. Reset Tab 1 (CLOs) & Tab 2 (18-Week Schedule Matrix)
       renderEmptySyllabus();
-      renderAuditTab(null);
-      
+
+      // 5. Reset Tab 4 (Official HTML Document)
+      const docEmpty = document.getElementById("docEmptyState");
+      const docWrap = document.getElementById("docPreviewWrapper");
+      if (docEmpty) docEmpty.style.display = "block";
+      if (docWrap) docWrap.style.display = "none";
       const frame = document.getElementById("docPreviewFrame");
       if (frame) frame.src = "about:blank";
-      const btnOpen = document.getElementById("btnOpenHtml");
-      if (btnOpen) btnOpen.disabled = true;
+      if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = true;
+      if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = true;
 
-      // Reload fresh subject catalog and SQLite stats
-      await loadSubjects();
+      // 6. Reset Tab 5 (Accreditation & Rubric Audit)
+      renderAuditTab(null);
+
+      // 7. Reload fresh subject catalog WITHOUT auto-selecting any subject
+      await loadSubjects(false);
+
+      // 8. Reload SQLite stats (shows 0 records)
       await loadDatabaseStats();
 
-      // Switch to CLOs tab and scroll up smoothly
+      // 9. Switch to Tab 1 (CLOs) and scroll to top smoothly
       switchTab('tab-clos');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Close modal and restore confirm button
+      // 10. Close modal and restore confirm button
       closeNukeModal();
       if (btnConfirm) {
         btnConfirm.disabled = false;
         btnConfirm.innerHTML = originalText;
       }
 
-      // Update HUD console log
+      // 11. Prominent HUD console message
       const logBox = document.getElementById("logBox");
       if (logBox) {
         logBox.innerHTML = `
           <div style="color:#f87171; font-weight:700;">☢️ [WORKSPACE NUKED CLEAN]</div>
           <div style="color:#fecdd3;">All generated 18-week syllabi, JSON deliverables, official HTML exports, and SQLite database records have been deleted.</div>
-          <div style="color:var(--text-gold);">System restored to initial clean state. Select any subject above to generate fresh.</div>
+          <div style="color:var(--text-gold);">System restored to initial clean state. Click any subject card above to begin fresh generation.</div>
         `;
       }
 
