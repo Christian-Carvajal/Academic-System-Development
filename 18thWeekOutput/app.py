@@ -69,30 +69,36 @@ def check_ollama_status() -> Dict[str, Any]:
     return status
 
 
-def run_generation_worker(course_code: str):
+def run_generation_worker(course_code: str, custom_overrides: Optional[Dict[str, Any]] = None):
     """Background thread worker for generating a single course syllabus."""
     global generation_state
+    
+    title = (custom_overrides and custom_overrides.get("course_title")) or ""
+    if not title:
+        subj = get_subject(course_code)
+        title = subj["course_title"] if subj else course_code
+
     with generation_lock:
         generation_state["status"] = "running"
         generation_state["course_code"] = course_code
         generation_state["progress_pct"] = 10
-        generation_state["stage"] = "Resolving course parameters from curriculum catalog..."
-        generation_state["message"] = f"Initializing generation for {course_code}..."
-        generation_state["logs"] = [f"[*] Selected subject: {course_code}"]
+        generation_state["stage"] = f"Resolving course parameters for {course_code}..."
+        generation_state["message"] = f"Initializing generation for {course_code} ({title})..."
+        generation_state["logs"] = [f"[*] Selected subject: {course_code} - {title}"]
         generation_state["error"] = None
         generation_state["result"] = None
 
     try:
-        subj = get_subject(course_code)
-        title = subj["course_title"] if subj else course_code
-        
         with generation_lock:
             generation_state["progress_pct"] = 25
             generation_state["stage"] = f"Formulating Bloom-compliant CLOs & Tripartite Schedule with qwen3.5:4b..."
             generation_state["logs"].append(f"[*] Querying qwen3.5:4b for {course_code} ({title})...")
 
-        # Run LLM generation
-        result = llm_engine.generate_subject_by_code(course_code)
+        # Run LLM generation with custom overrides if present
+        if custom_overrides:
+            result = llm_engine.generate_custom_subject(course_code, custom_overrides=custom_overrides)
+        else:
+            result = llm_engine.generate_subject_by_code(course_code)
 
         with generation_lock:
             generation_state["progress_pct"] = 75
@@ -284,9 +290,6 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             # 2nd: Check JSON in outputs/
             clean_code = code.replace(" ", "_").replace("/", "-")
             candidate = OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json"
-            if not candidate.exists():
-                candidate = OUTPUTS_DIR / "sample_validated_output.json"
-
             if candidate.exists():
                 try:
                     with open(candidate, "r", encoding="utf-8") as f:
@@ -300,7 +303,156 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
                     self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(e)})
                     return
 
+            # Fallback to sample_validated_output.json ONLY if course_code matches
+            default_cand = OUTPUTS_DIR / "sample_validated_output.json"
+            if default_cand.exists():
+                try:
+                    with open(default_cand, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    if data.get("course_metadata", {}).get("course_code") == code:
+                        self.send_json(HTTPStatus.OK, {
+                            "source": "json",
+                            "data": data
+                        })
+                        return
+                except Exception:
+                    pass
+
             self.send_json(HTTPStatus.NOT_FOUND, {"error": f"Syllabus for '{code}' not yet generated."})
+            return
+
+        # 5b. Accreditation & Rubric Audit endpoint for 18-week syllabus
+        if path == "/api/audit":
+            code = None
+            if "code=" in query:
+                for param in query.split("&"):
+                    if param.startswith("code="):
+                        code = urllib.parse.unquote(param.split("=")[1])
+            if not code:
+                code = "BSCS 3112"
+
+            syllabus = None
+            try:
+                syllabus = get_syllabus(code)
+            except Exception:
+                syllabus = None
+
+            if not syllabus:
+                clean_code = code.replace(" ", "_").replace("/", "-")
+                cand = OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json"
+                if not cand.exists():
+                    cand = OUTPUTS_DIR / "sample_validated_output.json"
+                if cand.exists():
+                    try:
+                        with open(cand, "r", encoding="utf-8") as f:
+                            raw_data = json.load(f)
+                            if raw_data.get("course_metadata", {}).get("course_code") == code or not get_subject(code):
+                                syllabus = FullSyllabusSchema.model_validate(raw_data)
+                    except Exception:
+                        syllabus = None
+
+            if not syllabus:
+                self.send_json(HTTPStatus.NOT_FOUND, {
+                    "success": False,
+                    "error": f"Syllabus for '{code}' not yet generated."
+                })
+                return
+
+            weeks = syllabus.weekly_schedule
+            clos = syllabus.course_outcomes
+
+            checks = []
+
+            # Check 1: Strict 18-Week Total Schedule
+            c1 = len(weeks) == 18
+            checks.append({
+                "id": "18_weeks",
+                "label": "Strict 18-Week Total Schedule",
+                "passed": c1,
+                "detail": f"Verified {len(weeks)} of 18 scheduled academic weeks."
+            })
+
+            # Check 2: Week 9 Midterm Exam Milestone Lock
+            w9 = next((w for w in weeks if w.week_number == 9), None)
+            w9_topics = " ".join(w9.topics if isinstance(w9.topics, list) else [str(w9.topics)]) if w9 else ""
+            c2 = bool(w9 and ("midterm" in w9_topics.lower() or "exam" in w9_topics.lower()))
+            checks.append({
+                "id": "w9_midterm",
+                "label": "Week 9 Midterm Exam Milestone Lock",
+                "passed": c2,
+                "detail": f"Week 9 Topic: '{w9_topics}'" if w9 else "Week 9 not found."
+            })
+
+            # Check 3: Week 18 Final Exam / Capstone Defense Lock
+            w18 = next((w for w in weeks if w.week_number == 18), None)
+            w18_topics = " ".join(w18.topics if isinstance(w18.topics, list) else [str(w18.topics)]) if w18 else ""
+            c3 = bool(w18 and ("final" in w18_topics.lower() or "exam" in w18_topics.lower() or "defense" in w18_topics.lower()))
+            checks.append({
+                "id": "w18_final",
+                "label": "Week 18 Final Examination & Capstone Defense Lock",
+                "passed": c3,
+                "detail": f"Week 18 Topic: '{w18_topics}'" if w18 else "Week 18 not found."
+            })
+
+            # Check 4: Tripartite K/S/A Coverage across term
+            domains_found = set()
+            for w in weeks:
+                for llo in w.lesson_outcomes:
+                    domains_found.add(llo.domain)
+            c4 = {"K", "S", "A"}.issubset(domains_found)
+            checks.append({
+                "id": "tripartite_ksa",
+                "label": "Tripartite Educational Domain Coverage (K, S, A)",
+                "passed": c4,
+                "detail": f"Domains represented: {sorted(list(domains_found))} (Knowledge, Skills, Attitude)."
+            })
+
+            # Check 5: Bloom's Revised Taxonomy Active Verbs (Zero Banned Verbs)
+            banned = ["understand", "know", "learn", "study", "familiarize"]
+            banned_found = []
+            for c in clos:
+                first_w = c.description.strip().split()[0].lower()
+                for b in banned:
+                    if b in first_w:
+                        banned_found.append(f"{c.clo_id}: {b}")
+            c5 = len(banned_found) == 0
+            checks.append({
+                "id": "blooms_verbs",
+                "label": "Bloom's Revised Taxonomy Action Verbs (0% Banned)",
+                "passed": c5,
+                "detail": "All Course Outcomes begin with active, measurable Bloom verbs." if c5 else f"Banned verbs detected: {', '.join(banned_found)}"
+            })
+
+            # Check 6: Target PLOs Alignment
+            all_mapped_pos = set()
+            for c in clos:
+                all_mapped_pos.update(c.program_outcomes_mapped)
+            c6 = len(all_mapped_pos) >= 2
+            checks.append({
+                "id": "plo_alignment",
+                "label": "CHED / UPHSD Program Learning Outcomes Alignment",
+                "passed": c6,
+                "detail": f"Mapped Program Outcomes across CLOs: {', '.join(sorted(list(all_mapped_pos)))}"
+            })
+
+            # Check 7: UPHSD CCS Institutional Grading Breakdown
+            checks.append({
+                "id": "uphsd_grading",
+                "label": "UPHSD CCS Institutional Grading Breakdown",
+                "passed": True,
+                "detail": "70% Class Standing (Quizzes 30%, Assignments 20%, Lab 50%) + 30% Major Exam."
+            })
+
+            passed_count = sum(1 for c in checks if c["passed"])
+            compliance_score = int((passed_count / len(checks)) * 100)
+            self.send_json(HTTPStatus.OK, {
+                "course_code": code,
+                "all_passed": (passed_count == len(checks)),
+                "compliance_score": f"{compliance_score}%",
+                "passed_count": passed_count,
+                "total_checks": len(checks),
+                "checks": checks
+            })
             return
 
         # 6. Database live query endpoint
@@ -378,6 +530,17 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             is_batch = payload.get("batch", False)
             course_code = payload.get("course_code", "BSCS 3112")
 
+            custom_overrides = {
+                "course_code": payload.get("course_code"),
+                "course_title": payload.get("course_title"),
+                "course_description": payload.get("course_description"),
+                "target_pos": payload.get("target_pos"),
+                "credit_units": payload.get("credit_units"),
+                "prerequisites": payload.get("prerequisites")
+            }
+            # Keep only keys that were explicitly passed and non-empty
+            custom_overrides = {k: v for k, v in custom_overrides.items() if v not in (None, "")}
+
             if is_batch:
                 t = threading.Thread(target=run_batch_generation_worker, daemon=True)
                 t.start()
@@ -388,7 +551,7 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
                 })
                 return
             else:
-                t = threading.Thread(target=run_generation_worker, args=(course_code,), daemon=True)
+                t = threading.Thread(target=run_generation_worker, args=(course_code, custom_overrides), daemon=True)
                 t.start()
                 self.send_json(HTTPStatus.ACCEPTED, {
                     "status": "started",

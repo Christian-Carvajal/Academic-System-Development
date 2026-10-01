@@ -1,17 +1,17 @@
 {
   "course_metadata": {
-    "course_code": "BSCS 3111",
-    "course_title": "Data Mining",
+    "course_code": "BSCS 3213",
+    "course_title": "Software Engineering",
     "credit_units": 3,
     "lecture_hours": 2,
     "lab_hours": 3,
-    "prerequisites": "CS 3112 (Database Systems 1)",
-    "course_description": "Principles, algorithms, and applications of knowledge discovery in databases (KDD), including data cleaning and preprocessing, exploratory data analysis, ETL pipelines, association rule mining (Apriori, FP-Growth), classification algorithms (Decision Trees, Naive Bayes, SVM), clustering techniques (K-Means, DBSCAN), and evaluation metrics."
+    "prerequisites": "CS 3110 (Data Structures and Algorithms)",
+    "course_description": "Systematic engineering methodologies for software development, covering SDLC models, Agile/Scrum frameworks, requirements engineering, object-oriented analysis and design with UML, architectural patterns, unit and integration testing, continuous integration and deployment (CI/CD), and software project management."
   },
   "course_outcomes": [
     {
       "clo_id": "CLO1",
-      "description": "Implement data cleaning, preprocessing, and ETL pipelines to prepare datasets for mining.",
+      "description": "Design software development plans using SDLC models and Agile frameworks while formulating comprehensive requirements specifications.",
       "bloom_level": "Apply",
       "program_outcomes_mapped": [
         "PLO1",
@@ -20,29 +20,29 @@
     },
     {
       "clo_id": "CLO2",
-      "description": "Analyze relationships within data using association rule mining and classification algorithms.",
+      "description": "Analyze system complexities to create accurate Object-Oriented Analysis and Design diagrams using UML notation.",
       "bloom_level": "Analyze",
       "program_outcomes_mapped": [
-        "PLO2",
+        "PLO1",
         "PLO3"
       ]
     },
     {
       "clo_id": "CLO3",
-      "description": "Evaluate the performance of data mining models using appropriate metrics and validation techniques.",
+      "description": "Evaluate software quality by implementing unit testing strategies and configuring continuous integration/deployment pipelines.",
       "bloom_level": "Evaluate",
       "program_outcomes_mapped": [
-        "PLO3",
+        "PLO1",
         "PLO4"
       ]
     },
     {
       "clo_id": "CLO4",
-      "description": "Create a comprehensive knowledge discovery solution addressing specific business or scientific problems.",
+      "description": "Create a functional software project by managing resources, timelines, and delivering solutions through systematic engineering methodologies.",
       "bloom_level": "Create",
       "program_outcomes_mapped": [
         "PLO1",
-        "PLO4"
+        "PLO2"
       ]
     }
   ],
@@ -50,279 +50,294 @@
     {
       "week_number": 1,
       "topics": [
-        "Introduction to Data Mining & ETL Basics"
+        "Introduction to Software Engineering & SDLC Models"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO1.1",
-          "description": "Define data mining concepts and ETL processes.",
+          "description": "Define software development lifecycle phases for specific project contexts.",
           "domain": "K"
         },
         {
           "llo_id": "LLO1.2",
-          "description": "Design basic data pipelines for dataset preparation.",
+          "description": "Select appropriate SDLC models based on project constraints and requirements.",
           "domain": "S"
         },
         {
           "llo_id": "LLO1.3",
-          "description": "Demonstrate professional ethics in data handling.",
+          "description": "Demonstrate professional ethics regarding software development integrity.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Data Mining Fundamentals"
+        "Lecture on SDLC Models",
+        "Group Discussion"
       ],
       "assessment_tasks": [
-        "Quiz 1"
+        "Week 1 Quiz"
       ],
       "resources": [
         "Course LMS",
-        "Textbook"
+        "SDLC Textbook"
       ]
     },
     {
       "week_number": 2,
       "topics": [
-        "Data Cleaning Techniques"
+        "Agile Frameworks & Scrum Methodology"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO2.1",
-          "description": "Identify missing values and outliers in datasets.",
+          "description": "Compare Agile vs Waterfall methodologies for project planning.",
           "domain": "K"
         },
         {
           "llo_id": "LLO2.2",
-          "description": "Apply imputation methods to clean data.",
+          "description": "Formulate sprint backlogs using Scrum artifacts.",
           "domain": "S"
         },
         {
           "llo_id": "LLO2.3",
-          "description": "Adhere to accuracy standards during cleaning.",
+          "description": "Adhere to Agile principles of collaboration and adaptability.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Data Cleaning"
+        "Agile Workshop",
+        "Case Study Analysis"
       ],
       "assessment_tasks": [
-        "Lab Report 1"
+        "Sprint Planning Exercise"
       ],
       "resources": [
-        "Python Pandas Library"
+        "Scrum Guide",
+        "LMS"
       ]
     },
     {
       "week_number": 3,
       "topics": [
-        "Data Preprocessing & Transformation"
+        "Requirements Engineering & Elicitation Techniques"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO3.1",
-          "description": "Convert categorical data to numerical formats.",
+          "description": "Identify functional and non-functional requirements from stakeholders.",
           "domain": "K"
         },
         {
           "llo_id": "LLO3.2",
-          "description": "Implement normalization and standardization algorithms.",
+          "description": "Draft comprehensive requirement specifications documents.",
           "domain": "S"
         },
         {
           "llo_id": "LLO3.3",
-          "description": "Value the integrity of transformed data.",
+          "description": "Practice active listening during stakeholder interviews.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Preprocessing"
+        "Stakeholder Simulation",
+        "Document Drafting"
       ],
       "assessment_tasks": [
-        "Lab Report 2"
+        "Requirements Specification Review"
       ],
       "resources": [
-        "Python Scikit-Learn"
+        "Interview Guide",
+        "LMS"
       ]
     },
     {
       "week_number": 4,
       "topics": [
-        "ETL Pipeline Construction"
+        "Functional Requirements & Use Case Modeling"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO4.1",
-          "description": "Map data sources to target schemas.",
+          "description": "Categorize requirements into functional and non-functional types.",
           "domain": "K"
         },
         {
           "llo_id": "LLO4.2",
-          "description": "Build automated ETL workflows using tools.",
+          "description": "Create use case diagrams representing system interactions.",
           "domain": "S"
         },
         {
           "llo_id": "LLO4.3",
-          "description": "Prioritize efficiency in pipeline design.",
+          "description": "Maintain confidentiality of sensitive requirement data.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on ETL Tools"
+        "Use Case Modeling Lab",
+        "Peer Review"
       ],
       "assessment_tasks": [
-        "Pipeline Design Doc"
+        "Use Case Diagram Submission"
       ],
       "resources": [
-        "Apache Airflow"
+        "UML Tool",
+        "LMS"
       ]
     },
     {
       "week_number": 5,
       "topics": [
-        "Exploratory Data Analysis (EDA)"
+        "Object-Oriented Analysis & UML Notation"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO5.1",
-          "description": "Visualize data distributions and correlations.",
+          "description": "Analyze system entities and their relationships.",
           "domain": "K"
         },
         {
           "llo_id": "LLO5.2",
-          "description": "Interpret statistical summaries for insights.",
+          "description": "Construct Class Diagrams using UML notation standards.",
           "domain": "S"
         },
         {
           "llo_id": "LLO5.3",
-          "description": "Maintain objectivity in data interpretation.",
+          "description": "Demonstrate precision and accuracy in diagramming.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on EDA"
+        "UML Notation Workshop",
+        "Diagram Construction"
       ],
       "assessment_tasks": [
-        "EDA Presentation"
+        "Class Diagram Assessment"
       ],
       "resources": [
-        "Matplotlib/Seaborn"
+        "IDE",
+        "LMS"
       ]
     },
     {
       "week_number": 6,
       "topics": [
-        "Association Rule Mining"
+        "System Analysis & Complexity Management"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO6.1",
-          "description": "Explain support, confidence, and lift metrics.",
+          "description": "Evaluate system complexity factors affecting design.",
           "domain": "K"
         },
         {
           "llo_id": "LLO6.2",
-          "description": "Generate association rules using Apriori algorithm.",
+          "description": "Design sequence and activity diagrams for business processes.",
           "domain": "S"
         },
         {
           "llo_id": "LLO6.3",
-          "description": "Recognize patterns in market basket data.",
+          "description": "Show commitment to systematic problem-solving approaches.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Association Rules"
+        "Process Mapping Lab",
+        "Complexity Analysis"
       ],
       "assessment_tasks": [
-        "Rule Generation Task"
+        "Sequence Diagram Submission"
       ],
       "resources": [
-        "R Programming"
+        "UML Tool",
+        "LMS"
       ]
     },
     {
       "week_number": 7,
       "topics": [
-        "Classification Algorithms"
+        "Software Design Patterns & Architecture"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO7.1",
-          "description": "Compare supervised learning classifiers.",
+          "description": "Identify common design patterns for system architecture.",
           "domain": "K"
         },
         {
           "llo_id": "LLO7.2",
-          "description": "Implement decision trees and SVM models.",
+          "description": "Implement MVC and Repository patterns in code structure.",
           "domain": "S"
         },
         {
           "llo_id": "LLO7.3",
-          "description": "Ensure model fairness and bias reduction.",
+          "description": "Prioritize maintainability and scalability in design decisions.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Classification"
+        "Pattern Implementation Lab",
+        "Code Review"
       ],
       "assessment_tasks": [
-        "Model Training Task"
+        "Design Pattern Quiz"
       ],
       "resources": [
-        "Scikit-Learn"
+        "IDE",
+        "LMS"
       ]
     },
     {
       "week_number": 8,
       "topics": [
-        "Review & Midterm Preparation"
+        "System Integration & Testing Strategies"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO8.1",
-          "description": "Summarize data mining concepts.",
+          "description": "Analyze testing strategies for software quality assurance.",
           "domain": "K"
         },
         {
           "llo_id": "LLO8.2",
-          "description": "Practice problem-solving on past exams.",
+          "description": "Develop unit test cases using automated frameworks.",
           "domain": "S"
         },
         {
           "llo_id": "LLO8.3",
-          "description": "Demonstrate readiness for assessment.",
+          "description": "Demonstrate responsibility for code correctness.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Review Session"
+        "Unit Testing Lab",
+        "Test Case Design"
       ],
       "assessment_tasks": [
-        "Midterm Exam Prep"
+        "Unit Test Suite Submission"
       ],
       "resources": [
-        "Past Exam Papers"
+        "IDE",
+        "LMS"
       ]
     },
     {
       "week_number": 9,
       "topics": [
-        "Midterm Examination"
+        "Midterm Examination & Review"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO9.1",
-          "description": "Assess student understanding of CLO1.",
+          "description": "Assess understanding of SDLC and UML concepts.",
           "domain": "K"
         },
         {
           "llo_id": "LLO9.2",
-          "description": "Evaluate application of cleaning techniques.",
+          "description": "Evaluate performance through midterm assessment.",
           "domain": "S"
         },
         {
           "llo_id": "LLO9.3",
-          "description": "Monitor academic integrity during exam.",
+          "description": "Reflect on learning progress during exam period.",
           "domain": "A"
         }
       ],
@@ -333,263 +348,280 @@
         "Midterm Exam"
       ],
       "resources": [
-        "Exam Hall"
+        "Exam Center",
+        "LMS"
       ]
     },
     {
       "week_number": 10,
       "topics": [
-        "Clustering & Dimensionality Reduction"
+        "Software Development & Implementation"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO10.1",
-          "description": "Differentiate clustering algorithms.",
+          "description": "Translate design specifications into executable code.",
           "domain": "K"
         },
         {
           "llo_id": "LLO10.2",
-          "description": "Apply K-Means and PCA techniques.",
+          "description": "Implement software modules using version control systems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO10.3",
-          "description": "Value data privacy in clustering.",
+          "description": "Maintain collaborative coding standards and discipline.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Clustering"
+        "Coding Sprint",
+        "Git Collaboration"
       ],
       "assessment_tasks": [
-        "Clustering Lab Report"
+        "Code Commit Review"
       ],
       "resources": [
-        "Python Scikit-Learn"
+        "IDE",
+        "GitHub/GitLab"
       ]
     },
     {
       "week_number": 11,
       "topics": [
-        "Advanced Classification Models"
+        "Resource Management & Project Planning"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO11.1",
-          "description": "Analyze ensemble learning methods.",
+          "description": "Estimate project resources and timelines accurately.",
           "domain": "K"
         },
         {
           "llo_id": "LLO11.2",
-          "description": "Tune hyperparameters for accuracy.",
+          "description": "Manage project tasks using Gantt charts.",
           "domain": "S"
         },
         {
           "llo_id": "LLO11.3",
-          "description": "Optimize model performance ethically.",
+          "description": "Demonstrate accountability in resource allocation.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Hyperparameter Tuning"
+        "Project Planning Workshop",
+        "Timeline Creation"
       ],
       "assessment_tasks": [
-        "Model Tuning Report"
+        "Project Plan Submission"
       ],
       "resources": [
-        "GridSearchCV"
+        "Project Management Tool",
+        "LMS"
       ]
     },
     {
       "week_number": 12,
       "topics": [
-        "Performance Metrics & Validation"
+        "Continuous Integration & Deployment Pipelines"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO12.1",
-          "description": "Calculate precision, recall, and F1-score.",
+          "description": "Configure CI/CD pipelines for automated builds.",
           "domain": "K"
         },
         {
           "llo_id": "LLO12.2",
-          "description": "Apply cross-validation techniques.",
+          "description": "Implement automated deployment strategies in cloud environments.",
           "domain": "S"
         },
         {
           "llo_id": "LLO12.3",
-          "description": "Ensure reliability of validation results.",
+          "description": "Adhere to security protocols in pipeline configuration.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Metrics"
+        "CI/CD Lab",
+        "Pipeline Configuration"
       ],
       "assessment_tasks": [
-        "Validation Report"
+        "Pipeline Deployment Test"
       ],
       "resources": [
-        "Confusion Matrix"
+        "Cloud Platform",
+        "LMS"
       ]
     },
     {
       "week_number": 13,
       "topics": [
-        "Model Evaluation & Comparison"
+        "Quality Assurance & Continuous Testing"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO13.1",
-          "description": "Compare multiple model performances.",
+          "description": "Evaluate software quality metrics and standards.",
           "domain": "K"
         },
         {
           "llo_id": "LLO13.2",
-          "description": "Select optimal models based on metrics.",
+          "description": "Integrate automated testing into development workflows.",
           "domain": "S"
         },
         {
           "llo_id": "LLO13.3",
-          "description": "Justify model selection logically.",
+          "description": "Prioritize quality over speed in development cycles.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Model Comparison"
+        "Quality Assurance Lab",
+        "Metric Analysis"
       ],
       "assessment_tasks": [
-        "Model Selection Report"
+        "Quality Report Submission"
       ],
       "resources": [
-        "ROC Curve"
+        "Testing Frameworks",
+        "LMS"
       ]
     },
     {
       "week_number": 14,
       "topics": [
-        "Knowledge Discovery Solutions"
+        "Software Project Management & Delivery"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO14.1",
-          "description": "Identify business problems for mining.",
+          "description": "Formulate project management plans for software delivery.",
           "domain": "K"
         },
         {
           "llo_id": "LLO14.2",
-          "description": "Formulate data mining solutions.",
+          "description": "Deliver functional software solutions to stakeholders.",
           "domain": "S"
         },
         {
           "llo_id": "LLO14.3",
-          "description": "Align solutions with stakeholder needs.",
+          "description": "Communicate project status effectively to clients.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Capstone Project Workshop"
+        "Project Delivery Simulation",
+        "Stakeholder Meeting"
       ],
       "assessment_tasks": [
-        "Project Proposal"
+        "Project Deliverable Review"
       ],
       "resources": [
-        "Business Case Studies"
+        "Project Management Tool",
+        "LMS"
       ]
     },
     {
       "week_number": 15,
       "topics": [
-        "Capstone Project Development"
+        "System Documentation & Maintenance"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO15.1",
-          "description": "Design end-to-end mining systems.",
+          "description": "Document system architecture and user manuals.",
           "domain": "K"
         },
         {
           "llo_id": "LLO15.2",
-          "description": "Implement complete data mining pipelines.",
+          "description": "Create comprehensive technical documentation for systems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO15.3",
-          "description": "Demonstrate commitment to project goals.",
+          "description": "Demonstrate professionalism in documentation quality.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Capstone Coding Session"
+        "Documentation Workshop",
+        "Manual Writing"
       ],
       "assessment_tasks": [
-        "Code Review"
+        "Documentation Review"
       ],
       "resources": [
-        "GitHub Repositories"
+        "Word/Markdown Tools",
+        "LMS"
       ]
     },
     {
       "week_number": 16,
       "topics": [
-        "Capstone Project Refinement"
+        "Capstone Project Development Phase II"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO16.1",
-          "description": "Test and debug mining solutions.",
+          "description": "Refine software project based on feedback.",
           "domain": "K"
         },
         {
           "llo_id": "LLO16.2",
-          "description": "Optimize system performance and scalability.",
+          "description": "Optimize code performance and security measures.",
           "domain": "S"
         },
         {
           "llo_id": "LLO16.3",
-          "description": "Ensure solution robustness.",
+          "description": "Show dedication to project completion goals.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Capstone Debugging Session"
+        "Capstone Refinement Lab",
+        "Code Optimization"
       ],
       "assessment_tasks": [
-        "System Test Report"
+        "Refinement Report"
       ],
       "resources": [
-        "Testing Frameworks"
+        "IDE",
+        "LMS"
       ]
     },
     {
       "week_number": 17,
       "topics": [
-        "Capstone Project Finalization"
+        "Final Project Preparation & Review"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO17.1",
-          "description": "Prepare final presentation materials.",
+          "description": "Prepare final project presentation materials.",
           "domain": "K"
         },
         {
           "llo_id": "LLO17.2",
-          "description": "Present project findings effectively.",
+          "description": "Conduct self-review of project deliverables.",
           "domain": "S"
         },
         {
           "llo_id": "LLO17.3",
-          "description": "Adhere to presentation time limits.",
+          "description": "Demonstrate readiness for final defense.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Final Presentation Rehearsal"
+        "Final Review Session",
+        "Presentation Rehearsal"
       ],
       "assessment_tasks": [
-        "Presentation Rubric"
+        "Self-Review Checklist"
       ],
       "resources": [
-        "Project Documentation"
+        "Presentation Tools",
+        "LMS"
       ]
     },
     {
@@ -600,28 +632,30 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO18.1",
-          "description": "Assess comprehensive course mastery.",
+          "description": "Assess comprehensive knowledge of Software Engineering.",
           "domain": "K"
         },
         {
           "llo_id": "LLO18.2",
-          "description": "Evaluate final project solutions.",
+          "description": "Defend capstone project solutions before panel.",
           "domain": "S"
         },
         {
           "llo_id": "LLO18.3",
-          "description": "Monitor integrity during defense.",
+          "description": "Exhibit confidence and professionalism during defense.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Final Examination & Defense"
+        "Final Examination",
+        "Capstone Defense"
       ],
       "assessment_tasks": [
         "Final Exam & Defense"
       ],
       "resources": [
-        "Exam Hall"
+        "Exam Center",
+        "Defense Panel"
       ]
     }
   ]

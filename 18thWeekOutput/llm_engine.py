@@ -135,17 +135,24 @@ def generate_course_outcomes_stage(
     metadata: CourseMetadataSchema,
     model: str,
     base_url: str = DEFAULT_OLLAMA_HOST,
-    max_attempts: int = 3
+    max_attempts: int = 3,
+    target_pos: Optional[List[str]] = None
 ) -> List[CourseOutcomeSchema]:
     """
     Stage 1: Generates 3 to 5 Course Learning Outcomes (CLOs) with active Bloom's verbs.
     Includes automated self-healing retry loop on ValidationError.
     """
+    pos_guidance = ""
+    if target_pos:
+        pos_str = ", ".join(target_pos) if isinstance(target_pos, list) else str(target_pos)
+        pos_guidance = f"\nTarget Program Learning Outcomes (PLOs) to align with: {pos_str}\n"
+
     prompt = (
         f"Generate exactly 4 Course Learning Outcomes (CLOs) for the course:\n"
         f"Course Code: {metadata.course_code}\n"
         f"Course Title: {metadata.course_title}\n"
-        f"Description: {metadata.course_description}\n\n"
+        f"Description: {metadata.course_description}\n"
+        f"{pos_guidance}\n"
         "Return a JSON object with key 'course_outcomes' containing an array of objects with keys:\n"
         "- clo_id: 'CLO1', 'CLO2', 'CLO3', 'CLO4'\n"
         "- description: Outcome statement starting with an active Bloom verb (e.g., 'Analyze', 'Design', 'Implement')\n"
@@ -346,7 +353,11 @@ def generate_syllabus(course_data: Dict[str, Any], base_url: str = DEFAULT_OLLAM
     print(f"[+] Metadata parsed: {metadata.course_code} - {metadata.course_title}")
     
     # 2. Stage 1: Generate Course Learning Outcomes (CLOs)
-    clos = generate_course_outcomes_stage(metadata, model=model, base_url=base_url)
+    target_pos = course_data.get("target_pos")
+    if isinstance(target_pos, str):
+        target_pos = [p.strip() for p in target_pos.split(",") if p.strip()]
+
+    clos = generate_course_outcomes_stage(metadata, model=model, base_url=base_url, target_pos=target_pos)
     
     # 3. Stage 2: Generate 18-Week Schedule with K/S/A coverage
     schedule = generate_weekly_schedule_stage(metadata, clos, model=model, base_url=base_url)
@@ -363,39 +374,71 @@ def generate_syllabus(course_data: Dict[str, Any], base_url: str = DEFAULT_OLLAM
 
 # =============================================================================
 
-def generate_subject_by_code(course_code: str, out_filename: Optional[str] = None, base_url: str = DEFAULT_OLLAMA_HOST) -> FullSyllabusSchema:
+def generate_custom_subject(
+    course_code: str,
+    custom_overrides: Optional[Dict[str, Any]] = None,
+    out_filename: Optional[str] = None,
+    base_url: str = DEFAULT_OLLAMA_HOST
+) -> FullSyllabusSchema:
     """
-    Automated zero-typing generator: resolves catalog parameters for the subject code,
-    runs the two-pass qwen3.5:4b engine, persists to SQLite DB, and exports official HTML.
+    Generates an 18-week syllabus for course_code, applying any user-customized
+    overrides for course_title, course_description, target_pos, credit_units, etc.
+    Persists to SQLite and exports official HTML document.
     """
-    subj = get_subject(course_code)
-    if subj:
-        target_course = {
-            "course_code": subj["course_code"],
-            "course_title": subj["course_title"],
-            "credit_units": subj["credit_units"],
-            "lecture_hours": subj["lecture_hours"],
-            "lab_hours": subj["lab_hours"],
-            "prerequisites": subj["prerequisites"],
-            "course_description": subj["course_description"]
-        }
-    else:
-        target_course = {
-            "course_code": course_code,
-            "course_title": course_code,
-            "credit_units": 3,
-            "lecture_hours": 2,
-            "lab_hours": 3,
-            "prerequisites": "None",
-            "course_description": f"Curriculum coursework and laboratory instruction for {course_code}."
-        }
-        
-    print(f"[*] Starting automated 1-click syllabus generation for {target_course['course_code']} ({target_course['course_title']})...")
-    result = generate_syllabus(target_course, base_url=base_url)
+    subj = get_subject(course_code) or {}
+    overrides = custom_overrides or {}
+
+    code = overrides.get("course_code") or subj.get("course_code") or course_code
+    title = overrides.get("course_title") or subj.get("course_title") or code
+    desc = overrides.get("course_description") or subj.get("course_description") or f"Curriculum coursework and laboratory instruction for {code}."
     
+    raw_units = overrides.get("credit_units") or subj.get("credit_units") or 3
+    try:
+        units = int(raw_units)
+    except Exception:
+        units = 3
+
+    raw_lec = overrides.get("lecture_hours") or subj.get("lecture_hours") or 2
+    try:
+        lec = int(raw_lec)
+    except Exception:
+        lec = 2
+
+    raw_lab = overrides.get("lab_hours") or subj.get("lab_hours") or 3
+    try:
+        lab = int(raw_lab)
+    except Exception:
+        lab = 3
+
+    prereqs = overrides.get("prerequisites") or subj.get("prerequisites") or "None"
+    
+    target_pos = overrides.get("target_pos") or subj.get("target_pos")
+    if isinstance(target_pos, str):
+        target_pos = [p.strip() for p in target_pos.split(",") if p.strip()]
+    if not target_pos:
+        target_pos = [
+            "PLO 1 (Analyze complex computing problems and apply principles of computing)",
+            "PLO 2 (Design, implement, and evaluate computing-based solutions)",
+            "PLO 5 (Apply computer science theory and software development fundamentals)"
+        ]
+
+    target_course = {
+        "course_code": code,
+        "course_title": title,
+        "credit_units": units,
+        "lecture_hours": lec,
+        "lab_hours": lab,
+        "prerequisites": prereqs,
+        "course_description": desc,
+        "target_pos": target_pos
+    }
+
+    print(f"[*] Starting syllabus generation for {target_course['course_code']} ({target_course['course_title']})...")
+    result = generate_syllabus(target_course, base_url=base_url)
+
     outputs_dir = BASE_DIR / "outputs"
     outputs_dir.mkdir(parents=True, exist_ok=True)
-    
+
     clean_code = target_course["course_code"].replace(" ", "_").replace("/", "-")
     fname = out_filename or f"sample_validated_output_{clean_code}.json"
     out_file = outputs_dir / fname
@@ -421,6 +464,14 @@ def generate_subject_by_code(course_code: str, out_filename: Optional[str] = Non
         print(f"[-] HTML export warning: {ex}")
 
     return result
+
+
+def generate_subject_by_code(course_code: str, out_filename: Optional[str] = None, base_url: str = DEFAULT_OLLAMA_HOST) -> FullSyllabusSchema:
+    """
+    Automated zero-typing generator: resolves catalog parameters for the subject code,
+    runs the two-pass qwen3.5:4b engine, persists to SQLite DB, and exports official HTML.
+    """
+    return generate_custom_subject(course_code=course_code, custom_overrides=None, out_filename=out_filename, base_url=base_url)
 
 
 def generate_all_curriculum_subjects(base_url: str = DEFAULT_OLLAMA_HOST) -> List[FullSyllabusSchema]:
