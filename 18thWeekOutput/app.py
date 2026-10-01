@@ -615,6 +615,64 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
                 self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(e)})
             return
 
+        # 4. Nuclear Wipe Workspace endpoint
+        if path in ("/api/nuke", "/api/clear", "/api/reset"):
+            deleted_files = []
+            target_patterns = [
+                "official_syllabus_*.html",
+                "sample_validated_output_*.json",
+                "sample_validated_output.json",
+                "*.html",
+                "*.json",
+                "*.tmp",
+                "*.pdf"
+            ]
+            if OUTPUTS_DIR.exists():
+                for pattern in target_patterns:
+                    for fpath in OUTPUTS_DIR.glob(pattern):
+                        try:
+                            if fpath.is_file():
+                                fpath.unlink()
+                                if fpath.name not in deleted_files:
+                                    deleted_files.append(fpath.name)
+                        except Exception as e:
+                            print(f"[!] Warning deleting {fpath}: {e}")
+
+            # Reset database tables
+            db_cleared = False
+            try:
+                with get_connection() as conn:
+                    conn.execute("PRAGMA foreign_keys = OFF;")
+                    conn.execute("DELETE FROM lesson_outcomes;")
+                    conn.execute("DELETE FROM weekly_schedules;")
+                    conn.execute("DELETE FROM course_outcomes;")
+                    conn.execute("DELETE FROM courses;")
+                    conn.execute("PRAGMA foreign_keys = ON;")
+                    conn.commit()
+                init_db()
+                db_cleared = True
+            except Exception as e:
+                print(f"[!] Warning clearing database: {e}")
+
+            # Reset in-memory generation state
+            with generation_lock:
+                generation_state["status"] = "idle"
+                generation_state["progress_pct"] = 0
+                generation_state["stage"] = "Workspace Nuked Clean"
+                generation_state["message"] = "All generated deliverables, database records, and pipeline states wiped."
+                generation_state["logs"] = ["[!] Workspace nuked clean. Ready for fresh generation."]
+                generation_state["course_code"] = None
+                generation_state["result"] = None
+                generation_state["error"] = None
+
+            self.send_json(HTTPStatus.OK, {
+                "success": True,
+                "message": "Nuke operation successful. All 18-week generated syllabi, HTML documents, and SQLite tables wiped.",
+                "deleted": deleted_files,
+                "db_cleared": db_cleared
+            })
+            return
+
         self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found.")
 
 
