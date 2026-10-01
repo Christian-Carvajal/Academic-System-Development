@@ -205,9 +205,14 @@
   
   <!-- Institutional Header -->
   <div class="inst-header">
-    <h1>University of Perpetual Help System DALTA</h1>
-    <h2>Molino Campus &bull; Bacoor City, Cavite</h2>
-    <h3>College of Computer Studies</h3>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 12px;">
+      <img src="../assets/logo/uphsd.png" alt="UPHSD Seal" style="height: 70px; width: auto; object-fit: contain;" onerror="this.onerror=null; this.src='../assets/uphsd_header_logo.png';">
+      <div style="text-align: left;">
+        <h1 style="margin: 0; font-size: 20px; font-weight: 700; color: var(--primary); letter-spacing: 0.5px; text-transform: uppercase;">University of Perpetual Help System DALTA</h1>
+        <h2 style="margin: 2px 0 0 0; font-size: 13px; font-weight: 600; color: var(--text-muted);">Molino Campus &bull; Bacoor City, Cavite</h2>
+        <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #047857; text-transform: uppercase;">College of Computer Studies</h3>
+      </div>
+    </div>
     <div class="doc-title">Course Syllabus: {{ course.course_code }}</div>
   </div>
 

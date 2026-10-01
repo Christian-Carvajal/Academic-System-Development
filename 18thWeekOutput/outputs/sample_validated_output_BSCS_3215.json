@@ -1,17 +1,26 @@
 {
   "course_metadata": {
-    "course_code": "BSCS 3108",
-    "course_title": "Automata Theory and Formal Languages",
+    "course_code": "BSCS 3215",
+    "course_title": "Parallel and Distributed Computing",
     "credit_units": 3,
-    "lecture_hours": 3,
+    "lecture_hours": 2,
     "lab_hours": 3,
-    "prerequisites": "CS 2106 (Discrete Mathematics)",
-    "course_description": "Rigorous theoretical exploration of computational models and formal grammars, covering regular expressions, deterministic and non-deterministic finite automata (DFA/NFA), context-free grammars, pushdown automata, Turing machines, decidability, the Halting problem, and the Chomsky hierarchy."
+    "prerequisites": "BSCS 3109 (Operating System Configuration and Use)",
+    "course_description": "Foundational principles and architectures of concurrent, parallel, and distributed computing systems. Topics encompass Flynn's taxonomy, shared-memory programming (OpenMP/pthreads), distributed-memory message passing (MPI), massively parallel GPU programming (CUDA), distributed consensus algorithms, cloud cluster parallelism, and performance scalability metrics."
   },
   "course_outcomes": [
     {
       "clo_id": "CLO1",
-      "description": "Analyze complex computational models and apply principles of computing to determine system behavior.",
+      "description": "Implement shared-memory and distributed-memory programming models using OpenMP and MPI.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO2"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Analyze scalability metrics and architectural trade-offs in parallel computing systems.",
       "bloom_level": "Analyze",
       "program_outcomes_mapped": [
         "PLO1",
@@ -19,29 +28,20 @@
       ]
     },
     {
-      "clo_id": "CLO2",
-      "description": "Design formal grammars and automata structures to represent specific language classes rigorously.",
-      "bloom_level": "Create",
-      "program_outcomes_mapped": [
-        "PLO1",
-        "PLO5"
-      ]
-    },
-    {
       "clo_id": "CLO3",
-      "description": "Evaluate decidability and complexity of algorithmic problems within the Chomsky hierarchy.",
+      "description": "Evaluate performance bottlenecks in GPU-accelerated applications and consensus algorithms.",
       "bloom_level": "Evaluate",
       "program_outcomes_mapped": [
         "PLO1",
-        "PLO5"
+        "PLO2"
       ]
     },
     {
       "clo_id": "CLO4",
-      "description": "Apply theoretical principles to implement algorithms for language recognition and transformation.",
-      "bloom_level": "Apply",
+      "description": "Design optimized high-performance solutions for cloud cluster parallelism tasks.",
+      "bloom_level": "Create",
       "program_outcomes_mapped": [
-        "PLO1",
+        "PLO2",
         "PLO5"
       ]
     }
@@ -50,273 +50,267 @@
     {
       "week_number": 1,
       "topics": [
-        "Introduction to Automata & Regular Languages"
+        "Introduction to Parallel Computing & Architectures"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO1.1",
-          "description": "Define formal language classes and computational models.",
+          "description": "Identify parallel computing architectures and their characteristics.",
           "domain": "K"
         },
         {
           "llo_id": "LLO1.2",
-          "description": "Construct regular expressions from given patterns.",
+          "description": "Compare performance metrics of shared vs distributed memory systems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO1.3",
-          "description": "Appreciate the logical rigor of formal systems.",
+          "description": "Appreciate the efficiency gains in parallel processing environments.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Formal Languages",
-        "Pattern Matching Lab"
+        "Lecture on Amdahl's Law",
+        "Architecture Comparison Lab"
       ],
       "assessment_tasks": [
-        "Weekly Quiz"
+        "Concept Quiz"
       ],
       "resources": [
-        "Course LMS",
-        "Textbook"
+        "Textbook Ch.1",
+        "Course LMS"
       ]
     },
     {
       "week_number": 2,
       "topics": [
-        "Finite Automata: DFA & NFA"
+        "Shared-Memory Programming Models (OpenMP)"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO2.1",
-          "description": "Analyze state transitions in Deterministic Finite Automata.",
+          "description": "Implement OpenMP directives for parallel loops.",
           "domain": "K"
         },
         {
           "llo_id": "LLO2.2",
-          "description": "Design NFA from regular expressions using Thompson's construction.",
+          "description": "Compile and execute OpenMP programs on multi-core systems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO2.3",
-          "description": "Value the precision required in state modeling.",
+          "description": "Demonstrate collaboration in team-based coding projects.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "DFA/NFA Theory Lecture",
-        "Simulation Lab"
+        "OpenMP Syntax Workshop",
+        "Code Compilation Lab"
       ],
       "assessment_tasks": [
-        "Lab Report"
+        "Lab Submission"
       ],
       "resources": [
-        "IDE",
-        "Online Simulators"
+        "GCC Manual",
+        "IDE"
       ]
     },
     {
       "week_number": 3,
       "topics": [
-        "Equivalence & Minimization of Automata"
+        "Distributed-Memory Programming Models (MPI)"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO3.1",
-          "description": "Evaluate equivalence between DFAs using Myhill-Nerode theorem.",
+          "description": "Formulate MPI communication patterns for node interaction.",
           "domain": "K"
         },
         {
           "llo_id": "LLO3.2",
-          "description": "Implement state minimization algorithms for DFA optimization.",
+          "description": "Implement message passing protocols using MPICH.",
           "domain": "S"
         },
         {
           "llo_id": "LLO3.3",
-          "description": "Demonstrate commitment to algorithmic efficiency.",
+          "description": "Respect network latency constraints during distributed tasks.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Equivalence Proof Workshop",
-        "Minimization Lab"
+        "MPI Communication Lab",
+        "Network Simulation"
       ],
       "assessment_tasks": [
-        "Proof Submission"
+        "Lab Report"
       ],
       "resources": [
-        "Course LMS",
-        "Mathematical Tools"
+        "MPICH Documentation"
       ]
     },
     {
       "week_number": 4,
       "topics": [
-        "Context-Free Grammars (CFG) & Parsing"
+        "Advanced OpenMP & MPI Integration"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO4.1",
-          "description": "Formulate CFGs to generate specific language classes.",
+          "description": "Analyze hybrid programming models combining OpenMP and MPI.",
           "domain": "K"
         },
         {
           "llo_id": "LLO4.2",
-          "description": "Construct parse trees for given grammars.",
+          "description": "Evaluate synchronization mechanisms in complex applications.",
           "domain": "S"
         },
         {
           "llo_id": "LLO4.3",
-          "description": "Respect the hierarchical structure of syntax.",
+          "description": "Maintain code quality standards across heterogeneous systems.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "CFG Construction Lecture",
-        "Parsing Lab"
+        "Hybrid Programming Lab",
+        "Code Review"
       ],
       "assessment_tasks": [
-        "Parse Tree Assignment"
+        "Peer Review"
       ],
       "resources": [
-        "Textbook",
-        "Parser Generator"
+        "OpenMP Guide"
       ]
     },
     {
       "week_number": 5,
       "topics": [
-        "Pushdown Automata & PDA Theory"
+        "Scalability Metrics & Performance Analysis"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO5.1",
-          "description": "Analyze language recognition capabilities of PDAs.",
+          "description": "Calculate speedup and efficiency metrics.",
           "domain": "K"
         },
         {
           "llo_id": "LLO5.2",
-          "description": "Design PDAs to recognize context-free languages.",
+          "description": "Measure scalability behavior on cluster systems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO5.3",
-          "description": "Appreciate the role of stack memory in computation.",
+          "description": "Value data-driven decision making in performance tuning.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "PDA Theory Lecture",
-        "Stack Simulation Lab"
+        "Performance Profiling Lab",
+        "Data Analysis"
       ],
       "assessment_tasks": [
-        "Design Document"
+        "Lab Report"
       ],
       "resources": [
-        "Course LMS",
-        "Simulation Tools"
+        "HPL Benchmark"
       ]
     },
     {
       "week_number": 6,
       "topics": [
-        "Chomsky Hierarchy & Classification"
+        "Architectural Trade-offs in Parallel Systems"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO6.1",
-          "description": "Classify grammars within the Chomsky hierarchy.",
+          "description": "Assess hardware-software co-design trade-offs.",
           "domain": "K"
         },
         {
           "llo_id": "LLO6.2",
-          "description": "Evaluate language properties based on grammar type.",
+          "description": "Design optimized algorithms for specific architectures.",
           "domain": "S"
         },
         {
           "llo_id": "LLO6.3",
-          "description": "Value the theoretical ordering of computational power.",
+          "description": "Understand the importance of sustainable computing practices.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Hierarchy Classification Workshop",
-        "Discussion"
+        "Case Study Analysis",
+        "Algorithm Design Workshop"
       ],
       "assessment_tasks": [
-        "Classification Quiz"
+        "Design Proposal"
       ],
       "resources": [
-        "Textbook",
-        "Course LMS"
+        "Architecture Papers"
       ]
     },
     {
       "week_number": 7,
       "topics": [
-        "Turing Machines & Computation Models"
+        "GPU Accelerated Computing Fundamentals"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO7.1",
-          "description": "Define Turing Machine components and operation.",
+          "description": "Describe GPU architecture and parallel execution models.",
           "domain": "K"
         },
         {
           "llo_id": "LLO7.2",
-          "description": "Implement a Turing Machine for specific input processing.",
+          "description": "Implement CUDA kernels for matrix operations.",
           "domain": "S"
         },
         {
           "llo_id": "LLO7.3",
-          "description": "Demonstrate respect for computational limits.",
+          "description": "Recognize the potential of high-performance computing in research.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Turing Machine Lecture",
-        "Implementation Lab"
+        "CUDA Programming Lab",
+        "Hardware Demo"
       ],
       "assessment_tasks": [
-        "Code Submission"
+        "Lab Submission"
       ],
       "resources": [
-        "IDE",
-        "Textbook"
+        "NVIDIA Documentation"
       ]
     },
     {
       "week_number": 8,
       "topics": [
-        "Decidability & Undecidability"
+        "GPU Performance Bottlenecks & Optimization"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO8.1",
-          "description": "Determine decidability of algorithmic problems.",
+          "description": "Identify memory bandwidth and compute bottlenecks.",
           "domain": "K"
         },
         {
           "llo_id": "LLO8.2",
-          "description": "Prove undecidability using reduction techniques.",
+          "description": "Optimize GPU code using profiling tools.",
           "domain": "S"
         },
         {
           "llo_id": "LLO8.3",
-          "description": "Acknowledge the inherent limits of computation.",
+          "description": "Demonstrate commitment to iterative improvement processes.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Decidability Theory Lecture",
-        "Proof Workshop"
+        "Profiling Workshop",
+        "Code Optimization Lab"
       ],
       "assessment_tasks": [
-        "Proof Submission"
+        "Optimization Report"
       ],
       "resources": [
-        "Textbook",
-        "Course LMS"
+        "Nsight Systems"
       ]
     },
     {
@@ -327,17 +321,17 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO9.1",
-          "description": "Assess mastery of Finite Automata and CFGs.",
+          "description": "Demonstrate mastery of shared and distributed memory concepts.",
           "domain": "K"
         },
         {
           "llo_id": "LLO9.2",
-          "description": "Evaluate performance under examination conditions.",
+          "description": "Apply knowledge to solve complex parallel programming problems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO9.3",
-          "description": "Demonstrate academic integrity during assessment.",
+          "description": "Evaluate personal understanding of course material.",
           "domain": "A"
         }
       ],
@@ -348,279 +342,271 @@
         "Midterm Exam"
       ],
       "resources": [
-        "Exam Hall"
+        "Exam Paper"
       ]
     },
     {
       "week_number": 10,
       "topics": [
-        "Complexity Classes & P vs NP"
+        "Consensus Algorithms & Distributed Systems"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO10.1",
-          "description": "Analyze time and space complexity of algorithms.",
+          "description": "Formulate requirements for distributed consensus protocols.",
           "domain": "K"
         },
         {
           "llo_id": "LLO10.2",
-          "description": "Classify problems into P, NP, or NP-Complete.",
+          "description": "Implement Paxos and Raft algorithms in simulation.",
           "domain": "S"
         },
         {
           "llo_id": "LLO10.3",
-          "description": "Value the importance of computational efficiency.",
+          "description": "Appreciate the reliability of fault-tolerant systems.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Complexity Theory Lecture",
-        "Case Study"
-      ],
-      "assessment_tasks": [
-        "Quiz"
-      ],
-      "resources": [
-        "Textbook",
-        "Course LMS"
-      ]
-    },
-    {
-      "week_number": 11,
-      "topics": [
-        "NP-Completeness & Reductions"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO11.1",
-          "description": "Evaluate problem complexity using polynomial-time reductions.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO11.2",
-          "description": "Design reduction proofs for NP-Complete problems.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO11.3",
-          "description": "Appreciate the difficulty of optimization tasks.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Reduction Workshop",
-        "Group Discussion"
-      ],
-      "assessment_tasks": [
-        "Proof Assignment"
-      ],
-      "resources": [
-        "Textbook",
-        "Course LMS"
-      ]
-    },
-    {
-      "week_number": 12,
-      "topics": [
-        "Algorithm Implementation & Recognition"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO12.1",
-          "description": "Implement language recognition algorithms in code.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO12.2",
-          "description": "Apply theoretical principles to build functional systems.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO12.3",
-          "description": "Ensure reliability in software implementation.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Coding Workshop",
-        "Debugging Session"
-      ],
-      "assessment_tasks": [
-        "Code Review"
-      ],
-      "resources": [
-        "IDE",
-        "GitHub"
-      ]
-    },
-    {
-      "week_number": 13,
-      "topics": [
-        "Language Transformation & Algorithms"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO13.1",
-          "description": "Formulate algorithms for string transformation.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO13.2",
-          "description": "Execute transformation routines with correct logic.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO13.3",
-          "description": "Maintain precision in data processing.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Algorithm Design Lab",
-        "Testing Session"
+        "Consensus Simulation Lab",
+        "Protocol Analysis"
       ],
       "assessment_tasks": [
         "Lab Report"
       ],
       "resources": [
-        "IDE",
-        "Test Cases"
+        "Distributed Systems Textbook"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Cloud Cluster Parallelism Tasks"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Analyze cloud infrastructure for parallel task scheduling.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Design job submission scripts for cloud clusters.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Value cost-effectiveness in resource utilization.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Cloud Lab (AWS/Azure)",
+        "Scripting Workshop"
+      ],
+      "assessment_tasks": [
+        "Cloud Task Submission"
+      ],
+      "resources": [
+        "Cloud Provider Docs"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "High-Performance Solutions for Cloud Clusters"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Evaluate containerization strategies for parallel workloads.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Create optimized Docker containers for HPC tasks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Demonstrate responsibility in cloud resource management.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Containerization Lab",
+        "Performance Tuning"
+      ],
+      "assessment_tasks": [
+        "Container Image Submission"
+      ],
+      "resources": [
+        "Docker Hub"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Capstone Project Development Phase 1"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Design a parallel solution for a real-world problem.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Implement core functionality of the capstone project.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Collaborate effectively in group development teams.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Project Kickoff",
+        "Development Sprint"
+      ],
+      "assessment_tasks": [
+        "Project Proposal Review"
+      ],
+      "resources": [
+        "Project Guidelines"
       ]
     },
     {
       "week_number": 14,
       "topics": [
-        "Capstone Project Planning"
+        "Capstone Project Development Phase 2"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO14.1",
-          "description": "Analyze requirements for a formal language system.",
+          "description": "Refactor code for improved parallel efficiency.",
           "domain": "K"
         },
         {
           "llo_id": "LLO14.2",
-          "description": "Design architecture for the capstone project.",
+          "description": "Debug and optimize the capstone application.",
           "domain": "S"
         },
         {
           "llo_id": "LLO14.3",
-          "description": "Demonstrate commitment to project goals.",
+          "description": "Maintain professional documentation standards.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Project Planning Workshop",
-        "Team Meeting"
+        "Code Refactoring Lab",
+        "Documentation Workshop"
       ],
       "assessment_tasks": [
-        "Proposal Draft"
+        "Mid-Project Checkpoint"
       ],
       "resources": [
-        "Course LMS",
-        "Tools"
+        "Git Repository"
       ]
     },
     {
       "week_number": 15,
       "topics": [
-        "Capstone Project Development"
+        "Capstone Project Development Phase 3"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO15.1",
-          "description": "Implement core automata logic in the project.",
+          "description": "Test the capstone solution under load.",
           "domain": "K"
         },
         {
           "llo_id": "LLO15.2",
-          "description": "Build and integrate language recognition modules.",
+          "description": "Validate performance against baseline metrics.",
           "domain": "S"
         },
         {
           "llo_id": "LLO15.3",
-          "description": "Ensure code quality and documentation standards.",
+          "description": "Ensure ethical use of computational resources.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Development Sprint",
-        "Code Review"
+        "Load Testing Lab",
+        "Validation Workshop"
       ],
       "assessment_tasks": [
-        "Milestone Check"
+        "Performance Test Report"
       ],
       "resources": [
-        "IDE",
-        "Git"
+        "Benchmark Suite"
       ]
     },
     {
       "week_number": 16,
       "topics": [
-        "Capstone Project Testing & Debugging"
+        "Capstone Project Finalization"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO16.1",
-          "description": "Evaluate system behavior against formal specifications.",
+          "description": "Finalize the capstone project documentation.",
           "domain": "K"
         },
         {
           "llo_id": "LLO16.2",
-          "description": "Debug and optimize the capstone application.",
+          "description": "Prepare presentation materials for defense.",
           "domain": "S"
         },
         {
           "llo_id": "LLO16.3",
-          "description": "Value accuracy in system testing.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Testing Phase",
-        "Bug Fixing Session"
-      ],
-      "assessment_tasks": [
-        "Test Report"
-      ],
-      "resources": [
-        "IDE",
-        "Test Suite"
-      ]
-    },
-    {
-      "week_number": 17,
-      "topics": [
-        "Capstone Project Presentation Preparation"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO17.1",
-          "description": "Synthesize project outcomes into a presentation.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO17.2",
-          "description": "Deliver the capstone defense effectively.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO17.3",
-          "description": "Demonstrate confidence and professionalism.",
+          "description": "Demonstrate confidence in presenting technical solutions.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
         "Presentation Rehearsal",
-        "Peer Review"
+        "Final Review"
       ],
       "assessment_tasks": [
         "Presentation Draft"
       ],
       "resources": [
-        "Course LMS",
-        "Project Files"
+        "Presentation Templates"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Project Defense Preparation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Review final project deliverables.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Practice answering technical questions on defense.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Reflect on learning outcomes and growth.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Mock Defense",
+        "Feedback Session"
+      ],
+      "assessment_tasks": [
+        "Defense Rubric"
+      ],
+      "resources": [
+        "Final Report Template"
       ]
     },
     {
@@ -631,17 +617,17 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO18.1",
-          "description": "Assess comprehensive understanding of course content.",
+          "description": "Demonstrate comprehensive understanding of parallel computing.",
           "domain": "K"
         },
         {
           "llo_id": "LLO18.2",
-          "description": "Defend the capstone project before evaluators.",
+          "description": "Defend the capstone project before faculty panel.",
           "domain": "S"
         },
         {
           "llo_id": "LLO18.3",
-          "description": "Exhibit academic integrity and professionalism.",
+          "description": "Evaluate personal achievement against course objectives.",
           "domain": "A"
         }
       ],
@@ -654,7 +640,7 @@
         "Defense Evaluation"
       ],
       "resources": [
-        "Exam Hall",
+        "Exam Paper",
         "Defense Panel"
       ]
     }

@@ -1,0 +1,669 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3110",
+    "course_title": "Information Assurance and Security",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "CS 2207 (Data Communications and Networking)",
+    "course_description": "Core principles of cybersecurity and information assurance, focusing on the CIA triad (Confidentiality, Integrity, Availability), symmetric and asymmetric cryptography, public key infrastructure (PKI), secure network architectures, threat modeling, vulnerability assessment, intrusion detection systems, and institutional security governance."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Analyze computing problems and apply cybersecurity fundamentals to identify risks within complex systems.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO1"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Implement symmetric and asymmetric cryptographic protocols within secure network architectures using PKI standards.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Evaluate intrusion detection systems and vulnerability assessment tools against established threat models.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Create institutional security governance policies aligned with professional responsibilities and legal compliance.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO4"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Information Assurance",
+        "Risk Assessment Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Analyze computing environments to identify potential security risks.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Design a risk assessment matrix for organizational assets.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Demonstrate professional responsibility in safeguarding data integrity.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Risk Theory",
+        "Case Study Analysis"
+      ],
+      "assessment_tasks": [
+        "Risk Identification Quiz"
+      ],
+      "resources": [
+        "Course LMS",
+        "NIST SP 800-30"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Threat Modeling",
+        "Vulnerability Classification"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Evaluate threat vectors against system architectures.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Map vulnerabilities to specific attack scenarios.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Adhere to ethical standards during threat assessment.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Group Discussion on Threats",
+        "Vulnerability Scanning Lab"
+      ],
+      "assessment_tasks": [
+        "Threat Model Draft"
+      ],
+      "resources": [
+        "OWASP Top 10",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Symmetric Cryptography",
+        "Encryption Algorithms"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Explain mathematical principles of symmetric encryption.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Implement AES encryption protocols using standard libraries.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Maintain confidentiality in all cryptographic operations.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Algorithm Simulation Lab",
+        "Code Review"
+      ],
+      "assessment_tasks": [
+        "Encryption Implementation Task"
+      ],
+      "resources": [
+        "Python Crypto Library",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Asymmetric Cryptography",
+        "Public Key Infrastructure"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Compare RSA and ECC key generation methods.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Configure PKI infrastructure for digital signatures.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Uphold trust principles in certificate validation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "PKI Setup Lab",
+        "Certificate Authority Simulation"
+      ],
+      "assessment_tasks": [
+        "Key Generation Report"
+      ],
+      "resources": [
+        "OpenSSL Tools",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Secure Network Architectures",
+        "Firewall Configuration"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Design network topologies for data protection.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Implement firewall rules to restrict unauthorized access.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Respect network security policies during configuration.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Network Simulation Lab",
+        "Policy Review"
+      ],
+      "assessment_tasks": [
+        "Firewall Rule Set Design"
+      ],
+      "resources": [
+        "Cisco Packet Tracer",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Secure Communication Protocols",
+        "TLS/SSL Implementation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Analyze handshake processes in TLS protocols.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Configure secure web servers with valid certificates.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Ensure privacy compliance in communication channels.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Web Server Lab",
+        "Protocol Analysis"
+      ],
+      "assessment_tasks": [
+        "TLS Configuration Audit"
+      ],
+      "resources": [
+        "Wireshark",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Intrusion Detection Systems (IDS)",
+        "SIEM Integration"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Identify IDS types and their operational mechanisms.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Deploy Snort rules to detect network anomalies.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Prioritize incident response based on severity levels.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "IDS Deployment Lab",
+        "Log Analysis"
+      ],
+      "assessment_tasks": [
+        "Anomaly Detection Report"
+      ],
+      "resources": [
+        "Snort Community Edition",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Vulnerability Assessment Tools",
+        "Penetration Testing Basics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Evaluate vulnerability scanners against OWASP standards.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Execute non-invasive penetration testing procedures.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Document findings with professional accuracy.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Vuln Scan Lab",
+        "Report Writing Workshop"
+      ],
+      "assessment_tasks": [
+        "Penetration Test Summary"
+      ],
+      "resources": [
+        "Nessus Essentials",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Demonstrate mastery of first half course material.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Assess understanding through written and practical evaluation.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Reflect on learning progress regarding security ethics.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam Paper"
+      ],
+      "resources": [
+        "Exam Center"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Security Governance",
+        "Policy Frameworks"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Formulate security policies aligned with organizational goals.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Draft compliance frameworks for regulatory adherence.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Uphold integrity in policy development processes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Policy Drafting Workshop",
+        "Regulatory Review"
+      ],
+      "assessment_tasks": [
+        "Security Policy Template"
+      ],
+      "resources": [
+        "ISO 27001 Standards",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Incident Response Planning",
+        "Disaster Recovery"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Analyze incident response lifecycle stages.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Design a disaster recovery plan for critical systems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Maintain calm and professionalism during crisis scenarios.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "IR Simulation Drill",
+        "DR Plan Creation"
+      ],
+      "assessment_tasks": [
+        "Incident Response Playbook"
+      ],
+      "resources": [
+        "Tabletop Exercise Tools",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Capstone Project: Security Architecture Design"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Analyze client requirements for security architecture.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Design a secure system incorporating all CLOs.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Demonstrate commitment to client confidentiality.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Project Kickoff",
+        "Architecture Design Session"
+      ],
+      "assessment_tasks": [
+        "Design Proposal Submission"
+      ],
+      "resources": [
+        "Client Requirements Doc",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Capstone Project: Implementation & Testing"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Implement cryptographic modules in the proposed system.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Test security controls against defined threat models.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Ensure all implementation follows ethical guidelines.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "System Integration Lab",
+        "Security Testing"
+      ],
+      "assessment_tasks": [
+        "Implementation Milestone Report"
+      ],
+      "resources": [
+        "Development Environment",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Capstone Project: Governance & Documentation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Create governance policies for the deployed system.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Document security procedures and audit trails.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Ensure transparency in documentation practices.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Documentation Workshop",
+        "Policy Review"
+      ],
+      "assessment_tasks": [
+        "Security Documentation Set"
+      ],
+      "resources": [
+        "Template Docs",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Capstone Project: Capstone Defense Prep"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Evaluate project readiness for final defense.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Present system architecture and security measures effectively.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Demonstrate confidence in security decisions made.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Mock Defense Session",
+        "Peer Review"
+      ],
+      "assessment_tasks": [
+        "Defense Presentation Draft"
+      ],
+      "resources": [
+        "Presentation Tools",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Project: Final Review"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Refine security architecture based on feedback.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Finalize all system components and documentation.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Adhere to final submission deadlines rigorously.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Review Meeting",
+        "Quality Assurance Check"
+      ],
+      "assessment_tasks": [
+        "Final Project Submission"
+      ],
+      "resources": [
+        "Submission Portal",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Project: Final Defense Prep"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Analyze potential defense questions and answers.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Practice answering technical security queries.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Maintain professionalism during final presentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Mock Defense",
+        "Q&A Simulation"
+      ],
+      "assessment_tasks": [
+        "Defense Q&A Log"
+      ],
+      "resources": [
+        "Exam Center",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Evaluate comprehensive course knowledge through final exam.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Defend capstone project against expert panel scrutiny.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Demonstrate professional readiness in security domain.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Examination",
+        "Capstone Defense"
+      ],
+      "assessment_tasks": [
+        "Final Exam Paper",
+        "Defense Evaluation Form"
+      ],
+      "resources": [
+        "Exam Center",
+        "Evaluation Panel"
+      ]
+    }
+  ]
+}

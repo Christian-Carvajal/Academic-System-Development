@@ -10,6 +10,7 @@ import threading
 import time
 import urllib.request
 import urllib.error
+import urllib.parse
 import webbrowser
 from http import HTTPStatus
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
@@ -322,7 +323,7 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             if "code=" in query:
                 for param in query.split("&"):
                     if param.startswith("code="):
-                        code = urllib.parse.unquote(param.split("=")[1])
+                        code = urllib.parse.unquote_plus(param.split("=")[1])
             
             if not code:
                 self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing 'code' query parameter."})
@@ -380,7 +381,7 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             if "code=" in query:
                 for param in query.split("&"):
                     if param.startswith("code="):
-                        code = urllib.parse.unquote(param.split("=")[1])
+                        code = urllib.parse.unquote_plus(param.split("=")[1])
             if not code:
                 code = "BSCS 3112"
 
@@ -526,7 +527,44 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
                             "clos": [dict(r) for r in clos],
                             "weeks_count": w_count
                         })
-                self.send_json(HTTPStatus.OK, {"courses": data})
+                    
+                    # Fetch normalized table counts & live records for multi-table inspector
+                    cnt_courses = conn.execute("SELECT COUNT(*) FROM courses").fetchone()[0]
+                    cnt_clos = conn.execute("SELECT COUNT(*) FROM course_outcomes").fetchone()[0]
+                    cnt_weeks = conn.execute("SELECT COUNT(*) FROM weekly_schedules").fetchone()[0]
+                    cnt_llos = conn.execute("SELECT COUNT(*) FROM lesson_outcomes").fetchone()[0]
+
+                    table_counts = {
+                        "courses": cnt_courses,
+                        "course_outcomes": cnt_clos,
+                        "weekly_schedules": cnt_weeks,
+                        "lesson_outcomes": cnt_llos
+                    }
+
+                    # Fetch rows for relational table preview
+                    tbl_courses = [dict(r) for r in conn.execute("SELECT id, course_code, course_title, credit_units, lecture_hours, lab_hours, prerequisites FROM courses ORDER BY id ASC").fetchall()]
+                    tbl_clos = [dict(r) for r in conn.execute("SELECT co.id, co.course_id, c.course_code, co.clo_id, co.bloom_level, co.description, co.program_outcomes_mapped FROM course_outcomes co JOIN courses c ON co.course_id = c.id ORDER BY co.course_id, co.clo_id ASC").fetchall()]
+                    
+                    raw_weeks = conn.execute("SELECT ws.id, ws.course_id, c.course_code, ws.week_number, ws.topics, ws.teaching_learning_activities, ws.assessment_tasks FROM weekly_schedules ws JOIN courses c ON ws.course_id = c.id ORDER BY ws.course_id, ws.week_number ASC").fetchall()
+                    tbl_weeks = []
+                    for r in raw_weeks:
+                        d = dict(r)
+                        wn = d["week_number"]
+                        d["period"] = "MIDTERM EXAM" if wn == 9 else ("FINAL EXAM" if wn == 18 else ("MIDTERM" if wn <= 8 else "FINAL"))
+                        tbl_weeks.append(d)
+
+                    tbl_llos = [dict(r) for r in conn.execute("SELECT lo.id, lo.schedule_id, ws.week_number, c.course_code, lo.llo_id, lo.domain, lo.description FROM lesson_outcomes lo JOIN weekly_schedules ws ON lo.schedule_id = ws.id JOIN courses c ON ws.course_id = c.id ORDER BY ws.course_id, ws.week_number, lo.domain ASC LIMIT 300").fetchall()]
+
+                self.send_json(HTTPStatus.OK, {
+                    "courses": data,
+                    "table_counts": table_counts,
+                    "tables": {
+                        "courses": tbl_courses,
+                        "course_outcomes": tbl_clos,
+                        "weekly_schedules": tbl_weeks,
+                        "lesson_outcomes": tbl_llos
+                    }
+                })
             except Exception as e:
                 self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": str(e)})
             return
@@ -696,4 +734,12 @@ def start_server(host: str = HOST, port: int = PORT, open_browser: bool = True):
 
 
 if __name__ == "__main__":
-    start_server(open_browser=True)
+    port = PORT
+    for i, arg in enumerate(sys.argv):
+        if arg == "--port" and i + 1 < len(sys.argv):
+            try:
+                port = int(sys.argv[i + 1])
+            except ValueError:
+                pass
+    no_browse = "--no-browser" in sys.argv or os.environ.get("NO_BROWSER") == "1"
+    start_server(port=port, open_browser=not no_browse)

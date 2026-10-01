@@ -1,0 +1,664 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3213",
+    "course_title": "Software Engineering",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "CS 3110 (Data Structures and Algorithms)",
+    "course_description": "Systematic engineering methodologies for software development, covering SDLC models, Agile/Scrum frameworks, requirements engineering, object-oriented analysis and design with UML, architectural patterns, unit and integration testing, continuous integration and deployment (CI/CD), and software project management."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Design software solutions using appropriate SDLC models and Agile frameworks.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Analyze requirements and design system architecture using UML diagrams.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Implement unit testing and CI/CD pipelines to ensure quality standards.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Evaluate project performance and communicate technical progress to stakeholders.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO3",
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Software Engineering",
+        "History and Evolution of SE"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Define the scope and objectives of software engineering projects.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Identify key stakeholders in a software development lifecycle.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Appreciate the ethical implications of software design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on SE History",
+        "Group Discussion"
+      ],
+      "assessment_tasks": [
+        "Participation Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Software Development Life Cycle (SDLC)",
+        "Waterfall vs. Agile Models"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Select appropriate SDLC models for specific project contexts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Map project phases to Agile or Waterfall frameworks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Value iterative development over rigid planning.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Case Study Analysis",
+        "Model Comparison Workshop"
+      ],
+      "assessment_tasks": [
+        "Quiz on SDLC Models"
+      ],
+      "resources": [
+        "Online Repository",
+        "SDLC Diagrams"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Requirements Engineering",
+        "Functional and Non-Functional Requirements"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Analyze user needs to formulate system requirements.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Draft functional specifications using use case diagrams.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Demonstrate empathy for end-user constraints.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Requirement Gathering Simulation",
+        "Peer Review"
+      ],
+      "assessment_tasks": [
+        "Requirements Specification Draft"
+      ],
+      "resources": [
+        "User Persona Templates"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Unified Modeling Language (UML)",
+        "Use Case and Sequence Diagrams"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Analyze system interactions using UML notation.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Construct sequence diagrams for business logic flows.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Adhere to standard UML documentation conventions.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "UML Diagramming Lab",
+        "Diagram Critique"
+      ],
+      "assessment_tasks": [
+        "Diagram Accuracy Check"
+      ],
+      "resources": [
+        "UML Tool Software"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "System Design Patterns",
+        "Architectural Styles"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Design scalable system architectures using standard patterns.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Implement modular components within a monolithic structure.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Prioritize maintainability and scalability in design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Pattern Matching Exercise",
+        "Architecture Workshop"
+      ],
+      "assessment_tasks": [
+        "Design Pattern Application"
+      ],
+      "resources": [
+        "Design Patterns Book"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Agile Methodologies",
+        "Scrum Framework Implementation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Create sprint plans based on backlog prioritization.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Facilitate daily stand-ups and sprint retrospectives.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Embrace adaptability in changing requirements.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Role Play Scrum Master",
+        "Backlog Planning"
+      ],
+      "assessment_tasks": [
+        "Sprint Plan Evaluation"
+      ],
+      "resources": [
+        "Agile Toolkit"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Software Testing Fundamentals",
+        "Unit Testing Strategies"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Implement unit tests to validate individual components.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Write automated test cases for critical functions.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Commit to quality assurance standards.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Test Case Writing Lab",
+        "Code Review"
+      ],
+      "assessment_tasks": [
+        "Unit Test Coverage Report"
+      ],
+      "resources": [
+        "Testing Frameworks"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Continuous Integration and Deployment (CI/CD)",
+        "Pipeline Configuration"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Configure CI/CD pipelines for automated builds.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Implement automated deployment strategies using scripts.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Value transparency in development processes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Pipeline Setup Lab",
+        "Automation Workshop"
+      ],
+      "assessment_tasks": [
+        "Pipeline Execution Log"
+      ],
+      "resources": [
+        "CI/CD Tools"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination",
+        "Review of Weeks 1-8"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Evaluate understanding of SDLC and UML concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Demonstrate proficiency in design and testing skills.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Reflect on academic progress and learning gaps.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Exam Paper"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Integration Testing",
+        "System Testing Strategies"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Analyze system interactions during integration phases.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Execute integration tests to verify component compatibility.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Demonstrate patience during debugging processes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Integration Test Lab",
+        "Bug Tracking"
+      ],
+      "assessment_tasks": [
+        "Test Execution Report"
+      ],
+      "resources": [
+        "Testing Tools"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Performance Testing",
+        "Load and Stress Analysis"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Evaluate system performance under load conditions.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Formulate optimization strategies based on metrics.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Appreciate the impact of performance on users.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Performance Benchmarking",
+        "Metric Analysis"
+      ],
+      "assessment_tasks": [
+        "Performance Test Results"
+      ],
+      "resources": [
+        "Load Testing Tools"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Quality Assurance (QA)",
+        "Defect Management"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Implement QA processes to ensure quality standards.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Manage defects using tracking systems effectively.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Commit to continuous improvement in quality.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "QA Process Simulation",
+        "Defect Triage"
+      ],
+      "assessment_tasks": [
+        "Quality Audit Report"
+      ],
+      "resources": [
+        "Bug Tracking System"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Project Performance Evaluation",
+        "KPIs and Metrics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Evaluate project performance using key performance indicators.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Calculate and interpret project metrics accurately.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Demonstrate accountability for project outcomes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "KPI Calculation Workshop",
+        "Data Analysis"
+      ],
+      "assessment_tasks": [
+        "Performance Evaluation Form"
+      ],
+      "resources": [
+        "Project Management Software"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Stakeholder Communication",
+        "Technical Reporting"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Communicate technical progress to non-technical stakeholders.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Prepare clear and concise project status reports.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Show respect for diverse stakeholder perspectives.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Report Writing Lab",
+        "Presentation Practice"
+      ],
+      "assessment_tasks": [
+        "Status Report Review"
+      ],
+      "resources": [
+        "Communication Templates"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Risk Management",
+        "Project Risk Assessment"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Identify potential risks in software projects.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Formulate mitigation strategies for identified risks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Demonstrate proactive attitude towards risk management.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Risk Assessment Workshop",
+        "Scenario Planning"
+      ],
+      "assessment_tasks": [
+        "Risk Register Draft"
+      ],
+      "resources": [
+        "Risk Management Guide"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Project Development",
+        "Final System Design"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Design final capstone system architecture.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Implement core features of the capstone project.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Collaborate effectively in team environments.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Development Lab",
+        "Team Collaboration"
+      ],
+      "assessment_tasks": [
+        "Progress Checkpoint"
+      ],
+      "resources": [
+        "Development Environment"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "System Integration",
+        "Final Testing and Debugging"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Integrate all components of the capstone system.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Execute final testing and resolve critical bugs.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Demonstrate diligence in final quality assurance.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Integration Lab",
+        "Bug Fixing Session"
+      ],
+      "assessment_tasks": [
+        "System Readiness Report"
+      ],
+      "resources": [
+        "Testing Frameworks"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense",
+        "Course Review"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Evaluate comprehensive knowledge of software engineering.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Defend capstone project before the board.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Reflect on overall course learning and growth.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Defense",
+        "Final Exam"
+      ],
+      "assessment_tasks": [
+        "Final Examination & Rubric"
+      ],
+      "resources": [
+        "Defense Guidelines"
+      ]
+    }
+  ]
+}

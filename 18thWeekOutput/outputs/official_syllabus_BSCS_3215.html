@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BSCS 3108 - Automata Theory and Formal Languages | Official OBE Syllabus</title>
+  <title>BSCS 3215 - Parallel and Distributed Computing | Official OBE Syllabus</title>
   <style>
     :root {
       --primary: #1E3A8A;
@@ -213,7 +213,7 @@
         <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #047857; text-transform: uppercase;">College of Computer Studies</h3>
       </div>
     </div>
-    <div class="doc-title">Course Syllabus: BSCS 3108</div>
+    <div class="doc-title">Course Syllabus: BSCS 3215</div>
   </div>
 
   <!-- I. Course Overview & Metadata -->
@@ -221,19 +221,19 @@
   <table class="meta-table">
     <tr>
       <td>Course Code</td>
-      <td><strong>BSCS 3108</strong></td>
+      <td><strong>BSCS 3215</strong></td>
       <td>Course Title</td>
-      <td><strong>Automata Theory and Formal Languages</strong></td>
+      <td><strong>Parallel and Distributed Computing</strong></td>
     </tr>
     <tr>
       <td>Credit Units</td>
-      <td>3 Units (Lecture: 3 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
       <td>Prerequisites</td>
-      <td>CS 2106 (Discrete Mathematics)</td>
+      <td>BSCS 3109 (Operating System Configuration and Use)</td>
     </tr>
     <tr>
       <td>Course Description</td>
-      <td colspan="3">Rigorous theoretical exploration of computational models and formal grammars, covering regular expressions, deterministic and non-deterministic finite automata (DFA/NFA), context-free grammars, pushdown automata, Turing machines, decidability, the Halting problem, and the Chomsky hierarchy.</td>
+      <td colspan="3">Foundational principles and architectures of concurrent, parallel, and distributed computing systems. Topics encompass Flynn&#39;s taxonomy, shared-memory programming (OpenMP/pthreads), distributed-memory message passing (MPI), massively parallel GPU programming (CUDA), distributed consensus algorithms, cloud cluster parallelism, and performance scalability metrics.</td>
     </tr>
   </table>
 
@@ -252,30 +252,30 @@
       
       <tr>
         <td><strong>CLO1</strong></td>
-        <td>Analyze complex computational models and apply principles of computing to determine system behavior.</td>
+        <td>Implement shared-memory and distributed-memory programming models using OpenMP and MPI.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO1, PLO2</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO2</strong></td>
+        <td>Analyze scalability metrics and architectural trade-offs in parallel computing systems.</td>
         <td><span class="badge badge-bloom">Analyze</span></td>
         <td>PLO1, PLO5</td>
       </tr>
       
       <tr>
-        <td><strong>CLO2</strong></td>
-        <td>Design formal grammars and automata structures to represent specific language classes rigorously.</td>
-        <td><span class="badge badge-bloom">Create</span></td>
-        <td>PLO1, PLO5</td>
-      </tr>
-      
-      <tr>
         <td><strong>CLO3</strong></td>
-        <td>Evaluate decidability and complexity of algorithmic problems within the Chomsky hierarchy.</td>
+        <td>Evaluate performance bottlenecks in GPU-accelerated applications and consensus algorithms.</td>
         <td><span class="badge badge-bloom">Evaluate</span></td>
-        <td>PLO1, PLO5</td>
+        <td>PLO1, PLO2</td>
       </tr>
       
       <tr>
         <td><strong>CLO4</strong></td>
-        <td>Apply theoretical principles to implement algorithms for language recognition and transformation.</td>
-        <td><span class="badge badge-bloom">Apply</span></td>
-        <td>PLO1, PLO5</td>
+        <td>Design optimized high-performance solutions for cloud cluster parallelism tasks.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO2, PLO5</td>
       </tr>
       
     </tbody>
@@ -299,24 +299,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>1</strong></td>
         <td>
-          <strong>Introduction to Automata &amp; Regular Languages</strong>
+          <strong>Introduction to Parallel Computing &amp; Architectures</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Define formal language classes and computational models.
+              Identify parallel computing architectures and their characteristics.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Construct regular expressions from given patterns.
+              Compare performance metrics of shared vs distributed memory systems.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Appreciate the logical rigor of formal systems.
+              Appreciate the efficiency gains in parallel processing environments.
             </li>
             
           </ul>
@@ -324,16 +324,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lecture on Formal Languages</li>
+            <li>Lecture on Amdahl&#39;s Law</li>
             
-            <li>Pattern Matching Lab</li>
+            <li>Architecture Comparison Lab</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Weekly Quiz</strong></li>
+            <li><strong>Concept Quiz</strong></li>
             
           </ul>
         </td>
@@ -343,24 +343,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>2</strong></td>
         <td>
-          <strong>Finite Automata: DFA &amp; NFA</strong>
+          <strong>Shared-Memory Programming Models (OpenMP)</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze state transitions in Deterministic Finite Automata.
+              Implement OpenMP directives for parallel loops.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Design NFA from regular expressions using Thompson&#39;s construction.
+              Compile and execute OpenMP programs on multi-core systems.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Value the precision required in state modeling.
+              Demonstrate collaboration in team-based coding projects.
             </li>
             
           </ul>
@@ -368,9 +368,53 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>DFA/NFA Theory Lecture</li>
+            <li>OpenMP Syntax Workshop</li>
             
-            <li>Simulation Lab</li>
+            <li>Code Compilation Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Lab Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>
+          <strong>Distributed-Memory Programming Models (MPI)</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Formulate MPI communication patterns for node interaction.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement message passing protocols using MPICH.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect network latency constraints during distributed tasks.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>MPI Communication Lab</li>
+            
+            <li>Network Simulation</li>
             
           </ul>
         </td>
@@ -385,70 +429,26 @@
       
       
       <tr class="">
-        <td style="text-align: center;"><strong>3</strong></td>
-        <td>
-          <strong>Equivalence &amp; Minimization of Automata</strong>
-        </td>
-        <td>
-          <ul style="padding-left: 16px;">
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-k">K</span>
-              Evaluate equivalence between DFAs using Myhill-Nerode theorem.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-s">S</span>
-              Implement state minimization algorithms for DFA optimization.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-a">A</span>
-              Demonstrate commitment to algorithmic efficiency.
-            </li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li>Equivalence Proof Workshop</li>
-            
-            <li>Minimization Lab</li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li><strong>Proof Submission</strong></li>
-            
-          </ul>
-        </td>
-      </tr>
-      
-      
-      <tr class="">
         <td style="text-align: center;"><strong>4</strong></td>
         <td>
-          <strong>Context-Free Grammars (CFG) &amp; Parsing</strong>
+          <strong>Advanced OpenMP &amp; MPI Integration</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Formulate CFGs to generate specific language classes.
+              Analyze hybrid programming models combining OpenMP and MPI.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Construct parse trees for given grammars.
+              Evaluate synchronization mechanisms in complex applications.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Respect the hierarchical structure of syntax.
+              Maintain code quality standards across heterogeneous systems.
             </li>
             
           </ul>
@@ -456,16 +456,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>CFG Construction Lecture</li>
+            <li>Hybrid Programming Lab</li>
             
-            <li>Parsing Lab</li>
+            <li>Code Review</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Parse Tree Assignment</strong></li>
+            <li><strong>Peer Review</strong></li>
             
           </ul>
         </td>
@@ -475,24 +475,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>5</strong></td>
         <td>
-          <strong>Pushdown Automata &amp; PDA Theory</strong>
+          <strong>Scalability Metrics &amp; Performance Analysis</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze language recognition capabilities of PDAs.
+              Calculate speedup and efficiency metrics.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Design PDAs to recognize context-free languages.
+              Measure scalability behavior on cluster systems.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Appreciate the role of stack memory in computation.
+              Value data-driven decision making in performance tuning.
             </li>
             
           </ul>
@@ -500,16 +500,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>PDA Theory Lecture</li>
+            <li>Performance Profiling Lab</li>
             
-            <li>Stack Simulation Lab</li>
+            <li>Data Analysis</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Design Document</strong></li>
+            <li><strong>Lab Report</strong></li>
             
           </ul>
         </td>
@@ -519,24 +519,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>6</strong></td>
         <td>
-          <strong>Chomsky Hierarchy &amp; Classification</strong>
+          <strong>Architectural Trade-offs in Parallel Systems</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Classify grammars within the Chomsky hierarchy.
+              Assess hardware-software co-design trade-offs.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Evaluate language properties based on grammar type.
+              Design optimized algorithms for specific architectures.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Value the theoretical ordering of computational power.
+              Understand the importance of sustainable computing practices.
             </li>
             
           </ul>
@@ -544,16 +544,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Hierarchy Classification Workshop</li>
+            <li>Case Study Analysis</li>
             
-            <li>Discussion</li>
+            <li>Algorithm Design Workshop</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Classification Quiz</strong></li>
+            <li><strong>Design Proposal</strong></li>
             
           </ul>
         </td>
@@ -563,24 +563,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>7</strong></td>
         <td>
-          <strong>Turing Machines &amp; Computation Models</strong>
+          <strong>GPU Accelerated Computing Fundamentals</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Define Turing Machine components and operation.
+              Describe GPU architecture and parallel execution models.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Implement a Turing Machine for specific input processing.
+              Implement CUDA kernels for matrix operations.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate respect for computational limits.
+              Recognize the potential of high-performance computing in research.
             </li>
             
           </ul>
@@ -588,16 +588,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Turing Machine Lecture</li>
+            <li>CUDA Programming Lab</li>
             
-            <li>Implementation Lab</li>
+            <li>Hardware Demo</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Code Submission</strong></li>
+            <li><strong>Lab Submission</strong></li>
             
           </ul>
         </td>
@@ -607,24 +607,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>8</strong></td>
         <td>
-          <strong>Decidability &amp; Undecidability</strong>
+          <strong>GPU Performance Bottlenecks &amp; Optimization</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Determine decidability of algorithmic problems.
+              Identify memory bandwidth and compute bottlenecks.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Prove undecidability using reduction techniques.
+              Optimize GPU code using profiling tools.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Acknowledge the inherent limits of computation.
+              Demonstrate commitment to iterative improvement processes.
             </li>
             
           </ul>
@@ -632,16 +632,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Decidability Theory Lecture</li>
+            <li>Profiling Workshop</li>
             
-            <li>Proof Workshop</li>
+            <li>Code Optimization Lab</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Proof Submission</strong></li>
+            <li><strong>Optimization Report</strong></li>
             
           </ul>
         </td>
@@ -658,17 +658,17 @@
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Assess mastery of Finite Automata and CFGs.
+              Demonstrate mastery of shared and distributed memory concepts.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Evaluate performance under examination conditions.
+              Apply knowledge to solve complex parallel programming problems.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate academic integrity during assessment.
+              Evaluate personal understanding of course material.
             </li>
             
           </ul>
@@ -693,24 +693,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>10</strong></td>
         <td>
-          <strong>Complexity Classes &amp; P vs NP</strong>
+          <strong>Consensus Algorithms &amp; Distributed Systems</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze time and space complexity of algorithms.
+              Formulate requirements for distributed consensus protocols.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Classify problems into P, NP, or NP-Complete.
+              Implement Paxos and Raft algorithms in simulation.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Value the importance of computational efficiency.
+              Appreciate the reliability of fault-tolerant systems.
             </li>
             
           </ul>
@@ -718,141 +718,9 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Complexity Theory Lecture</li>
+            <li>Consensus Simulation Lab</li>
             
-            <li>Case Study</li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li><strong>Quiz</strong></li>
-            
-          </ul>
-        </td>
-      </tr>
-      
-      
-      <tr class="">
-        <td style="text-align: center;"><strong>11</strong></td>
-        <td>
-          <strong>NP-Completeness &amp; Reductions</strong>
-        </td>
-        <td>
-          <ul style="padding-left: 16px;">
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-k">K</span>
-              Evaluate problem complexity using polynomial-time reductions.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-s">S</span>
-              Design reduction proofs for NP-Complete problems.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-a">A</span>
-              Appreciate the difficulty of optimization tasks.
-            </li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li>Reduction Workshop</li>
-            
-            <li>Group Discussion</li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li><strong>Proof Assignment</strong></li>
-            
-          </ul>
-        </td>
-      </tr>
-      
-      
-      <tr class="">
-        <td style="text-align: center;"><strong>12</strong></td>
-        <td>
-          <strong>Algorithm Implementation &amp; Recognition</strong>
-        </td>
-        <td>
-          <ul style="padding-left: 16px;">
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-k">K</span>
-              Implement language recognition algorithms in code.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-s">S</span>
-              Apply theoretical principles to build functional systems.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-a">A</span>
-              Ensure reliability in software implementation.
-            </li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li>Coding Workshop</li>
-            
-            <li>Debugging Session</li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li><strong>Code Review</strong></li>
-            
-          </ul>
-        </td>
-      </tr>
-      
-      
-      <tr class="">
-        <td style="text-align: center;"><strong>13</strong></td>
-        <td>
-          <strong>Language Transformation &amp; Algorithms</strong>
-        </td>
-        <td>
-          <ul style="padding-left: 16px;">
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-k">K</span>
-              Formulate algorithms for string transformation.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-s">S</span>
-              Execute transformation routines with correct logic.
-            </li>
-            
-            <li style="margin-bottom: 4px;">
-              <span class="badge badge-a">A</span>
-              Maintain precision in data processing.
-            </li>
-            
-          </ul>
-        </td>
-        <td>
-          <ul style="padding-left: 14px;">
-            
-            <li>Algorithm Design Lab</li>
-            
-            <li>Testing Session</li>
+            <li>Protocol Analysis</li>
             
           </ul>
         </td>
@@ -867,26 +735,26 @@
       
       
       <tr class="">
-        <td style="text-align: center;"><strong>14</strong></td>
+        <td style="text-align: center;"><strong>11</strong></td>
         <td>
-          <strong>Capstone Project Planning</strong>
+          <strong>Cloud Cluster Parallelism Tasks</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze requirements for a formal language system.
+              Analyze cloud infrastructure for parallel task scheduling.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Design architecture for the capstone project.
+              Design job submission scripts for cloud clusters.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate commitment to project goals.
+              Value cost-effectiveness in resource utilization.
             </li>
             
           </ul>
@@ -894,16 +762,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Project Planning Workshop</li>
+            <li>Cloud Lab (AWS/Azure)</li>
             
-            <li>Team Meeting</li>
+            <li>Scripting Workshop</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Proposal Draft</strong></li>
+            <li><strong>Cloud Task Submission</strong></li>
             
           </ul>
         </td>
@@ -911,43 +779,87 @@
       
       
       <tr class="">
-        <td style="text-align: center;"><strong>15</strong></td>
+        <td style="text-align: center;"><strong>12</strong></td>
         <td>
-          <strong>Capstone Project Development</strong>
+          <strong>High-Performance Solutions for Cloud Clusters</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Implement core automata logic in the project.
+              Evaluate containerization strategies for parallel workloads.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Build and integrate language recognition modules.
+              Create optimized Docker containers for HPC tasks.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Ensure code quality and documentation standards.
+              Demonstrate responsibility in cloud resource management.
             </li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
+            
+            <li>Containerization Lab</li>
+            
+            <li>Performance Tuning</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Container Image Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>13</strong></td>
+        <td>
+          <strong>Capstone Project Development Phase 1</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design a parallel solution for a real-world problem.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement core functionality of the capstone project.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Collaborate effectively in group development teams.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Project Kickoff</li>
             
             <li>Development Sprint</li>
             
-            <li>Code Review</li>
-            
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Milestone Check</strong></li>
+            <li><strong>Project Proposal Review</strong></li>
             
           </ul>
         </td>
@@ -955,16 +867,16 @@
       
       
       <tr class="">
-        <td style="text-align: center;"><strong>16</strong></td>
+        <td style="text-align: center;"><strong>14</strong></td>
         <td>
-          <strong>Capstone Project Testing &amp; Debugging</strong>
+          <strong>Capstone Project Development Phase 2</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Evaluate system behavior against formal specifications.
+              Refactor code for improved parallel efficiency.
             </li>
             
             <li style="margin-bottom: 4px;">
@@ -974,7 +886,7 @@
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Value accuracy in system testing.
+              Maintain professional documentation standards.
             </li>
             
           </ul>
@@ -982,16 +894,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Testing Phase</li>
+            <li>Code Refactoring Lab</li>
             
-            <li>Bug Fixing Session</li>
+            <li>Documentation Workshop</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Test Report</strong></li>
+            <li><strong>Mid-Project Checkpoint</strong></li>
             
           </ul>
         </td>
@@ -999,26 +911,70 @@
       
       
       <tr class="">
-        <td style="text-align: center;"><strong>17</strong></td>
+        <td style="text-align: center;"><strong>15</strong></td>
         <td>
-          <strong>Capstone Project Presentation Preparation</strong>
+          <strong>Capstone Project Development Phase 3</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Synthesize project outcomes into a presentation.
+              Test the capstone solution under load.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Deliver the capstone defense effectively.
+              Validate performance against baseline metrics.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate confidence and professionalism.
+              Ensure ethical use of computational resources.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Load Testing Lab</li>
+            
+            <li>Validation Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Performance Test Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>16</strong></td>
+        <td>
+          <strong>Capstone Project Finalization</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Finalize the capstone project documentation.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Prepare presentation materials for defense.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate confidence in presenting technical solutions.
             </li>
             
           </ul>
@@ -1028,7 +984,7 @@
             
             <li>Presentation Rehearsal</li>
             
-            <li>Peer Review</li>
+            <li>Final Review</li>
             
           </ul>
         </td>
@@ -1036,6 +992,50 @@
           <ul style="padding-left: 14px;">
             
             <li><strong>Presentation Draft</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>17</strong></td>
+        <td>
+          <strong>Capstone Project Defense Preparation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Review final project deliverables.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Practice answering technical questions on defense.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Reflect on learning outcomes and growth.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Mock Defense</li>
+            
+            <li>Feedback Session</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Defense Rubric</strong></li>
             
           </ul>
         </td>
@@ -1052,17 +1052,17 @@
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Assess comprehensive understanding of course content.
+              Demonstrate comprehensive understanding of parallel computing.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Defend the capstone project before evaluators.
+              Defend the capstone project before faculty panel.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Exhibit academic integrity and professionalism.
+              Evaluate personal achievement against course objectives.
             </li>
             
           </ul>

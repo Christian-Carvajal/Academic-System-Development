@@ -1,17 +1,17 @@
 {
   "course_metadata": {
-    "course_code": "BSCS 3108",
-    "course_title": "Automata Theory and Formal Languages",
+    "course_code": "BSCS 3112",
+    "course_title": "Artificial Intelligence",
     "credit_units": 3,
-    "lecture_hours": 3,
+    "lecture_hours": 2,
     "lab_hours": 3,
-    "prerequisites": "CS 2106 (Discrete Mathematics)",
-    "course_description": "Rigorous theoretical exploration of computational models and formal grammars, covering regular expressions, deterministic and non-deterministic finite automata (DFA/NFA), context-free grammars, pushdown automata, Turing machines, decidability, the Halting problem, and the Chomsky hierarchy."
+    "prerequisites": "CS 3110 (Data Structures and Algorithms)",
+    "course_description": "Foundational and modern principles of artificial intelligence, including intelligent agents, state-space search heuristics (A*, Minimax), knowledge representation, first-order logic, probabilistic reasoning, machine learning pipelines, deep neural networks, computer vision, natural language processing, and ethical considerations in autonomous systems."
   },
   "course_outcomes": [
     {
       "clo_id": "CLO1",
-      "description": "Analyze complex computational models and apply principles of computing to determine system behavior.",
+      "description": "Analyze the principles of intelligent agents and state-space search heuristics to solve complex computing problems.",
       "bloom_level": "Analyze",
       "program_outcomes_mapped": [
         "PLO1",
@@ -20,17 +20,17 @@
     },
     {
       "clo_id": "CLO2",
-      "description": "Design formal grammars and automata structures to represent specific language classes rigorously.",
+      "description": "Create machine learning pipelines and deep neural network architectures for computer vision and natural language processing tasks.",
       "bloom_level": "Create",
       "program_outcomes_mapped": [
         "PLO1",
-        "PLO5"
+        "PLO2"
       ]
     },
     {
       "clo_id": "CLO3",
-      "description": "Evaluate decidability and complexity of algorithmic problems within the Chomsky hierarchy.",
-      "bloom_level": "Evaluate",
+      "description": "Apply first-order logic and probabilistic reasoning to formulate knowledge representation systems for autonomous agents.",
+      "bloom_level": "Apply",
       "program_outcomes_mapped": [
         "PLO1",
         "PLO5"
@@ -38,11 +38,11 @@
     },
     {
       "clo_id": "CLO4",
-      "description": "Apply theoretical principles to implement algorithms for language recognition and transformation.",
-      "bloom_level": "Apply",
+      "description": "Evaluate the ethical implications of AI systems and communicate professional solutions in various computing contexts.",
+      "bloom_level": "Evaluate",
       "program_outcomes_mapped": [
         "PLO1",
-        "PLO5"
+        "PLO3"
       ]
     }
   ],
@@ -50,273 +50,259 @@
     {
       "week_number": 1,
       "topics": [
-        "Introduction to Automata & Regular Languages"
+        "Introduction to AI and Intelligent Agents"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO1.1",
-          "description": "Define formal language classes and computational models.",
+          "description": "Define intelligent agents and their environments.",
           "domain": "K"
         },
         {
           "llo_id": "LLO1.2",
-          "description": "Construct regular expressions from given patterns.",
+          "description": "Trace agent behavior in different environments.",
           "domain": "S"
         },
         {
           "llo_id": "LLO1.3",
-          "description": "Appreciate the logical rigor of formal systems.",
+          "description": "Appreciate the autonomy of autonomous systems.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Formal Languages",
-        "Pattern Matching Lab"
+        "Lecture on Agent Types"
       ],
       "assessment_tasks": [
-        "Weekly Quiz"
+        "Quiz on Agent Definitions"
       ],
       "resources": [
         "Course LMS",
-        "Textbook"
+        "Textbook Chapter 1"
       ]
     },
     {
       "week_number": 2,
       "topics": [
-        "Finite Automata: DFA & NFA"
+        "State-Space Search Algorithms"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO2.1",
-          "description": "Analyze state transitions in Deterministic Finite Automata.",
+          "description": "Analyze state-space representation for problems.",
           "domain": "K"
         },
         {
           "llo_id": "LLO2.2",
-          "description": "Design NFA from regular expressions using Thompson's construction.",
+          "description": "Implement Breadth-First Search (BFS).",
           "domain": "S"
         },
         {
           "llo_id": "LLO2.3",
-          "description": "Value the precision required in state modeling.",
+          "description": "Value computational efficiency in search.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "DFA/NFA Theory Lecture",
-        "Simulation Lab"
+        "Lab: BFS Implementation"
       ],
       "assessment_tasks": [
-        "Lab Report"
+        "Lab Report on Search Complexity"
       ],
       "resources": [
-        "IDE",
-        "Online Simulators"
+        "Python Libraries",
+        "IDE"
       ]
     },
     {
       "week_number": 3,
       "topics": [
-        "Equivalence & Minimization of Automata"
+        "Heuristics and A* Search"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO3.1",
-          "description": "Evaluate equivalence between DFAs using Myhill-Nerode theorem.",
+          "description": "Formulate admissible heuristics for pathfinding.",
           "domain": "K"
         },
         {
           "llo_id": "LLO3.2",
-          "description": "Implement state minimization algorithms for DFA optimization.",
+          "description": "Apply A* algorithm to solve mazes.",
           "domain": "S"
         },
         {
           "llo_id": "LLO3.3",
-          "description": "Demonstrate commitment to algorithmic efficiency.",
+          "description": "Recognize limitations of heuristic search.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Equivalence Proof Workshop",
-        "Minimization Lab"
+        "Lab: A* Pathfinding"
       ],
       "assessment_tasks": [
-        "Proof Submission"
+        "Midterm Exam Preparation Quiz"
       ],
       "resources": [
-        "Course LMS",
-        "Mathematical Tools"
+        "Graph Theory Notes"
       ]
     },
     {
       "week_number": 4,
       "topics": [
-        "Context-Free Grammars (CFG) & Parsing"
+        "Introduction to Knowledge Representation"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO4.1",
-          "description": "Formulate CFGs to generate specific language classes.",
+          "description": "Define predicates and quantifiers.",
           "domain": "K"
         },
         {
           "llo_id": "LLO4.2",
-          "description": "Construct parse trees for given grammars.",
+          "description": "Construct logical formulas from sentences.",
           "domain": "S"
         },
         {
           "llo_id": "LLO4.3",
-          "description": "Respect the hierarchical structure of syntax.",
+          "description": "Respect the rigor of formal logic.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "CFG Construction Lecture",
-        "Parsing Lab"
+        "Lecture on Propositional Logic"
       ],
       "assessment_tasks": [
-        "Parse Tree Assignment"
+        "Homework: Logic Translation"
       ],
       "resources": [
-        "Textbook",
-        "Parser Generator"
+        "Logic Textbook"
       ]
     },
     {
       "week_number": 5,
       "topics": [
-        "Pushdown Automata & PDA Theory"
+        "First-Order Logic and Inference"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO5.1",
-          "description": "Analyze language recognition capabilities of PDAs.",
+          "description": "Translate natural language to FOL.",
           "domain": "K"
         },
         {
           "llo_id": "LLO5.2",
-          "description": "Design PDAs to recognize context-free languages.",
+          "description": "Build knowledge bases using FOL.",
           "domain": "S"
         },
         {
           "llo_id": "LLO5.3",
-          "description": "Appreciate the role of stack memory in computation.",
+          "description": "Value accuracy in representation.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "PDA Theory Lecture",
-        "Stack Simulation Lab"
+        "Lab: Prolog Programming"
       ],
       "assessment_tasks": [
-        "Design Document"
+        "Quiz on FOL Syntax"
       ],
       "resources": [
-        "Course LMS",
-        "Simulation Tools"
+        "Prolog IDE"
       ]
     },
     {
       "week_number": 6,
       "topics": [
-        "Chomsky Hierarchy & Classification"
+        "Probabilistic Reasoning and Bayesian Nets"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO6.1",
-          "description": "Classify grammars within the Chomsky hierarchy.",
+          "description": "Calculate conditional probabilities.",
           "domain": "K"
         },
         {
           "llo_id": "LLO6.2",
-          "description": "Evaluate language properties based on grammar type.",
+          "description": "Apply Bayesian networks to inference.",
           "domain": "S"
         },
         {
           "llo_id": "LLO6.3",
-          "description": "Value the theoretical ordering of computational power.",
+          "description": "Acknowledge uncertainty in data.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Hierarchy Classification Workshop",
-        "Discussion"
+        "Lab: BN Construction"
       ],
       "assessment_tasks": [
-        "Classification Quiz"
+        "Homework on Probability"
       ],
       "resources": [
-        "Textbook",
-        "Course LMS"
+        "Bayesian Tools"
       ]
     },
     {
       "week_number": 7,
       "topics": [
-        "Turing Machines & Computation Models"
+        "Machine Learning Fundamentals"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO7.1",
-          "description": "Define Turing Machine components and operation.",
+          "description": "Identify supervised vs unsupervised tasks.",
           "domain": "K"
         },
         {
           "llo_id": "LLO7.2",
-          "description": "Implement a Turing Machine for specific input processing.",
+          "description": "Prepare datasets for training.",
           "domain": "S"
         },
         {
           "llo_id": "LLO7.3",
-          "description": "Demonstrate respect for computational limits.",
+          "description": "Understand data importance in ML.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Turing Machine Lecture",
-        "Implementation Lab"
+        "Lecture on ML Pipelines"
       ],
       "assessment_tasks": [
-        "Code Submission"
+        "Dataset Preparation Task"
       ],
       "resources": [
-        "IDE",
-        "Textbook"
+        "Scikit-Learn"
       ]
     },
     {
       "week_number": 8,
       "topics": [
-        "Decidability & Undecidability"
+        "Deep Neural Networks Architecture"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO8.1",
-          "description": "Determine decidability of algorithmic problems.",
+          "description": "Define layers and activation functions.",
           "domain": "K"
         },
         {
           "llo_id": "LLO8.2",
-          "description": "Prove undecidability using reduction techniques.",
+          "description": "Build neural network architectures.",
           "domain": "S"
         },
         {
           "llo_id": "LLO8.3",
-          "description": "Acknowledge the inherent limits of computation.",
+          "description": "Appreciate model complexity.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Decidability Theory Lecture",
-        "Proof Workshop"
+        "Lab: NN Design"
       ],
       "assessment_tasks": [
-        "Proof Submission"
+        "Architecture Design Proposal"
       ],
       "resources": [
-        "Textbook",
-        "Course LMS"
+        "TensorFlow/Keras"
       ]
     },
     {
@@ -327,17 +313,17 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO9.1",
-          "description": "Assess mastery of Finite Automata and CFGs.",
+          "description": "Review course concepts comprehensively.",
           "domain": "K"
         },
         {
           "llo_id": "LLO9.2",
-          "description": "Evaluate performance under examination conditions.",
+          "description": "Demonstrate knowledge via assessment.",
           "domain": "S"
         },
         {
           "llo_id": "LLO9.3",
-          "description": "Demonstrate academic integrity during assessment.",
+          "description": "Maintain academic integrity during exam.",
           "domain": "A"
         }
       ],
@@ -345,282 +331,266 @@
         "Midterm Examination"
       ],
       "assessment_tasks": [
-        "Midterm Exam"
+        "Formative Assessment Rubric"
       ],
       "resources": [
-        "Exam Hall"
+        "Exam Paper"
       ]
     },
     {
       "week_number": 10,
       "topics": [
-        "Complexity Classes & P vs NP"
+        "Computer Vision Applications"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO10.1",
-          "description": "Analyze time and space complexity of algorithms.",
+          "description": "Identify visual features for tasks.",
           "domain": "K"
         },
         {
           "llo_id": "LLO10.2",
-          "description": "Classify problems into P, NP, or NP-Complete.",
+          "description": "Implement Convolutional Neural Networks (CNNs).",
           "domain": "S"
         },
         {
           "llo_id": "LLO10.3",
-          "description": "Value the importance of computational efficiency.",
+          "description": "Value visual data accuracy.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Complexity Theory Lecture",
-        "Case Study"
+        "Lab: Image Classification"
       ],
       "assessment_tasks": [
-        "Quiz"
+        "CV Project Milestone 1"
       ],
       "resources": [
-        "Textbook",
-        "Course LMS"
+        "OpenCV"
       ]
     },
     {
       "week_number": 11,
       "topics": [
-        "NP-Completeness & Reductions"
+        "Natural Language Processing"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO11.1",
-          "description": "Evaluate problem complexity using polynomial-time reductions.",
+          "description": "Define tokens and embeddings.",
           "domain": "K"
         },
         {
           "llo_id": "LLO11.2",
-          "description": "Design reduction proofs for NP-Complete problems.",
+          "description": "Build Recurrent Neural Networks (RNNs).",
           "domain": "S"
         },
         {
           "llo_id": "LLO11.3",
-          "description": "Appreciate the difficulty of optimization tasks.",
+          "description": "Respect language nuances.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Reduction Workshop",
-        "Group Discussion"
+        "Lab: NLP Text Processing"
       ],
       "assessment_tasks": [
-        "Proof Assignment"
+        "NLP Project Milestone 1"
       ],
       "resources": [
-        "Textbook",
-        "Course LMS"
+        "NLTK"
       ]
     },
     {
       "week_number": 12,
       "topics": [
-        "Algorithm Implementation & Recognition"
+        "Advanced Deep Learning"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO12.1",
-          "description": "Implement language recognition algorithms in code.",
+          "description": "Compare transformer architectures.",
           "domain": "K"
         },
         {
           "llo_id": "LLO12.2",
-          "description": "Apply theoretical principles to build functional systems.",
+          "description": "Tune hyperparameters for optimization.",
           "domain": "S"
         },
         {
           "llo_id": "LLO12.3",
-          "description": "Ensure reliability in software implementation.",
+          "description": "Acknowledge bias risks in models.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Coding Workshop",
-        "Debugging Session"
+        "Lab: Hyperparameter Tuning"
       ],
       "assessment_tasks": [
-        "Code Review"
+        "Model Performance Report"
       ],
       "resources": [
-        "IDE",
-        "GitHub"
+        "PyTorch"
       ]
     },
     {
       "week_number": 13,
       "topics": [
-        "Language Transformation & Algorithms"
+        "AI Ethics and Society"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO13.1",
-          "description": "Formulate algorithms for string transformation.",
+          "description": "Identify ethical issues in AI.",
           "domain": "K"
         },
         {
           "llo_id": "LLO13.2",
-          "description": "Execute transformation routines with correct logic.",
+          "description": "Draft policy guidelines for systems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO13.3",
-          "description": "Maintain precision in data processing.",
+          "description": "Commit to professional ethics.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Algorithm Design Lab",
-        "Testing Session"
+        "Seminar on AI Ethics"
       ],
       "assessment_tasks": [
-        "Lab Report"
+        "Ethics Policy Draft"
       ],
       "resources": [
-        "IDE",
-        "Test Cases"
+        "Ethics Guidelines"
       ]
     },
     {
       "week_number": 14,
       "topics": [
-        "Capstone Project Planning"
+        "Bias and Fairness in AI"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO14.1",
-          "description": "Analyze requirements for a formal language system.",
+          "description": "Analyze sources of algorithmic bias.",
           "domain": "K"
         },
         {
           "llo_id": "LLO14.2",
-          "description": "Design architecture for the capstone project.",
+          "description": "Mitigate bias in datasets and models.",
           "domain": "S"
         },
         {
           "llo_id": "LLO14.3",
-          "description": "Demonstrate commitment to project goals.",
+          "description": "Promote equity in AI solutions.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Project Planning Workshop",
-        "Team Meeting"
+        "Lab: Bias Mitigation"
       ],
       "assessment_tasks": [
-        "Proposal Draft"
+        "Bias Analysis Report"
       ],
       "resources": [
-        "Course LMS",
-        "Tools"
+        "Fairness Metrics"
       ]
     },
     {
       "week_number": 15,
       "topics": [
-        "Capstone Project Development"
+        "Societal Impact of AI"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO15.1",
-          "description": "Implement core automata logic in the project.",
+          "description": "Evaluate societal risks and benefits.",
           "domain": "K"
         },
         {
           "llo_id": "LLO15.2",
-          "description": "Build and integrate language recognition modules.",
+          "description": "Propose solutions for deployment.",
           "domain": "S"
         },
         {
           "llo_id": "LLO15.3",
-          "description": "Ensure code quality and documentation standards.",
+          "description": "Advocate for safety standards.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Development Sprint",
-        "Code Review"
+        "Workshop on Impact Assessment"
       ],
       "assessment_tasks": [
-        "Milestone Check"
+        "Impact Assessment Paper"
       ],
       "resources": [
-        "IDE",
-        "Git"
+        "Case Studies"
       ]
     },
     {
       "week_number": 16,
       "topics": [
-        "Capstone Project Testing & Debugging"
+        "Capstone Project Design"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO16.1",
-          "description": "Evaluate system behavior against formal specifications.",
+          "description": "Define project scope and goals.",
           "domain": "K"
         },
         {
           "llo_id": "LLO16.2",
-          "description": "Debug and optimize the capstone application.",
+          "description": "Design system architecture.",
           "domain": "S"
         },
         {
           "llo_id": "LLO16.3",
-          "description": "Value accuracy in system testing.",
+          "description": "Value innovation in design.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Testing Phase",
-        "Bug Fixing Session"
+        "Capstone Design Workshop"
       ],
       "assessment_tasks": [
-        "Test Report"
+        "Design Proposal Review"
       ],
       "resources": [
-        "IDE",
-        "Test Suite"
+        "Project Templates"
       ]
     },
     {
       "week_number": 17,
       "topics": [
-        "Capstone Project Presentation Preparation"
+        "Capstone Project Development"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO17.1",
-          "description": "Synthesize project outcomes into a presentation.",
+          "description": "Integrate components into final system.",
           "domain": "K"
         },
         {
           "llo_id": "LLO17.2",
-          "description": "Deliver the capstone defense effectively.",
+          "description": "Implement solution with testing.",
           "domain": "S"
         },
         {
           "llo_id": "LLO17.3",
-          "description": "Demonstrate confidence and professionalism.",
+          "description": "Ensure reliability of output.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Presentation Rehearsal",
-        "Peer Review"
+        "Capstone Coding Sprint"
       ],
       "assessment_tasks": [
-        "Presentation Draft"
+        "System Testing Report"
       ],
       "resources": [
-        "Course LMS",
-        "Project Files"
+        "Development Tools"
       ]
     },
     {
@@ -631,31 +601,28 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO18.1",
-          "description": "Assess comprehensive understanding of course content.",
+          "description": "Review final work comprehensively.",
           "domain": "K"
         },
         {
           "llo_id": "LLO18.2",
-          "description": "Defend the capstone project before evaluators.",
+          "description": "Defend solutions before panel.",
           "domain": "S"
         },
         {
           "llo_id": "LLO18.3",
-          "description": "Exhibit academic integrity and professionalism.",
+          "description": "Uphold academic standards during defense.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Final Exam",
-        "Capstone Defense"
+        "Final Examination & Defense"
       ],
       "assessment_tasks": [
-        "Final Exam",
-        "Defense Evaluation"
+        "Formative Assessment Rubric"
       ],
       "resources": [
-        "Exam Hall",
-        "Defense Panel"
+        "Defense Guidelines"
       ]
     }
   ]

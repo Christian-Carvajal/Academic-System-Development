@@ -11,7 +11,7 @@
   "course_outcomes": [
     {
       "clo_id": "CLO1",
-      "description": "Implement ETL pipelines and perform data cleaning to prepare datasets for analysis.",
+      "description": "Analyze raw datasets to perform data cleaning, preprocessing, and exploratory analysis using ETL pipelines.",
       "bloom_level": "Apply",
       "program_outcomes_mapped": [
         "PLO1",
@@ -20,8 +20,8 @@
     },
     {
       "clo_id": "CLO2",
-      "description": "Analyze large datasets using association rule mining and classification algorithms to extract patterns.",
-      "bloom_level": "Analyze",
+      "description": "Implement classification algorithms such as Decision Trees, Naive Bayes, and SVM to predict categorical outcomes.",
+      "bloom_level": "Create",
       "program_outcomes_mapped": [
         "PLO1",
         "PLO2"
@@ -29,8 +29,8 @@
     },
     {
       "clo_id": "CLO3",
-      "description": "Evaluate clustering techniques and model performance using appropriate metrics for accuracy and precision.",
-      "bloom_level": "Evaluate",
+      "description": "Design clustering techniques including K-Means and DBSCAN to identify patterns within unlabeled data.",
+      "bloom_level": "Analyze",
       "program_outcomes_mapped": [
         "PLO1",
         "PLO2"
@@ -38,8 +38,8 @@
     },
     {
       "clo_id": "CLO4",
-      "description": "Design a comprehensive knowledge discovery in databases (KDD) project integrating data mining techniques.",
-      "bloom_level": "Create",
+      "description": "Evaluate mining models using accuracy, precision, recall, and F-measure metrics to ensure analytical validity.",
+      "bloom_level": "Evaluate",
       "program_outcomes_mapped": [
         "PLO1",
         "PLO2",
@@ -51,391 +51,215 @@
     {
       "week_number": 1,
       "topics": [
-        "Introduction to Data Mining",
-        "Data Characteristics"
+        "Introduction to Data Mining & ETL"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO1.1",
-          "description": "Define the scope and objectives of data mining projects.",
+          "description": "Define data mining concepts and processes.",
           "domain": "K"
         },
         {
           "llo_id": "LLO1.2",
-          "description": "Configure development environments using IDEs and version control.",
+          "description": "Design basic ETL pipelines for data ingestion.",
           "domain": "S"
         },
         {
           "llo_id": "LLO1.3",
-          "description": "Demonstrate professional ethics in data handling and privacy.",
+          "description": "Appreciate the ethical implications of data collection.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Data Mining Concepts"
+        "Lecture on Data Mining Fundamentals"
       ],
       "assessment_tasks": [
-        "Participation Rubric"
+        "Quiz on Definitions"
       ],
       "resources": [
         "Course LMS",
-        "Python IDE"
+        "Textbook"
       ]
     },
     {
       "week_number": 2,
       "topics": [
-        "Data Types and Structures",
-        "Exploratory Data Analysis"
+        "Data Cleaning & Preprocessing"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO2.1",
-          "description": "Categorize data into structured, semi-structured, and unstructured formats.",
+          "description": "Analyze raw datasets for missing values and outliers.",
           "domain": "K"
         },
         {
           "llo_id": "LLO2.2",
-          "description": "Construct exploratory analysis reports using statistical tools.",
+          "description": "Implement imputation techniques to clean data.",
           "domain": "S"
         },
         {
           "llo_id": "LLO2.3",
-          "description": "Adhere to academic integrity during data exploration tasks.",
+          "description": "Respect data privacy during cleaning processes.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Data Exploration"
+        "Lab Exercise on Data Cleaning"
       ],
       "assessment_tasks": [
-        "Lab Report Submission"
+        "Preprocessing Lab Report"
       ],
       "resources": [
-        "Jupyter Notebook",
-        "Statistical Packages"
+        "Python Pandas Library"
       ]
     },
     {
       "week_number": 3,
       "topics": [
-        "Data Preprocessing Fundamentals",
-        "Handling Missing Values"
+        "Exploratory Data Analysis (EDA)"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO3.1",
-          "description": "Identify missing data patterns and their impact on analysis.",
+          "description": "Formulate hypotheses from visual data patterns.",
           "domain": "K"
         },
         {
           "llo_id": "LLO3.2",
-          "description": "Implement imputation strategies for incomplete datasets.",
+          "description": "Generate statistical summaries for datasets.",
           "domain": "S"
         },
         {
           "llo_id": "LLO3.3",
-          "description": "Prioritize data quality over speed in preprocessing workflows.",
+          "description": "Value evidence-based decision making.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Imputation Techniques"
+        "EDA Visualization Workshop"
       ],
       "assessment_tasks": [
-        "Preprocessing Code Review"
+        "Statistical Summary Assignment"
       ],
       "resources": [
-        "Pandas Library Documentation"
+        "Matplotlib Library"
       ]
     },
     {
       "week_number": 4,
       "topics": [
-        "ETL Pipeline Design",
-        "Data Transformation"
+        "Classification Algorithms: Decision Trees"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO4.1",
-          "description": "Map extraction requirements to source database schemas.",
+          "description": "Explain decision tree construction mechanisms.",
           "domain": "K"
         },
         {
           "llo_id": "LLO4.2",
-          "description": "Develop automated ETL scripts for data extraction and loading.",
+          "description": "Implement decision trees for prediction tasks.",
           "domain": "S"
         },
         {
           "llo_id": "LLO4.3",
-          "description": "Collaborate effectively within a team to design pipelines.",
+          "description": "Demonstrate logical reasoning in model building.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Group Project: Pipeline Design"
+        "Lab Exercise on Decision Trees"
       ],
       "assessment_tasks": [
-        "Pipeline Architecture Diagram"
+        "Code Review"
       ],
       "resources": [
-        "SQL Server",
-        "Apache Airflow"
+        "Scikit-learn Library"
       ]
     },
     {
       "week_number": 5,
       "topics": [
-        "Data Cleaning Strategies",
-        "Outlier Detection"
+        "Classification Algorithms: Naive Bayes"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO5.1",
-          "description": "Analyze causes of data inconsistencies and errors.",
+          "description": "Describe probability distributions in classification.",
           "domain": "K"
         },
         {
           "llo_id": "LLO5.2",
-          "description": "Apply statistical methods to detect and remove outliers.",
+          "description": "Apply Naive Bayes for categorical prediction.",
           "domain": "S"
         },
         {
           "llo_id": "LLO5.3",
-          "description": "Maintain objectivity when correcting erroneous data records.",
+          "description": "Acknowledge limitations of probabilistic models.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Outlier Removal"
+        "Lab Exercise on Naive Bayes"
       ],
       "assessment_tasks": [
-        "Cleaned Dataset Validation"
+        "Model Comparison Quiz"
       ],
       "resources": [
-        "Scikit-learn",
-        "Data Cleaning Tools"
+        "Scikit-learn Library"
       ]
     },
     {
       "week_number": 6,
       "topics": [
-        "Feature Engineering",
-        "Dimensionality Reduction"
+        "Classification Algorithms: SVM"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO6.1",
-          "description": "Select relevant features for predictive modeling.",
+          "description": "Identify support vectors in hyperplanes.",
           "domain": "K"
         },
         {
           "llo_id": "LLO6.2",
-          "description": "Engineer new features to enhance model performance.",
+          "description": "Configure Support Vector Machines for training.",
           "domain": "S"
         },
         {
           "llo_id": "LLO6.3",
-          "description": "Respect intellectual property when using public datasets.",
+          "description": "Commit to rigorous model validation standards.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Feature Selection"
+        "Lab Exercise on SVM"
       ],
       "assessment_tasks": [
-        "Feature Importance Analysis"
+        "Hyperparameter Tuning Task"
       ],
       "resources": [
-        "Feature Engineering Libraries"
+        "Scikit-learn Library"
       ]
     },
     {
       "week_number": 7,
       "topics": [
-        "Data Integration",
-        "Schema Merging"
+        "Model Evaluation Metrics"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO7.1",
-          "description": "Resolve conflicts when merging heterogeneous data sources.",
+          "description": "Calculate accuracy, precision, recall, and F-measure.",
           "domain": "K"
         },
         {
           "llo_id": "LLO7.2",
-          "description": "Integrate multiple datasets into a unified schema.",
+          "description": "Evaluate mining models using multiple metrics.",
           "domain": "S"
         },
         {
           "llo_id": "LLO7.3",
-          "description": "Communicate technical constraints to stakeholders clearly.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Lab Exercise on Data Integration"
-      ],
-      "assessment_tasks": [
-        "Integrated Dataset Report"
-      ],
-      "resources": [
-        "Data Warehouse Tools"
-      ]
-    },
-    {
-      "week_number": 8,
-      "topics": [
-        "ETL Pipeline Optimization",
-        "CLO1 Review",
-        "Midterm Prep"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO8.1",
-          "description": "Evaluate the efficiency of current ETL processes.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO8.2",
-          "description": "Optimize pipeline execution times and resource usage.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO8.3",
-          "description": "Demonstrate readiness for assessment through self-review.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Midterm Examination Preparation"
-      ],
-      "assessment_tasks": [
-        "Formative Assessment Rubric"
-      ],
-      "resources": [
-        "Past Midterm Papers"
-      ]
-    },
-    {
-      "week_number": 9,
-      "topics": [
-        "Midterm Examination",
-        "Review of CLO1"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO9.1",
-          "description": "Assess understanding of ETL and data cleaning concepts.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO9.2",
-          "description": "Evaluate performance on applied ETL tasks under timed conditions.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO9.3",
-          "description": "Maintain composure and focus during the examination.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Midterm Examination"
-      ],
-      "assessment_tasks": [
-        "Summative Assessment"
-      ],
-      "resources": [
-        "Exam Center"
-      ]
-    },
-    {
-      "week_number": 10,
-      "topics": [
-        "Association Rule Mining",
-        "Apriori Algorithm"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO10.1",
-          "description": "Explain the principles of association rule mining.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO10.2",
-          "description": "Implement Apriori algorithm to discover itemsets.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO10.3",
-          "description": "Interpret business rules derived from transaction data.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Lab Exercise on Association Rules"
-      ],
-      "assessment_tasks": [
-        "Rule Discovery Report"
-      ],
-      "resources": [
-        "Apriori Implementation"
-      ]
-    },
-    {
-      "week_number": 11,
-      "topics": [
-        "Classification Algorithms",
-        "Supervised Learning"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO11.1",
-          "description": "Compare classification algorithms for binary and multi-class problems.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO11.2",
-          "description": "Train classifiers using labeled datasets.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO11.3",
-          "description": "Justify algorithm selection based on problem constraints.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Lab Exercise on Classification"
-      ],
-      "assessment_tasks": [
-        "Model Training Log"
-      ],
-      "resources": [
-        "Scikit-learn"
-      ]
-    },
-    {
-      "week_number": 12,
-      "topics": [
-        "Evaluation Metrics",
-        "Accuracy and Precision"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO12.1",
-          "description": "Calculate accuracy, precision, recall, and F1-score.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO12.2",
-          "description": "Visualize model performance using confusion matrices.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO12.3",
-          "description": "Critique model reliability based on metric thresholds.",
+          "description": "Maintain objectivity in performance assessment.",
           "domain": "A"
         }
       ],
@@ -443,32 +267,31 @@
         "Lab Exercise on Metrics Calculation"
       ],
       "assessment_tasks": [
-        "Confusion Matrix Analysis"
+        "Metric Calculation Quiz"
       ],
       "resources": [
-        "Visualization Libraries"
+        "Scikit-learn Library"
       ]
     },
     {
-      "week_number": 13,
+      "week_number": 8,
       "topics": [
-        "Clustering Techniques",
-        "K-Means Algorithm"
+        "Clustering Techniques: K-Means & DBSCAN Intro"
       ],
       "lesson_outcomes": [
         {
-          "llo_id": "LLO13.1",
-          "description": "Differentiate between partitioning and hierarchical clustering.",
+          "llo_id": "LLO8.1",
+          "description": "Differentiate between supervised and unsupervised learning.",
           "domain": "K"
         },
         {
-          "llo_id": "LLO13.2",
-          "description": "Apply K-Means algorithm to group unlabeled data.",
+          "llo_id": "LLO8.2",
+          "description": "Apply K-Means clustering algorithms.",
           "domain": "S"
         },
         {
-          "llo_id": "LLO13.3",
-          "description": "Validate cluster quality using internal metrics.",
+          "llo_id": "LLO8.3",
+          "description": "Recognize the value of pattern discovery.",
           "domain": "A"
         }
       ],
@@ -476,175 +299,330 @@
         "Lab Exercise on Clustering"
       ],
       "assessment_tasks": [
-        "Cluster Visualization"
+        "Clustering Lab Report"
       ],
       "resources": [
-        "K-Means Implementation"
+        "Scikit-learn Library"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Demonstrate comprehensive understanding of course material.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Apply learned concepts to solve complex problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Showcase integrity during assessment.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Clustering Techniques: K-Means Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Analyze convergence behavior of K-Means.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Optimize K-Means using initialization strategies.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Value iterative improvement in algorithms.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on K-Means Optimization"
+      ],
+      "assessment_tasks": [
+        "Optimization Lab Report"
+      ],
+      "resources": [
+        "Scikit-learn Library"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Clustering Techniques: DBSCAN Advanced"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Explain density-based clustering principles.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Implement DBSCAN for noise handling.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Demonstrate adaptability to data shapes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on DBSCAN"
+      ],
+      "assessment_tasks": [
+        "Density Lab Report"
+      ],
+      "resources": [
+        "Scikit-learn Library"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Advanced Mining Techniques"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Formulate association rule mining strategies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Design frequent itemset algorithms.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Appreciate the utility of market basket analysis.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Association Rules"
+      ],
+      "assessment_tasks": [
+        "Rule Mining Assignment"
+      ],
+      "resources": [
+        "Apriori Algorithm"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Capstone Project Phase 1"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Identify real-world mining problems.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Develop project proposals and datasets.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Commit to collaborative teamwork ethics.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Workshop"
+      ],
+      "assessment_tasks": [
+        "Project Proposal Review"
+      ],
+      "resources": [
+        "Course LMS"
       ]
     },
     {
       "week_number": 14,
       "topics": [
-        "Clustering Evaluation",
-        "Silhouette Score"
+        "Capstone Project Phase 2"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO14.1",
-          "description": "Assess the effectiveness of clustering results.",
+          "description": "Analyze project requirements and constraints.",
           "domain": "K"
         },
         {
           "llo_id": "LLO14.2",
-          "description": "Optimize cluster count using silhouette scores.",
+          "description": "Implement mining models for the capstone.",
           "domain": "S"
         },
         {
           "llo_id": "LLO14.3",
-          "description": "Present findings with confidence and clarity.",
+          "description": "Demonstrate professional project management.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab Exercise on Cluster Evaluation"
+        "Capstone Development"
       ],
       "assessment_tasks": [
-        "Optimization Report"
+        "Code Review"
       ],
       "resources": [
-        "Silhouette Calculation Tools"
+        "IDE"
       ]
     },
     {
       "week_number": 15,
       "topics": [
-        "KDD Process",
-        "Data Mining Project Phase 1"
+        "Capstone Project Phase 3"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO15.1",
-          "description": "Outline the steps of the Knowledge Discovery in Databases process.",
+          "description": "Evaluate model performance against benchmarks.",
           "domain": "K"
         },
         {
           "llo_id": "LLO15.2",
-          "description": "Design a comprehensive KDD project proposal.",
+          "description": "Refine models based on feedback.",
           "domain": "S"
         },
         {
           "llo_id": "LLO15.3",
-          "description": "Demonstrate commitment to project milestones and deadlines.",
+          "description": "Value continuous improvement in engineering.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Capstone Project Kickoff"
+        "Model Refinement Workshop"
       ],
       "assessment_tasks": [
-        "Project Proposal Submission"
+        "Performance Review"
       ],
       "resources": [
-        "Project Management Tools"
+        "Course LMS"
       ]
     },
     {
       "week_number": 16,
       "topics": [
-        "KDD Project Phase 2",
-        "Model Integration"
+        "Capstone Project Phase 4"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO16.1",
-          "description": "Integrate multiple data mining techniques into a single system.",
+          "description": "Document project findings and results.",
           "domain": "K"
         },
         {
           "llo_id": "LLO16.2",
-          "description": "Develop and deploy integrated models for the project.",
+          "description": "Prepare presentation materials for defense.",
           "domain": "S"
         },
         {
           "llo_id": "LLO16.3",
-          "description": "Ensure data security within the integrated system.",
+          "description": "Showcase confidence in technical work.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Capstone Project Development"
+        "Presentation Preparation"
       ],
       "assessment_tasks": [
-        "System Integration Log"
+        "Draft Presentation Review"
       ],
       "resources": [
-        "Development Environment"
+        "Course LMS"
       ]
     },
     {
       "week_number": 17,
       "topics": [
-        "KDD Project Phase 3",
-        "Final Review"
+        "Final Examination Preparation"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO17.1",
-          "description": "Analyze project results against initial objectives.",
+          "description": "Review all course concepts and algorithms.",
           "domain": "K"
         },
         {
           "llo_id": "LLO17.2",
-          "description": "Refine the final project deliverables based on feedback.",
+          "description": "Simulate exam conditions for practice.",
           "domain": "S"
         },
         {
           "llo_id": "LLO17.3",
-          "description": "Prepare for defense presentation with professionalism.",
+          "description": "Maintain focus during high-stakes testing.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Capstone Project Review"
+        "Review Session"
       ],
       "assessment_tasks": [
-        "Final Project Rubric"
+        "Practice Exam"
       ],
       "resources": [
-        "Presentation Software"
+        "Course LMS"
       ]
     },
     {
       "week_number": 18,
       "topics": [
-        "Final Examination & Capstone Defense",
-        "Course Closure"
+        "Final Examination & Capstone Defense"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO18.1",
-          "description": "Evaluate comprehensive knowledge of data mining concepts.",
+          "description": "Demonstrate mastery of Data Mining concepts.",
           "domain": "K"
         },
         {
           "llo_id": "LLO18.2",
-          "description": "Defend the capstone project before a panel of experts.",
+          "description": "Defend capstone project before panel.",
           "domain": "S"
         },
         {
           "llo_id": "LLO18.3",
-          "description": "Reflect on personal growth and course achievements.",
+          "description": "Exhibit academic integrity and professionalism.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Final Examination & Capstone Defense"
+        "Final Exam & Defense"
       ],
       "assessment_tasks": [
-        "Summative Assessment"
+        "Final Exam & Defense"
       ],
       "resources": [
-        "Exam Center"
+        "Exam Hall"
       ]
     }
   ]

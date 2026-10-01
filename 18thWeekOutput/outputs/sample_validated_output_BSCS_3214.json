@@ -1,0 +1,655 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3214",
+    "course_title": "Data Visualization",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "BSCS 3111 (Data Mining)",
+    "course_description": "Theories and hands-on practices of visual data analytics and graphical storytelling, including visual perception cognition, the Grammar of Graphics, interactive dashboard construction, exploratory plotting with modern tools (Plotly, D3.js, Seaborn), multidimensional and geospatial visualization, and effective communication of data insights."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Analyze visual perception principles and grammar of graphics to interpret data structures.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Apply modern visualization libraries (Plotly, D3.js) to construct functional interactive dashboards.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO2"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Evaluate the effectiveness of visual representations in communicating quantitative findings.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Create multidimensional geospatial visualizations to solve complex data problems.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Data Visualization & Visual Perception"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Analyze visual perception principles and cognitive biases in data interpretation.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Design basic chart types to represent univariate datasets effectively.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Appreciate the ethical responsibility of accurate data representation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Visual Perception",
+        "Chart Type Workshop"
+      ],
+      "assessment_tasks": [
+        "Quiz on Visual Cognition"
+      ],
+      "resources": [
+        "Course LMS",
+        "Data Visualization Handbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Grammar of Graphics & Data Structures"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Analyze relationships between data structures and visual encoding schemes.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Implement basic plotting functions using Python libraries.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Respect intellectual property when utilizing open-source visualization tools.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Grammar of Graphics Lecture",
+        "Coding Lab"
+      ],
+      "assessment_tasks": [
+        "Lab Assignment Submission"
+      ],
+      "resources": [
+        "Python Data Science Handbook",
+        "Jupyter Notebook"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Data Cleaning & Preprocessing for Viz"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Evaluate the impact of data quality on visualization accuracy.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Apply cleaning techniques to prepare datasets for analysis.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Demonstrate patience and diligence during data preparation tasks.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Data Cleaning Workshop",
+        "Case Study Analysis"
+      ],
+      "assessment_tasks": [
+        "Preprocessing Code Review"
+      ],
+      "resources": [
+        "Pandas Documentation",
+        "Sample Datasets"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Introduction to Plotly & Interactive Elements"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Analyze the features of interactive visualization libraries.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Apply Plotly to create dynamic scatter plots and histograms.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Value user engagement through interactive data exploration.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Plotly Tutorial",
+        "Interactive Lab"
+      ],
+      "assessment_tasks": [
+        "Plotly Project Milestone 1"
+      ],
+      "resources": [
+        "Plotly Docs",
+        "GitHub Repositories"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Advanced Plotly Features & Dashboards"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Analyze dashboard layout principles for information architecture.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Construct functional interactive dashboards using Plotly Dash.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Prioritize clarity and usability in dashboard design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Dashboard Design Workshop",
+        "Code Review"
+      ],
+      "assessment_tasks": [
+        "Midterm Prep Quiz"
+      ],
+      "resources": [
+        "Dash Documentation",
+        "UI/UX Guidelines"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "D3.js Fundamentals & SVG Manipulation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Analyze the syntax and capabilities of D3.js.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Apply SVG manipulation techniques to build custom visualizations.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Adopt a creative mindset when designing custom graphics.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "D3.js Lecture",
+        "Custom Viz Lab"
+      ],
+      "assessment_tasks": [
+        "D3.js Assignment"
+      ],
+      "resources": [
+        "D3.js Reference",
+        "MDN Web Docs"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Geospatial Data & Mapping Basics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Analyze coordinate systems and geospatial data formats.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Implement basic map visualizations using GeoPandas.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Recognize the importance of spatial context in analysis.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Geospatial Intro Lecture",
+        "Map Lab"
+      ],
+      "assessment_tasks": [
+        "GeoLab Submission"
+      ],
+      "resources": [
+        "Folium Docs",
+        "OpenStreetMap"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Midterm Review & Practice Exams"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Analyze past exam questions to identify key concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Apply visualization techniques to solve practice problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Demonstrate confidence in assessment performance.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Review Session",
+        "Practice Test"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam Preparation"
+      ],
+      "resources": [
+        "Past Exams",
+        "Study Guide"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Evaluate understanding of course concepts through written test.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Apply knowledge to solve complex visualization problems under timed conditions.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Maintain integrity during the examination process.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam"
+      ],
+      "resources": [
+        "Exam Center"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Geospatial Visualization & Choropleth Maps"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Analyze methods for representing spatial data distribution.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Create choropleth maps to visualize regional trends.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Appreciate the role of geography in data storytelling.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Map Design Workshop",
+        "Lab Exercise"
+      ],
+      "assessment_tasks": [
+        "Geo Viz Assignment"
+      ],
+      "resources": [
+        "Leaflet.js",
+        "Folium"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Advanced Geospatial: Heatmaps & Flow Maps"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Evaluate the effectiveness of density-based spatial representations.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Implement heatmaps and flow maps for movement analysis.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Demonstrate precision in representing spatial relationships.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Advanced Mapping Lab",
+        "Peer Review"
+      ],
+      "assessment_tasks": [
+        "Flow Map Project"
+      ],
+      "resources": [
+        "GeoPandas",
+        "NetworkX"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Multidimensional Data & Scatter Plot Matrix"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Analyze techniques for visualizing high-dimensional datasets.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Construct parallel coordinates and scatter plot matrices.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Value multidimensional analysis in solving complex problems.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Multidimensional Lab",
+        "Group Discussion"
+      ],
+      "assessment_tasks": [
+        "Parallel Coordinates Assignment"
+      ],
+      "resources": [
+        "PyViz",
+        "Scikit-learn"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Visual Communication & Storytelling"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Evaluate the effectiveness of visual representations in communicating findings.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Formulate narratives that enhance data comprehension.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Respect the audience when presenting quantitative findings.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Storytelling Workshop",
+        "Presentation Practice"
+      ],
+      "assessment_tasks": [
+        "Communication Rubric"
+      ],
+      "resources": [
+        "Data Storytelling Guide"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Infographic Design & Publication Standards"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Analyze industry standards for infographic design.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Design professional infographics using visualization tools.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Adhere to copyright and licensing guidelines in design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Infographic Design Lab",
+        "Portfolio Review"
+      ],
+      "assessment_tasks": [
+        "Infographic Submission"
+      ],
+      "resources": [
+        "Adobe Illustrator",
+        "Canva"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Capstone Project Proposal & Planning"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Evaluate the feasibility of proposed data visualization projects.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Formulate project plans including timeline and deliverables.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Demonstrate commitment to project success and deadlines.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Proposal Workshop",
+        "Team Planning"
+      ],
+      "assessment_tasks": [
+        "Project Proposal Defense"
+      ],
+      "resources": [
+        "Project Management Tools"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Project Development & Iteration"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Analyze project progress against initial objectives.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Implement iterative design improvements based on feedback.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Maintain resilience and adaptability during development.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Code Sprint",
+        "Peer Feedback"
+      ],
+      "assessment_tasks": [
+        "Development Checkpoint"
+      ],
+      "resources": [
+        "Version Control System"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Project Finalization & Documentation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Evaluate the completeness of project documentation.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Finalize and deploy the capstone visualization project.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Ensure professional quality in final deliverables.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Polish Session",
+        "Documentation Review"
+      ],
+      "assessment_tasks": [
+        "Final Project Submission"
+      ],
+      "resources": [
+        "GitHub",
+        "Project Repository"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Evaluate comprehensive understanding of course content through final exam.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Apply visualization skills to defend the capstone project publicly.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Demonstrate professional conduct during final defense.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Exam",
+        "Capstone Defense"
+      ],
+      "assessment_tasks": [
+        "Final Exam & Defense"
+      ],
+      "resources": [
+        "Examination Hall",
+        "Defense Panel"
+      ]
+    }
+  ]
+}
