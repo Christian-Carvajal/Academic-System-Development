@@ -46,10 +46,12 @@ submission_deliverables/
 │       └── sample_validated_output_*.json
 └── docs/                          # Comprehensive system documentation
     ├── AGENTS.md                  # Multi-agent orchestration specification
+    ├── HANDOFF.md                 # Collaborator AI engineering handoff & runbook
     ├── OBE_RUBRIC_SPECIFICATION.md# CHED CMO 25 & UPHSD grading rules
     ├── PROJECT_ROADMAP.md         # Milestone execution tracking
     ├── PROJECT_TRACKING.md        # This operational tracking document
-    └── SYSTEM_ARCHITECTURE.md     # Detailed technical architecture blueprint
+    ├── SYSTEM_ARCHITECTURE.md     # Detailed technical architecture blueprint
+    └── projectInstructionByProfessor.md # Exact verbatim raw professor instructions
 ```
 
 ---
