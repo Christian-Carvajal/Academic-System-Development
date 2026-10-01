@@ -1,0 +1,635 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3108",
+    "course_title": "Automata Theory and Formal Languages",
+    "credit_units": 3,
+    "lecture_hours": 3,
+    "lab_hours": 3,
+    "prerequisites": "CS 2106 (Discrete Mathematics)",
+    "course_description": "Rigorous theoretical exploration of computational models and formal grammars, covering regular expressions, deterministic and non-deterministic finite automata (DFA/NFA), context-free grammars, pushdown automata, Turing machines, decidability, the Halting problem, and the Chomsky hierarchy."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Analyze computational models of finite automata to solve language recognition problems.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Design context-free grammars and pushdown automata for specific formal language specifications.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Evaluate the decidability of algorithmic problems using Turing machine theory.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Formulate solutions to undecidable problems within the Chomsky hierarchy framework.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Automata & Finite Automata"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Define states and transitions in Deterministic Finite Automata (DFA).",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Construct NFA from regular expressions.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Appreciate the logical structure of computation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on DFA Theory"
+      ],
+      "assessment_tasks": [
+        "Quiz on Definitions"
+      ],
+      "resources": [
+        "Course LMS",
+        "Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Regular Languages & Closure Properties"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Identify languages closed under union and intersection.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Prove closure properties using set theory.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Value mathematical rigor in proofs.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Proof Workshop"
+      ],
+      "assessment_tasks": [
+        "Homework Assignment"
+      ],
+      "resources": [
+        "Course LMS",
+        "Whiteboard"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Conversion between DFA and NFA"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Convert NFA to DFA using subset construction.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Analyze state minimization techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Demonstrate efficiency in algorithm design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab: Subset Construction"
+      ],
+      "assessment_tasks": [
+        "Lab Report"
+      ],
+      "resources": [
+        "IDE",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Context-Free Grammars (CFG) Basics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Classify grammars within the Chomsky Hierarchy.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Derive parse trees from context-free rules.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Respect the formalism of syntax.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Grammar Construction Lab"
+      ],
+      "assessment_tasks": [
+        "Midterm Prep Quiz"
+      ],
+      "resources": [
+        "Course LMS",
+        "Parser Tools"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Context-Free Languages & Pumping Lemma"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Apply the Pumping Lemma to prove non-regularity.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Analyze language properties using pumping rules.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Acknowledge limitations of regular languages.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Proof Session"
+      ],
+      "assessment_tasks": [
+        "Problem Set"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Pushdown Automata (PDA) & CFG Equivalence"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Design PDA for context-free languages.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Map grammar productions to stack operations.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Value the power of memory in computation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Simulation Lab"
+      ],
+      "assessment_tasks": [
+        "Design Assignment"
+      ],
+      "resources": [
+        "IDE",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Turing Machines & Computability Basics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Model computation using Turing Machine states.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Simulate TM operations on input strings.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Appreciate the universality of computation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "TM Simulation"
+      ],
+      "assessment_tasks": [
+        "Midterm Prep Quiz"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Decidability & Halting Problem"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Evaluate problems for decidability.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Construct proofs of undecidability via reduction.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Respect the boundaries of algorithmic solvability.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Proof Workshop"
+      ],
+      "assessment_tasks": [
+        "Midterm Prep Quiz"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Demonstrate mastery of Finite Automata concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Apply knowledge to solve recognition problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Evaluate understanding through written assessment.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Recursively Enumerable Languages"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Define recursively enumerable languages.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Formulate solutions for semi-decidable problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Value the distinction between decidable and undecidable.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on RE Languages"
+      ],
+      "assessment_tasks": [
+        "Quiz"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "The Halting Problem & Diagonalization"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Apply diagonalization to prove undecidability.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Analyze the Halting Problem constraints.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Acknowledge inherent computational limits.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Proof Session"
+      ],
+      "assessment_tasks": [
+        "Problem Set"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Turing Completeness & Universal Machines"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Design a universal Turing machine.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Analyze computational power of different models.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Appreciate the universality of computation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab: Universal TM"
+      ],
+      "assessment_tasks": [
+        "Design Assignment"
+      ],
+      "resources": [
+        "IDE",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Capstone Project: Language Recognition System"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Design a system for undecidable problem detection.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Formulate solutions within Chomsky hierarchy.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Demonstrate integrity in academic work.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Workshop"
+      ],
+      "assessment_tasks": [
+        "Project Proposal"
+      ],
+      "resources": [
+        "IDE",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Complexity Classes & P vs NP"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Classify problems within complexity classes.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Evaluate algorithmic efficiency.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Value the importance of optimization.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Complexity"
+      ],
+      "assessment_tasks": [
+        "Quiz"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Capstone Project: Implementation & Testing"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Implement the language recognition system.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Test against known formal languages.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Ensure accuracy in computational results.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Coding Lab"
+      ],
+      "assessment_tasks": [
+        "Code Review"
+      ],
+      "resources": [
+        "IDE",
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Review of Formal Languages & Automata"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Review DFA, NFA, and PDA concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Practice solving recognition problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Reflect on course learning outcomes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Review Session"
+      ],
+      "assessment_tasks": [
+        "Final Prep Quiz"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Project: Finalization & Defense Prep"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Finalize the Capstone project documentation.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Analyze final project results.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Prepare for public defense presentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Finalization Workshop"
+      ],
+      "assessment_tasks": [
+        "Project Final Report"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Demonstrate comprehensive knowledge of Automata Theory.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Defend Capstone project solutions publicly.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Evaluate personal growth in computational thinking.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Exam & Defense"
+      ],
+      "assessment_tasks": [
+        "Final Exam & Capstone Defense"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    }
+  ]
+}

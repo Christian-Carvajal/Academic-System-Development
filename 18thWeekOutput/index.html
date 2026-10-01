@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPHSD CCS — 18-Week Automated OBE Syllabus Studio (Lesson 5)</title>
+  <title>UPHSD CCS — 18-Week Automated OBE Syllabus Studio &amp; Repository</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -68,63 +68,123 @@
 
     /* Top Bar */
     header.app-header {
-      background: rgba(18, 9, 11, 0.95);
+      background: rgba(18, 9, 11, 0.96);
       backdrop-filter: blur(16px);
       border-top: 4px solid var(--gold-primary);
       border-bottom: 1px solid var(--border-subtle);
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 0.75rem 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      padding: 0.65rem 1.75rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
     }
 
     .header-inner {
-      max-width: 1500px;
+      max-width: 1560px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
+      gap: 1.25rem;
+      flex-wrap: wrap;
     }
 
     .brand-section {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.9rem;
     }
 
     .brand-seal {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: var(--maroon-primary);
       border: 2px solid var(--gold-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+      font-size: 1.35rem;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+      flex-shrink: 0;
     }
 
     .brand-text h1 {
       font-family: var(--font-heading);
-      font-size: 1.45rem;
-      letter-spacing: 0.05em;
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
       color: #fff;
       text-transform: uppercase;
+      line-height: 1.15;
     }
 
     .brand-text p {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--gold-bright);
       font-family: var(--font-mono);
+      margin-top: 2px;
+    }
+
+    /* Primary View Navigation Switcher */
+    .main-view-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 0.3rem 0.45rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .view-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .view-nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+
+    .view-nav-btn.active {
+      color: var(--gold-bright);
+      background: linear-gradient(135deg, rgba(127, 20, 22, 0.7) 0%, rgba(88, 12, 14, 0.9) 100%);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+    }
+
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
     }
 
     .meta-badges {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
 
@@ -132,10 +192,10 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-family: var(--font-mono);
       background: var(--bg-card);
-      padding: 0.35rem 0.75rem;
+      padding: 0.32rem 0.65rem;
       border-radius: 6px;
       border: 1px solid var(--border-subtle);
     }
@@ -154,11 +214,26 @@
 
     /* Main Container */
     main.main-content {
-      max-width: 1500px;
-      margin: 1.5rem auto;
-      padding: 0 1.5rem;
+      max-width: 1560px;
+      margin: 1.25rem auto;
+      padding: 0 1.25rem;
       flex: 1;
       width: 100%;
+    }
+
+    /* Main Views Container */
+    .main-view {
+      display: none;
+      animation: fadeIn 0.22s ease-out;
+    }
+
+    .main-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Section Headers */
@@ -167,13 +242,15 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.6rem;
       border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .section-title-bar h2 {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       letter-spacing: 0.04em;
       color: var(--text-gold);
       display: flex;
@@ -183,25 +260,57 @@
     }
 
     .section-title-bar p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-secondary);
+    }
+
+    /* Filter Pill Row */
+    .filter-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pill-btn {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .pill-btn.active {
+      background: var(--maroon-primary);
+      border-color: var(--gold-primary);
+      color: var(--gold-bright);
+      font-weight: 700;
     }
 
     /* Subject Cards Grid */
     .subject-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1.25rem;
     }
 
     .subject-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
-      padding: 1.1rem;
+      padding: 1rem;
       cursor: pointer;
-      transition: all 0.22s ease-in-out;
+      transition: all 0.2s ease-in-out;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -218,37 +327,37 @@
     .subject-card.active {
       background: var(--bg-card-active);
       border: 2px solid var(--gold-primary);
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.28);
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.28);
     }
 
     .subject-card.featured::before {
       content: "★ FEATURED AI COURSE";
       position: absolute;
-      top: -10px;
+      top: -9px;
       right: 12px;
       background: linear-gradient(90deg, #b45309, #f59e0b);
       color: #000;
       font-weight: 800;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-family: var(--font-mono);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
     }
 
     .subject-header {
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
     .subject-icon {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 8px;
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -256,7 +365,7 @@
     }
 
     .subject-info h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #fff;
       line-height: 1.25;
@@ -264,7 +373,7 @@
 
     .subject-code {
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--gold-bright);
       font-weight: 600;
     }
@@ -272,9 +381,9 @@
     .subject-meta {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.4rem;
-      font-size: 0.72rem;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+      font-size: 0.7rem;
       color: var(--text-muted);
       font-family: var(--font-mono);
     }
@@ -294,9 +403,9 @@
     }
 
     .subject-desc {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-secondary);
-      margin: 0.6rem 0;
+      margin: 0.5rem 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -308,10 +417,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 0.75rem;
-      padding-top: 0.6rem;
+      margin-top: 0.65rem;
+      padding-top: 0.55rem;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-family: var(--font-mono);
     }
 
@@ -323,54 +432,33 @@
     .pill-ready { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
     .pill-pending { background: rgba(255, 255, 255, 0.07); color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-    /* Action Control Panel */
-    .control-panel {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-gold);
-      border-radius: 12px;
-      padding: 1.25rem 1.75rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    .selected-summary h3 {
-      font-size: 1.25rem;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .selected-summary p {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      margin-top: 0.2rem;
-    }
-
+    /* Action Buttons */
     .action-buttons {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.25rem;
+      gap: 0.45rem;
+      padding: 0.55rem 1.15rem;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
       font-family: var(--font-sans);
       cursor: pointer;
       border: none;
       transition: all 0.2s ease;
       text-decoration: none;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
     .btn-primary {
@@ -408,59 +496,14 @@
       color: #fff;
     }
 
-    /* Live Progress Card */
-    .progress-card {
-      background: var(--bg-card);
-      border: 1px solid var(--gold-border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      margin-bottom: 1.5rem;
-      display: none;
-    }
-
-    .progress-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-
-    .progress-bar-container {
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 0.75rem;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--maroon-primary), var(--gold-primary));
-      transition: width 0.3s ease;
-    }
-
-    .log-box {
-      background: #000;
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 0.75rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: #34d399;
-      max-height: 140px;
-      overflow-y: auto;
-    }
-
-    /* Auto-Filled Editable Form Panel (Image 5 Design) */
+    /* Course Specification & OBE Parameter Form (Image 5) */
     .subject-form-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
       border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      padding: 1.35rem 1.6rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
     }
 
     .form-header-bar {
@@ -468,8 +511,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 0.75rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border-subtle);
       flex-wrap: wrap;
       gap: 0.75rem;
     }
@@ -477,31 +520,33 @@
     .form-header-title {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
     .form-header-title h3 {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       color: #fff;
-      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     .form-badge-live {
       font-size: 0.7rem;
       font-family: var(--font-mono);
       padding: 2px 8px;
-      border-radius: 4px;
+      border-radius: 12px;
       background: rgba(16, 185, 129, 0.15);
       color: #34d399;
       border: 1px solid rgba(16, 185, 129, 0.3);
+      font-weight: 600;
     }
 
     .form-grid-row {
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 1rem;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.85rem;
     }
 
     @media (max-width: 768px) {
@@ -529,10 +574,10 @@
       background: #08080a;
       border: 1px solid rgba(245, 158, 11, 0.25);
       border-radius: 8px;
-      padding: 0.65rem 0.85rem;
+      padding: 0.6rem 0.8rem;
       color: #f3f4f6;
       font-family: var(--font-sans);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
       transition: all 0.2s ease;
     }
@@ -545,24 +590,24 @@
 
     .form-textarea {
       resize: vertical;
-      min-height: 75px;
+      min-height: 70px;
       line-height: 1.45;
     }
 
     .form-meta-row {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
 
     .form-meta-item {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.78rem;
+      gap: 0.35rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       background: rgba(255, 255, 255, 0.03);
-      padding: 0.3rem 0.65rem;
+      padding: 0.25rem 0.55rem;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -579,220 +624,80 @@
       margin-top: 1rem;
     }
 
-    /* Workspace Header Bar & Switcher */
-    .workspace-header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 1.25rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .workspace-tabs {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .syllabus-switcher-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+    /* Live Progress Card */
+    .progress-card {
       background: var(--bg-card);
-      padding: 0.35rem 0.75rem;
-      border-radius: 8px;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .switcher-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-family: var(--font-heading);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-weight: 700;
-    }
-
-    .syllabus-switcher-select {
-      background: #08080a;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: var(--gold-bright);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .syllabus-switcher-select:focus {
-      border-color: var(--gold-bright);
-    }
-
-    /* Audit Dashboard Styles */
-    .audit-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-
-    .audit-header-banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 1.5rem;
-    }
-
-    .audit-score-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 1rem;
-      border-radius: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      font-weight: 700;
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-    }
-
-    .audit-score-pill.fail {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border-color: rgba(239, 68, 68, 0.35);
-    }
-
-    .audit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .audit-card {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--gold-border);
       border-radius: 10px;
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: all 0.2s;
+      padding: 1.15rem;
+      margin-bottom: 1.25rem;
+      display: none;
     }
 
-    .audit-card.pass {
-      border-color: rgba(16, 185, 129, 0.35);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(0, 0, 0, 0.2) 100%);
-    }
-
-    .audit-card.fail {
-      border-color: rgba(239, 68, 68, 0.45);
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(0, 0, 0, 0.2) 100%);
-    }
-
-    .audit-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+    .progress-header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 800;
-      flex-shrink: 0;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
     }
 
-    .audit-card.pass .audit-icon {
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.65rem;
     }
 
-    .audit-card.fail .audit-icon {
-      background: rgba(239, 68, 68, 0.2);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.4);
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--maroon-primary), var(--gold-primary));
+      transition: width 0.3s ease;
     }
 
-    .audit-content h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.2rem;
-    }
-
-    .audit-content p {
-      font-size: 0.8rem;
+    .log-box {
+      background: #000;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
       color: var(--text-secondary);
+      max-height: 120px;
+      overflow-y: auto;
       line-height: 1.4;
     }
 
-    .grading-summary-box {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.25rem;
-    }
-
-    .grading-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
-
-    @media (max-width: 640px) {
-      .grading-columns {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .grading-tier {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
-    }
-
-    .grading-tier h5 {
-      font-size: 0.85rem;
-      color: var(--gold-bright);
+    /* Studio Sub-tabs */
+    .studio-tabs-bar {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 0.35rem;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
-    .grading-tier-item {
+    .studio-tabs {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      padding: 0.25rem 0;
+      gap: 0.5rem;
     }
 
     .tab-btn {
-      padding: 0.6rem 1.25rem;
+      padding: 0.55rem 1.15rem;
       background: transparent;
       border: none;
       border-bottom: 2px solid transparent;
       color: var(--text-muted);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       transition: all 0.2s;
     }
 
@@ -815,15 +720,15 @@
     /* CLO Outcome Cards */
     .clos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 0.9rem;
     }
 
     .clo-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
-      padding: 1.25rem;
+      padding: 1.15rem;
       position: relative;
     }
 
@@ -831,20 +736,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
     }
 
     .clo-id {
       font-family: var(--font-heading);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: var(--gold-bright);
       font-weight: 800;
     }
 
     .bloom-pill {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-family: var(--font-mono);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       font-weight: 700;
       text-transform: uppercase;
@@ -854,21 +759,21 @@
     }
 
     .clo-text {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-primary);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.7rem;
       line-height: 1.45;
     }
 
     .clo-pos {
       display: flex;
-      gap: 0.4rem;
-      margin-bottom: 0.75rem;
+      gap: 0.35rem;
+      margin-bottom: 0.7rem;
       flex-wrap: wrap;
     }
 
     .po-badge {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-family: var(--font-mono);
       background: rgba(255, 255, 255, 0.06);
       padding: 1px 6px;
@@ -880,20 +785,21 @@
       display: flex;
       justify-content: flex-end;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 0.6rem;
+      padding-top: 0.55rem;
     }
 
     .btn-edit-clo {
       background: transparent;
       border: 1px solid var(--gold-border);
       color: var(--gold-bright);
-      font-size: 0.75rem;
-      padding: 0.3rem 0.75rem;
+      font-size: 0.74rem;
+      padding: 0.3rem 0.7rem;
       border-radius: 5px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.35rem;
+      transition: all 0.15s ease;
     }
     .btn-edit-clo:hover {
       background: rgba(245, 158, 11, 0.15);
@@ -911,22 +817,22 @@
     table.schedule-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       text-align: left;
     }
 
     table.schedule-table th {
       background: var(--bg-surface);
       color: var(--text-gold);
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 0.9rem;
       font-family: var(--font-heading);
       letter-spacing: 0.05em;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       border-bottom: 2px solid var(--border-subtle);
     }
 
     table.schedule-table td {
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 0.9rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       vertical-align: top;
     }
@@ -942,7 +848,7 @@
 
     .badge-ksa {
       display: inline-block;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       font-family: var(--font-mono);
       width: 18px;
@@ -963,32 +869,524 @@
       gap: 4px;
     }
 
-    /* Relational DB View */
+    /* Jump to Viewer Promo Card */
+    .jump-viewer-card {
+      margin-top: 1.25rem;
+      background: linear-gradient(135deg, rgba(127, 20, 22, 0.25) 0%, rgba(26, 13, 16, 0.8) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .jump-viewer-text h4 {
+      color: #fff;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .jump-viewer-text p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ========================================================= */
+    /* VIEW 2: DEDICATED SYLLABUS VIEWER & PRINT STUDIO (MASTER-DETAIL) */
+    /* ========================================================= */
+    .viewer-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 1.25rem;
+      min-height: calc(100vh - 160px);
+      align-items: stretch;
+    }
+
+    @media (max-width: 1024px) {
+      .viewer-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .viewer-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      height: fit-content;
+      max-height: calc(100vh - 140px);
+      position: sticky;
+      top: 80px;
+    }
+
+    .viewer-sidebar-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .viewer-sidebar-header p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .viewer-search-box {
+      width: 100%;
+      background: #08080a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.55rem 0.8rem;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .viewer-search-box:focus {
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+    }
+
+    .viewer-filter-pills {
+      display: flex;
+      gap: 0.35rem;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.2rem;
+      border-radius: 8px;
+    }
+
+    .viewer-filter-btn {
+      flex: 1;
+      text-align: center;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      padding: 0.3rem 0.4rem;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .viewer-filter-btn:hover {
+      color: #fff;
+    }
+
+    .viewer-filter-btn.active {
+      background: var(--maroon-primary);
+      color: var(--gold-bright);
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .viewer-course-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 330px);
+      padding-right: 0.2rem;
+    }
+
+    .viewer-course-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .viewer-course-list::-webkit-scrollbar-thumb {
+      background: var(--maroon-primary);
+      border-radius: 4px;
+    }
+
+    .viewer-course-item {
+      padding: 0.75rem 0.85rem;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .viewer-course-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--border-gold);
+      transform: translateX(2px);
+    }
+
+    .viewer-course-item.active {
+      background: linear-gradient(135deg, rgba(127, 20, 22, 0.45) 0%, rgba(38, 19, 23, 0.95) 100%);
+      border: 1.5px solid var(--gold-primary);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .viewer-course-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .viewer-course-code {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+
+    .viewer-badge-status {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .viewer-badge-status.ready { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .viewer-badge-status.pending { background: rgba(255, 255, 255, 0.06); color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+    .viewer-course-name {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .viewer-course-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Viewer Stage (Right Column) */
+    .viewer-stage {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .viewer-toolbar {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .viewer-doc-title-group h2 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .viewer-doc-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    .badge-doc-tag {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold-bright);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .viewer-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-print-primary {
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%) !important;
+      color: #000 !important;
+      font-weight: 800 !important;
+      font-family: var(--font-heading) !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.04em !important;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4) !important;
+      border: 1px solid #fef3c7 !important;
+      padding: 0.6rem 1.25rem !important;
+    }
+
+    .btn-print-primary:hover {
+      background: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%) !important;
+      color: #fff !important;
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.6) !important;
+      transform: translateY(-2px);
+    }
+
+    .viewer-doc-container {
+      flex: 1;
+      position: relative;
+      background: #232023;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      min-height: 820px;
+    }
+
+    .dedicated-doc-frame {
+      width: 100%;
+      max-width: 1050px;
+      height: calc(100vh - 240px);
+      min-height: 800px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+    }
+
+    .viewer-standby-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .viewer-standby-state span {
+      font-size: 3.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .viewer-standby-state h3 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .viewer-standby-state p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ========================================================= */
+    /* VIEW 3: RELATIONAL DATABASE & ACCREDITATION AUDIT */
+    /* ========================================================= */
     .db-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
+      border-radius: 12px;
+      padding: 1.35rem;
+      margin-bottom: 1.25rem;
     }
 
-    /* Iframe preview */
-    .preview-frame {
-      width: 100%;
-      height: 750px;
+    .db-course-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .db-course-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-gold);
+    }
+
+    .audit-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.35rem;
+    }
+
+    .audit-header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-bottom: 1.15rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 1.25rem;
+    }
+
+    .audit-score-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .audit-score-pill.fail {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .audit-card {
+      background: rgba(0, 0, 0, 0.25);
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
-      background: #fff;
+      padding: 0.9rem 1.15rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      transition: all 0.2s;
     }
 
-    /* Modal dialog */
+    .audit-card.pass {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    .audit-card.fail {
+      border-color: rgba(239, 68, 68, 0.45);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    .audit-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .audit-card.pass .audit-icon {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .audit-card.fail .audit-icon {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .audit-content h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .audit-content p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .grading-summary-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.15rem;
+    }
+
+    .grading-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin-top: 0.65rem;
+    }
+
+    @media (max-width: 640px) {
+      .grading-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .grading-tier {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 0.8rem 0.95rem;
+    }
+
+    .grading-tier h5 {
+      font-size: 0.82rem;
+      color: var(--gold-bright);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.45rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 0.3rem;
+    }
+
+    .grading-tier-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      padding: 0.2rem 0;
+    }
+
+    /* Modal Dialogs */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
@@ -1000,23 +1398,23 @@
       background: var(--bg-surface);
       border: 1px solid var(--gold-primary);
       border-radius: 12px;
-      padding: 1.75rem;
-      max-width: 650px;
+      padding: 1.6rem;
+      max-width: 620px;
       width: 90%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
     }
 
     .modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
     }
 
     .modal-header h3 {
       color: var(--text-gold);
       font-family: var(--font-heading);
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
 
     .modal-body textarea {
@@ -1026,21 +1424,20 @@
       color: #fff;
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 0.75rem;
+      padding: 0.7rem;
       font-family: var(--font-sans);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       resize: vertical;
-      margin: 0.75rem 0;
+      margin: 0.65rem 0;
     }
 
     .modal-actions {
       display: flex;
       justify-content: flex-end;
-      gap: 0.75rem;
-      margin-top: 1rem;
+      gap: 0.65rem;
+      margin-top: 0.85rem;
     }
 
-    /* Empty state */
     .empty-state {
       text-align: center;
       padding: 3rem 1rem;
@@ -1052,7 +1449,7 @@
       margin-bottom: 0.75rem;
     }
 
-    /* Nuke Button & Modal */
+    /* Nuke Modal & Button */
     .btn-nuke {
       background: linear-gradient(135deg, rgba(220, 38, 38, 0.25) 0%, rgba(153, 27, 27, 0.45) 100%) !important;
       border: 1px solid rgba(239, 68, 68, 0.65) !important;
@@ -1068,7 +1465,7 @@
       color: #ffffff !important;
       border-color: #f87171 !important;
       box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
 
     .nuke-modal-overlay {
@@ -1090,11 +1487,10 @@
       background: #180a0c;
       border: 2px solid rgba(239, 68, 68, 0.65);
       border-radius: 12px;
-      max-width: 540px;
+      max-width: 520px;
       width: 100%;
-      padding: 1.85rem;
+      padding: 1.75rem;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(239, 68, 68, 0.35);
-      animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nuke-modal-header {
@@ -1107,40 +1503,39 @@
     }
 
     .nuke-modal-icon {
-      font-size: 2.2rem;
-      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.8));
+      font-size: 2rem;
+      filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8));
     }
 
     .nuke-modal-header h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #fecdd3;
-      letter-spacing: 0.02em;
     }
 
     .nuke-modal-body p {
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       color: #e2c8cb;
-      line-height: 1.55;
-      margin-bottom: 0.75rem;
+      line-height: 1.5;
+      margin-bottom: 0.65rem;
     }
 
     .nuke-list {
       list-style: none;
-      margin: 0.85rem 0;
-      padding: 0.85rem 1rem;
+      margin: 0.75rem 0;
+      padding: 0.75rem 0.95rem;
       background: rgba(0, 0, 0, 0.55);
       border-radius: 8px;
       border-left: 3px solid #ef4444;
     }
 
     .nuke-list li {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #fecdd3;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.35rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
 
     .nuke-list li:last-child {
@@ -1156,7 +1551,7 @@
     }
 
     .nuke-warning {
-      font-size: 0.84rem !important;
+      font-size: 0.82rem !important;
       color: #fcd34d !important;
       font-style: italic;
     }
@@ -1164,9 +1559,9 @@
     .nuke-modal-actions {
       display: flex;
       justify-content: flex-end;
-      gap: 0.85rem;
-      margin-top: 1.35rem;
-      padding-top: 1rem;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 0.9rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -1175,19 +1570,18 @@
       color: #fff;
       border: 1px solid #f87171;
       font-weight: 700;
-      padding: 0.65rem 1.4rem;
+      padding: 0.6rem 1.3rem;
       border-radius: 6px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       transition: all 0.2s;
-      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
     }
 
     .btn-nuke-confirm:hover {
       background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
-      box-shadow: 0 6px 22px rgba(239, 68, 68, 0.6);
+      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
       transform: translateY(-1px);
     }
   </style>
@@ -1201,9 +1595,26 @@
         <div class="brand-seal">🏛️</div>
         <div class="brand-text">
           <h1>UPHSD CCS — 18-Week OBE Syllabus Studio</h1>
-          <p>Lesson 5 Midterm Mini-Project (Milestones 1 & 2) • University of Perpetual Help System DALTA</p>
+          <p>Lesson 5 Midterm Mini-Project • University of Perpetual Help System DALTA</p>
         </div>
       </div>
+
+      <!-- High-Level View Navigation Switcher -->
+      <nav class="main-view-nav" role="tablist" aria-label="Main Application Views">
+        <button class="view-nav-btn active" id="navStudio" role="tab" aria-selected="true" onclick="switchMainView('view-studio')" title="Generate and refine 18-week OBE Syllabi">
+          <span>🎓</span>
+          <span>Curriculum Studio</span>
+        </button>
+        <button class="view-nav-btn" id="navViewer" role="tab" aria-selected="false" onclick="switchMainView('view-viewer')" title="Dedicated full-page viewer and vector PDF print station">
+          <span>📄</span>
+          <span>Dedicated Syllabus Viewer</span>
+          <span class="nav-badge" id="navViewerBadge">0 Ready</span>
+        </button>
+        <button class="view-nav-btn" id="navAudit" role="tab" aria-selected="false" onclick="switchMainView('view-audit')" title="Inspect SQLite relational tables and CHED CMO 25 audit">
+          <span>🛡️</span>
+          <span>Database &amp; Audit</span>
+        </button>
+      </nav>
 
       <div class="meta-badges">
         <div class="meta-badge">
@@ -1232,202 +1643,288 @@
   <!-- Main Container -->
   <main class="main-content">
 
-    <!-- Section 1: Curriculum Subjects -->
-    <div class="section-title-bar">
-      <div>
-        <h2><span>📚</span> 3rd-Year Computer Science Curriculum Subjects</h2>
-        <p>Select any subject below to generate or inspect its official 18-week Outcome-Based Education syllabus.</p>
-      </div>
-      <div class="action-buttons">
-        <button class="btn btn-secondary" onclick="loadSubjects()">🔄 Refresh</button>
-        <button class="btn btn-batch" onclick="triggerBatchGenerate()">🚀 Batch Generate All (8 Subjects)</button>
-        <button class="btn btn-nuke" onclick="openNukeModal()" title="Wipe all generated deliverables and reset database">☢️ Nuke All</button>
-      </div>
-    </div>
+    <!-- ========================================================= -->
+    <!-- VIEW 1: CURRICULUM STUDIO (THE INTERACTIVE BUILDER) -->
+    <!-- ========================================================= -->
+    <section class="main-view active" id="view-studio" aria-label="Curriculum &amp; Syllabus Studio">
 
-    <div class="subject-grid" id="subjectGrid">
-      <!-- Injected by JavaScript -->
-    </div>
-
-    <!-- Section 2: Auto-Filled Course Specification & OBE Parameter Form (Image 5) -->
-    <section class="subject-form-panel" id="subjectFormPanel" aria-labelledby="formPanelHeading">
-      <div class="form-header-bar">
-        <div class="form-header-title">
-          <span style="font-size: 1.2rem;">📝</span>
-          <h3 id="formPanelHeading">Course Specification &amp; OBE Parameter Inputs</h3>
-          <span class="form-badge-live" id="formStatusBadge">⚡ Auto-Filled from Curriculum Catalog</span>
+      <!-- Section Title Bar -->
+      <div class="section-title-bar">
+        <div>
+          <h2><span>📚</span> 3rd-Year Computer Science Curriculum Subjects</h2>
+          <p>Select any subject below to auto-fill its OBE specification, edit parameters, or trigger 18-week syllabus generation.</p>
         </div>
-        <div class="form-meta-row">
-          <div class="form-meta-item"><span>Units:</span> <strong id="formMetaUnits">3.0 Units</strong></div>
-          <div class="form-meta-item"><span>Hours:</span> <strong id="formMetaHours">2 Lec / 3 Lab</strong></div>
-          <div class="form-meta-item"><span>Prereq:</span> <strong id="formMetaPrereq">None</strong></div>
-          <div class="form-meta-item"><span>Domain:</span> <strong id="formMetaCategory">Computer Science</strong></div>
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <div class="filter-pills-row" id="studioFilterPills">
+            <button class="pill-btn active" onclick="setStudioFilter('all', this)">All (8)</button>
+            <button class="pill-btn" onclick="setStudioFilter('generated', this)">✓ Generated</button>
+            <button class="pill-btn" onclick="setStudioFilter('pending', this)">⏳ Ready</button>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-secondary" onclick="loadSubjects()">🔄 Refresh</button>
+            <button class="btn btn-batch" onclick="triggerBatchGenerate()">🚀 Batch Generate All (8 Subjects)</button>
+          </div>
         </div>
       </div>
 
-      <div class="form-grid-row">
-        <div class="form-group">
-          <label for="formCourseTitle" class="form-label">Course Title</label>
-          <input type="text" id="formCourseTitle" class="form-control" placeholder="e.g. Artificial Intelligence" aria-label="Course Title">
+      <!-- Curriculum Subjects Grid -->
+      <div class="subject-grid" id="subjectGrid">
+        <!-- Injected by JavaScript -->
+      </div>
+
+      <!-- Auto-Filled Course Specification & OBE Parameter Form (Image 5) -->
+      <section class="subject-form-panel" id="subjectFormPanel" aria-labelledby="formPanelHeading">
+        <div class="form-header-bar">
+          <div class="form-header-title">
+            <span style="font-size: 1.2rem;">📝</span>
+            <h3 id="formPanelHeading">Course Specification &amp; OBE Parameter Inputs</h3>
+            <span class="form-badge-live" id="formStatusBadge">⚡ Auto-Filled from Curriculum Catalog</span>
+          </div>
+          <div class="form-meta-row">
+            <div class="form-meta-item"><span>Units:</span> <strong id="formMetaUnits">3.0 Units</strong></div>
+            <div class="form-meta-item"><span>Hours:</span> <strong id="formMetaHours">2 Lec / 3 Lab</strong></div>
+            <div class="form-meta-item"><span>Prereq:</span> <strong id="formMetaPrereq">None</strong></div>
+            <div class="form-meta-item"><span>Domain:</span> <strong id="formMetaCategory">Computer Science</strong></div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="formCourseCode" class="form-label">Course Code</label>
-          <input type="text" id="formCourseCode" class="form-control" placeholder="e.g. BSCS 3112" aria-label="Course Code">
+
+        <div class="form-grid-row">
+          <div class="form-group">
+            <label for="formCourseTitle" class="form-label">Course Title</label>
+            <input type="text" id="formCourseTitle" class="form-control" placeholder="e.g. Artificial Intelligence" aria-label="Course Title">
+          </div>
+          <div class="form-group">
+            <label for="formCourseCode" class="form-label">Course Code</label>
+            <input type="text" id="formCourseCode" class="form-control" placeholder="e.g. BSCS 3112" aria-label="Course Code">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="formCourseDesc" class="form-label">Catalogue Description</label>
+          <textarea id="formCourseDesc" class="form-control form-textarea" rows="3" placeholder="Enter course catalogue description..." aria-label="Catalogue Description"></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.1rem;">
+          <label for="formTargetPlos" class="form-label">Target Program Learning Outcomes (PLOs)</label>
+          <input type="text" id="formTargetPlos" class="form-control" placeholder="e.g. PLO 1, PLO 2, PLO 3, PLO 5" aria-label="Target Program Learning Outcomes">
+        </div>
+
+        <!-- Action Buttons Row (Image 5) -->
+        <div class="form-actions-row">
+          <button class="btn btn-primary" id="btnGenerate" onclick="triggerSingleGenerate()">
+            <span>⚡</span> Generate 18-Week OBE Syllabus (Qwen 3.5 4B)
+          </button>
+          <button class="btn btn-secondary" id="btnOpenHtml" onclick="openDedicatedViewer(selectedSubject ? selectedSubject.course_code : '')" disabled>
+            <span>📄</span> View in Dedicated Syllabus Viewer →
+          </button>
+          <button class="btn btn-secondary" id="btnResetForm" onclick="resetFormToDefaults()">
+            <span>🔄</span> Reset to Catalog Defaults
+          </button>
+        </div>
+      </section>
+
+      <!-- Live Progress Card -->
+      <div class="progress-card" id="progressCard">
+        <div class="progress-header">
+          <strong id="progressStage" style="color:var(--gold-bright);">Initializing AI Pipeline...</strong>
+          <span id="progressPctText" style="font-family:var(--font-mono); color:var(--text-gold);">0%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+        <div class="log-box" id="logBox">
+          <div>[*] Waiting for generation steps...</div>
         </div>
       </div>
 
-      <div class="form-group" style="margin-bottom: 0.9rem;">
-        <label for="formCourseDesc" class="form-label">Catalogue Description</label>
-        <textarea id="formCourseDesc" class="form-control form-textarea" rows="3" placeholder="Enter course catalogue description..." aria-label="Catalogue Description"></textarea>
+      <!-- Studio Inspection Sub-tabs: CLOs & 18-Week Matrix -->
+      <div class="studio-tabs-bar">
+        <div class="studio-tabs" role="tablist">
+          <button class="tab-btn active" role="tab" id="tabBtnClos" aria-selected="true" onclick="switchStudioTab('tab-clos')">🎯 Course Outcomes (CLOs)</button>
+          <button class="tab-btn" role="tab" id="tabBtnMatrix" aria-selected="false" onclick="switchStudioTab('tab-matrix')">🗓️ 18-Week Schedule Matrix</button>
+        </div>
+        <div style="font-size:0.78rem; color:var(--text-muted); font-family:var(--font-mono);">
+          Active Subject: <strong id="activeSubjectIndicator" style="color:var(--gold-bright);">-</strong>
+        </div>
       </div>
 
-      <div class="form-group" style="margin-bottom: 1.2rem;">
-        <label for="formTargetPlos" class="form-label">Target Program Learning Outcomes (PLOs)</label>
-        <input type="text" id="formTargetPlos" class="form-control" placeholder="e.g. PLO 1, PLO 2, PLO 3, PLO 5" aria-label="Target Program Learning Outcomes">
+      <!-- Tab 1: CLOs -->
+      <div class="tab-content active" id="tab-clos">
+        <div class="clos-grid" id="closGrid">
+          <div class="empty-state">
+            <span>🎯</span>
+            <p>No Course Outcomes loaded yet. Select a subject and click "Generate 18-Week OBE Syllabus".</p>
+          </div>
+        </div>
       </div>
 
-      <!-- Action Buttons Row (Image 5) -->
-      <div class="form-actions-row">
-        <button class="btn btn-primary" id="btnGenerate" onclick="triggerSingleGenerate()">
-          <span>⚡</span> Generate 18-Week OBE Syllabus (Qwen 3.5 4B)
+      <!-- Tab 2: 18-Week Matrix -->
+      <div class="tab-content" id="tab-matrix">
+        <div class="schedule-table-wrap">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th style="width: 75px;">Week</th>
+                <th style="width: 100px;">Period</th>
+                <th style="width: 260px;">Module Topic</th>
+                <th>Lesson Learning Outcomes (K/S/A)</th>
+                <th style="width: 220px;">Teaching-Learning Activities (TLA)</th>
+                <th style="width: 180px;">Assessment &amp; Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTableBody">
+              <tr>
+                <td colspan="6" class="empty-state">
+                  <span>🗓️</span>
+                  <p>No 18-week schedule loaded. Select a subject above to view.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Jump to Viewer Banner -->
+      <div class="jump-viewer-card">
+        <div class="jump-viewer-text">
+          <h4>📄 Ready to inspect or print the complete institutional syllabus?</h4>
+          <p>Switch to the Dedicated Syllabus Viewer to preview the official Jinja2 HTML layout and export high-resolution vector PDFs.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openDedicatedViewer(selectedSubject ? selectedSubject.course_code : '')">
+          <span>📄</span> Open Dedicated Syllabus Viewer &amp; Print Studio →
         </button>
-        <button class="btn btn-secondary" id="btnOpenHtml" onclick="openOfficialHtml()" disabled>
-          <span>📄</span> View Official Syllabus (HTML)
-        </button>
-        <button class="btn btn-secondary" id="btnResetForm" onclick="resetFormToDefaults()">
-          <span>🔄</span> Reset to Catalog Defaults
-        </button>
+      </div>
+
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: DEDICATED SYLLABUS VIEWER & PRINT STUDIO -->
+    <!-- ========================================================= -->
+    <section class="main-view" id="view-viewer" aria-label="Dedicated Syllabus Viewer &amp; Print Studio">
+      <div class="viewer-layout">
+        
+        <!-- Left Sidebar: Subject Catalog & Search -->
+        <aside class="viewer-sidebar">
+          <div class="viewer-sidebar-header">
+            <h3><span>📚</span> Syllabi Repository</h3>
+            <p>Select any generated subject to view and print</p>
+          </div>
+
+          <input type="search" id="viewerSearchInput" class="viewer-search-box" placeholder="🔍 Search course code or title..." oninput="handleViewerSearch(this.value)">
+
+          <div class="viewer-filter-pills">
+            <button class="viewer-filter-btn active" id="btnFilterAll" onclick="setViewerFilterMode('all')">All (<span id="countAll">8</span>)</button>
+            <button class="viewer-filter-btn" id="btnFilterGen" onclick="setViewerFilterMode('generated')">✓ Generated (<span id="countGen">0</span>)</button>
+            <button class="viewer-filter-btn" id="btnFilterPend" onclick="setViewerFilterMode('pending')">⏳ Ready (<span id="countPend">0</span>)</button>
+          </div>
+
+          <div class="viewer-course-list" id="viewerCourseList">
+            <!-- Populated by JavaScript -->
+          </div>
+
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.65rem; margin-top: auto;">
+            <button class="btn btn-secondary" style="width: 100%; justify-content: center; font-size: 0.78rem;" onclick="switchMainView('view-studio')">
+              <span>⚡</span> Generate New Course in Studio
+            </button>
+          </div>
+        </aside>
+
+        <!-- Right Main Stage: Document Toolbar & Iframe Paper Stage -->
+        <div class="viewer-stage">
+          
+          <!-- Sticky Toolbar -->
+          <div class="viewer-toolbar">
+            <div class="viewer-doc-title-group">
+              <h2 id="viewerDocTitle">Select a Course to View Syllabus</h2>
+              <div class="viewer-doc-meta" id="viewerDocMeta">
+                <span class="badge-doc-tag" id="viewerDocCodeBadge">-</span>
+                <span class="badge-doc-tag" id="viewerDocUnitsBadge">- Units</span>
+                <span class="badge-doc-tag">18-Week OBE Schedule</span>
+                <span class="badge-doc-tag" style="color:#34d399; border-color:rgba(16,185,129,0.35);">CHED CMO 25 s.2015</span>
+              </div>
+            </div>
+
+            <div class="viewer-actions">
+              <button class="btn btn-print-primary" id="btnDedicatedPrint" onclick="printDedicatedDoc()">
+                <span>🖨️</span> Print / Save Vector PDF
+              </button>
+              <button class="btn btn-secondary" id="btnDedicatedNewTab" onclick="openDedicatedInNewTab()" title="Open official standalone HTML file in a new browser tab">
+                <span>↗</span> Open Standalone Tab
+              </button>
+              <button class="btn btn-secondary" id="btnDedicatedDownload" onclick="downloadDedicatedHtml()" title="Download raw official HTML syllabus file">
+                <span>⬇</span> Download HTML
+              </button>
+              <button class="btn btn-secondary" id="btnDedicatedEdit" onclick="editCurrentCourseInStudio()" title="Switch to Studio to edit this course's parameters">
+                <span>✏️</span> Edit in Studio
+              </button>
+            </div>
+          </div>
+
+          <!-- Document Canvas Container -->
+          <div class="viewer-doc-container" id="viewerDocContainer">
+            <div class="viewer-standby-state" id="viewerStandbyState" style="display: none;">
+              <span>📄</span>
+              <h3 id="viewerStandbyTitle">No Syllabus Generated Yet</h3>
+              <p id="viewerStandbyDesc">
+                This course has not been generated by the local AI pipeline yet. Click below to formulate its Bloom-compliant outcomes and 18-week schedule in the Curriculum Studio.
+              </p>
+              <button class="btn btn-primary" id="btnStandbyGenerate" onclick="generateFromViewerStandby()">
+                <span>⚡</span> Generate 18-Week Syllabus for this Subject
+              </button>
+            </div>
+            
+            <iframe class="dedicated-doc-frame" id="dedicatedDocFrame" src="about:blank" title="Official Institutional 18-Week OBE Syllabus Document"></iframe>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
-    <!-- Live Progress Card -->
-    <div class="progress-card" id="progressCard">
-      <div class="progress-header">
-        <strong id="progressStage" style="color:var(--gold-bright);">Initializing AI Pipeline...</strong>
-        <span id="progressPctText" style="font-family:var(--font-mono); color:var(--text-gold);">0%</span>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="progressBarFill"></div>
-      </div>
-      <div class="log-box" id="logBox">
-        <div>[*] Waiting for generation steps...</div>
-      </div>
-    </div>
+    <!-- ========================================================= -->
+    <!-- VIEW 3: RELATIONAL DATABASE & ACCREDITATION AUDIT -->
+    <!-- ========================================================= -->
+    <section class="main-view" id="view-audit" aria-label="Relational Database &amp; Accreditation Audit">
 
-    <!-- Workspace Inspection Header & Multi-Syllabus Switcher -->
-    <div class="workspace-header-bar">
-      <div class="workspace-tabs" role="tablist">
-        <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('tab-clos')">🎯 Course Outcomes (CLOs)</button>
-        <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('tab-matrix')">🗓️ 18-Week Schedule Matrix</button>
-        <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('tab-db')">🗄️ Relational Database (SQLite)</button>
-        <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('tab-doc')">📜 Official Jinja2 HTML Document</button>
-        <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('tab-audit')">🛡️ Accreditation &amp; Rubric Audit</button>
-      </div>
-
-      <div class="syllabus-switcher-wrap">
-        <label for="syllabusCourseSelector" class="switcher-label">Inspecting Syllabus:</label>
-        <select id="syllabusCourseSelector" class="syllabus-switcher-select" onchange="selectSubject(this.value)" aria-label="Select Active Syllabus to Inspect">
-          <!-- Populated by JavaScript -->
-        </select>
-      </div>
-    </div>
-
-    <!-- Tab 1: CLOs -->
-    <div class="tab-content active" id="tab-clos">
-      <div class="clos-grid" id="closGrid">
-        <div class="empty-state">
-          <span>🎯</span>
-          <p>No Course Outcomes loaded yet. Select a subject and click "Generate 18-Week OBE Syllabus".</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab 2: 18-Week Matrix -->
-    <div class="tab-content" id="tab-matrix">
-      <div class="schedule-table-wrap">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th style="width: 80px;">Week</th>
-              <th style="width: 100px;">Period</th>
-              <th style="width: 260px;">Module Topic</th>
-              <th>Lesson Learning Outcomes (K/S/A)</th>
-              <th style="width: 220px;">Teaching-Learning Activities (TLA)</th>
-              <th style="width: 180px;">Assessment & Evidence</th>
-            </tr>
-          </thead>
-          <tbody id="scheduleTableBody">
-            <tr>
-              <td colspan="6" class="empty-state">
-                <span>🗓️</span>
-                <p>No 18-week schedule loaded. Select a subject above to view.</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Tab 3: SQLite Database Inspector -->
-    <div class="tab-content" id="tab-db">
+      <!-- SQLite Relational Database Card -->
       <div class="db-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom: 0.75rem;">
-          <h3 style="color:var(--text-gold); margin-bottom: 0;">SQLite Normalized Tables (database/obe_syllabus.db)</h3>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom: 0.65rem;">
+          <div>
+            <h3 style="color:var(--text-gold); font-family:var(--font-heading); font-size:1.25rem;">
+              🗄️ SQLite Normalized Relational Database (database/obe_syllabus.db)
+            </h3>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:2px;">
+              Adheres to Prof. Roberto L. Malitao's Milestone 2 relational schema with <code>PRAGMA foreign_keys = ON</code> and cascading deletes.
+            </p>
+          </div>
           <div style="display:flex; gap:0.5rem;">
             <button class="btn btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.75rem;" onclick="loadDatabaseStats()">🔄 Refresh DB</button>
             <button class="btn btn-nuke" style="font-size:0.75rem; padding:0.35rem 0.75rem;" onclick="openNukeModal()" title="Wipe all generated deliverables and reset database">☢️ Reset / Nuke Database</button>
           </div>
         </div>
-        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom: 1rem;">
-          Verified relational schema adhering to Prof. Roberto L. Malitao's Milestone 2 rubric with <code>PRAGMA foreign_keys = ON</code> and cascading deletes.
-        </p>
+
         <div id="dbCoursesList">
-          <p style="color:var(--text-muted);">Loading database records...</p>
+          <p style="color:var(--text-muted); font-size:0.85rem;">Loading database records...</p>
         </div>
       </div>
-    </div>
 
-    <!-- Tab 4: Official HTML Document Preview -->
-    <div class="tab-content" id="tab-doc">
-      <div id="docEmptyState" class="empty-state" style="display:none; padding: 4rem 1rem;">
-        <span style="font-size:3.5rem;">📄</span>
-        <h3 style="color:#fff; margin-bottom:0.5rem; font-family:var(--font-heading);">Official HTML Syllabus Standby</h3>
-        <p style="color:var(--text-muted); max-width:550px; margin:0 auto 1.5rem auto;">
-          No institutional HTML document loaded or generated yet. Select any subject above and generate its 18-week syllabus to render the official print-ready UPHSD CCS syllabus.
-        </p>
-      </div>
-      <div id="docPreviewWrapper">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
-          <span style="font-size:0.85rem; color:var(--text-secondary);">
-            Rendered from <code>templates/uphsd_ccs_template.html</code> via Jinja2:
-          </span>
-          <div class="action-buttons">
-            <button class="btn btn-secondary" id="btnOpenInNewWin" onclick="openOfficialHtml()">↗ Open in New Window</button>
-            <button class="btn btn-primary" id="btnPrintPdf" onclick="printOfficialHtml()">🖨️ Print / Save Vector PDF</button>
-          </div>
-        </div>
-        <iframe class="preview-frame" id="docPreviewFrame" src="about:blank"></iframe>
-      </div>
-    </div>
-
-    <!-- Tab 5: Accreditation & Rubric Invariant Audit -->
-    <div class="tab-content" id="tab-audit">
+      <!-- Prof. Roberto L. Malitao OBE Rubric Compliance Audit -->
       <div class="audit-container">
         <div class="audit-header-banner">
           <div>
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.2rem;">
               <span style="font-size:1.3rem;">🛡️</span>
               <h3 style="font-family:var(--font-heading); color:var(--gold-bright); font-size:1.2rem;">
                 Prof. Roberto L. Malitao OBE Rubric Compliance Audit
               </h3>
             </div>
-            <p style="font-size:0.85rem; color:var(--text-secondary);">
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
               Programmatic invariant verification testing for 100% adherence to CHED CMO 25 s.2015 &amp; UPHSD College of Computer Studies Quality Standards.
             </p>
           </div>
           <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
             <div class="audit-score-pill" id="auditScoreBadge">Auditing...</div>
-            <button class="btn btn-secondary" onclick="runAuditChecks()" style="font-size:0.8rem; padding:0.45rem 0.85rem;">
+            <button class="btn btn-secondary" onclick="runAuditChecks()" style="font-size:0.8rem; padding:0.4rem 0.85rem;">
               <span>🔄</span> Re-Run Live Audit
             </button>
           </div>
@@ -1439,9 +1936,9 @@
 
         <!-- UPHSD CCS Institutional Grading Framework -->
         <div class="grading-summary-box">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.5rem; margin-bottom:0.75rem;">
-            <strong style="color:#fff; font-size:0.9rem;">UPHSD CCS Institutional Grading Framework</strong>
-            <span style="font-size:0.72rem; color:var(--gold-bright); font-family:var(--font-mono);">CHED Compliant</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.45rem; margin-bottom:0.65rem;">
+            <strong style="color:#fff; font-size:0.88rem;">UPHSD CCS Institutional Grading Framework</strong>
+            <span style="font-size:0.7rem; color:var(--gold-bright); font-family:var(--font-mono);">CHED Compliant</span>
           </div>
           <div class="grading-columns">
             <div class="grading-tier">
@@ -1458,7 +1955,8 @@
           </div>
         </div>
       </div>
-    </div>
+
+    </section>
 
   </main>
 
@@ -1483,6 +1981,36 @@
     </div>
   </div>
 
+  <!-- Nuke Confirmation Modal Dialog -->
+  <div id="nukeModalOverlay" class="nuke-modal-overlay" style="display: none;" onclick="handleOverlayClick(event)">
+    <div class="nuke-modal" role="dialog" aria-modal="true" aria-labelledby="nukeModalTitle">
+      <div class="nuke-modal-header">
+        <span class="nuke-modal-icon">☢️</span>
+        <div>
+          <h3 id="nukeModalTitle">Nuke 18-Week Workspace &amp; Deliverables</h3>
+          <span style="font-size:0.72rem; color:#f87171; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.05em;">Destructive Action</span>
+        </div>
+      </div>
+      <div class="nuke-modal-body">
+        <p>This action will permanently delete all generated outputs, wipe the SQLite database, and clear browser session cache so you can regenerate everything fresh from scratch:</p>
+        <ul class="nuke-list">
+          <li><span>🗑️</span> <code>official_syllabus_*.html</code> (All 18-Week Official Syllabi)</li>
+          <li><span>🗑️</span> <code>sample_validated_output_*.json</code> (All Pydantic v2 JSON Deliverables)</li>
+          <li><span>🗄️</span> <code>obe_syllabus.db</code> (SQLite Relational Tables: Courses, CLOs, Weekly Schedules, LLOs)</li>
+          <li><span>🔄</span> Active in-memory pipeline state &amp; generation logs</li>
+          <li><span>🧹</span> Browser <code>localStorage</code> &amp; <code>sessionStorage</code> caches</li>
+        </ul>
+        <p class="nuke-warning">⚠️ The workspace will be restored to an empty initial state. All subjects will revert to "Ready to Generate". You can immediately trigger fresh LLM generations afterwards.</p>
+      </div>
+      <div class="nuke-modal-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeNukeModal()">Cancel</button>
+        <button type="button" class="btn-nuke-confirm" id="btnConfirmNuke" onclick="executeNukeWorkspace()">
+          <span>☢️</span> Yes, Nuke Everything
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const API_BASE = "";
     let subjects = [];
@@ -1490,16 +2018,64 @@
     let activeSyllabusData = null;
     let activeEditingClo = null;
     let pollInterval = null;
+    
+    // Viewer state
+    let viewerSelectedCode = null;
+    let viewerSearchQuery = "";
+    let viewerFilterMode = "all"; // "all", "generated", "pending"
+    let studioFilterMode = "all";  // "all", "generated", "pending"
 
-    // 1. Load Subjects on Startup
+    // =========================================================
+    // 1. PRIMARY VIEW ROUTING
+    // =========================================================
+    function switchMainView(viewId) {
+      document.querySelectorAll(".main-view").forEach(v => v.classList.remove("active"));
+      document.querySelectorAll(".view-nav-btn").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+
+      const target = document.getElementById(viewId);
+      if (target) target.classList.add("active");
+
+      const navMap = {
+        'view-studio': 'navStudio',
+        'view-viewer': 'navViewer',
+        'view-audit': 'navAudit'
+      };
+      const navBtn = document.getElementById(navMap[viewId]);
+      if (navBtn) {
+        navBtn.classList.add("active");
+        navBtn.setAttribute("aria-selected", "true");
+      }
+
+      if (viewId === 'view-viewer') {
+        renderViewerSidebar();
+        const codeToLoad = viewerSelectedCode || (selectedSubject ? selectedSubject.course_code : (subjects[0] ? subjects[0].course_code : null));
+        if (codeToLoad) {
+          loadDedicatedViewerDoc(codeToLoad);
+        }
+      } else if (viewId === 'view-audit') {
+        loadDatabaseStats();
+        runAuditChecks();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // =========================================================
+    // 2. LOAD SUBJECTS & CATALOG
+    // =========================================================
     async function loadSubjects(autoSelect = true) {
       try {
         const res = await fetch(`${API_BASE}/api/subjects`);
         if (res.ok) {
           const data = await res.json();
           subjects = data.subjects || [];
-          renderSubjects();
           
+          updateViewerBadges();
+          renderSubjects();
+          renderViewerSidebar();
+
           if (autoSelect) {
             const currentCode = selectedSubject ? selectedSubject.course_code : null;
             if (currentCode && subjects.some(s => s.course_code === currentCode)) {
@@ -1517,13 +2093,52 @@
       }
     }
 
+    function updateViewerBadges() {
+      const genCount = subjects.filter(s => s.is_persisted || s.has_html).length;
+      const pendCount = subjects.length - genCount;
+
+      const badge = document.getElementById("navViewerBadge");
+      if (badge) {
+        badge.innerText = `${genCount} Ready`;
+      }
+      
+      const elAll = document.getElementById("countAll");
+      const elGen = document.getElementById("countGen");
+      const elPend = document.getElementById("countPend");
+      if (elAll) elAll.innerText = subjects.length;
+      if (elGen) elGen.innerText = genCount;
+      if (elPend) elPend.innerText = pendCount;
+    }
+
+    function setStudioFilter(mode, btn) {
+      studioFilterMode = mode;
+      document.querySelectorAll("#studioFilterPills .pill-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      renderSubjects();
+    }
+
     function renderSubjects() {
       const grid = document.getElementById("subjectGrid");
-      grid.innerHTML = subjects.map(s => {
+      if (!grid) return;
+
+      let filtered = subjects;
+      if (studioFilterMode === "generated") {
+        filtered = subjects.filter(s => s.is_persisted || s.has_html);
+      } else if (studioFilterMode === "pending") {
+        filtered = subjects.filter(s => !s.is_persisted && !s.has_html);
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><p>No subjects match this filter.</p></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => {
         const isAI = s.course_code.includes("3112");
         const isActive = selectedSubject && selectedSubject.course_code === s.course_code;
-        const statusClass = s.is_persisted ? "pill-ready" : "pill-pending";
-        const statusText = s.is_persisted ? "✓ Persisted in SQLite & HTML" : "Ready to Generate";
+        const isGenerated = s.is_persisted || s.has_html;
+        const statusClass = isGenerated ? "pill-ready" : "pill-pending";
+        const statusText = isGenerated ? "✓ Persisted &amp; Ready to View" : "Ready to Generate";
 
         return `
           <div class="subject-card ${isAI ? 'featured' : ''} ${isActive ? 'active' : ''}" onclick="selectSubject('${s.course_code}')">
@@ -1548,28 +2163,12 @@
           </div>
         `;
       }).join('');
-
-      updateCourseSelectorDropdown();
-    }
-
-    function updateCourseSelectorDropdown() {
-      const dropdown = document.getElementById("syllabusCourseSelector");
-      if (!dropdown) return;
-      dropdown.innerHTML = (!selectedSubject ? `<option value="">-- No Subject Selected (Click Any Subject Above) --</option>` : '') +
-        subjects.map(s => {
-          const status = s.is_persisted ? "✓ Generated" : "Ready";
-          return `<option value="${s.course_code}">${s.course_code}: ${s.course_title} [${status}]</option>`;
-        }).join('');
-      if (selectedSubject) {
-        dropdown.value = selectedSubject.course_code;
-      } else {
-        dropdown.value = "";
-      }
     }
 
     function clearFormFields() {
       selectedSubject = null;
       activeSyllabusData = null;
+      viewerSelectedCode = null;
       document.getElementById("formCourseTitle").value = "";
       document.getElementById("formCourseCode").value = "";
       document.getElementById("formCourseDesc").value = "";
@@ -1586,12 +2185,15 @@
 
       document.getElementById("btnGenerate").disabled = true;
       document.getElementById("btnOpenHtml").disabled = true;
+      document.getElementById("activeSubjectIndicator").innerText = "-";
 
-      updateCourseSelectorDropdown();
       renderSubjects();
+      renderViewerSidebar();
     }
 
-    // 2. Select Subject — Auto-fills Form & Immediately Loads Syllabus
+    // =========================================================
+    // 3. SELECT SUBJECT — AUTO-FILLS SPECIFICATION FORM
+    // =========================================================
     async function selectSubject(courseCode) {
       if (!courseCode) {
         clearFormFields();
@@ -1601,11 +2203,7 @@
       renderSubjects();
 
       if (selectedSubject) {
-        // Sync Dropdown switcher
-        const dropdown = document.getElementById("syllabusCourseSelector");
-        if (dropdown && dropdown.value !== selectedSubject.course_code) {
-          dropdown.value = selectedSubject.course_code;
-        }
+        viewerSelectedCode = selectedSubject.course_code;
 
         // Auto-fill form fields (matching Image 5)
         document.getElementById("formCourseTitle").value = selectedSubject.course_title;
@@ -1618,22 +2216,25 @@
         document.getElementById("formMetaHours").innerText = `${selectedSubject.lecture_hours} Lec / ${selectedSubject.lab_hours} Lab`;
         document.getElementById("formMetaPrereq").innerText = selectedSubject.prerequisites || 'None';
         document.getElementById("formMetaCategory").innerText = selectedSubject.category || 'Computer Science';
-        document.getElementById("formStatusBadge").innerText = selectedSubject.is_persisted ? '✓ Persisted in SQLite & HTML' : '⚡ Auto-Filled from Curriculum Catalog';
-        document.getElementById("formStatusBadge").style.background = selectedSubject.is_persisted ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
-        document.getElementById("formStatusBadge").style.color = selectedSubject.is_persisted ? '#34d399' : 'var(--gold-bright)';
-        document.getElementById("formStatusBadge").style.borderColor = selectedSubject.is_persisted ? 'rgba(16, 185, 129, 0.3)' : 'rgba(245, 158, 11, 0.3)';
+        document.getElementById("activeSubjectIndicator").innerText = `${selectedSubject.course_code} (${selectedSubject.course_title})`;
+
+        const isPersisted = selectedSubject.is_persisted || selectedSubject.has_html;
+        document.getElementById("formStatusBadge").innerText = isPersisted ? '✓ Persisted in SQLite & HTML' : '⚡ Auto-Filled from Curriculum Catalog';
+        document.getElementById("formStatusBadge").style.background = isPersisted ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
+        document.getElementById("formStatusBadge").style.color = isPersisted ? '#34d399' : 'var(--gold-bright)';
+        document.getElementById("formStatusBadge").style.borderColor = isPersisted ? 'rgba(16, 185, 129, 0.3)' : 'rgba(245, 158, 11, 0.3)';
 
         document.getElementById("btnGenerate").disabled = false;
-        document.getElementById("btnOpenHtml").disabled = !selectedSubject.has_html;
+        document.getElementById("btnOpenHtml").disabled = !isPersisted;
 
-        // Reset HUD console log to the selected course (clearing old logs from previous courses)
+        // Reset HUD console log
         const logBox = document.getElementById("logBox");
         if (logBox) {
           logBox.innerHTML = `<div>[*] Selected subject: ${selectedSubject.course_code} (${selectedSubject.course_title})</div>` +
-            (selectedSubject.is_persisted ? `<div>[+] Loaded existing syllabus from SQLite database. Ready for review or re-generation.</div>` : `<div>[*] Subject ready for automated 18-week OBE syllabus generation.</div>`);
+            (isPersisted ? `<div>[+] Loaded existing syllabus. Ready to view in Dedicated Syllabus Viewer or re-generate.</div>` : `<div>[*] Subject ready for automated 18-week OBE syllabus generation.</div>`);
         }
 
-        // Fetch and display syllabus data across all tabs
+        // Fetch syllabus data for studio tabs
         await loadSyllabusForCourse(selectedSubject.course_code);
       }
     }
@@ -1647,7 +2248,9 @@
       alert(`[+] Reset form parameters to official catalog defaults for ${selectedSubject.course_code}.`);
     }
 
-    // 3. Load Syllabus for selected course
+    // =========================================================
+    // 4. LOAD SYLLABUS DATA FOR STUDIO TABS & AUDIT
+    // =========================================================
     async function loadSyllabusForCourse(courseCode) {
       try {
         const res = await fetch(`${API_BASE}/api/syllabus?code=${encodeURIComponent(courseCode)}`);
@@ -1656,42 +2259,17 @@
           activeSyllabusData = json.data;
           renderSyllabusData(json.data);
           document.getElementById("btnOpenHtml").disabled = false;
-
-          // Update iframe & tab preview
-          const clean = courseCode.replace(/ /g, '_').replace(/\//g, '-');
-          const docEmpty = document.getElementById("docEmptyState");
-          const docWrap = document.getElementById("docPreviewWrapper");
-          if (docEmpty) docEmpty.style.display = "none";
-          if (docWrap) docWrap.style.display = "block";
-          document.getElementById("docPreviewFrame").src = `${API_BASE}/outputs/official_syllabus_${clean}.html?t=${Date.now()}`;
-          if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = false;
-          if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = false;
-          
-          // Render Audit
           renderAuditTab(json.data);
         } else {
           activeSyllabusData = null;
           renderEmptySyllabus();
           document.getElementById("btnOpenHtml").disabled = true;
-          const docEmpty = document.getElementById("docEmptyState");
-          const docWrap = document.getElementById("docPreviewWrapper");
-          if (docEmpty) docEmpty.style.display = "block";
-          if (docWrap) docWrap.style.display = "none";
-          document.getElementById("docPreviewFrame").src = "about:blank";
-          if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = true;
-          if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = true;
           renderAuditTab(null);
         }
       } catch (err) {
         activeSyllabusData = null;
         renderEmptySyllabus();
-        const docEmpty = document.getElementById("docEmptyState");
-        const docWrap = document.getElementById("docPreviewWrapper");
-        if (docEmpty) docEmpty.style.display = "block";
-        if (docWrap) docWrap.style.display = "none";
-        document.getElementById("docPreviewFrame").src = "about:blank";
-        if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = true;
-        if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = true;
+        document.getElementById("btnOpenHtml").disabled = true;
         renderAuditTab(null);
       }
     }
@@ -1701,7 +2279,6 @@
         renderEmptySyllabus();
         return;
       }
-
       activeSyllabusData = syllabus;
 
       // 1. Render CLOs
@@ -1729,16 +2306,14 @@
         closGrid.innerHTML = '<div class="empty-state"><p>No Course Outcomes defined.</p></div>';
       }
 
-      // 2. Render 18-Week Schedule Matrix (Zero undefined values)
+      // 2. Render 18-Week Schedule Matrix
       const scheduleBody = document.getElementById("scheduleTableBody");
       const sched = syllabus.weekly_schedule || [];
       if (sched.length > 0) {
         scheduleBody.innerHTML = sched.map(w => {
-          // Normalize topics (handle list or string)
           const rawTopics = w.topics || w.topic || 'Curriculum Instruction';
           const topicStr = Array.isArray(rawTopics) ? rawTopics.join('; ') : String(rawTopics);
 
-          // Compute period
           let periodText = w.period;
           if (!periodText) {
             if (w.week_number === 9) periodText = "MIDTERM EXAM";
@@ -1747,24 +2322,18 @@
             else periodText = "FINAL";
           }
 
-          // Milestone check
           const isMilestone = w.week_number === 9 || w.week_number === 18 || 
             topicStr.toLowerCase().includes('exam') || 
             topicStr.toLowerCase().includes('midterm') || 
             topicStr.toLowerCase().includes('final');
 
-          // Normalize Lesson Outcomes (K/S/A)
           const outcomes = w.lesson_outcomes || w.llos || [];
-
-          // Normalize Teaching Learning Activities
           const rawTlas = w.teaching_learning_activities || w.teaching_learning_activity || ['Interactive Lecture & Hands-on Lab'];
           const tlaStr = Array.isArray(rawTlas) ? rawTlas.join('; ') : String(rawTlas);
 
-          // Normalize Assessments
           const rawAssess = w.assessment_tasks || w.assessment_tool || ['Formative Quiz & Practical Lab'];
           const assessStr = Array.isArray(rawAssess) ? rawAssess.join('; ') : String(rawAssess);
 
-          // Evidence / Resources
           let evidenceStr = w.evidence || '';
           if (!evidenceStr && w.resources && w.resources.length) {
             evidenceStr = Array.isArray(w.resources) ? w.resources.join(', ') : String(w.resources);
@@ -1799,12 +2368,258 @@
       } else {
         scheduleBody.innerHTML = '<tr><td colspan="6" class="empty-state"><p>No weekly schedule items loaded.</p></td></tr>';
       }
-
-      // 3. Render Audit Tab
-      renderAuditTab(syllabus);
     }
 
-    // 4. Render Accreditation & Rubric Audit
+    function renderEmptySyllabus() {
+      const closGrid = document.getElementById("closGrid");
+      if (closGrid) {
+        closGrid.innerHTML = `
+          <div class="empty-state">
+            <span>🎯</span>
+            <p>This course has not yet been generated. Click "Generate 18-Week OBE Syllabus" to create it with qwen3.5:4b.</p>
+          </div>
+        `;
+      }
+      const scheduleBody = document.getElementById("scheduleTableBody");
+      if (scheduleBody) {
+        scheduleBody.innerHTML = `
+          <tr>
+            <td colspan="6" class="empty-state">
+              <span>🗓️</span>
+              <p>No 18-week schedule generated yet for this course.</p>
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // =========================================================
+    // 5. DEDICATED SYLLABUS VIEWER FUNCTIONS (THE MAIN USER REQUEST)
+    // =========================================================
+    function openDedicatedViewer(courseCode) {
+      if (courseCode) {
+        viewerSelectedCode = courseCode;
+        selectedSubject = subjects.find(s => s.course_code === courseCode) || selectedSubject;
+      }
+      switchMainView('view-viewer');
+      loadDedicatedViewerDoc(viewerSelectedCode || (selectedSubject ? selectedSubject.course_code : ''));
+    }
+
+    function handleViewerSearch(query) {
+      viewerSearchQuery = (query || "").trim().toLowerCase();
+      renderViewerSidebar();
+    }
+
+    function setViewerFilterMode(mode) {
+      viewerFilterMode = mode;
+      document.querySelectorAll(".viewer-filter-btn").forEach(b => b.classList.remove("active"));
+      if (mode === 'all') document.getElementById("btnFilterAll").classList.add("active");
+      if (mode === 'generated') document.getElementById("btnFilterGen").classList.add("active");
+      if (mode === 'pending') document.getElementById("btnFilterPend").classList.add("active");
+      renderViewerSidebar();
+    }
+
+    function renderViewerSidebar() {
+      const container = document.getElementById("viewerCourseList");
+      if (!container) return;
+
+      let filtered = subjects;
+      if (viewerFilterMode === "generated") {
+        filtered = filtered.filter(s => s.is_persisted || s.has_html);
+      } else if (viewerFilterMode === "pending") {
+        filtered = filtered.filter(s => !s.is_persisted && !s.has_html);
+      }
+
+      if (viewerSearchQuery) {
+        filtered = filtered.filter(s => 
+          s.course_code.toLowerCase().includes(viewerSearchQuery) ||
+          s.course_title.toLowerCase().includes(viewerSearchQuery) ||
+          (s.category && s.category.toLowerCase().includes(viewerSearchQuery))
+        );
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="padding:1.5rem 0.5rem; text-align:center; color:var(--text-muted); font-size:0.8rem;">No subjects match your search.</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(s => {
+        const isSelected = (viewerSelectedCode === s.course_code);
+        const isGen = s.is_persisted || s.has_html;
+        const statusClass = isGen ? "ready" : "pending";
+        const statusText = isGen ? "✓ Generated" : "Ready";
+
+        return `
+          <div class="viewer-course-item ${isSelected ? 'active' : ''}" onclick="loadDedicatedViewerDoc('${s.course_code}')">
+            <div class="viewer-course-header-row">
+              <span class="viewer-course-code">${s.course_code}</span>
+              <span class="viewer-badge-status ${statusClass}">${statusText}</span>
+            </div>
+            <div class="viewer-course-name">${s.course_title}</div>
+            <div class="viewer-course-meta">${s.credit_units}.0 Units • ${s.lecture_hours}Lec / ${s.lab_hours}Lab</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function loadDedicatedViewerDoc(courseCode) {
+      if (!courseCode) return;
+      viewerSelectedCode = courseCode;
+      renderViewerSidebar();
+
+      const subj = subjects.find(s => s.course_code === courseCode);
+      const titleEl = document.getElementById("viewerDocTitle");
+      const codeBadge = document.getElementById("viewerDocCodeBadge");
+      const unitsBadge = document.getElementById("viewerDocUnitsBadge");
+      const frame = document.getElementById("dedicatedDocFrame");
+      const standbyState = document.getElementById("viewerStandbyState");
+
+      if (subj) {
+        if (titleEl) titleEl.innerText = `${subj.course_code} — ${subj.course_title}`;
+        if (codeBadge) codeBadge.innerText = subj.course_code;
+        if (unitsBadge) unitsBadge.innerText = `${subj.credit_units}.0 Units`;
+      }
+
+      const clean = courseCode.replace(/ /g, '_').replace(/\//g, '-');
+      const isGenerated = subj ? (subj.is_persisted || subj.has_html) : false;
+
+      // Update Action Buttons State
+      const btnPrint = document.getElementById("btnDedicatedPrint");
+      const btnNewTab = document.getElementById("btnDedicatedNewTab");
+      const btnDownload = document.getElementById("btnDedicatedDownload");
+      if (btnPrint) btnPrint.disabled = !isGenerated;
+      if (btnNewTab) btnNewTab.disabled = !isGenerated;
+      if (btnDownload) btnDownload.disabled = !isGenerated;
+
+      if (isGenerated) {
+        if (standbyState) standbyState.style.display = "none";
+        if (frame) {
+          frame.style.display = "block";
+          frame.src = `${API_BASE}/outputs/official_syllabus_${clean}.html?t=${Date.now()}`;
+        }
+      } else {
+        if (frame) {
+          frame.style.display = "none";
+          frame.src = "about:blank";
+        }
+        if (standbyState) {
+          standbyState.style.display = "flex";
+          document.getElementById("viewerStandbyTitle").innerText = `${courseCode} Not Generated Yet`;
+          document.getElementById("viewerStandbyDesc").innerText = `Official 18-week OBE syllabus for ${subj ? subj.course_title : courseCode} has not been created. Click below to generate it promptly in Curriculum Studio.`;
+        }
+      }
+    }
+
+    function printDedicatedDoc() {
+      const frame = document.getElementById("dedicatedDocFrame");
+      if (frame && frame.contentWindow && frame.style.display !== "none") {
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+      } else {
+        openDedicatedInNewTab();
+      }
+    }
+
+    function openDedicatedInNewTab() {
+      if (!viewerSelectedCode) return;
+      const clean = viewerSelectedCode.replace(/ /g, '_').replace(/\//g, '-');
+      window.open(`${API_BASE}/outputs/official_syllabus_${clean}.html`, '_blank');
+    }
+
+    function downloadDedicatedHtml() {
+      if (!viewerSelectedCode) return;
+      const clean = viewerSelectedCode.replace(/ /g, '_').replace(/\//g, '-');
+      const a = document.createElement('a');
+      a.href = `${API_BASE}/outputs/official_syllabus_${clean}.html`;
+      a.download = `official_syllabus_${clean}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function editCurrentCourseInStudio() {
+      if (viewerSelectedCode) {
+        selectSubject(viewerSelectedCode);
+      }
+      switchMainView('view-studio');
+    }
+
+    function generateFromViewerStandby() {
+      if (viewerSelectedCode) {
+        selectSubject(viewerSelectedCode);
+      }
+      switchMainView('view-studio');
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+
+    function switchStudioTab(tabId) {
+      document.querySelectorAll(".studio-tabs .tab-btn").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+      
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add("active");
+
+      if (tabId === 'tab-clos') {
+        const b = document.getElementById("tabBtnClos");
+        if (b) { b.classList.add("active"); b.setAttribute("aria-selected", "true"); }
+      } else if (tabId === 'tab-matrix') {
+        const b = document.getElementById("tabBtnMatrix");
+        if (b) { b.classList.add("active"); b.setAttribute("aria-selected", "true"); }
+      }
+    }
+
+    // =========================================================
+    // 6. SQLITE DATABASE INSPECTOR & COMPLIANCE AUDIT
+    // =========================================================
+    async function loadDatabaseStats() {
+      try {
+        const res = await fetch(`${API_BASE}/api/database`);
+        if (res.ok) {
+          const data = await res.json();
+          const list = document.getElementById("dbCoursesList");
+          const courses = data.courses || [];
+          if (courses.length > 0) {
+            list.innerHTML = `
+              <p style="margin-bottom:0.75rem; color:var(--text-gold); font-size:0.85rem;">
+                Total Courses Persisted in SQLite: <strong>${courses.length}</strong>
+              </p>
+              ${courses.map(c => `
+                <div class="db-course-item">
+                  <div>
+                    <strong style="color:var(--gold-bright); font-family:var(--font-mono);">[ID ${c.id}] ${c.course_code}</strong> — <span style="color:#fff; font-weight:600;">${c.course_title}</span>
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">
+                      ${c.credit_units}.0 Units • ${c.weeks_count} Weeks in Schedule • ${c.clos.length} Course Outcomes (CLOs)
+                    </div>
+                  </div>
+                  <div style="display:flex; gap:0.5rem;">
+                    <!-- THE USER FIX: Direct active button to view in Dedicated Syllabus Viewer -->
+                    <button class="btn btn-primary" style="font-size:0.75rem; padding:0.35rem 0.75rem;" onclick="openDedicatedViewer('${c.course_code}')">
+                      📄 View Official Syllabus
+                    </button>
+                    <button class="btn btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.65rem;" onclick="editCourseInStudio('${c.course_code}')">
+                      ✏️ Edit in Studio
+                    </button>
+                  </div>
+                </div>
+              `).join('')}
+            `;
+          } else {
+            list.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Database is initialized but contains 0 course records.</p>';
+          }
+        }
+      } catch (e) {
+        console.error("Database fetch failed:", e);
+      }
+    }
+
+    function editCourseInStudio(courseCode) {
+      selectSubject(courseCode);
+      switchMainView('view-studio');
+    }
+
     async function renderAuditTab(syllabus) {
       const container = document.getElementById("auditGridContainer");
       const scoreBadge = document.getElementById("auditScoreBadge");
@@ -1819,11 +2634,11 @@
           scoreBadge.style.borderColor = "var(--border-subtle)";
         }
         container.innerHTML = `
-          <div class="empty-state" style="grid-column: 1 / -1; padding: 3.5rem 1rem;">
-            <span style="font-size:3.5rem; display:block; margin-bottom:0.75rem;">🛡️</span>
-            <h4 style="color:#fff; margin-bottom:0.5rem; font-size:1.15rem;">Accreditation Audit Standby</h4>
-            <p style="color:var(--text-muted); max-width:520px; margin:0 auto;">
-              Audit verification requires generated syllabus data. Select a subject above and click "Generate 18-Week OBE Syllabus" to execute automated accreditation invariant tests.
+          <div class="empty-state" style="grid-column: 1 / -1; padding: 3rem 1rem;">
+            <span style="font-size:3rem; display:block; margin-bottom:0.5rem;">🛡️</span>
+            <h4 style="color:#fff; margin-bottom:0.35rem; font-size:1.1rem;">Accreditation Audit Standby</h4>
+            <p style="color:var(--text-muted); max-width:520px; margin:0 auto; font-size:0.85rem;">
+              Audit verification requires generated syllabus data. Select a generated subject above to execute automated accreditation invariant tests.
             </p>
           </div>
         `;
@@ -1831,7 +2646,7 @@
       }
 
       const code = syllabus.course_metadata ? syllabus.course_metadata.course_code : (selectedSubject ? selectedSubject.course_code : 'BSCS 3112');
-      container.innerHTML = '<p style="color:var(--text-muted); padding:1rem;">Evaluating accreditation invariants against UPHSD & CHED guidelines...</p>';
+      container.innerHTML = '<p style="color:var(--text-muted); padding:1rem; font-size:0.85rem;">Evaluating accreditation invariants against UPHSD &amp; CHED guidelines...</p>';
 
       try {
         const res = await fetch(`${API_BASE}/api/audit?code=${encodeURIComponent(code)}`);
@@ -1882,7 +2697,6 @@
       const banned = ["understand", "know", "learn", "study", "familiarize"];
       const bannedFound = clos.filter(c => banned.some(b => c.description.toLowerCase().startsWith(b)));
       const c5 = bannedFound.length === 0;
-
       const c6 = clos.length >= 3;
       const c7 = true;
 
@@ -1917,37 +2731,9 @@
       renderAuditTab(activeSyllabusData);
     }
 
-    function renderEmptySyllabus() {
-      document.getElementById("closGrid").innerHTML = `
-        <div class="empty-state">
-          <span>🎯</span>
-          <p>This course has not yet been generated. Click "Generate 18-Week OBE Syllabus" to create it with qwen3.5:4b.</p>
-        </div>
-      `;
-      document.getElementById("scheduleTableBody").innerHTML = `
-        <tr>
-          <td colspan="6" class="empty-state">
-            <span>🗓️</span>
-            <p>No 18-week schedule generated yet for this course.</p>
-          </td>
-        </tr>
-      `;
-    }
-
-    function highlightBloomVerbs(desc) {
-      if (!desc) return '';
-      const words = desc.split(' ');
-      if (words.length > 0) {
-        words[0] = `<strong style="color:var(--gold-bright); text-decoration: underline;">${words[0]}</strong>`;
-      }
-      return words.join(' ');
-    }
-
-    function escapeText(str) {
-      return (str || '').replace(/"/g, '&quot;').replace(/'/g, "\'");
-    }
-
-    // 5. Trigger Generation (Supports zero-typing defaults OR user-edited textbox inputs)
+    // =========================================================
+    // 7. GENERATION ENGINE (SINGLE & BATCH)
+    // =========================================================
     async function triggerSingleGenerate() {
       const code = (document.getElementById("formCourseCode").value || (selectedSubject ? selectedSubject.course_code : "BSCS 3112")).trim();
       const title = (document.getElementById("formCourseTitle").value || (selectedSubject ? selectedSubject.course_title : "")).trim();
@@ -1983,7 +2769,6 @@
       }
     }
 
-    // 6. Trigger Batch Generation
     async function triggerBatchGenerate() {
       if (!confirm("Are you sure you want to batch-generate all 8 curriculum subjects? This will run qwen3.5:4b sequentially for each subject.")) {
         return;
@@ -2049,7 +2834,9 @@
       }, 2000);
     }
 
-    // 6. Human-in-the-Loop CLO Modal
+    // =========================================================
+    // 8. HUMAN-IN-THE-LOOP CLO MODAL (MILESTONE 2)
+    // =========================================================
     function openCloModal(cloId, currentDesc) {
       activeEditingClo = cloId;
       document.getElementById("modalCloTitle").innerText = `✏️ Edit ${cloId} (${selectedSubject ? selectedSubject.course_code : ''})`;
@@ -2092,79 +2879,22 @@
       }
     }
 
-    // 7. Tab Switching
-    function switchTab(tabId) {
-      document.querySelectorAll(".tab-btn").forEach(b => {
-        b.classList.remove("active");
-        b.setAttribute("aria-selected", "false");
-      });
-      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-      
-      const target = document.getElementById(tabId);
-      if (target) target.classList.add("active");
-
-      const btns = document.querySelectorAll(".tab-btn");
-      btns.forEach(b => {
-        if (b.getAttribute("onclick") && b.getAttribute("onclick").includes(tabId)) {
-          b.classList.add("active");
-          b.setAttribute("aria-selected", "true");
-        }
-      });
-
-      if (tabId === "tab-db") {
-        loadDatabaseStats();
-      } else if (tabId === "tab-audit") {
-        runAuditChecks();
+    function highlightBloomVerbs(desc) {
+      if (!desc) return '';
+      const words = desc.split(' ');
+      if (words.length > 0) {
+        words[0] = `<strong style="color:var(--gold-bright); text-decoration: underline;">${words[0]}</strong>`;
       }
+      return words.join(' ');
     }
 
-    // 8. Load SQLite Database Stats
-    async function loadDatabaseStats() {
-      try {
-        const res = await fetch(`${API_BASE}/api/database`);
-        if (res.ok) {
-          const data = await res.json();
-          const list = document.getElementById("dbCoursesList");
-          const courses = data.courses || [];
-          if (courses.length > 0) {
-            list.innerHTML = `
-              <p style="margin-bottom:0.75rem; color:var(--text-gold);">Total Courses Persisted in SQLite: <strong>${courses.length}</strong></p>
-              ${courses.map(c => `
-                <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:6px; padding:0.75rem 1rem; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
-                  <div>
-                    <strong style="color:var(--gold-bright); font-family:var(--font-mono);">[ID ${c.id}] ${c.course_code}</strong> — ${c.course_title}
-                    <div style="font-size:0.75rem; color:var(--text-muted);">${c.credit_units}.0 Units • ${c.weeks_count} Weeks in Schedule • ${c.clos.length} CLOs</div>
-                  </div>
-                  <button class="btn btn-secondary" style="font-size:0.75rem; padding:0.25rem 0.5rem;" onclick="selectSubject('${c.course_code}')">Select Course</button>
-                </div>
-              `).join('')}
-            `;
-          } else {
-            list.innerHTML = '<p style="color:var(--text-muted);">Database is initialized but contains 0 course records.</p>';
-          }
-        }
-      } catch (e) {
-        console.error("Database fetch failed:", e);
-      }
+    function escapeText(str) {
+      return (str || '').replace(/"/g, '&quot;').replace(/'/g, "'");
     }
 
-    // 9. Document Actions
-    function openOfficialHtml() {
-      if (!selectedSubject) return;
-      const clean = selectedSubject.course_code.replace(/ /g, '_').replace(/\//g, '-');
-      window.open(`${API_BASE}/outputs/official_syllabus_${clean}.html`, '_blank');
-    }
-
-    function printOfficialHtml() {
-      const frame = document.getElementById("docPreviewFrame");
-      if (frame && frame.contentWindow) {
-        frame.contentWindow.print();
-      } else {
-        openOfficialHtml();
-      }
-    }
-
-    // 10. Check Ollama Status
+    // =========================================================
+    // 9. CHECK OLLAMA STATUS
+    // =========================================================
     async function checkOllama() {
       try {
         const res = await fetch(`${API_BASE}/api/status`);
@@ -2181,12 +2911,16 @@
           }
         }
       } catch (e) {
-        document.getElementById("ollamaStatusDot").className = "status-dot offline";
-        document.getElementById("ollamaStatusText").innerText = "Server Unreachable";
+        const dot = document.getElementById("ollamaStatusDot");
+        const text = document.getElementById("ollamaStatusText");
+        if (dot) dot.className = "status-dot offline";
+        if (text) text.innerText = "Server Unreachable";
       }
     }
 
-    // 11. Nuke Workspace Modal Handlers & Execution
+    // =========================================================
+    // 10. NUKE WORKSPACE CONFIRMATION & EXECUTION
+    // =========================================================
     function openNukeModal() {
       const modal = document.getElementById('nukeModalOverlay');
       if (modal) {
@@ -2247,24 +2981,19 @@
       // 2. Wipe in-memory active syllabus and selection
       activeSyllabusData = null;
       selectedSubject = null;
+      viewerSelectedCode = null;
 
-      // 3. Reset form inputs & dropdown switcher to clean empty state
+      // 3. Reset form inputs & clear
       clearFormFields();
 
-      // 4. Reset Tab 1 (CLOs) & Tab 2 (18-Week Schedule Matrix)
+      // 4. Reset Studio Tabs
       renderEmptySyllabus();
 
-      // 5. Reset Tab 4 (Official HTML Document)
-      const docEmpty = document.getElementById("docEmptyState");
-      const docWrap = document.getElementById("docPreviewWrapper");
-      if (docEmpty) docEmpty.style.display = "block";
-      if (docWrap) docWrap.style.display = "none";
-      const frame = document.getElementById("docPreviewFrame");
+      // 5. Reset Viewer Frame
+      const frame = document.getElementById("dedicatedDocFrame");
       if (frame) frame.src = "about:blank";
-      if (document.getElementById("btnOpenInNewWin")) document.getElementById("btnOpenInNewWin").disabled = true;
-      if (document.getElementById("btnPrintPdf")) document.getElementById("btnPrintPdf").disabled = true;
 
-      // 6. Reset Tab 5 (Accreditation & Rubric Audit)
+      // 6. Reset Audit Tab
       renderAuditTab(null);
 
       // 7. Reload fresh subject catalog WITHOUT auto-selecting any subject
@@ -2273,9 +3002,8 @@
       // 8. Reload SQLite stats (shows 0 records)
       await loadDatabaseStats();
 
-      // 9. Switch to Tab 1 (CLOs) and scroll to top smoothly
-      switchTab('tab-clos');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // 9. Switch to Studio View smoothly
+      switchMainView('view-studio');
 
       // 10. Close modal and restore confirm button
       closeNukeModal();
@@ -2293,62 +3021,14 @@
           <div style="color:var(--text-gold);">System restored to initial clean state. Click any subject card above to begin fresh generation.</div>
         `;
       }
-
-      // Visual feedback badge
-      const formBadge = document.getElementById("formStatusBadge");
-      if (formBadge) {
-        formBadge.innerText = "☢️ Workspace Reset Clean";
-        formBadge.style.background = "rgba(220, 38, 38, 0.2)";
-        formBadge.style.color = "#fca5a5";
-        formBadge.style.borderColor = "rgba(239, 68, 68, 0.5)";
-        setTimeout(() => {
-          formBadge.innerText = "⚡ Auto-Filled from Curriculum Catalog";
-          formBadge.style.background = "rgba(16, 185, 129, 0.15)";
-          formBadge.style.color = "#34d399";
-          formBadge.style.borderColor = "rgba(16, 185, 129, 0.3)";
-        }, 5000);
-      }
     }
 
-    function wipeWorkspace() {
-      openNukeModal();
-    }
-
+    // Startup
     window.addEventListener("DOMContentLoaded", () => {
       checkOllama();
       setInterval(checkOllama, 10000);
       loadSubjects();
     });
   </script>
-
-  <!-- Nuke Confirmation Modal Dialog -->
-  <div id="nukeModalOverlay" class="nuke-modal-overlay" style="display: none;" onclick="handleOverlayClick(event)">
-    <div class="nuke-modal" role="dialog" aria-modal="true" aria-labelledby="nukeModalTitle">
-      <div class="nuke-modal-header">
-        <span class="nuke-modal-icon">☢️</span>
-        <div>
-          <h3 id="nukeModalTitle">Nuke 18-Week Workspace &amp; Deliverables</h3>
-          <span style="font-size:0.75rem; color:#f87171; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.05em;">Destructive Action</span>
-        </div>
-      </div>
-      <div class="nuke-modal-body">
-        <p>This action will permanently delete all generated outputs, wipe the SQLite database, and clear browser session cache so you can regenerate everything fresh from scratch:</p>
-        <ul class="nuke-list">
-          <li><span>🗑️</span> <code>official_syllabus_*.html</code> (All 18-Week Official Syllabi)</li>
-          <li><span>🗑️</span> <code>sample_validated_output_*.json</code> (All Pydantic v2 JSON Deliverables)</li>
-          <li><span>🗄️</span> <code>obe_syllabus.db</code> (SQLite Relational Tables: Courses, CLOs, Weekly Schedules, LLOs)</li>
-          <li><span>🔄</span> Active in-memory pipeline state &amp; generation logs</li>
-          <li><span>🧹</span> Browser <code>localStorage</code> &amp; <code>sessionStorage</code> caches</li>
-        </ul>
-        <p class="nuke-warning">⚠️ The workspace will be restored to an empty initial state. All subjects will revert to "Ready to Generate". You can immediately trigger fresh LLM generations afterwards.</p>
-      </div>
-      <div class="nuke-modal-actions">
-        <button type="button" class="btn btn-secondary" onclick="closeNukeModal()">Cancel</button>
-        <button type="button" class="btn-nuke-confirm" id="btnConfirmNuke" onclick="executeNukeWorkspace()">
-          <span>☢️</span> Yes, Nuke Everything
-        </button>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
