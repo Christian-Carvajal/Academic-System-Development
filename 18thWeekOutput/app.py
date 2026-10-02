@@ -17,6 +17,13 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Optional, Dict, Any, List
 
+# Force unbuffered output so logs appear in real-time in terminals and background tasks
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 # Defensive pathing
 BASE_DIR = Path(__file__).resolve().parent
 if str(BASE_DIR) not in sys.path:
@@ -829,19 +836,25 @@ def start_server(host: str = HOST, port: int = PORT, open_browser: bool = True):
     ensure_port_available(port)
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, OBE18WeekHttpHandler)
+    httpd.daemon_threads = True
     url = f"http://{host}:{port}"
-    print(f"[+] 18-Week OBE Studio Web Server running at: {url}")
-    print("    Pre-configured with 8 official 3rd-Year Computer Science subjects.")
-    print("    Press Ctrl+C to terminate the server.\\n")
+    print("=" * 70, flush=True)
+    print("   UPHSD CCS - OBE AI Microservice 18-Week Interactive Studio", flush=True)
+    print(f"   Local Web Interface: {url}", flush=True)
+    print("   Curriculum Catalog: 8 Official 3rd-Year CS Courses Pre-Loaded", flush=True)
+    print("   Press Ctrl+C in terminal to stop server.", flush=True)
+    print("=" * 70, flush=True)
+
     if open_browser:
-        webbrowser.open(url)
+        threading.Timer(1.0, lambda: webbrowser.open(url)).start()
+
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\\n[*] Server shutdown initiated.")
+        print("\n[*] Server shutdown initiated.", flush=True)
     finally:
         httpd.server_close()
-        print("[+] Server terminated gracefully.")
+        print("[+] Server terminated gracefully.", flush=True)
 
 
 if __name__ == "__main__":

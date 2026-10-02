@@ -22,6 +22,13 @@ import urllib.request
 import json
 from pathlib import Path
 
+# Force unbuffered output so logs appear in real-time in terminals and background tasks
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 BASE_DIR = Path(__file__).resolve().parent
 REQUIRED_PACKAGES = ["pydantic>=2.0.0", "jinja2>=3.1.0", "requests>=2.28.0", "ollama>=0.2.0"]
 MODEL_TAG = "qwen3.5:4b"

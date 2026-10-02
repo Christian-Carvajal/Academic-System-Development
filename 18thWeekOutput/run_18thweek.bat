@@ -13,7 +13,7 @@ if exist "%~dp0..\.venv\Scripts\python.exe" (
     set "PY_EXE=python"
 )
 
-"%PY_EXE%" run_18thweek.py %*
+"%PY_EXE%" -u run_18thweek.py %*
 if errorlevel 1 (
     echo.
     echo [ERROR] 18-Week Interactive Studio encountered an error.
