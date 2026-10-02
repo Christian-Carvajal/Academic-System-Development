@@ -125,3 +125,25 @@ The microservice backend exposes `/api/audit?code={course_code}`, programmatical
 | **INV-5** | `all(not clo.startswith(banned_verbs))` | Zero unmeasurable passive verbs | Blocking |
 | **INV-6** | `len(course_outcomes) >= 3 and all(clo.mapped_pos)` | All CLOs aligned to Program Learning Outcomes | Blocking |
 | **INV-7** | Institutional 70% Class Standing / 30% Major Exam | Strict UPHSD CCS Institutional Grading Scheme | Informational |
+
+---
+
+## 7. Program Learning Outcomes (PLO) Alignment Matrix & Anti-Inflation Rules
+
+### CHED CMO 25 s.2015 Program Learning Outcomes for Computer Science:
+* **PLO 1: Computing Fundamentals** — Apply knowledge of computing fundamentals, mathematics, science, and domain knowledge to complex computing models.
+* **PLO 2: Problem Analysis** — Identify, formulate, research literature, and solve complex computing problems reaching substantiated conclusions.
+* **PLO 3: Design & Development** — Design solutions for complex computing problems and design systems, components, or processes that meet specified needs.
+* **PLO 4: Modern Tool Usage** — Create, select, adapt, and apply appropriate techniques, resources, and modern computing tools.
+* **PLO 5: Individual & Teamwork / Ethics** — Function effectively as an individual, and as a member or leader in diverse teams committed to professional computing ethics.
+
+### Pedagogical Domain Rule: Why Not All Dots Are Green
+In rigorous Outcome-Based Education (OBE) and CHED accreditation reviews:
+1. **Curricular Scaffolding & Course Specialization:** A single collegiate course is specialized by design. For example:
+   - **Automata and Formal Languages (`BSCS 3108`):** Pure theoretical computing. It directly maps to **PLO 1** (Computing Fundamentals) and **PLO 5** (CS Theory/Ethics). It does NOT target web development or practical tool engineering (PLO 4).
+   - **Software Engineering (`BSCS 3110`):** System design and collaborative lifecycle. It maps to **PLO 2**, **PLO 3**, and **PLO 5**, but not abstract mathematical automata.
+   - **Artificial Intelligence (`BSCS 3112`):** Algorithmic problem formulation and ML implementations. It maps to **PLO 1**, **PLO 2**, and **PLO 4**.
+2. **Accreditation Hazard — "Outcome Inflation":**
+   - An evaluator or quality assurance inspector (such as PACUCOA, CHED, or ABET) will penalize a syllabus that marks all green dots across all 5 Program Outcomes.
+   - Claiming every course achieves every program outcome is a known indicator of poor curriculum design and superficial assessment.
+   - **Expected Status:** A healthy, authentic OBE syllabus will show green dots for the targeted, measurable outcomes of that specific course, and neutral/unmapped dots for outcomes covered by other specialized subjects in the curriculum.

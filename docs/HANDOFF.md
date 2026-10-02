@@ -64,14 +64,17 @@ The backend server (`18thWeekOutput/app.py`) exposes simple JSON endpoints that 
 | `GET /api/generation-state` | `GET` | Polls real-time progress percentage (`0..100%`), current stage, and terminal logs |
 | `POST /api/generate` | `POST` | Starts background AI generation for a single subject or all 8 subjects in batch |
 | `POST /api/update-clo` | `POST` | Updates a CLO statement in SQLite after validating active Bloom's verbs |
-| `POST /api/nuke` | `POST` | Wipes generated files, resets SQLite database, and clears caches |
+| `POST /api/subject/wipe` | `POST` | Selectively deletes a single course from SQLite and deletes its output artifacts without touching others |
+| `POST /api/nuke` | `POST` | Wipes ALL generated files, resets SQLite database, and clears caches |
 | `GET /outputs/{filename}` | `GET` | Serves official Jinja2 HTML syllabus files (`official_syllabus_{course_code}.html`) |
 
 ### Working Reference Frontend:
 A fully functional reference implementation is already running in `18thWeekOutput/index.html`:
-* **View 1 (`#view-studio`)**: Curriculum cards, Image 5 specification form with zero-typing autofill and faculty editing, generation HUD, and CLO/Schedule inspection tabs.
+* **View 1 (`#view-studio`)**: Curriculum cards, Image 5 specification form with zero-typing autofill and faculty editing, generation HUD, selective **`🗑️ Wipe Course`** reset button, and CLO/Schedule inspection tabs.
 * **View 2 (`#view-viewer`)**: Dedicated master-detail syllabus viewer with instant search, filter pills, and a one-click **`🖨️ Print / Save Vector PDF`** button.
 * **View 3 (`#view-audit`)**: SQLite database table with active **`📄 View Official Syllabus`** CTA and live CHED CMO 25 accreditation badges.
+* **Universal Command Palette (`Ctrl + K`)**: Instant keyboard navigation searching across course codes, titles, descriptions, categories, and direct action shortcuts.
+* **Tab 2: PLO Alignment Matrix**: Displays pedagogical mapping against CHED CMO 25 s.2015 Program Outcomes. Not all dots are green by design — courses specialize in targeted outcomes to prevent academic outcome inflation.
 
 **Your AI can modify `18thWeekOutput/index.html` directly**: change color themes, adjust component hierarchy, build custom visual cards, add animations, or rearrange the layout however you wish!
 

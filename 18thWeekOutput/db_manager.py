@@ -285,6 +285,36 @@ def update_clo(clo_id: str, new_description: str, course_code: Optional[str] = N
     return False
 
 
+def delete_course(course_code: str, db_path: str = DEFAULT_DB_PATH) -> bool:
+    """
+    Deletes a specific course and all its cascaded relational records
+    (course_outcomes, weekly_schedules, lesson_outcomes) from the SQLite database.
+    Returns True if the course was found and deleted, False otherwise.
+    """
+    norm_code = course_code.strip()
+    with get_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM courses WHERE UPPER(course_code) = UPPER(?);", (norm_code,))
+        row = cursor.fetchone()
+        if not row:
+            return False
+
+        course_id = row["id"]
+        # Explicit clean-up for defensive guarantee
+        cursor.execute("""
+            DELETE FROM lesson_outcomes 
+            WHERE schedule_id IN (SELECT id FROM weekly_schedules WHERE course_id = ?);
+        """, (course_id,))
+        cursor.execute("DELETE FROM weekly_schedules WHERE course_id = ?;", (course_id,))
+        cursor.execute("DELETE FROM course_outcomes WHERE course_id = ?;", (course_id,))
+        cursor.execute("DELETE FROM courses WHERE id = ?;", (course_id,))
+        conn.commit()
+
+    print(f"[+] Successfully deleted course '{norm_code}' (ID {course_id}) from SQLite database.")
+    return True
+
+
+
 # =============================================================================
 # CLI TEST FIXTURE
 # =============================================================================

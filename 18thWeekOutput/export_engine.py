@@ -86,9 +86,9 @@ def export_to_file(
 
 if __name__ == "__main__":
     import sys
-    target_course = " ".join(sys.argv[1:]).strip() if len(sys.argv) > 1 else "CS 3110"
+    target_course = " ".join(sys.argv[1:]).strip() if len(sys.argv) > 1 else "BSCS 3112"
     if not target_course:
-        target_course = "CS 3110"
+        target_course = "BSCS 3112"
     print(f"[*] Testing export engine for course '{target_course}'...")
     try:
         exported_path = export_to_file(target_course)

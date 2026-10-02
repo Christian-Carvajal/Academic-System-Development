@@ -732,6 +732,47 @@
       border-color: var(--gold-border);
     }
 
+    .btn-wipe-subject {
+      background: rgba(239, 68, 68, 0.1) !important;
+      border: 1px solid rgba(239, 68, 68, 0.35) !important;
+      color: #f87171 !important;
+      transition: all 0.2s ease !important;
+    }
+    .btn-wipe-subject:hover:not(:disabled) {
+      background: rgba(239, 68, 68, 0.22) !important;
+      border-color: #ef4444 !important;
+      color: #fee2e2 !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 2px 10px rgba(239, 68, 68, 0.25) !important;
+    }
+    [data-theme="light"] .btn-wipe-subject {
+      background: #fef2f2 !important;
+      border: 1px solid #fca5a5 !important;
+      color: #dc2626 !important;
+    }
+    [data-theme="light"] .btn-wipe-subject:hover:not(:disabled) {
+      background: #fee2e2 !important;
+      border-color: #dc2626 !important;
+      color: #b91c1c !important;
+    }
+
+    .plo-legend-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.74rem;
+    }
+    [data-theme="light"] .plo-legend-strip {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
     .btn-batch {
       background: rgba(245, 158, 11, 0.12);
       color: var(--gold-dark);
@@ -2913,6 +2954,9 @@
               <button class="btn btn-secondary" id="btnToggleParamDrawer" onclick="toggleParamDrawer()">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>Parameters
               </button>
+              <button class="btn btn-secondary btn-wipe-subject" id="btnWipeSubject" onclick="confirmWipeSubject()" title="Wipe generated syllabus deliverables and database records for this course only">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg><span>Wipe Course</span>
+              </button>
             </div>
           </div>
 
@@ -3034,32 +3078,55 @@
           <!-- Tab 2: Visual PLO Alignment Matrix (Aesthetic New Feature) -->
           <div class="tab-content" id="tab-plo-matrix">
             <div class="plo-matrix-card">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
                 <h4 style="font-family:var(--font-heading); color:var(--gold-bright); font-size:1.1rem; text-transform:uppercase;">
                   Accreditation Matrix: Course Outcomes (CLOs) vs. Program Outcomes (PLOs)
                 </h4>
-                <span style="font-size:0.72rem; font-family:var(--font-mono); color:#34d399;">CHED CMO 25 series 2015</span>
+                <span style="font-size:0.72rem; font-family:var(--font-mono); color:#34d399; background:rgba(16,185,129,0.12); padding:2px 8px; border-radius:4px; border:1px solid rgba(16,185,129,0.3);">CHED CMO 25 series 2015</span>
               </div>
               <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.75rem;">
                 Cross-validates that all formulated Course Learning Outcomes systematically scaffold the 5 Core Computer Science Graduate Attributes.
               </p>
+
+              <!-- Educational Legend Strip -->
+              <div class="plo-legend-strip">
+                <div style="display:flex; align-items:center; gap:0.45rem;">
+                  <span class="plo-dot active" style="width:11px; height:11px;"></span>
+                  <strong style="color:var(--text-primary);">Mapped (Active Alignment)</strong>
+                  <span style="color:var(--text-muted);">&mdash; Formally assessed in this syllabus</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:0.45rem;">
+                  <span class="plo-dot" style="width:11px; height:11px;"></span>
+                  <strong style="color:var(--text-muted);">Unmapped (Curriculum Balance)</strong>
+                  <span style="color:var(--text-muted);">&mdash; Scaffolded by other BSCS subjects</span>
+                </div>
+                <div style="margin-left:auto; font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-bright);">
+                  ⚖️ OBE Rule: Courses specialize in targeted PLOs (not all dots are meant to be green)
+                </div>
+              </div>
 
               <div style="overflow-x:auto;">
                 <table class="plo-matrix-table" id="ploMatrixTable">
                   <thead>
                     <tr>
                       <th style="width: 250px;">Course Outcome (CLO)</th>
-                      <th>PLO 1<br><span style="font-size:0.65rem; color:var(--text-muted);">Fundamentals</span></th>
-                      <th>PLO 2<br><span style="font-size:0.65rem; color:var(--text-muted);">Analysis</span></th>
-                      <th>PLO 3<br><span style="font-size:0.65rem; color:var(--text-muted);">Design &amp; Dev</span></th>
-                      <th>PLO 4<br><span style="font-size:0.65rem; color:var(--text-muted);">Modern Tools</span></th>
-                      <th>PLO 5<br><span style="font-size:0.65rem; color:var(--text-muted);">Ethics &amp; Prof</span></th>
+                      <th>PLO 1<br><span style="font-size:0.65rem; color:var(--text-muted);">Computing Fundamentals</span></th>
+                      <th>PLO 2<br><span style="font-size:0.65rem; color:var(--text-muted);">Problem Analysis &amp; Dev</span></th>
+                      <th>PLO 3<br><span style="font-size:0.65rem; color:var(--text-muted);">Communication &amp; Design</span></th>
+                      <th>PLO 4<br><span style="font-size:0.65rem; color:var(--text-muted);">Ethics, Security &amp; Tools</span></th>
+                      <th>PLO 5<br><span style="font-size:0.65rem; color:var(--text-muted);">CS Theory &amp; Methods</span></th>
                     </tr>
                   </thead>
                   <tbody id="ploMatrixTableBody">
                     <tr><td colspan="6" style="padding:1.5rem; color:var(--text-muted);">Select a course above to visualize its PLO alignment matrix.</td></tr>
                   </tbody>
                 </table>
+              </div>
+
+              <!-- Quality Assurance Compliance Callout -->
+              <div style="margin-top:0.85rem; padding:0.7rem 0.95rem; background:rgba(245,158,11,0.06); border-left:3px solid var(--gold-primary); border-radius:4px; font-size:0.75rem; color:var(--text-secondary); line-height:1.45;">
+                <strong style="color:var(--gold-bright);">Curriculum Quality Assurance Verification:</strong> 
+                Under CHED Memorandum Order No. 25, Series of 2015, individual academic courses maintain specialized outcome boundaries. For example, theoretical courses (e.g., Automata) target <em>PLO 1 (Fundamentals)</em> and <em>PLO 5 (Theory)</em>, whereas applied courses target <em>PLO 2 (Analysis)</em> and <em>PLO 3 (Design)</em>. Blank dots indicate deliberate program-level distribution rather than a syllabus deficiency, preventing outcome inflation.
               </div>
             </div>
           </div>
@@ -3791,9 +3858,12 @@
       }
 
       if (studioSearchQuery) {
+        const q = studioSearchQuery.toLowerCase();
         filtered = filtered.filter(s => 
-          s.course_code.toLowerCase().includes(studioSearchQuery) ||
-          s.course_title.toLowerCase().includes(studioSearchQuery)
+          (s.course_code && s.course_code.toLowerCase().includes(q)) ||
+          (s.course_title && s.course_title.toLowerCase().includes(q)) ||
+          (s.category && s.category.toLowerCase().includes(q)) ||
+          (s.course_description && s.course_description.toLowerCase().includes(q))
         );
       }
 
@@ -3910,6 +3980,12 @@
         document.getElementById("btnGenerate").disabled = false;
         document.getElementById("btnOpenHtml").disabled = !isPersisted;
 
+        const btnWipe = document.getElementById("btnWipeSubject");
+        if (btnWipe) {
+          btnWipe.disabled = !isPersisted;
+          btnWipe.title = isPersisted ? `Wipe generated syllabus deliverables for ${selectedSubject.course_code}` : `No generated deliverables to wipe for ${selectedSubject.course_code}`;
+        }
+
         // Reset HUD console log
         const logBox = document.getElementById("logBox");
         if (logBox) {
@@ -3943,17 +4019,23 @@
           activeSyllabusData = json.data;
           renderSyllabusData(json.data);
           document.getElementById("btnOpenHtml").disabled = false;
+          const btnWipe = document.getElementById("btnWipeSubject");
+          if (btnWipe) btnWipe.disabled = false;
           renderAuditTab(json.data);
         } else {
           activeSyllabusData = null;
           renderEmptySyllabus();
           document.getElementById("btnOpenHtml").disabled = true;
+          const btnWipe = document.getElementById("btnWipeSubject");
+          if (btnWipe) btnWipe.disabled = true;
           renderAuditTab(null);
         }
       } catch (err) {
         activeSyllabusData = null;
         renderEmptySyllabus();
         document.getElementById("btnOpenHtml").disabled = true;
+        const btnWipe = document.getElementById("btnWipeSubject");
+        if (btnWipe) btnWipe.disabled = true;
         renderAuditTab(null);
       }
     }
@@ -4160,6 +4242,88 @@
         `;
       }
       renderVisualRoadmap([]);
+      renderPloAlignmentMatrix([]);
+
+      const elK = document.getElementById("countKsaK");
+      const elS = document.getElementById("countKsaS");
+      const elA = document.getElementById("countKsaA");
+      if (elK) elK.innerText = "0";
+      if (elS) elS.innerText = "0";
+      if (elA) elA.innerText = "0";
+    }
+
+    // =========================================================
+    // INDIVIDUAL SUBJECT WIPE & RE-GENERATION CONTROLS
+    // =========================================================
+    function confirmWipeSubject() {
+      if (!selectedSubject) {
+        showToast("Please select a subject from the left panel to wipe.", "warning");
+        return;
+      }
+      const code = selectedSubject.course_code;
+      const title = selectedSubject.course_title;
+      const isPersisted = selectedSubject.is_persisted || selectedSubject.has_html;
+      
+      if (!isPersisted) {
+        showToast(`No generated syllabus deliverables to wipe for ${code}.`, "info");
+        return;
+      }
+
+      const confirmed = window.confirm(
+        `Are you sure you want to wipe the generated syllabus deliverables for ${code}: ${title}?\n\n` +
+        `• Deletes ${code} records from the SQLite database (courses, outcomes, schedules, LLOs).\n` +
+        `• Deletes generated JSON and HTML files from outputs/.\n` +
+        `• Resets this course to 'Pending' so you can re-generate it freshly.\n\n` +
+        `Proceed with wipe?`
+      );
+
+      if (confirmed) {
+        wipeCurrentSubject(code);
+      }
+    }
+
+    async function wipeCurrentSubject(courseCode) {
+      const btnWipe = document.getElementById("btnWipeSubject");
+      const originalHtml = btnWipe ? btnWipe.innerHTML : "";
+      if (btnWipe) {
+        btnWipe.disabled = true;
+        btnWipe.innerHTML = `<span class="spinner" style="width:12px; height:12px; border-width:2px; display:inline-block; vertical-align:middle; margin-right:4px;"></span> Wiping...`;
+      }
+
+      showProgressHUD(`Wiping generated deliverables for ${courseCode}...`);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/subject/wipe`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ course_code: courseCode })
+        });
+        const data = await res.json();
+        hideProgressHUD();
+
+        if (res.ok && data.success) {
+          showToast(`Successfully wiped ${courseCode}. Ready for fresh generation!`, "success");
+          
+          // Refresh subject list & re-select this course to refresh all views cleanly
+          await loadSubjects();
+          await selectSubject(courseCode);
+
+          const logBox = document.getElementById("logBox");
+          if (logBox) {
+            logBox.innerHTML = `<div>[!] Wiped ${courseCode} from SQLite database and outputs directory. Ready for fresh AI generation.</div>`;
+          }
+        } else {
+          showToast(`Error wiping ${courseCode}: ${data.error || "Unknown error"}`, "error");
+        }
+      } catch (err) {
+        hideProgressHUD();
+        console.error(err);
+        showToast(`Network error communicating with microservice to wipe ${courseCode}.`, "error");
+      } finally {
+        if (btnWipe) {
+          btnWipe.innerHTML = originalHtml || `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg><span>Wipe Course</span>`;
+        }
+      }
     }
 
     // =========================================================
@@ -5165,6 +5329,7 @@
       { type: 'action', icon: '🌓', title: 'Toggle Dark / Light Theme', subtitle: 'Switch between Studio Dark and Institutional Light mode', badge: 'Appearance', action: () => toggleTheme() },
       { type: 'action', icon: '🎬', title: 'Toggle Video Demo Walkthrough HUD', subtitle: 'Show or hide the 3-5 minute video runbook assistant', badge: 'Demo', action: () => toggleDemoHud() },
       { type: 'action', icon: '🤖', title: 'Start Dalton AI Guided Tour', subtitle: 'Launch the 7-step interactive walkthrough with Dalton the Campus Guide', badge: 'Guide', action: () => openMascotGuide(0) },
+      { type: 'action', icon: '🗑️', title: 'Wipe Active Course (Reset to Pending)', subtitle: 'Clear SQLite records and deliverables for selected subject only', badge: 'Subject Reset', action: () => confirmWipeSubject() },
       { type: 'action', icon: '☢️', title: 'Nuke Workspace (Factory Reset)', subtitle: 'Clear SQLite database, generated HTML, and browser storage', badge: 'Reset', action: () => openNukeModal() }
     ];
 
@@ -5206,23 +5371,35 @@
 
       paletteFilteredItems = [];
 
-      // 1. Subjects
-      const subjectsList = subjectCatalog || [];
+      // 1. Subjects (Search by code, title, category, description)
+      const subjectsList = (typeof subjects !== 'undefined' && Array.isArray(subjects) && subjects.length > 0)
+        ? subjects
+        : (typeof subjectCatalog !== 'undefined' && Array.isArray(subjectCatalog) ? subjectCatalog : []);
+
       const matchingSubjects = subjectsList.filter(s => {
         if (!q) return true;
-        return s.course_code.toLowerCase().includes(q) || s.course_title.toLowerCase().includes(q);
-      }).map(s => ({
-        type: 'subject',
-        icon: '📚',
-        title: `${s.course_code}: ${s.course_title}`,
-        subtitle: `${s.credit_units} Units • ${s.semester} • ${s.generated ? '✓ Generated' : '⏳ Standby'}`,
-        badge: s.generated ? 'Generated' : 'Standby',
-        action: () => {
-          selectSubject(s.course_code);
-          switchMainView('view-studio');
-          showToast(`Selected course: ${s.course_code}`, "info");
-        }
-      }));
+        return (
+          (s.course_code && s.course_code.toLowerCase().includes(q)) ||
+          (s.course_title && s.course_title.toLowerCase().includes(q)) ||
+          (s.category && s.category.toLowerCase().includes(q)) ||
+          (s.course_description && s.course_description.toLowerCase().includes(q))
+        );
+      }).map(s => {
+        const isReady = s.is_persisted || s.has_html;
+        return {
+          type: 'subject',
+          icon: s.icon || '📚',
+          title: `${s.course_code}: ${s.course_title}`,
+          subtitle: `${s.credit_units}.0 Units • ${s.semester || '3rd Year'} • ${isReady ? '✓ Ready' : '⏳ Pending'}`,
+          badge: isReady ? 'Ready' : 'Pending',
+          action: () => {
+            selectSubject(s.course_code);
+            switchMainView('view-studio');
+            closeCommandPalette();
+            showToast(`Selected course: ${s.course_code}`, "info");
+          }
+        };
+      });
 
       // 2. Actions
       const matchingActions = PALETTE_COMMANDS.filter(cmd => {

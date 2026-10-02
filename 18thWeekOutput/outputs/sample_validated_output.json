@@ -1,26 +1,17 @@
 {
   "course_metadata": {
-    "course_code": "BSCS 3215",
-    "course_title": "Parallel and Distributed Computing",
+    "course_code": "BSCS 3112",
+    "course_title": "Artificial Intelligence",
     "credit_units": 3,
     "lecture_hours": 2,
     "lab_hours": 3,
-    "prerequisites": "BSCS 3109 (Operating System Configuration and Use)",
-    "course_description": "Foundational principles and architectures of concurrent, parallel, and distributed computing systems. Topics encompass Flynn's taxonomy, shared-memory programming (OpenMP/pthreads), distributed-memory message passing (MPI), massively parallel GPU programming (CUDA), distributed consensus algorithms, cloud cluster parallelism, and performance scalability metrics."
+    "prerequisites": "CS 3110 (Data Structures and Algorithms)",
+    "course_description": "Foundations of AI and intelligent agents"
   },
   "course_outcomes": [
     {
       "clo_id": "CLO1",
-      "description": "Implement shared-memory and distributed-memory programming models using OpenMP and MPI.",
-      "bloom_level": "Apply",
-      "program_outcomes_mapped": [
-        "PLO1",
-        "PLO2"
-      ]
-    },
-    {
-      "clo_id": "CLO2",
-      "description": "Analyze scalability metrics and architectural trade-offs in parallel computing systems.",
+      "description": "Analyze complex computing problems and identify foundational principles of artificial intelligence.",
       "bloom_level": "Analyze",
       "program_outcomes_mapped": [
         "PLO1",
@@ -28,21 +19,30 @@
       ]
     },
     {
-      "clo_id": "CLO3",
-      "description": "Evaluate performance bottlenecks in GPU-accelerated applications and consensus algorithms.",
-      "bloom_level": "Evaluate",
-      "program_outcomes_mapped": [
-        "PLO1",
-        "PLO2"
-      ]
-    },
-    {
-      "clo_id": "CLO4",
-      "description": "Design optimized high-performance solutions for cloud cluster parallelism tasks.",
+      "clo_id": "CLO2",
+      "description": "Design intelligent agents capable of perceiving and acting within dynamic environments.",
       "bloom_level": "Create",
       "program_outcomes_mapped": [
         "PLO2",
         "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Evaluate the effectiveness, efficiency, and ethical implications of proposed AI solutions.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Create comprehensive technical documentation to communicate AI concepts in professional contexts.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO3"
       ]
     }
   ],
@@ -50,267 +50,265 @@
     {
       "week_number": 1,
       "topics": [
-        "Introduction to Parallel Computing & Architectures"
+        "Introduction to AI and History"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO1.1",
-          "description": "Identify parallel computing architectures and their characteristics.",
+          "description": "Analyze the evolution of artificial intelligence.",
           "domain": "K"
         },
         {
           "llo_id": "LLO1.2",
-          "description": "Compare performance metrics of shared vs distributed memory systems.",
+          "description": "Design a project proposal for AI application.",
           "domain": "S"
         },
         {
           "llo_id": "LLO1.3",
-          "description": "Appreciate the efficiency gains in parallel processing environments.",
+          "description": "Appreciate the societal impact of technology.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Amdahl's Law",
-        "Architecture Comparison Lab"
+        "Lecture on AI History"
       ],
       "assessment_tasks": [
-        "Concept Quiz"
+        "Participation Rubric"
       ],
       "resources": [
-        "Textbook Ch.1",
-        "Course LMS"
+        "Course LMS",
+        "Textbook"
       ]
     },
     {
       "week_number": 2,
       "topics": [
-        "Shared-Memory Programming Models (OpenMP)"
+        "AI Foundations and Components"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO2.1",
-          "description": "Implement OpenMP directives for parallel loops.",
+          "description": "Identify foundational principles of AI systems.",
           "domain": "K"
         },
         {
           "llo_id": "LLO2.2",
-          "description": "Compile and execute OpenMP programs on multi-core systems.",
+          "description": "Implement basic Python scripts for data processing.",
           "domain": "S"
         },
         {
           "llo_id": "LLO2.3",
-          "description": "Demonstrate collaboration in team-based coding projects.",
+          "description": "Respect intellectual property in code development.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "OpenMP Syntax Workshop",
-        "Code Compilation Lab"
+        "Lab Exercise on System Design"
       ],
       "assessment_tasks": [
-        "Lab Submission"
+        "Formative Assessment Rubric"
       ],
       "resources": [
-        "GCC Manual",
+        "Course LMS",
         "IDE"
       ]
     },
     {
       "week_number": 3,
       "topics": [
-        "Distributed-Memory Programming Models (MPI)"
+        "Types of AI and Applications"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO3.1",
-          "description": "Formulate MPI communication patterns for node interaction.",
+          "description": "Evaluate different types of AI systems.",
           "domain": "K"
         },
         {
           "llo_id": "LLO3.2",
-          "description": "Implement message passing protocols using MPICH.",
+          "description": "Create a case study on AI applications.",
           "domain": "S"
         },
         {
           "llo_id": "LLO3.3",
-          "description": "Respect network latency constraints during distributed tasks.",
+          "description": "Demonstrate curiosity for technological innovation.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "MPI Communication Lab",
-        "Network Simulation"
+        "Case Study Analysis"
       ],
       "assessment_tasks": [
-        "Lab Report"
+        "Quiz on AI Types"
       ],
       "resources": [
-        "MPICH Documentation"
+        "Course LMS",
+        "Journal Articles"
       ]
     },
     {
       "week_number": 4,
       "topics": [
-        "Advanced OpenMP & MPI Integration"
+        "Machine Learning Basics"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO4.1",
-          "description": "Analyze hybrid programming models combining OpenMP and MPI.",
+          "description": "Analyze supervised vs unsupervised learning.",
           "domain": "K"
         },
         {
           "llo_id": "LLO4.2",
-          "description": "Evaluate synchronization mechanisms in complex applications.",
+          "description": "Design a dataset for classification tasks.",
           "domain": "S"
         },
         {
           "llo_id": "LLO4.3",
-          "description": "Maintain code quality standards across heterogeneous systems.",
+          "description": "Value data accuracy and integrity.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Hybrid Programming Lab",
-        "Code Review"
+        "Lab Exercise on Data Preparation"
       ],
       "assessment_tasks": [
-        "Peer Review"
+        "Dataset Quality Check"
       ],
       "resources": [
-        "OpenMP Guide"
+        "Course LMS",
+        "Python Libraries"
       ]
     },
     {
       "week_number": 5,
       "topics": [
-        "Scalability Metrics & Performance Analysis"
+        "Supervised Learning Algorithms"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO5.1",
-          "description": "Calculate speedup and efficiency metrics.",
+          "description": "Explain regression and classification models.",
           "domain": "K"
         },
         {
           "llo_id": "LLO5.2",
-          "description": "Measure scalability behavior on cluster systems.",
+          "description": "Implement Linear Regression in Python.",
           "domain": "S"
         },
         {
           "llo_id": "LLO5.3",
-          "description": "Value data-driven decision making in performance tuning.",
+          "description": "Adhere to ethical data usage standards.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Performance Profiling Lab",
-        "Data Analysis"
+        "Lab Exercise on Model Training"
       ],
       "assessment_tasks": [
-        "Lab Report"
+        "Code Review"
       ],
       "resources": [
-        "HPL Benchmark"
+        "Course LMS",
+        "Jupyter Notebooks"
       ]
     },
     {
       "week_number": 6,
       "topics": [
-        "Architectural Trade-offs in Parallel Systems"
+        "Unsupervised Learning Algorithms"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO6.1",
-          "description": "Assess hardware-software co-design trade-offs.",
+          "description": "Analyze clustering and dimensionality reduction.",
           "domain": "K"
         },
         {
           "llo_id": "LLO6.2",
-          "description": "Design optimized algorithms for specific architectures.",
+          "description": "Design a K-Means clustering solution.",
           "domain": "S"
         },
         {
           "llo_id": "LLO6.3",
-          "description": "Understand the importance of sustainable computing practices.",
+          "description": "Demonstrate critical thinking in pattern recognition.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Case Study Analysis",
-        "Algorithm Design Workshop"
+        "Lab Exercise on Clustering"
       ],
       "assessment_tasks": [
-        "Design Proposal"
+        "Model Evaluation Report"
       ],
       "resources": [
-        "Architecture Papers"
+        "Course LMS",
+        "Scikit-learn"
       ]
     },
     {
       "week_number": 7,
       "topics": [
-        "GPU Accelerated Computing Fundamentals"
+        "Neural Networks and Deep Learning"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO7.1",
-          "description": "Describe GPU architecture and parallel execution models.",
+          "description": "Evaluate the architecture of neural networks.",
           "domain": "K"
         },
         {
           "llo_id": "LLO7.2",
-          "description": "Implement CUDA kernels for matrix operations.",
+          "description": "Create a basic neural network model.",
           "domain": "S"
         },
         {
           "llo_id": "LLO7.3",
-          "description": "Recognize the potential of high-performance computing in research.",
+          "description": "Appreciate the complexity of deep structures.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "CUDA Programming Lab",
-        "Hardware Demo"
+        "Lab Exercise on Neural Networks"
       ],
       "assessment_tasks": [
-        "Lab Submission"
+        "Architecture Diagram"
       ],
       "resources": [
-        "NVIDIA Documentation"
+        "Course LMS",
+        "TensorFlow"
       ]
     },
     {
       "week_number": 8,
       "topics": [
-        "GPU Performance Bottlenecks & Optimization"
+        "Natural Language Processing (NLP) Intro"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO8.1",
-          "description": "Identify memory bandwidth and compute bottlenecks.",
+          "description": "Analyze text data processing techniques.",
           "domain": "K"
         },
         {
           "llo_id": "LLO8.2",
-          "description": "Optimize GPU code using profiling tools.",
+          "description": "Design a tokenization pipeline.",
           "domain": "S"
         },
         {
           "llo_id": "LLO8.3",
-          "description": "Demonstrate commitment to iterative improvement processes.",
+          "description": "Respect linguistic diversity in NLP.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Profiling Workshop",
-        "Code Optimization Lab"
+        "Lab Exercise on Text Processing"
       ],
       "assessment_tasks": [
-        "Optimization Report"
+        "Pipeline Design Doc"
       ],
       "resources": [
-        "Nsight Systems"
+        "Course LMS",
+        "NLTK"
       ]
     },
     {
@@ -321,17 +319,17 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO9.1",
-          "description": "Demonstrate mastery of shared and distributed memory concepts.",
+          "description": "Demonstrate mastery of Weeks 1-8 concepts.",
           "domain": "K"
         },
         {
           "llo_id": "LLO9.2",
-          "description": "Apply knowledge to solve complex parallel programming problems.",
+          "description": "Apply learned algorithms to solve problems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO9.3",
-          "description": "Evaluate personal understanding of course material.",
+          "description": "Reflect on academic integrity during assessment.",
           "domain": "A"
         }
       ],
@@ -339,274 +337,275 @@
         "Midterm Examination"
       ],
       "assessment_tasks": [
-        "Midterm Exam"
+        "Midterm Exam Paper"
       ],
       "resources": [
-        "Exam Paper"
+        "Course LMS",
+        "Exam Center"
       ]
     },
     {
       "week_number": 10,
       "topics": [
-        "Consensus Algorithms & Distributed Systems"
+        "Computer Vision Fundamentals"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO10.1",
-          "description": "Formulate requirements for distributed consensus protocols.",
+          "description": "Analyze image processing techniques.",
           "domain": "K"
         },
         {
           "llo_id": "LLO10.2",
-          "description": "Implement Paxos and Raft algorithms in simulation.",
+          "description": "Implement object detection models.",
           "domain": "S"
         },
         {
           "llo_id": "LLO10.3",
-          "description": "Appreciate the reliability of fault-tolerant systems.",
+          "description": "Value privacy in visual data collection.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Consensus Simulation Lab",
-        "Protocol Analysis"
+        "Lab Exercise on Image Processing"
       ],
       "assessment_tasks": [
-        "Lab Report"
+        "Code Review"
       ],
       "resources": [
-        "Distributed Systems Textbook"
+        "Course LMS",
+        "OpenCV"
       ]
     },
     {
       "week_number": 11,
       "topics": [
-        "Cloud Cluster Parallelism Tasks"
+        "Reinforcement Learning Basics"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO11.1",
-          "description": "Analyze cloud infrastructure for parallel task scheduling.",
+          "description": "Evaluate Q-learning and policy gradients.",
           "domain": "K"
         },
         {
           "llo_id": "LLO11.2",
-          "description": "Design job submission scripts for cloud clusters.",
+          "description": "Design an agent for a game environment.",
           "domain": "S"
         },
         {
           "llo_id": "LLO11.3",
-          "description": "Value cost-effectiveness in resource utilization.",
+          "description": "Demonstrate patience in iterative learning.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Cloud Lab (AWS/Azure)",
-        "Scripting Workshop"
+        "Lab Exercise on RL Agents"
       ],
       "assessment_tasks": [
-        "Cloud Task Submission"
+        "Agent Performance Log"
       ],
       "resources": [
-        "Cloud Provider Docs"
+        "Course LMS",
+        "Gym Environment"
       ]
     },
     {
       "week_number": 12,
       "topics": [
-        "High-Performance Solutions for Cloud Clusters"
+        "AI Ethics and Bias"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO12.1",
-          "description": "Evaluate containerization strategies for parallel workloads.",
+          "description": "Analyze ethical implications of AI bias.",
           "domain": "K"
         },
         {
           "llo_id": "LLO12.2",
-          "description": "Create optimized Docker containers for HPC tasks.",
+          "description": "Formulate mitigation strategies for bias.",
           "domain": "S"
         },
         {
           "llo_id": "LLO12.3",
-          "description": "Demonstrate responsibility in cloud resource management.",
+          "description": "Advocate for fairness in AI systems.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Containerization Lab",
-        "Performance Tuning"
+        "Ethics Workshop"
       ],
       "assessment_tasks": [
-        "Container Image Submission"
+        "Bias Mitigation Plan"
       ],
       "resources": [
-        "Docker Hub"
+        "Course LMS",
+        "Ethics Guidelines"
       ]
     },
     {
       "week_number": 13,
       "topics": [
-        "Capstone Project Development Phase 1"
+        "AI Documentation and Standards"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO13.1",
-          "description": "Design a parallel solution for a real-world problem.",
+          "description": "Create comprehensive technical documentation.",
           "domain": "K"
         },
         {
           "llo_id": "LLO13.2",
-          "description": "Implement core functionality of the capstone project.",
+          "description": "Design a user manual for AI tools.",
           "domain": "S"
         },
         {
           "llo_id": "LLO13.3",
-          "description": "Collaborate effectively in group development teams.",
+          "description": "Communicate complex concepts clearly.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Project Kickoff",
-        "Development Sprint"
+        "Documentation Workshop"
       ],
       "assessment_tasks": [
-        "Project Proposal Review"
+        "Technical Report Draft"
       ],
       "resources": [
-        "Project Guidelines"
+        "Course LMS",
+        "Markdown Editor"
       ]
     },
     {
       "week_number": 14,
       "topics": [
-        "Capstone Project Development Phase 2"
+        "Capstone Project Planning"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO14.1",
-          "description": "Refactor code for improved parallel efficiency.",
+          "description": "Analyze requirements for AI capstone.",
           "domain": "K"
         },
         {
           "llo_id": "LLO14.2",
-          "description": "Debug and optimize the capstone application.",
+          "description": "Design a system architecture for the project.",
           "domain": "S"
         },
         {
           "llo_id": "LLO14.3",
-          "description": "Maintain professional documentation standards.",
+          "description": "Demonstrate commitment to project goals.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Code Refactoring Lab",
-        "Documentation Workshop"
+        "Project Planning Session"
       ],
       "assessment_tasks": [
-        "Mid-Project Checkpoint"
+        "Project Proposal"
       ],
       "resources": [
-        "Git Repository"
+        "Course LMS",
+        "Project Templates"
       ]
     },
     {
       "week_number": 15,
       "topics": [
-        "Capstone Project Development Phase 3"
+        "Capstone Development Phase 1"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO15.1",
-          "description": "Test the capstone solution under load.",
+          "description": "Implement core AI functionality.",
           "domain": "K"
         },
         {
           "llo_id": "LLO15.2",
-          "description": "Validate performance against baseline metrics.",
+          "description": "Debug and optimize the capstone system.",
           "domain": "S"
         },
         {
           "llo_id": "LLO15.3",
-          "description": "Ensure ethical use of computational resources.",
+          "description": "Collaborate effectively with team members.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Load Testing Lab",
-        "Validation Workshop"
+        "Capstone Coding Sprint"
       ],
       "assessment_tasks": [
-        "Performance Test Report"
+        "Development Milestone Check"
       ],
       "resources": [
-        "Benchmark Suite"
+        "Course LMS",
+        "Git Repository"
       ]
     },
     {
       "week_number": 16,
       "topics": [
-        "Capstone Project Finalization"
+        "Capstone Development Phase 2"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO16.1",
-          "description": "Finalize the capstone project documentation.",
+          "description": "Evaluate system performance metrics.",
           "domain": "K"
         },
         {
           "llo_id": "LLO16.2",
-          "description": "Prepare presentation materials for defense.",
+          "description": "Create final documentation and presentation.",
           "domain": "S"
         },
         {
           "llo_id": "LLO16.3",
-          "description": "Demonstrate confidence in presenting technical solutions.",
+          "description": "Showcase professional work ethic.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Presentation Rehearsal",
-        "Final Review"
+        "System Testing"
       ],
       "assessment_tasks": [
-        "Presentation Draft"
+        "Performance Metrics Report"
       ],
       "resources": [
-        "Presentation Templates"
+        "Course LMS",
+        "Presentation Tools"
       ]
     },
     {
       "week_number": 17,
       "topics": [
-        "Capstone Project Defense Preparation"
+        "Capstone Review and Refinement"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO17.1",
-          "description": "Review final project deliverables.",
+          "description": "Analyze feedback from peer reviews.",
           "domain": "K"
         },
         {
           "llo_id": "LLO17.2",
-          "description": "Practice answering technical questions on defense.",
+          "description": "Refine the capstone project based on feedback.",
           "domain": "S"
         },
         {
           "llo_id": "LLO17.3",
-          "description": "Reflect on learning outcomes and growth.",
+          "description": "Demonstrate resilience in iterative improvement.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Mock Defense",
-        "Feedback Session"
+        "Peer Review Session"
       ],
       "assessment_tasks": [
-        "Defense Rubric"
+        "Refinement Log"
       ],
       "resources": [
-        "Final Report Template"
+        "Course LMS",
+        "Feedback Forms"
       ]
     },
     {
@@ -617,31 +616,29 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO18.1",
-          "description": "Demonstrate comprehensive understanding of parallel computing.",
+          "description": "Evaluate comprehensive understanding of AI.",
           "domain": "K"
         },
         {
           "llo_id": "LLO18.2",
-          "description": "Defend the capstone project before faculty panel.",
+          "description": "Defend the capstone project publicly.",
           "domain": "S"
         },
         {
           "llo_id": "LLO18.3",
-          "description": "Evaluate personal achievement against course objectives.",
+          "description": "Exhibit confidence in professional presentation.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Final Exam",
-        "Capstone Defense"
+        "Final Defense"
       ],
       "assessment_tasks": [
-        "Final Exam",
-        "Defense Evaluation"
+        "Final Exam & Defense Rubric"
       ],
       "resources": [
-        "Exam Paper",
-        "Defense Panel"
+        "Course LMS",
+        "Defense Hall"
       ]
     }
   ]

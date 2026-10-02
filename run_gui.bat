@@ -1,4 +1,4 @@
 @echo off
-title UPHSD CCS - OBE AI Microservice 14-Week Studio Launcher
-cd /d "%~dp014thWeekOutput"
-call run_14thweek.bat %*
+title UPHSD CCS - OBE AI Microservice 18-Week Interactive Studio Launcher
+cd /d "%~dp018thWeekOutput"
+call run_18thweek.bat %*

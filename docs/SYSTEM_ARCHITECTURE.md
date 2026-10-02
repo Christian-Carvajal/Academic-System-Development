@@ -108,6 +108,7 @@ The microservice backend in `18thWeekOutput/app.py` exposes the following endpoi
 | `GET` | `/api/generation-state`| Polls active background generation progress & logs | None | `200 OK`: `{"status": "running", "progress_pct": 50, "logs": [...]}` |
 | `POST` | `/api/generate` | Starts background worker thread for single or batch | `{"course_code": "BSCS 3111", ...}` or `{"batch": true}` | `200 OK`: `{"status": "started"}` |
 | `POST` | `/api/update-clo` | Human-in-the-Loop CLO statement update | `{"clo_id": "CLO 1", "course_code": "...", "new_description": "..."}` | `200 OK`: `{"success": true, "message": "..."}` |
+| `POST` | `/api/subject/wipe`| Selectively deletes single course from DB and removes its files | `{"course_code": "BSCS 3112"}` | `200 OK`: `{"success": true, "message": "Wiped..."}` |
 | `POST` | `/api/nuke` | Permanently deletes outputs, drops tables, clears state | None | `200 OK`: `{"success": true, "message": "Nuked"}` |
 | `GET` | `/outputs/*` | Serves static HTML and JSON deliverables | `official_syllabus_BSCS_3111.html` | `200 OK` (Static File) |
 

@@ -31,7 +31,7 @@ DATABASE_DIR.mkdir(parents=True, exist_ok=True)
 
 from curriculum_catalog import CURRICULUM_SUBJECTS, get_subject, get_all_subjects
 from obe_schemas import CourseOutcomeSchema, FullSyllabusSchema
-from db_manager import get_syllabus, update_clo, get_connection, DEFAULT_DB_PATH, init_db
+from db_manager import get_syllabus, update_clo, delete_course, get_connection, DEFAULT_DB_PATH, init_db
 from export_engine import export_to_file
 import llm_engine
 
@@ -226,6 +226,62 @@ def perform_nuke() -> Dict[str, Any]:
     }
 
 
+def perform_subject_wipe(course_code: str) -> Dict[str, Any]:
+    """Wipes all generated deliverable files, deletes SQLite database records, and resets state for a single course."""
+    norm_code = course_code.strip()
+    clean_code = norm_code.replace(" ", "_").replace("/", "-")
+    deleted_files = []
+
+    # 1. Delete generated JSON and HTML deliverables for this course in outputs/
+    patterns = [
+        f"sample_validated_output_{clean_code}.json",
+        f"official_syllabus_{clean_code}.html",
+        f"official_syllabus_{clean_code}.pdf"
+    ]
+    for fname in patterns:
+        fpath = OUTPUTS_DIR / fname
+        if fpath.exists():
+            try:
+                fpath.unlink()
+                deleted_files.append(fname)
+            except Exception as e:
+                print(f"[!] Warning deleting {fpath}: {e}")
+
+    # Check default sample_validated_output.json
+    default_json = OUTPUTS_DIR / "sample_validated_output.json"
+    if default_json.exists():
+        try:
+            with open(default_json, "r", encoding="utf-8") as f:
+                d = json.load(f)
+            if d.get("course_metadata", {}).get("course_code", "").strip().upper() == norm_code.upper():
+                default_json.unlink()
+                deleted_files.append("sample_validated_output.json")
+        except Exception as e:
+            print(f"[!] Warning inspecting default json: {e}")
+
+    # 2. Delete database records via db_manager
+    db_cleared = delete_course(norm_code)
+
+    # 3. Reset in-memory state if this course was active
+    with generation_lock:
+        if generation_state.get("course_code") == norm_code:
+            generation_state["status"] = "idle"
+            generation_state["progress_pct"] = 0
+            generation_state["stage"] = f"Course {norm_code} Wiped"
+            generation_state["message"] = f"Course {norm_code} wiped clean. Ready for fresh generation."
+            generation_state["course_code"] = None
+            generation_state["result"] = None
+
+    return {
+        "success": True,
+        "course_code": norm_code,
+        "message": f"Successfully wiped syllabus deliverables and SQLite database records for {norm_code}.",
+        "deleted": deleted_files,
+        "db_cleared": db_cleared
+    }
+
+
+
 class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -306,13 +362,27 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
                 db_rows = conn.execute("SELECT course_code FROM courses").fetchall()
                 persisted_codes = {r["course_code"].upper() for r in db_rows}
             
+            # Check default sample_validated_output.json course code once
+            default_cand = OUTPUTS_DIR / "sample_validated_output.json"
+            default_course_code = None
+            if default_cand.exists():
+                try:
+                    with open(default_cand, "r", encoding="utf-8") as f:
+                        d = json.load(f)
+                    default_course_code = d.get("course_metadata", {}).get("course_code", "").strip().upper()
+                except Exception:
+                    pass
+
             for s in subjects:
                 code_norm = s["course_code"].upper()
                 clean_code = s["course_code"].replace(" ", "_").replace("/", "-")
-                has_json = (OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json").exists() or (OUTPUTS_DIR / "sample_validated_output.json").exists()
+                course_json_exists = (OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json").exists()
+                if not course_json_exists and default_course_code == code_norm:
+                    course_json_exists = True
+
                 has_html = (OUTPUTS_DIR / f"official_syllabus_{clean_code}.html").exists()
                 s["is_persisted"] = code_norm in persisted_codes
-                s["has_json"] = has_json
+                s["has_json"] = course_json_exists
                 s["has_html"] = has_html
                 s["html_filename"] = f"official_syllabus_{clean_code}.html" if has_html else None
 
@@ -722,10 +792,41 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             self.send_json(HTTPStatus.OK, result)
             return
 
+        # 5. Individual Course/Subject Wipe endpoint
+        if path in ("/api/subject/wipe", "/api/subject/reset", "/api/course/wipe"):
+            course_code = payload.get("course_code")
+            if not course_code:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "Missing 'course_code' parameter in request body."})
+                return
+            result = perform_subject_wipe(course_code)
+            self.send_json(HTTPStatus.OK, result)
+            return
+
         self.send_error(HTTPStatus.NOT_FOUND, "Endpoint not found.")
 
 
+def ensure_port_available(port: int = PORT):
+    """Checks if the target port is currently occupied by a stale zombie process and cleans it up."""
+    if sys.platform != "win32":
+        return
+    try:
+        cmd = f'netstat -ano | findstr :{port}'
+        output = subprocess.check_output(cmd, shell=True, text=True, stderr=subprocess.DEVNULL)
+        current_pid = os.getpid()
+        for line in output.strip().splitlines():
+            if "LISTENING" in line:
+                parts = line.split()
+                pid = int(parts[-1])
+                if pid != current_pid and pid > 0:
+                    print(f"[*] Port {port} occupied by stale process (PID {pid}). Releasing port...")
+                    subprocess.run(f"taskkill /F /PID {pid}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    time.sleep(0.5)
+    except Exception:
+        pass
+
+
 def start_server(host: str = HOST, port: int = PORT, open_browser: bool = True):
+    ensure_port_available(port)
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, OBE18WeekHttpHandler)
     url = f"http://{host}:{port}"

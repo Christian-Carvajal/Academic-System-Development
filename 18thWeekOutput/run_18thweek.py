@@ -152,6 +152,26 @@ def check_ollama_and_model():
         print(f"[+] Model '{MODEL_TAG}' is verified and ready for live generation.")
 
 
+def ensure_port_available(port: int = PORT):
+    """Checks if the target port is currently occupied by a stale zombie process and cleans it up."""
+    if sys.platform != "win32":
+        return
+    try:
+        cmd = f'netstat -ano | findstr :{port}'
+        output = subprocess.check_output(cmd, shell=True, text=True, stderr=subprocess.DEVNULL)
+        current_pid = os.getpid()
+        for line in output.strip().splitlines():
+            if "LISTENING" in line:
+                parts = line.split()
+                pid = int(parts[-1])
+                if pid != current_pid and pid > 0:
+                    print(f"[*] Port {port} occupied by stale process (PID {pid}). Releasing port...")
+                    subprocess.run(f"taskkill /F /PID {pid}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    time.sleep(0.5)
+    except Exception:
+        pass
+
+
 def main():
     print_banner()
     check_python_version()
@@ -169,6 +189,8 @@ def main():
     print("  Launcher Command: python run_18thweek.py")
     print("  Press Ctrl+C in this console to terminate the server.")
     print("=" * 70 + "\n")
+
+    ensure_port_available(PORT)
 
     if str(BASE_DIR) not in sys.path:
         sys.path.insert(0, str(BASE_DIR))

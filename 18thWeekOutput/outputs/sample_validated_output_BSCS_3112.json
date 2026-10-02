@@ -6,12 +6,12 @@
     "lecture_hours": 2,
     "lab_hours": 3,
     "prerequisites": "CS 3110 (Data Structures and Algorithms)",
-    "course_description": "Foundational and modern principles of artificial intelligence, including intelligent agents, state-space search heuristics (A*, Minimax), knowledge representation, first-order logic, probabilistic reasoning, machine learning pipelines, deep neural networks, computer vision, natural language processing, and ethical considerations in autonomous systems."
+    "course_description": "Foundations of AI and intelligent agents"
   },
   "course_outcomes": [
     {
       "clo_id": "CLO1",
-      "description": "Analyze the principles of intelligent agents and state-space search heuristics to solve complex computing problems.",
+      "description": "Analyze complex computing problems and identify foundational principles of artificial intelligence.",
       "bloom_level": "Analyze",
       "program_outcomes_mapped": [
         "PLO1",
@@ -20,26 +20,26 @@
     },
     {
       "clo_id": "CLO2",
-      "description": "Create machine learning pipelines and deep neural network architectures for computer vision and natural language processing tasks.",
+      "description": "Design intelligent agents capable of perceiving and acting within dynamic environments.",
       "bloom_level": "Create",
       "program_outcomes_mapped": [
-        "PLO1",
-        "PLO2"
-      ]
-    },
-    {
-      "clo_id": "CLO3",
-      "description": "Apply first-order logic and probabilistic reasoning to formulate knowledge representation systems for autonomous agents.",
-      "bloom_level": "Apply",
-      "program_outcomes_mapped": [
-        "PLO1",
+        "PLO2",
         "PLO5"
       ]
     },
     {
-      "clo_id": "CLO4",
-      "description": "Evaluate the ethical implications of AI systems and communicate professional solutions in various computing contexts.",
+      "clo_id": "CLO3",
+      "description": "Evaluate the effectiveness, efficiency, and ethical implications of proposed AI solutions.",
       "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Create comprehensive technical documentation to communicate AI concepts in professional contexts.",
+      "bloom_level": "Create",
       "program_outcomes_mapped": [
         "PLO1",
         "PLO3"
@@ -50,259 +50,265 @@
     {
       "week_number": 1,
       "topics": [
-        "Introduction to AI and Intelligent Agents"
+        "Introduction to AI and History"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO1.1",
-          "description": "Define intelligent agents and their environments.",
+          "description": "Analyze the evolution of artificial intelligence.",
           "domain": "K"
         },
         {
           "llo_id": "LLO1.2",
-          "description": "Trace agent behavior in different environments.",
+          "description": "Design a project proposal for AI application.",
           "domain": "S"
         },
         {
           "llo_id": "LLO1.3",
-          "description": "Appreciate the autonomy of autonomous systems.",
+          "description": "Appreciate the societal impact of technology.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Agent Types"
+        "Lecture on AI History"
       ],
       "assessment_tasks": [
-        "Quiz on Agent Definitions"
+        "Participation Rubric"
       ],
       "resources": [
         "Course LMS",
-        "Textbook Chapter 1"
+        "Textbook"
       ]
     },
     {
       "week_number": 2,
       "topics": [
-        "State-Space Search Algorithms"
+        "AI Foundations and Components"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO2.1",
-          "description": "Analyze state-space representation for problems.",
+          "description": "Identify foundational principles of AI systems.",
           "domain": "K"
         },
         {
           "llo_id": "LLO2.2",
-          "description": "Implement Breadth-First Search (BFS).",
+          "description": "Implement basic Python scripts for data processing.",
           "domain": "S"
         },
         {
           "llo_id": "LLO2.3",
-          "description": "Value computational efficiency in search.",
+          "description": "Respect intellectual property in code development.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: BFS Implementation"
+        "Lab Exercise on System Design"
       ],
       "assessment_tasks": [
-        "Lab Report on Search Complexity"
+        "Formative Assessment Rubric"
       ],
       "resources": [
-        "Python Libraries",
+        "Course LMS",
         "IDE"
       ]
     },
     {
       "week_number": 3,
       "topics": [
-        "Heuristics and A* Search"
+        "Types of AI and Applications"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO3.1",
-          "description": "Formulate admissible heuristics for pathfinding.",
+          "description": "Evaluate different types of AI systems.",
           "domain": "K"
         },
         {
           "llo_id": "LLO3.2",
-          "description": "Apply A* algorithm to solve mazes.",
+          "description": "Create a case study on AI applications.",
           "domain": "S"
         },
         {
           "llo_id": "LLO3.3",
-          "description": "Recognize limitations of heuristic search.",
+          "description": "Demonstrate curiosity for technological innovation.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: A* Pathfinding"
+        "Case Study Analysis"
       ],
       "assessment_tasks": [
-        "Midterm Exam Preparation Quiz"
+        "Quiz on AI Types"
       ],
       "resources": [
-        "Graph Theory Notes"
+        "Course LMS",
+        "Journal Articles"
       ]
     },
     {
       "week_number": 4,
       "topics": [
-        "Introduction to Knowledge Representation"
+        "Machine Learning Basics"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO4.1",
-          "description": "Define predicates and quantifiers.",
+          "description": "Analyze supervised vs unsupervised learning.",
           "domain": "K"
         },
         {
           "llo_id": "LLO4.2",
-          "description": "Construct logical formulas from sentences.",
+          "description": "Design a dataset for classification tasks.",
           "domain": "S"
         },
         {
           "llo_id": "LLO4.3",
-          "description": "Respect the rigor of formal logic.",
+          "description": "Value data accuracy and integrity.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on Propositional Logic"
+        "Lab Exercise on Data Preparation"
       ],
       "assessment_tasks": [
-        "Homework: Logic Translation"
+        "Dataset Quality Check"
       ],
       "resources": [
-        "Logic Textbook"
+        "Course LMS",
+        "Python Libraries"
       ]
     },
     {
       "week_number": 5,
       "topics": [
-        "First-Order Logic and Inference"
+        "Supervised Learning Algorithms"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO5.1",
-          "description": "Translate natural language to FOL.",
+          "description": "Explain regression and classification models.",
           "domain": "K"
         },
         {
           "llo_id": "LLO5.2",
-          "description": "Build knowledge bases using FOL.",
+          "description": "Implement Linear Regression in Python.",
           "domain": "S"
         },
         {
           "llo_id": "LLO5.3",
-          "description": "Value accuracy in representation.",
+          "description": "Adhere to ethical data usage standards.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: Prolog Programming"
+        "Lab Exercise on Model Training"
       ],
       "assessment_tasks": [
-        "Quiz on FOL Syntax"
+        "Code Review"
       ],
       "resources": [
-        "Prolog IDE"
+        "Course LMS",
+        "Jupyter Notebooks"
       ]
     },
     {
       "week_number": 6,
       "topics": [
-        "Probabilistic Reasoning and Bayesian Nets"
+        "Unsupervised Learning Algorithms"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO6.1",
-          "description": "Calculate conditional probabilities.",
+          "description": "Analyze clustering and dimensionality reduction.",
           "domain": "K"
         },
         {
           "llo_id": "LLO6.2",
-          "description": "Apply Bayesian networks to inference.",
+          "description": "Design a K-Means clustering solution.",
           "domain": "S"
         },
         {
           "llo_id": "LLO6.3",
-          "description": "Acknowledge uncertainty in data.",
+          "description": "Demonstrate critical thinking in pattern recognition.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: BN Construction"
+        "Lab Exercise on Clustering"
       ],
       "assessment_tasks": [
-        "Homework on Probability"
+        "Model Evaluation Report"
       ],
       "resources": [
-        "Bayesian Tools"
+        "Course LMS",
+        "Scikit-learn"
       ]
     },
     {
       "week_number": 7,
       "topics": [
-        "Machine Learning Fundamentals"
+        "Neural Networks and Deep Learning"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO7.1",
-          "description": "Identify supervised vs unsupervised tasks.",
+          "description": "Evaluate the architecture of neural networks.",
           "domain": "K"
         },
         {
           "llo_id": "LLO7.2",
-          "description": "Prepare datasets for training.",
+          "description": "Create a basic neural network model.",
           "domain": "S"
         },
         {
           "llo_id": "LLO7.3",
-          "description": "Understand data importance in ML.",
+          "description": "Appreciate the complexity of deep structures.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lecture on ML Pipelines"
+        "Lab Exercise on Neural Networks"
       ],
       "assessment_tasks": [
-        "Dataset Preparation Task"
+        "Architecture Diagram"
       ],
       "resources": [
-        "Scikit-Learn"
+        "Course LMS",
+        "TensorFlow"
       ]
     },
     {
       "week_number": 8,
       "topics": [
-        "Deep Neural Networks Architecture"
+        "Natural Language Processing (NLP) Intro"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO8.1",
-          "description": "Define layers and activation functions.",
+          "description": "Analyze text data processing techniques.",
           "domain": "K"
         },
         {
           "llo_id": "LLO8.2",
-          "description": "Build neural network architectures.",
+          "description": "Design a tokenization pipeline.",
           "domain": "S"
         },
         {
           "llo_id": "LLO8.3",
-          "description": "Appreciate model complexity.",
+          "description": "Respect linguistic diversity in NLP.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: NN Design"
+        "Lab Exercise on Text Processing"
       ],
       "assessment_tasks": [
-        "Architecture Design Proposal"
+        "Pipeline Design Doc"
       ],
       "resources": [
-        "TensorFlow/Keras"
+        "Course LMS",
+        "NLTK"
       ]
     },
     {
@@ -313,17 +319,17 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO9.1",
-          "description": "Review course concepts comprehensively.",
+          "description": "Demonstrate mastery of Weeks 1-8 concepts.",
           "domain": "K"
         },
         {
           "llo_id": "LLO9.2",
-          "description": "Demonstrate knowledge via assessment.",
+          "description": "Apply learned algorithms to solve problems.",
           "domain": "S"
         },
         {
           "llo_id": "LLO9.3",
-          "description": "Maintain academic integrity during exam.",
+          "description": "Reflect on academic integrity during assessment.",
           "domain": "A"
         }
       ],
@@ -331,255 +337,197 @@
         "Midterm Examination"
       ],
       "assessment_tasks": [
-        "Formative Assessment Rubric"
+        "Midterm Exam Paper"
       ],
       "resources": [
-        "Exam Paper"
+        "Course LMS",
+        "Exam Center"
       ]
     },
     {
       "week_number": 10,
       "topics": [
-        "Computer Vision Applications"
+        "Computer Vision Fundamentals"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO10.1",
-          "description": "Identify visual features for tasks.",
+          "description": "Analyze image processing techniques.",
           "domain": "K"
         },
         {
           "llo_id": "LLO10.2",
-          "description": "Implement Convolutional Neural Networks (CNNs).",
+          "description": "Implement object detection models.",
           "domain": "S"
         },
         {
           "llo_id": "LLO10.3",
-          "description": "Value visual data accuracy.",
+          "description": "Value privacy in visual data collection.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: Image Classification"
+        "Lab Exercise on Image Processing"
       ],
       "assessment_tasks": [
-        "CV Project Milestone 1"
+        "Code Review"
       ],
       "resources": [
+        "Course LMS",
         "OpenCV"
       ]
     },
     {
       "week_number": 11,
       "topics": [
-        "Natural Language Processing"
+        "Reinforcement Learning Basics"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO11.1",
-          "description": "Define tokens and embeddings.",
+          "description": "Evaluate Q-learning and policy gradients.",
           "domain": "K"
         },
         {
           "llo_id": "LLO11.2",
-          "description": "Build Recurrent Neural Networks (RNNs).",
+          "description": "Design an agent for a game environment.",
           "domain": "S"
         },
         {
           "llo_id": "LLO11.3",
-          "description": "Respect language nuances.",
+          "description": "Demonstrate patience in iterative learning.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: NLP Text Processing"
+        "Lab Exercise on RL Agents"
       ],
       "assessment_tasks": [
-        "NLP Project Milestone 1"
+        "Agent Performance Log"
       ],
       "resources": [
-        "NLTK"
+        "Course LMS",
+        "Gym Environment"
       ]
     },
     {
       "week_number": 12,
       "topics": [
-        "Advanced Deep Learning"
+        "AI Ethics and Bias"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO12.1",
-          "description": "Compare transformer architectures.",
+          "description": "Analyze ethical implications of AI bias.",
           "domain": "K"
         },
         {
           "llo_id": "LLO12.2",
-          "description": "Tune hyperparameters for optimization.",
+          "description": "Formulate mitigation strategies for bias.",
           "domain": "S"
         },
         {
           "llo_id": "LLO12.3",
-          "description": "Acknowledge bias risks in models.",
+          "description": "Advocate for fairness in AI systems.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: Hyperparameter Tuning"
+        "Ethics Workshop"
       ],
       "assessment_tasks": [
-        "Model Performance Report"
+        "Bias Mitigation Plan"
       ],
       "resources": [
-        "PyTorch"
+        "Course LMS",
+        "Ethics Guidelines"
       ]
     },
     {
       "week_number": 13,
       "topics": [
-        "AI Ethics and Society"
+        "AI Documentation and Standards"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO13.1",
-          "description": "Identify ethical issues in AI.",
+          "description": "Create comprehensive technical documentation.",
           "domain": "K"
         },
         {
           "llo_id": "LLO13.2",
-          "description": "Draft policy guidelines for systems.",
+          "description": "Design a user manual for AI tools.",
           "domain": "S"
         },
         {
           "llo_id": "LLO13.3",
-          "description": "Commit to professional ethics.",
+          "description": "Communicate complex concepts clearly.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Seminar on AI Ethics"
+        "Documentation Workshop"
       ],
       "assessment_tasks": [
-        "Ethics Policy Draft"
+        "Technical Report Draft"
       ],
       "resources": [
-        "Ethics Guidelines"
+        "Course LMS",
+        "Markdown Editor"
       ]
     },
     {
       "week_number": 14,
       "topics": [
-        "Bias and Fairness in AI"
+        "Capstone Project Planning"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO14.1",
-          "description": "Analyze sources of algorithmic bias.",
+          "description": "Analyze requirements for AI capstone.",
           "domain": "K"
         },
         {
           "llo_id": "LLO14.2",
-          "description": "Mitigate bias in datasets and models.",
+          "description": "Design a system architecture for the project.",
           "domain": "S"
         },
         {
           "llo_id": "LLO14.3",
-          "description": "Promote equity in AI solutions.",
+          "description": "Demonstrate commitment to project goals.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Lab: Bias Mitigation"
+        "Project Planning Session"
       ],
       "assessment_tasks": [
-        "Bias Analysis Report"
+        "Project Proposal"
       ],
       "resources": [
-        "Fairness Metrics"
+        "Course LMS",
+        "Project Templates"
       ]
     },
     {
       "week_number": 15,
       "topics": [
-        "Societal Impact of AI"
+        "Capstone Development Phase 1"
       ],
       "lesson_outcomes": [
         {
           "llo_id": "LLO15.1",
-          "description": "Evaluate societal risks and benefits.",
+          "description": "Implement core AI functionality.",
           "domain": "K"
         },
         {
           "llo_id": "LLO15.2",
-          "description": "Propose solutions for deployment.",
+          "description": "Debug and optimize the capstone system.",
           "domain": "S"
         },
         {
           "llo_id": "LLO15.3",
-          "description": "Advocate for safety standards.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Workshop on Impact Assessment"
-      ],
-      "assessment_tasks": [
-        "Impact Assessment Paper"
-      ],
-      "resources": [
-        "Case Studies"
-      ]
-    },
-    {
-      "week_number": 16,
-      "topics": [
-        "Capstone Project Design"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO16.1",
-          "description": "Define project scope and goals.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO16.2",
-          "description": "Design system architecture.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO16.3",
-          "description": "Value innovation in design.",
-          "domain": "A"
-        }
-      ],
-      "teaching_learning_activities": [
-        "Capstone Design Workshop"
-      ],
-      "assessment_tasks": [
-        "Design Proposal Review"
-      ],
-      "resources": [
-        "Project Templates"
-      ]
-    },
-    {
-      "week_number": 17,
-      "topics": [
-        "Capstone Project Development"
-      ],
-      "lesson_outcomes": [
-        {
-          "llo_id": "LLO17.1",
-          "description": "Integrate components into final system.",
-          "domain": "K"
-        },
-        {
-          "llo_id": "LLO17.2",
-          "description": "Implement solution with testing.",
-          "domain": "S"
-        },
-        {
-          "llo_id": "LLO17.3",
-          "description": "Ensure reliability of output.",
+          "description": "Collaborate effectively with team members.",
           "domain": "A"
         }
       ],
@@ -587,10 +535,77 @@
         "Capstone Coding Sprint"
       ],
       "assessment_tasks": [
-        "System Testing Report"
+        "Development Milestone Check"
       ],
       "resources": [
-        "Development Tools"
+        "Course LMS",
+        "Git Repository"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Development Phase 2"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Evaluate system performance metrics.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Create final documentation and presentation.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Showcase professional work ethic.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "System Testing"
+      ],
+      "assessment_tasks": [
+        "Performance Metrics Report"
+      ],
+      "resources": [
+        "Course LMS",
+        "Presentation Tools"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Review and Refinement"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Analyze feedback from peer reviews.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Refine the capstone project based on feedback.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Demonstrate resilience in iterative improvement.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Peer Review Session"
+      ],
+      "assessment_tasks": [
+        "Refinement Log"
+      ],
+      "resources": [
+        "Course LMS",
+        "Feedback Forms"
       ]
     },
     {
@@ -601,28 +616,29 @@
       "lesson_outcomes": [
         {
           "llo_id": "LLO18.1",
-          "description": "Review final work comprehensively.",
+          "description": "Evaluate comprehensive understanding of AI.",
           "domain": "K"
         },
         {
           "llo_id": "LLO18.2",
-          "description": "Defend solutions before panel.",
+          "description": "Defend the capstone project publicly.",
           "domain": "S"
         },
         {
           "llo_id": "LLO18.3",
-          "description": "Uphold academic standards during defense.",
+          "description": "Exhibit confidence in professional presentation.",
           "domain": "A"
         }
       ],
       "teaching_learning_activities": [
-        "Final Examination & Defense"
+        "Final Defense"
       ],
       "assessment_tasks": [
-        "Formative Assessment Rubric"
+        "Final Exam & Defense Rubric"
       ],
       "resources": [
-        "Defense Guidelines"
+        "Course LMS",
+        "Defense Hall"
       ]
     }
   ]

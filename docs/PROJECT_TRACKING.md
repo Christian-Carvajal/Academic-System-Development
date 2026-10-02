@@ -136,7 +136,9 @@ PASS: /outputs/official_syllabus_BSCS_3108.html returned status 200 (31,249 byte
    - Click **`⚡ Generate 18-Week OBE Syllabus (Qwen 3.5 4B)`** to start generation.
    - Watch real-time streaming progress in the Progress HUD.
    - Inspect Course Outcomes in the CLO tab and edit statements using the Human-in-the-Loop modal.
+   - **`🗑️ Wipe Course (Selective Reset)`**: Click to reset only the currently selected course back to pending, cleanly cascading SQLite deletions and deleting that subject's deliverables without touching any other courses.
    - Inspect weekly topics, K/S/A domains, TLAs, and assessments in the 18-Week Schedule Matrix tab.
+   - Review Tab 2: PLO Alignment Matrix with pedagogical guidance on why courses specialize in specific PLOs.
 2. **`📄 Dedicated Syllabus Viewer & Print Studio` (`#view-viewer`)**:
    - Filter courses by `All (8)`, `✓ Generated`, or `⏳ Ready`.
    - Search courses using the real-time search box.
@@ -147,6 +149,21 @@ PASS: /outputs/official_syllabus_BSCS_3108.html returned status 200 (31,249 byte
    - View persisted courses in SQLite (`database/obe_syllabus.db`).
    - Click **`📄 View Official Syllabus`** on any course row — the UI instantly transitions to the Dedicated Syllabus Viewer with that document displayed.
    - Review live CHED CMO 25 invariant compliance scores (100% passing across all 7 checks).
-4. **`☢️ Nuclear Workspace Reset`**:
+4. **Universal Command Palette (`Ctrl + K`)**:
+   - Press `Ctrl + K` (or `Cmd + K` on macOS) anywhere in the application.
+   - Instantly search courses by code, title, category, or description with live keyboard filtering.
+   - Run system actions: jump to views, trigger batch generation, wipe active course, or open documentation.
+5. **`☢️ Nuclear Workspace Reset`**:
    - Click `☢️ NUKE WORKSPACE` in the top header or database tab to open the confirmation modal.
    - Confirms deletion of all generated HTML/JSON deliverables, wipes the SQLite database, and clears browser caches, restoring the system to a clean state.
+
+---
+
+## 6. Engineering Changelog & Recent Milestones
+
+### October 2026 — Sprint 4: Operational Hardening & Usability
+* **Feature (Individual Subject Wipe):** Added `delete_course(course_code)` to `18thWeekOutput/db_manager.py` with foreign key cascades; added `POST /api/subject/wipe` to `18thWeekOutput/app.py`; added `🗑️ Wipe Course` UI button in `index.html` with confirmation dialog, progress spinner, and state refresh.
+* **Bug Fix (Universal Command Palette & Search):** Fixed `filterPalette()` in `index.html` where `subjectCatalog` was undefined; bound search to `subjects` catalog matching `course_code`, `course_title`, `category`, and `course_description`.
+* **Pedagogical Alignment (PLO Matrix):** Added educational legend strip to Tab 2 explaining CHED CMO 25 s.2015 outcome distribution. Verified that specialized courses correctly map to subset PLOs to avoid outcome inflation.
+* **Launcher & Port Fixes:** Resolved port 8001 socket conflicts by clearing orphaned processes; unified `run_18thweek.bat`, `run_gui.bat`, and `run_pipeline.bat`; updated `export_engine.py` default course parameter to `BSCS 3112`.
+* **Agent Architecture Policy:** Enacted Section 6 in `docs/AGENTS.md` requiring all collaborating agents to continuously maintain `README.md` and documentation on every code change without waiting for user prompts.

@@ -96,6 +96,23 @@
   - 10/10 CSS classes verified.
   - 100% endpoint test pass rate (`/`, `/api/subjects`, `/api/database`, `/outputs/*.html`).
 
+### Phase 6: Operational Hardening, Ergonomics & Continuous Docs Protocol
+- [x] **Single-Subject Selective Reset (`🗑️ Wipe Course`)**:
+  - Added `delete_course()` to `18thWeekOutput/db_manager.py` with cascading deletes.
+  - Added `POST /api/subject/wipe` endpoint and connected frontend wipe modal.
+  - Enables faculty to regenerate or reset a single subject without nuking the entire database.
+- [x] **Universal Command Palette (`Ctrl + K`)**:
+  - Bound hotkey `Ctrl + K` to interactive command palette with live course catalog search across 4 fields (code, title, category, description).
+  - Wired quick-jump actions (Studio, Viewer, Audit, Batch Generate, Wipe Course).
+- [x] **Curriculum Pedagogy & PLO Alignment Matrix**:
+  - Added educational legend to Tab 2 explaining CHED CMO 25 s.2015 distribution and preventing outcome inflation.
+- [x] **1-Click Launchers & Port Binding**:
+  - Fixed root batch delegators (`run_18thweek.bat`, `run_gui.bat`, `run_pipeline.bat`).
+  - Standardized on Port 8001 for Lesson 5 18-Week Studio.
+  - Corrected `export_engine.py` default course parameter to `BSCS 3112`.
+- [x] **Autonomous Documentation Sync Protocol**:
+  - Added Section 6 to `docs/AGENTS.md` obligating all agents to keep README and docs continuously updated on every code modification.
+
 ---
 
 ## 3. Rubric Scorecard & Target Level

@@ -154,3 +154,43 @@ The system orchestrates local LLM inference via **Ollama (`qwen3.5:4b`)**, enfor
   - Batch launcher: `run_18thweek.bat`
   - Python launcher: `python run_18thweek.py`
   - Direct server: `python 18thWeekOutput/app.py`
+
+---
+
+## 6. Mandatory Documentation Protocol: Continuous README & Docs Maintenance
+
+> [!IMPORTANT]
+> **AUTONOMOUS DOCUMENTATION DIRECTIVE FOR ALL AGENTS (Antigravity, Collaborator Agents, Claude, GPT):**
+> 1. **Zero-Prompt Proactive Maintenance:** Whenever you make code modifications (frontend UI, backend API endpoints, database schemas, scripts, validation rules, or launchers), you **MUST proactively update `README.md` and the appropriate files in `docs/` in the same turn without being asked.**
+> 2. **Never Leave Documentation Out of Sync:** Any new feature, button, endpoint, bug fix, or architecture change must be immediately documented in:
+>    - `README.md`: System capabilities, directory structure, testing guides, and quick-start instructions.
+>    - `docs/HANDOFF.md`: Status of deliverables, handoff notes, and runbook instructions.
+>    - `docs/PROJECT_TRACKING.md`: Live changelog, operational runbooks, and implementation status.
+>    - `docs/PROJECT_ROADMAP.md`: Phase status and completed tasks.
+> 3. **Preserve Raw Professor Instructions:** The file `docs/projectInstructionByProfessor.md` contains the verbatim raw prompt and guidelines from Prof. Roberto L. Malitao. **NEVER modify or truncate `docs/projectInstructionByProfessor.md`**.
+> 4. **Respect Collaborator Creative Domain:** John Miko P. Sarsalijo retains full creative ownership over UI/UX design, visual themes, and layout prompting. Document this explicitly in `docs/HANDOFF.md`.
+> 5. **Atomic Commit Cleanliness:** Always ensure all docs updates are committed alongside code updates so git history remains cleanly paired and traceable.
+
+---
+
+## 7. Operational Upgrades & Microservice Extensions
+
+### 7.1 Single-Subject Selective Wipe (`POST /api/subject/wipe`)
+* **Database Function:** `delete_course(course_code: str) -> bool` in `18thWeekOutput/db_manager.py`.
+* **API Route:** `POST /api/subject/wipe` with JSON body `{"course_code": "BSCS 3112"}` in `18thWeekOutput/app.py`.
+* **Behavior:** Cascades deletions across SQLite tables (`lesson_outcomes`, `weekly_schedules`, `course_outcomes`, `courses`), deletes compiled deliverables (`outputs/official_syllabus_{code}.html` and `outputs/sample_validated_output_{code}.json`), and resets course state to pending without affecting other subjects.
+* **UI Trigger:** `🗑️ Wipe Course` button in the Curriculum Studio header row, plus Command Palette (`Ctrl + K`).
+
+### 7.2 Universal Command Palette (`Ctrl + K`) & Multi-Criteria Search
+* **Shortcut:** `Ctrl + K` (or `Cmd + K` on macOS) opens the interactive Command Palette modal.
+* **Multi-Criteria Search:** Searches across `course_code`, `course_title`, `category`, and `course_description`.
+* **Navigation:** Allows instantaneous course selection, quick tab switching (`1: Studio`, `2: Viewer`, `3: Database`), one-click batch generation, single-course wipe, and nuclear reset.
+
+### 7.3 PLO Alignment Matrix Pedagogy (CHED CMO 25 s.2015)
+* In Outcome-Based Education, courses are specialized. Not all dots in the PLO matrix are green because each course deliberately targets only specific Program Learning Outcomes (e.g., Automata targets PLO 1 & 5; Software Engineering targets PLO 2, 3, 4).
+* Claiming all green dots across all PLOs is classified as "outcome inflation" and is an accreditation violation. The matrix accurately reflects curricular scaffolding.
+
+### 7.4 Unified 1-Click Launchers & Port Binding
+* **Port 8001:** Dedicated to Lesson 5 18-Week Microservice Studio (`run_18thweek.bat` and `run_gui.bat`).
+* **Port 8000:** Reserved for Lesson 4 14-Week Studio (`run_14thweek.bat`).
+* **CLI Fallback:** `18thWeekOutput/export_engine.py` default course parameter updated from legacy `CS 3110` to official `BSCS 3112`.

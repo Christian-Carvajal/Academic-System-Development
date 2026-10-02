@@ -24,7 +24,7 @@ From the root of `submission_deliverables`:
 :: Double-click or run from terminal:
 run_18thweek.bat
 ```
-*(Or `run_18th_week_gui.bat`. Launches the dedicated 18-Week Studio on `http://127.0.0.1:8001` with an automated 8-subject selector, live progress HUD, human-in-the-loop CLO editor, SQLite live inspector, and built-in official HTML viewer).*
+*(Or `run_gui.bat` / `run_18th_week_gui.bat`. Launches the dedicated 18-Week Studio on `http://127.0.0.1:8001` with an automated 8-subject selector, live progress HUD, human-in-the-loop CLO editor, selective single-subject wipe, Command Palette `Ctrl + K`, SQLite live inspector, and built-in official HTML viewer).*
 
 *Or navigate into `18thWeekOutput/` and launch directly:*
 ```bash
@@ -38,6 +38,8 @@ From the root of `submission_deliverables`:
 :: Double-click or run from terminal:
 run_18th_week.bat
 ```
+*(Or `run_pipeline.bat`. Executes the full 18-week pipeline for BSCS 3112: generation, SQLite ingestion, CRUD test, and HTML compilation).*
+
 *Or navigate into `18thWeekOutput/` and execute each component directly:*
 ```bash
 cd 18thWeekOutput
@@ -58,7 +60,7 @@ From the root of `submission_deliverables`:
 :: Double-click or run from terminal:
 run_14thweek.bat
 ```
-*(Or `run_gui.bat`. Runs on `http://127.0.0.1:8000` with manual CLO input form, cognitive taxonomy badges, and offline vector PDF export).*
+*(Runs legacy Lesson 4 studio on `http://127.0.0.1:8000` with manual CLO input form, cognitive taxonomy badges, and offline vector PDF export).*
 
 *Or navigate into `14thWeekOutput/` and launch directly:*
 ```bash
@@ -67,12 +69,13 @@ python run_14thweek.py
 ```
 
 ### Mode 4: 14-Week Headless CLI Pipeline Runner
-From the root of `submission_deliverables`:
-```bat
-:: Double-click or run from terminal:
+From `14thWeekOutput/`:
+```bash
+cd 14thWeekOutput
 run_pipeline.bat
 ```
-*Or navigate into `14thWeekOutput/` and run:*
+*Or execute directly:*
+
 ```bash
 cd 14thWeekOutput
 python lab1_1_generator.py
@@ -171,9 +174,17 @@ Built for enterprise curriculum engineering, relational persistence, and institu
   - Relational SQLite schema (`schema.sql`) with foreign keys and `ON DELETE CASCADE`.
   - Ingests Pydantic validated JSON models into 4 normalized tables: `courses`, `course_outcomes`, `weekly_schedules`, and `lesson_outcomes`.
   - Full CRUD operations with human-in-the-loop CLO editing (`update_clo()`).
+  - Selective single-course wipe (`delete_course()`) executing clean cascaded relational deletions.
 - **Milestone 2 Document Compiler (`export_engine.py`):**
   - Jinja2 templating engine rendering records from `obe_syllabus.db` into `templates/uphsd_ccs_template.html`.
   - Compiles an official, browser-ready HTML syllabus with standard CSS styling, CHED CMO alignments, and Dean/Chair signatory lines.
+- **Interactive Web Studio & Ergonomics (`index.html` on Port 8001):**
+  - **Zero-Typing Curriculum Catalog:** 8 pre-configured 3rd-Year BSCS courses with instant autofill and faculty customization.
+  - **Selective Single-Subject Wipe (`🗑️ Wipe Course`):** Reset an individual course back to pending without wiping other generated syllabi.
+  - **Universal Command Palette (`Ctrl + K`):** Instant keyboard palette searching across course code, title, description, and category.
+  - **Sequential Batch Generator:** 1-click batch generation for all 8 catalog courses with live progress HUD.
+  - **PLO Alignment Matrix (CHED CMO 25 s.2015):** Curricular scaffolding displaying specialized outcomes per course (intentional selective mapping preventing academic outcome inflation).
+  - **Accreditation QA Invariant Auditor:** Automated 7-point CHED CMO 25 compliance check with live pass/fail badges.
 
 ---
 

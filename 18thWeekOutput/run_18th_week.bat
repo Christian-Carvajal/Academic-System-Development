@@ -63,7 +63,7 @@ echo.
 echo ======================================================================
 echo    [3/3] RUNNING MILESTONE 2: Jinja2 Institutional HTML Compilation
 echo ======================================================================
-"%PY_EXE%" export_engine.py "CS 3110"
+"%PY_EXE%" export_engine.py "BSCS 3112"
 if errorlevel 1 (
     color 0C
     echo [ERROR] Document compilation encountered an error.
@@ -75,12 +75,12 @@ color 0A
 echo.
 echo ======================================================================
 echo    SUCCESS: 18-Week Pipeline, SQLite DB and HTML Syllabus Compiled!
-echo    Output Location: outputs\official_syllabus_CS_3110.html
+echo    Output Location: outputs\official_syllabus_BSCS_3112.html
 echo ======================================================================
 echo.
 
-if exist "outputs\official_syllabus_CS_3110.html" (
-    start "" "outputs\official_syllabus_CS_3110.html"
+if exist "outputs\official_syllabus_BSCS_3112.html" (
+    start "" "outputs\official_syllabus_BSCS_3112.html"
 )
 
 pause
