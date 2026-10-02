@@ -447,7 +447,7 @@
       gap: 0.5rem;
       overflow-y: auto;
       max-height: calc(100vh - 350px);
-      padding-right: 0.25rem;
+      padding: 4px 0.25rem 4px 0;
     }
 
     .subject-grid::-webkit-scrollbar { width: 5px; }
@@ -487,18 +487,32 @@
       border: 1.5px solid var(--maroon-primary);
     }
 
-    .subject-card.featured::before {
-      content: "★ AI";
-      position: absolute;
-      top: -6px;
-      right: 10px;
-      background: var(--gold-primary);
-      color: #000;
+    .subject-card.featured {
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .badge-ai-featured {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #1a0f00;
       font-weight: 800;
-      font-size: 0.58rem;
+      font-size: 0.60rem;
+      line-height: 1;
       font-family: var(--font-mono);
-      padding: 1px 5px;
-      border-radius: 3px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    [data-theme="light"] .badge-ai-featured {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      color: #ffffff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     }
 
     .subject-header {
@@ -3800,9 +3814,12 @@
             <div class="subject-header">
               <div class="subject-icon">${s.icon || '📘'}</div>
               <div class="subject-info" style="flex:1;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:0.4rem;">
                   <span class="subject-code">${s.course_code}</span>
-                  <span class="pill-status ${statusClass}">${statusText}</span>
+                  <div style="display:flex; align-items:center; gap:0.35rem;">
+                    ${isAI ? `<span class="badge-ai-featured" title="Featured AI Core Course">★ AI</span>` : ''}
+                    <span class="pill-status ${statusClass}">${statusText}</span>
+                  </div>
                 </div>
                 <h3>${s.course_title}</h3>
                 <div class="subject-meta">
