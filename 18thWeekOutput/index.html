@@ -3874,11 +3874,11 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
-  <!-- Floating Video Demo Walkthrough HUD -->
-  <div class="demo-hud" id="demoHud">
+  <!-- Floating Video Demo Walkthrough HUD (Minimized by default) -->
+  <div class="demo-hud minimized" id="demoHud">
     <div class="demo-hud-header" onclick="toggleDemoHud()" role="button" tabindex="0" aria-label="Toggle Video Demo Runbook" onkeydown="if(event.key==='Enter'||event.key===' ')toggleDemoHud()">
       <h4><span>🎬</span> Video Demo Runbook</h4>
-      <span id="demoHudToggleIcon" title="Toggle Runbook">−</span>
+      <span id="demoHudToggleIcon" title="Toggle Runbook">+</span>
     </div>
     <div class="demo-hud-body" id="demoHudBody">
       <div class="demo-step-row" id="demoStep1" onclick="runDemoStep(1)">

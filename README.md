@@ -179,6 +179,10 @@ Built for enterprise curriculum engineering, relational persistence, and institu
   - **Intelligent Batch Generation Dispatcher (`#batchModalOverlay`):** When clicking "Batch Generate All Courses (Queue)" or pressing `Ctrl + K`, opens an intelligent modal dialog displaying current progress ($N$ completed vs $M$ pending). Offers faculty the choice to either: (1) **⚡ Generate Remaining Only** (skips completed subjects, preserving SQLite records and deliverables while saving computation time), or (2) **🔄 Regenerate All 8 Courses** (fresh re-synthesis from scratch overwriting existing records). Includes interactive catalog chips, completed badges, and handles all edge cases ($N=0$, $0 < N < 8$, $N=8$).
   - **PLO Alignment Matrix (CHED CMO 25 s.2015):** Curricular scaffolding displaying specialized outcomes per course (intentional selective mapping preventing academic outcome inflation).
   - **Accreditation QA Invariant Auditor:** Automated 7-point CHED CMO 25 compliance check with live pass/fail badges.
+  - **Publication-Grade System Documentation (`OBE_Syllabus_Generator_18th_Week_Documentation.pdf`):**
+    - Standalone 16-page technical report and project documentation compiled using BrowserOS neo.
+    - Features 10 high-resolution, full-screen 1920x1080 desktop screenshots illustrating every dashboard view, drawer, modal, and inspector.
+    - Contains direct, zero-fluff explanations alongside complete backend code snippets (SQLite schema `schema.sql`, Pydantic data contracts `obe_schemas.py`, LLM reasoning extraction `llm_engine.py`, SQLite transactional manager `db_manager.py`, and selective batch dispatcher `app.py`).
 
 ---
 

@@ -29,6 +29,7 @@ submission_deliverables/
 ├── run_18thweek.bat               # Windows batch launcher (With UI - Port 8001)
 ├── run_18th_week.bat              # Windows batch runner   (Without UI - CLI Only)
 ├── run_18thweek.py                # Cross-platform Python launcher (Port 8001)
+├── OBE_Syllabus_Generator_18th_Week_Documentation.pdf # Complete 16-page technical documentation PDF
 ├── 18thWeekOutput/                # Complete self-contained microservice studio package
 │   ├── app.py                     # ThreadingHTTPServer backend & REST API dispatch
 │   ├── index.html                 # Modern 3-view SPA frontend
@@ -37,6 +38,9 @@ submission_deliverables/
 │   ├── llm_engine.py              # Ollama client, CoT stripper, self-healing loop
 │   ├── db_manager.py              # SQLite CRUD persistence layer
 │   ├── export_engine.py           # Jinja2 HTML compiler
+│   ├── generate_docs_html.py      # Documentation compiler script
+│   ├── compiled_documentation.html# Source HTML document with vector print styles
+│   ├── documentation_assets/      # 10 full-res 1920x1080 UI screenshots
 │   ├── run_18thweek.bat           # 18-Week Studio Launcher (With UI)
 │   ├── run_18th_week.bat          # 18-Week Headless CLI Pipeline (Without UI)
 │   ├── database/
@@ -180,4 +184,9 @@ PASS: /outputs/official_syllabus_BSCS_3108.html returned status 200 (31,249 byte
   - When $N = 8$, informs user that 100% of courses are already complete and confirms fresh re-synthesis.
   - Backend support added in `18thWeekOutput/app.py`: `is_subject_generated(course_code)` and `run_batch_generation_worker(skip_existing=bool)` with granular progress calculation and live skip telemetry.
 * **Milestone Execution (100% Curriculum Catalog Generated & Persisted):** Successfully executed batch generation across all 8 3rd-year CS curriculum subjects (`BSCS 3108`, `BSCS 3109`, `BSCS 3110`, `BSCS 3111`, `BSCS 3112`, `BSCS 3213`, `BSCS 3214`, `BSCS 3215`). All 8 subjects are now fully persisted in `database/obe_syllabus.db` (each with 4 Bloom-compliant CLOs, 18 weekly schedule items, and 54 tripartite K/S/A lesson outcomes), with complete official Jinja2 HTML and Pydantic v2 JSON deliverables available in `outputs/`.
+* **Milestone Execution (BrowserOS neo 1080p Snapshots & Vector PDF Documentation):**
+  - Integrated BrowserOS neo MCP to capture 10 high-resolution, uncropped 1920x1080 widescreen desktop snapshots across every view, modal, drawer, and inspector in the 18-week Interactive Studio (`http://127.0.0.1:8001`).
+  - Configured Runbook Video HUD (`#demoHud`) in `18thWeekOutput/index.html` to load minimized by default, keeping full interface cards and tables unobstructed.
+  - Implemented automated documentation compiler (`18thWeekOutput/generate_docs_html.py`) producing `compiled_documentation.html` with print-ready CSS (`@page A4`), tabular pipeline architecture, figure captions without AI filler/fluff, and syntax-highlighted code blocks for SQLite schema (`schema.sql`), Pydantic v2 data contracts (`obe_schemas.py`), LLM engine (`llm_engine.py`), SQLite CRUD layer (`db_manager.py`), and batch dispatcher (`app.py`).
+  - Rendered and compiled into standalone publication vector PDF: `OBE_Syllabus_Generator_18th_Week_Documentation.pdf` (16 pages, 2.6 MB, A4 layout).
 
