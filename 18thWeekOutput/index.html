@@ -2685,6 +2685,20 @@
       border-color: var(--gold-border);
       color: var(--gold-bright);
     }
+    .btn-mascot-nav.btn-mascot-finish {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      border-color: #34d399;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+    }
+    .btn-mascot-nav.btn-mascot-finish:hover {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-color: #6ee7b7;
+      color: #ffffff;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.55);
+      transform: translateY(-1px);
+    }
     .btn-mascot-spotlight {
       font-size: 0.74rem;
       font-weight: 600;
@@ -5112,6 +5126,7 @@
       { type: 'action', icon: '🖨️', title: 'Print / Save Official Vector PDF', subtitle: 'Open browser print preview with vector formatting', badge: 'Export', action: () => { openDedicatedViewer(selectedSubject ? selectedSubject.course_code : ''); setTimeout(printDedicatedDoc, 500); } },
       { type: 'action', icon: '🌓', title: 'Toggle Dark / Light Theme', subtitle: 'Switch between Studio Dark and Institutional Light mode', badge: 'Appearance', action: () => toggleTheme() },
       { type: 'action', icon: '🎬', title: 'Toggle Video Demo Walkthrough HUD', subtitle: 'Show or hide the 3-5 minute video runbook assistant', badge: 'Demo', action: () => toggleDemoHud() },
+      { type: 'action', icon: '🤖', title: 'Start Dalton AI Guided Tour', subtitle: 'Launch the 7-step interactive walkthrough with Dalton the Campus Guide', badge: 'Guide', action: () => openMascotGuide(0) },
       { type: 'action', icon: '☢️', title: 'Nuke Workspace (Factory Reset)', subtitle: 'Clear SQLite database, generated HTML, and browser storage', badge: 'Reset', action: () => openNukeModal() }
     ];
 
@@ -5275,11 +5290,17 @@
       }
     }
 
-    // Global Keyboard Shortcut: Ctrl + K / Cmd + K
+    // Global Keyboard Shortcuts: Ctrl + K (Palette) & Escape (Close Modals/Guide)
     window.addEventListener("keydown", (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         toggleCommandPalette();
+      }
+      if (e.key === "Escape") {
+        const mascotBackdrop = document.getElementById("mascotGuideBackdrop");
+        if (mascotBackdrop && mascotBackdrop.classList.contains("active")) {
+          closeMascotGuide();
+        }
       }
     });
 
@@ -5364,16 +5385,27 @@
       mascotCurrentStep = Math.max(0, Math.min(stepIndex, MASCOT_GUIDE_STEPS.length - 1));
       backdrop.classList.add("active");
       renderMascotStep(mascotCurrentStep);
+      spotlightMascotTarget();
     }
 
     function closeMascotGuide() {
       const backdrop = document.getElementById("mascotGuideBackdrop");
       if (backdrop) backdrop.classList.remove("active");
       clearMascotSpotlight();
+      mascotCurrentStep = 0;
     }
 
     function navigateMascot(delta) {
-      mascotCurrentStep = Math.max(0, Math.min(mascotCurrentStep + delta, MASCOT_GUIDE_STEPS.length - 1));
+      const nextIndex = mascotCurrentStep + delta;
+      if (delta > 0 && nextIndex >= MASCOT_GUIDE_STEPS.length) {
+        // User clicked Finish on the final step (Step 7 of 7)
+        closeMascotGuide();
+        if (typeof showToast === 'function') {
+          showToast("Tour Completed", "Dalton tour complete! You are ready to generate and manage OBE syllabi.", "success");
+        }
+        return;
+      }
+      mascotCurrentStep = Math.max(0, Math.min(nextIndex, MASCOT_GUIDE_STEPS.length - 1));
       renderMascotStep(mascotCurrentStep);
       spotlightMascotTarget();
     }
@@ -5392,10 +5424,19 @@
 
       if (prevBtn) prevBtn.disabled = (index === 0);
       if (nextBtn) {
-        nextBtn.innerText = (index === MASCOT_GUIDE_STEPS.length - 1) ? "Finish ✓" : "Next →";
+        const isLast = (index === MASCOT_GUIDE_STEPS.length - 1);
+        nextBtn.innerText = isLast ? "Finish ✓" : "Next →";
+        if (isLast) {
+          nextBtn.classList.add("btn-mascot-finish");
+          nextBtn.title = "Finish tour and close Dalton guide";
+        } else {
+          nextBtn.classList.remove("btn-mascot-finish");
+          nextBtn.title = "Proceed to next tour step";
+        }
       }
     }
 
+    let spotlightTimer = null;
     function spotlightMascotTarget() {
       clearMascotSpotlight();
       const step = MASCOT_GUIDE_STEPS[mascotCurrentStep];
@@ -5405,7 +5446,8 @@
       if (step.view) switchMainView(step.view);
       if (step.tab) switchStudioTab(step.tab);
 
-      setTimeout(() => {
+      if (spotlightTimer) clearTimeout(spotlightTimer);
+      spotlightTimer = setTimeout(() => {
         const el = document.getElementById(step.targetId);
         if (el) {
           el.classList.add("mascot-target-spotlight");
@@ -5415,6 +5457,10 @@
     }
 
     function clearMascotSpotlight() {
+      if (spotlightTimer) {
+        clearTimeout(spotlightTimer);
+        spotlightTimer = null;
+      }
       document.querySelectorAll(".mascot-target-spotlight").forEach(el => {
         el.classList.remove("mascot-target-spotlight");
       });
