@@ -179,3 +179,5 @@ PASS: /outputs/official_syllabus_BSCS_3108.html returned status 200 (31,249 byte
   - When $N = 0$, confirms full 8-course batch initialization.
   - When $N = 8$, informs user that 100% of courses are already complete and confirms fresh re-synthesis.
   - Backend support added in `18thWeekOutput/app.py`: `is_subject_generated(course_code)` and `run_batch_generation_worker(skip_existing=bool)` with granular progress calculation and live skip telemetry.
+* **Milestone Execution (100% Curriculum Catalog Generated & Persisted):** Successfully executed batch generation across all 8 3rd-year CS curriculum subjects (`BSCS 3108`, `BSCS 3109`, `BSCS 3110`, `BSCS 3111`, `BSCS 3112`, `BSCS 3213`, `BSCS 3214`, `BSCS 3215`). All 8 subjects are now fully persisted in `database/obe_syllabus.db` (each with 4 Bloom-compliant CLOs, 18 weekly schedule items, and 54 tripartite K/S/A lesson outcomes), with complete official Jinja2 HTML and Pydantic v2 JSON deliverables available in `outputs/`.
+

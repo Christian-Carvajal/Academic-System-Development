@@ -1,0 +1,629 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3213",
+    "course_title": "Software Engineering",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "CS 3110 (Data Structures and Algorithms)",
+    "course_description": "Systematic engineering methodologies for software development, covering SDLC models, Agile/Scrum frameworks, requirements engineering, object-oriented analysis and design with UML, architectural patterns, unit and integration testing, continuous integration and deployment (CI/CD), and software project management."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Design scalable software architectures using Agile frameworks and SDLC models to solve complex problems.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Analyze system requirements and construct UML diagrams for object-oriented design specifications.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO3"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Implement automated testing protocols and configure continuous integration/deployment pipelines.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Evaluate project management strategies to ensure alignment with engineering best practices.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO3",
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Software Engineering & SDLC"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Identify the phases of the Software Development Life Cycle.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Apply Agile methodologies to project planning scenarios.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Demonstrate professional ethics in software development.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on SDLC Models"
+      ],
+      "assessment_tasks": [
+        "Participation Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "SDLC Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Agile Frameworks & Scrum"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Analyze the benefits of Agile vs Waterfall models.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Formulate sprint plans using Scrum artifacts.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Adhere to collaborative team communication norms.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Workshop on Scrum Boards"
+      ],
+      "assessment_tasks": [
+        "Sprint Planning Quiz"
+      ],
+      "resources": [
+        "Agile Guide",
+        "LMS"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "System Requirements Analysis"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Differentiate between functional and non-functional requirements.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Document user stories using standard templates.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Prioritize stakeholder needs ethically.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Requirements Workshop"
+      ],
+      "assessment_tasks": [
+        "Story Mapping Exercise"
+      ],
+      "resources": [
+        "User Story Template"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "UML Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Classify UML diagram types for system modeling.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Construct Class Diagrams using OOP principles.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Maintain clarity and precision in technical documentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "UML Drawing Lab"
+      ],
+      "assessment_tasks": [
+        "Diagram Review"
+      ],
+      "resources": [
+        "PlantUML Tool"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Object-Oriented Design Patterns"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Evaluate common design patterns for scalability.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Implement Singleton and Factory patterns in code.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Respect intellectual property in open-source libraries.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Pattern Implementation Lab"
+      ],
+      "assessment_tasks": [
+        "Code Review"
+      ],
+      "resources": [
+        "Design Patterns Book"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Scalable Software Architectures"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Analyze microservices vs monolithic architectures.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Design scalable system structures for high load.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Ensure security compliance in architecture design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Architecture Design Workshop"
+      ],
+      "assessment_tasks": [
+        "System Blueprint Draft"
+      ],
+      "resources": [
+        "AWS Architecture Guide"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Automated Testing Protocols"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Identify types of unit and integration tests.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Write automated test cases using testing frameworks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Demonstrate commitment to code quality standards.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Testing Framework Lab"
+      ],
+      "assessment_tasks": [
+        "Test Suite Execution"
+      ],
+      "resources": [
+        "JUnit/Jest Docs"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Continuous Integration/Deployment"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Configure CI/CD pipeline tools for automation.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Deploy applications using automated pipelines.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Follow version control best practices.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "CI/CD Pipeline Setup"
+      ],
+      "assessment_tasks": [
+        "Pipeline Configuration Check"
+      ],
+      "resources": [
+        "GitHub Actions"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Assess understanding of SDLC and Agile concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Evaluate design skills through written exam.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Demonstrate integrity during assessment.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Written Midterm Exam"
+      ],
+      "resources": [
+        "Exam Paper"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Project Management Strategies"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Analyze project management methodologies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Formulate risk management plans for software projects.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Prioritize stakeholder communication effectively.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Risk Management Workshop"
+      ],
+      "assessment_tasks": [
+        "Risk Register Draft"
+      ],
+      "resources": [
+        "PMBOK Guide"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Agile Best Practices & Metrics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Calculate velocity and burn-down metrics.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Implement sprint retrospectives for improvement.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Foster a culture of continuous improvement.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Metrics Calculation Lab"
+      ],
+      "assessment_tasks": [
+        "Retrospective Report"
+      ],
+      "resources": [
+        "Velocity Chart"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Capstone Project Planning"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Define scope and objectives for capstone project.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Design system architecture for capstone solution.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Align project goals with engineering best practices.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Proposal Workshop"
+      ],
+      "assessment_tasks": [
+        "Project Proposal Review"
+      ],
+      "resources": [
+        "Project Charter Template"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Capstone Development Phase I"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Implement core features of the capstone system.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Integrate modules using OOP design patterns.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Maintain code documentation standards.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Coding Sprint"
+      ],
+      "assessment_tasks": [
+        "Code Commit Review"
+      ],
+      "resources": [
+        "IDE Environment"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Capstone Development Phase II"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Test system functionality against requirements.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Configure automated testing pipelines for capstone.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Ensure user privacy and data security compliance.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Testing Sprint"
+      ],
+      "assessment_tasks": [
+        "Test Report Analysis"
+      ],
+      "resources": [
+        "Test Framework"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Capstone Development Phase III"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Deploy capstone solution to production environment.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Monitor system performance post-deployment.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Demonstrate responsibility for system stability.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Deployment Lab"
+      ],
+      "assessment_tasks": [
+        "Deployment Log Review"
+      ],
+      "resources": [
+        "Cloud Provider"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Project Review"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Evaluate project alignment with initial objectives.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Present system functionality to peers.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Accept constructive feedback professionally.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Peer Review Session"
+      ],
+      "assessment_tasks": [
+        "Presentation Rubric"
+      ],
+      "resources": [
+        "Feedback Forms"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Final Preparation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Refine documentation and presentation materials.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Simulate defense Q&A scenarios.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Demonstrate confidence in technical solutions.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Mock Defense"
+      ],
+      "assessment_tasks": [
+        "Defense Simulation Score"
+      ],
+      "resources": [
+        "Presentation Deck"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Assess comprehensive knowledge of Software Engineering.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Defend capstone project before faculty panel.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Exhibit professional conduct during final defense.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Exam & Defense"
+      ],
+      "assessment_tasks": [
+        "Final Exam & Defense Rubric"
+      ],
+      "resources": [
+        "Defense Hall"
+      ]
+    }
+  ]
+}

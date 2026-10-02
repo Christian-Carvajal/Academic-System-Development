@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSCS 3215 - Parallel and Distributed Computing | Official OBE Syllabus</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #0D9488;
+      --accent: #D97706;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+      --border: #CBD5E1;
+      --border-dark: #64748B;
+      --text: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #F1F5F9;
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    .syllabus-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      padding: 40px;
+    }
+
+    /* Institutional Header */
+    .inst-header {
+      text-align: center;
+      border-bottom: 3px double var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .inst-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .inst-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .inst-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #EFF6FF;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #F8FAFC;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .meta-table td:first-child {
+      font-weight: 600;
+      background-color: #F8FAFC;
+      width: 25%;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bloom {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 1px solid #C7D2FE;
+    }
+
+    .badge-k { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-s { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .badge-a { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+    .exam-row {
+      background-color: #FFFBEB;
+      font-weight: 600;
+    }
+
+    .exam-row td {
+      border-color: #FCD34D;
+    }
+
+    /* Signatory Box */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-dark);
+    }
+
+    .sign-box {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--dark);
+      margin-top: 45px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .syllabus-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="syllabus-container">
+  
+  <!-- Institutional Header -->
+  <div class="inst-header">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 12px;">
+      <img src="../assets/logo/uphsd.png" alt="UPHSD Seal" style="height: 70px; width: auto; object-fit: contain;" onerror="this.onerror=null; this.src='../assets/uphsd_header_logo.png';">
+      <div style="text-align: left;">
+        <h1 style="margin: 0; font-size: 20px; font-weight: 700; color: var(--primary); letter-spacing: 0.5px; text-transform: uppercase;">University of Perpetual Help System DALTA</h1>
+        <h2 style="margin: 2px 0 0 0; font-size: 13px; font-weight: 600; color: var(--text-muted);">Molino Campus &bull; Bacoor City, Cavite</h2>
+        <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #047857; text-transform: uppercase;">College of Computer Studies</h3>
+      </div>
+    </div>
+    <div class="doc-title">Course Syllabus: BSCS 3215</div>
+  </div>
+
+  <!-- I. Course Overview & Metadata -->
+  <div class="section-title">I. Course Identification &amp; Specification</div>
+  <table class="meta-table">
+    <tr>
+      <td>Course Code</td>
+      <td><strong>BSCS 3215</strong></td>
+      <td>Course Title</td>
+      <td><strong>Parallel and Distributed Computing</strong></td>
+    </tr>
+    <tr>
+      <td>Credit Units</td>
+      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>Prerequisites</td>
+      <td>BSCS 3109 (Operating System Configuration and Use)</td>
+    </tr>
+    <tr>
+      <td>Course Description</td>
+      <td colspan="3">Foundational principles and architectures of concurrent, parallel, and distributed computing systems. Topics encompass Flynn&#39;s taxonomy, shared-memory programming (OpenMP/pthreads), distributed-memory message passing (MPI), massively parallel GPU programming (CUDA), distributed consensus algorithms, cloud cluster parallelism, and performance scalability metrics.</td>
+    </tr>
+  </table>
+
+  <!-- II. Course Learning Outcomes -->
+  <div class="section-title">II. Course Learning Outcomes (CLOs)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 10%;">CLO ID</th>
+        <th style="width: 60%;">Outcome Statement (Measurable Bloom's Verb)</th>
+        <th style="width: 15%;">Cognitive Level</th>
+        <th style="width: 15%;">Mapped POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><strong>CLO1</strong></td>
+        <td>Analyze complex computing problems and evaluate parallel algorithm scalability using Flynn&#39;s taxonomy.</td>
+        <td><span class="badge badge-bloom">Analyze</span></td>
+        <td>PLO1</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO2</strong></td>
+        <td>Implement high-performance shared-memory programs utilizing OpenMP and pthreads for concurrent execution.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO2</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO3</strong></td>
+        <td>Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.</td>
+        <td><span class="badge badge-bloom">Evaluate</span></td>
+        <td>PLO1, PLO5</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO4</strong></td>
+        <td>Create optimized massively parallel GPU programming solutions using CUDA for large-scale data processing tasks.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO2, PLO5</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- III. 18-Week Academic Schedule Matrix -->
+  <div class="section-title">III. 18-Week Semester Instructional Matrix</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 7%;">Wk</th>
+        <th style="width: 25%;">Topics Covered</th>
+        <th style="width: 32%;">Lesson Learning Outcomes (LLOs)</th>
+        <th style="width: 18%;">TLAs &amp; Exercises</th>
+        <th style="width: 18%;">Assessment &amp; Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>1</strong></td>
+        <td>
+          <strong>Introduction to Parallel Computing</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Define parallel computing architectures and compare execution models.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Design a basic parallel algorithm for task distribution.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Appreciate the efficiency of concurrent processing in modern systems.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on Parallelism</li>
+            
+            <li>Group Discussion</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Participation Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>2</strong></td>
+        <td>
+          <strong>Flynn&#39;s Taxonomy and Classification</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze computing systems using Flynn&#39;s taxonomy categories.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Evaluate scalability based on system architecture types.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect hardware diversity in algorithm design.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Case Study Analysis</li>
+            
+            <li>Lab Simulation</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz on Taxonomy</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>
+          <strong>Parallel Paradigms: Data vs Task Parallelism</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Differentiate between data and task parallelism strategies.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement a simple parallel loop using OpenMP directives.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate ethical considerations in resource usage.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Code Lab</li>
+            
+            <li>Peer Review</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Lab Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>4</strong></td>
+        <td>
+          <strong>Shared Memory Programming Models</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Describe shared memory concurrency mechanisms.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Formulate thread-safe data structures for concurrent access.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Value accuracy and correctness in shared memory operations.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on System Design</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>5</strong></td>
+        <td>
+          <strong>OpenMP Implementation Details</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply OpenMP directives for parallel execution.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze performance bottlenecks in shared memory code.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adhere to coding standards for maintainability.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Code Refactoring Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Midterm Lab Grading</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>6</strong></td>
+        <td>
+          <strong>Pthreads and Thread Management</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement high-performance shared-memory programs utilizing pthreads.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate thread synchronization mechanisms for correctness.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate patience in debugging concurrency issues.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on System Design</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>7</strong></td>
+        <td>
+          <strong>Distributed Computing Fundamentals</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze complex computing problems and evaluate parallel algorithm scalability.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Design a distributed network topology for data exchange.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Appreciate the challenges of network latency.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on Distributed Systems</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Discussion Board Post</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>8</strong></td>
+        <td>
+          <strong>Consensus Algorithms and Fault Tolerance</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficiency of distributed consensus algorithms.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement a basic voting protocol for consensus.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect system reliability in distributed environments.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Simulation Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Lab Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>9</strong></td>
+        <td>
+          <strong>Midterm Examination</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Demonstrate mastery of parallel computing concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply knowledge to solve midterm problems.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Maintain academic integrity during assessment.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Midterm Examination</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Midterm Exam Paper</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>10</strong></td>
+        <td>
+          <strong>Cloud Cluster Parallelism and Workloads</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficiency of distributed consensus algorithms under varying workloads.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Design cloud-based parallel processing pipelines.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Value cost-effectiveness in cloud resource allocation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Cloud Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Lab Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>11</strong></td>
+        <td>
+          <strong>GPU Computing Fundamentals</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Create optimized massively parallel GPU programming solutions using CUDA.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Analyze hardware architecture for large-scale data processing.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Appreciate the power of GPU acceleration.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on GPU Architecture</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>12</strong></td>
+        <td>
+          <strong>CUDA Programming and Kernels</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement high-performance shared-memory programs utilizing OpenMP and pthreads for concurrent execution.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate precision in kernel optimization.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Code Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Lab Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>13</strong></td>
+        <td>
+          <strong>Memory Hierarchy and Optimization</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Create optimized massively parallel GPU programming solutions using CUDA for large-scale data processing tasks.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze memory access patterns for performance improvement.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect computational efficiency in resource-constrained environments.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Optimization Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Performance Analysis Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>14</strong></td>
+        <td>
+          <strong>Capstone Project Proposal</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Formulate a comprehensive parallel computing project plan.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Design the architecture for the capstone solution.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate commitment to project success.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Proposal Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Proposal Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>15</strong></td>
+        <td>
+          <strong>Capstone Development and Testing</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement the capstone solution using parallel techniques.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Ensure quality assurance in software development.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Code Review</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Development Log</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>16</strong></td>
+        <td>
+          <strong>Capstone Integration and Debugging</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Create optimized massively parallel GPU programming solutions using CUDA for large-scale data processing tasks.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze complex computing problems and evaluate parallel algorithm scalability using Flynn&#39;s taxonomy.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate resilience in solving technical challenges.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Debugging Session</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Bug Fix Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>17</strong></td>
+        <td>
+          <strong>Final Project Review and Preparation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Prepare final documentation for capstone defense.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate professionalism in academic presentation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Review Meeting</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Presentation Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>18</strong></td>
+        <td>
+          <strong>Final Examination &amp; Capstone Defense</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Demonstrate mastery of parallel computing concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply knowledge to solve final exam problems.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Maintain academic integrity during assessment.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Examination &amp; Capstone Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Final Exam Paper</strong></li>
+            
+            <li><strong>Defense Evaluation</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- IV. Institutional Grading Scheme -->
+  <div class="section-title">IV. Institutional Grading System (UPHSD CCS 70/30 Formula)</div>
+  <table class="meta-table">
+    <tr>
+      <td>Class Standing (70%)</td>
+      <td>Quizzes &amp; Drills (30%) + Research / Case Analysis (20%) + Laboratory Hands-on Tasks (50%)</td>
+    </tr>
+    <tr>
+      <td>Major Examinations (30%)</td>
+      <td>Midterm Examination (Week 9) + Final Examination &amp; Defense (Week 18)</td>
+    </tr>
+    <tr>
+      <td>Passing Criterion</td>
+      <td>Final Computed Grade &ge; 75.0% (Transmuted Rating &ge; 3.00)</td>
+    </tr>
+  </table>
+
+  <!-- Signatory Blocks -->
+  <div class="sign-grid">
+    <div class="sign-box">
+      <div class="sign-title">Prepared by:</div>
+      <div class="sign-line">Christian Ezekiel L. Carvajal &amp; John Miko P. Sarsalijo</div>
+      <div class="sign-title">BSCS 3112 Lead Systems Architects</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Reviewed by:</div>
+      <div class="sign-line">Curriculum &amp; Instruction Committee</div>
+      <div class="sign-title">Department of Computer Science</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Approved by:</div>
+      <div class="sign-line">Prof. Roberto L. Malitao</div>
+      <div class="sign-title">Dean / Course Evaluator, College of Computer Studies</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

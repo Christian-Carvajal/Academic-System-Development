@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSCS 3110 - Information Assurance and Security | Official OBE Syllabus</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #0D9488;
+      --accent: #D97706;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+      --border: #CBD5E1;
+      --border-dark: #64748B;
+      --text: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #F1F5F9;
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    .syllabus-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      padding: 40px;
+    }
+
+    /* Institutional Header */
+    .inst-header {
+      text-align: center;
+      border-bottom: 3px double var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .inst-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .inst-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .inst-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #EFF6FF;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #F8FAFC;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .meta-table td:first-child {
+      font-weight: 600;
+      background-color: #F8FAFC;
+      width: 25%;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bloom {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 1px solid #C7D2FE;
+    }
+
+    .badge-k { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-s { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .badge-a { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+    .exam-row {
+      background-color: #FFFBEB;
+      font-weight: 600;
+    }
+
+    .exam-row td {
+      border-color: #FCD34D;
+    }
+
+    /* Signatory Box */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-dark);
+    }
+
+    .sign-box {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--dark);
+      margin-top: 45px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .syllabus-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="syllabus-container">
+  
+  <!-- Institutional Header -->
+  <div class="inst-header">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 12px;">
+      <img src="../assets/logo/uphsd.png" alt="UPHSD Seal" style="height: 70px; width: auto; object-fit: contain;" onerror="this.onerror=null; this.src='../assets/uphsd_header_logo.png';">
+      <div style="text-align: left;">
+        <h1 style="margin: 0; font-size: 20px; font-weight: 700; color: var(--primary); letter-spacing: 0.5px; text-transform: uppercase;">University of Perpetual Help System DALTA</h1>
+        <h2 style="margin: 2px 0 0 0; font-size: 13px; font-weight: 600; color: var(--text-muted);">Molino Campus &bull; Bacoor City, Cavite</h2>
+        <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #047857; text-transform: uppercase;">College of Computer Studies</h3>
+      </div>
+    </div>
+    <div class="doc-title">Course Syllabus: BSCS 3110</div>
+  </div>
+
+  <!-- I. Course Overview & Metadata -->
+  <div class="section-title">I. Course Identification &amp; Specification</div>
+  <table class="meta-table">
+    <tr>
+      <td>Course Code</td>
+      <td><strong>BSCS 3110</strong></td>
+      <td>Course Title</td>
+      <td><strong>Information Assurance and Security</strong></td>
+    </tr>
+    <tr>
+      <td>Credit Units</td>
+      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>Prerequisites</td>
+      <td>CS 2207 (Data Communications and Networking)</td>
+    </tr>
+    <tr>
+      <td>Course Description</td>
+      <td colspan="3">Core principles of cybersecurity and information assurance, focusing on the CIA triad (Confidentiality, Integrity, Availability), symmetric and asymmetric cryptography, public key infrastructure (PKI), secure network architectures, threat modeling, vulnerability assessment, intrusion detection systems, and institutional security governance.</td>
+    </tr>
+  </table>
+
+  <!-- II. Course Learning Outcomes -->
+  <div class="section-title">II. Course Learning Outcomes (CLOs)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 10%;">CLO ID</th>
+        <th style="width: 60%;">Outcome Statement (Measurable Bloom's Verb)</th>
+        <th style="width: 15%;">Cognitive Level</th>
+        <th style="width: 15%;">Mapped POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><strong>CLO1</strong></td>
+        <td>Analyze computing problems and apply fundamental cybersecurity principles to protect data confidentiality, integrity, and availability.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO1</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO2</strong></td>
+        <td>Design secure network architectures utilizing symmetric and asymmetric cryptography within a Public Key Infrastructure (PKI).</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO5</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO3</strong></td>
+        <td>Evaluate vulnerability assessment tools and intrusion detection systems to mitigate identified security threats.</td>
+        <td><span class="badge badge-bloom">Evaluate</span></td>
+        <td>PLO1, PLO4</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO4</strong></td>
+        <td>Implement institutional security governance frameworks ensuring professional responsibility and informed judgment in computing practice.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO4, PLO5</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- III. 18-Week Academic Schedule Matrix -->
+  <div class="section-title">III. 18-Week Semester Instructional Matrix</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 7%;">Wk</th>
+        <th style="width: 25%;">Topics Covered</th>
+        <th style="width: 32%;">Lesson Learning Outcomes (LLOs)</th>
+        <th style="width: 18%;">TLAs &amp; Exercises</th>
+        <th style="width: 18%;">Assessment &amp; Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>1</strong></td>
+        <td>
+          <strong>Introduction to Information Assurance</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Define the CIA triad and its relevance to data protection.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Identify common security threats in computing environments.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate professional responsibility regarding data privacy.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on CIA Triad</li>
+            
+            <li>Case Study Discussion</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz on Security Fundamentals</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>2</strong></td>
+        <td>
+          <strong>Risk Management and Threat Assessment</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Calculate risk exposure using probability and impact matrices.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Formulate mitigation strategies for identified vulnerabilities.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adhere to ethical guidelines in risk reporting.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Risk Calculation Lab</li>
+            
+            <li>Group Risk Analysis</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Risk Assessment Worksheet</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>
+          <strong>Access Control Models</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Compare Discretionary and Mandatory Access Control models.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Configure access control policies on Linux systems.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect user privacy during authentication processes.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab: Access Control Configuration</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Policy Configuration Report</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>4</strong></td>
+        <td>
+          <strong>Symmetric Cryptography Fundamentals</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Explain encryption algorithms like AES and DES.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement symmetric encryption using OpenSSL tools.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Maintain confidentiality integrity in data transmission.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Encryption Lab Exercise</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Cipher Implementation Test</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>5</strong></td>
+        <td>
+          <strong>Asymmetric Cryptography and Digital Signatures</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze RSA and ECC key generation processes.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Generate digital signatures for document verification.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Uphold trust in digital communication protocols.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Digital Signature Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Signature Verification Quiz</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>6</strong></td>
+        <td>
+          <strong>Public Key Infrastructure (PKI) Design</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design a PKI architecture with Certificate Authorities.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Create and manage digital certificates using CA tools.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Ensure compliance with certificate lifecycle policies.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>PKI Design Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Architecture Diagram Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>7</strong></td>
+        <td>
+          <strong>Vulnerability Assessment Tools</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the functionality of Nmap and Nessus.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Scan networks for open ports and misconfigurations.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Report findings without compromising system integrity.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Vulnerability Scanning Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Scan Report Analysis</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>8</strong></td>
+        <td>
+          <strong>Intrusion Detection Systems (IDS)</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Differentiate between signature and anomaly-based IDS.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Configure Snort rules for traffic monitoring.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respond to alerts with professional judgment.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>IDS Configuration Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Alert Response Simulation</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>9</strong></td>
+        <td>
+          <strong>Midterm Examination</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Demonstrate mastery of Weeks 1-8 concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply security principles in exam scenarios.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Maintain academic integrity during assessment.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Midterm Examination</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Written Midterm Exam</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>10</strong></td>
+        <td>
+          <strong>Security Governance Frameworks</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Formulate security policies for organizational structure.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Draft incident response plans and procedures.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Commit to following institutional security protocols.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Policy Drafting Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Policy Draft Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>11</strong></td>
+        <td>
+          <strong>Compliance and Auditing</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze compliance requirements for PCI-DSS and HIPAA.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Conduct internal security audits using checklists.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect confidentiality during audit processes.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Audit Simulation Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Compliance Checklist Review</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>12</strong></td>
+        <td>
+          <strong>Security Governance Implementation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Implement security governance frameworks in practice.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Execute security audits and generate compliance reports.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate informed judgment in governance decisions.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Governance Implementation Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Compliance Report Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>13</strong></td>
+        <td>
+          <strong>Capstone Project: Security Architecture Design</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design a secure network architecture for a client.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Integrate cryptography and PKI into the design.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Apply professional ethics in project planning.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Capstone Design Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Design Proposal Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>14</strong></td>
+        <td>
+          <strong>Capstone Project: Vulnerability Assessment</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess vulnerabilities in the designed architecture.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Utilize IDS tools to test security controls.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Prioritize risks based on impact and likelihood.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Vulnerability Assessment Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Assessment Report Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>15</strong></td>
+        <td>
+          <strong>Capstone Project: Governance &amp; Policy</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Formulate security policies for the client environment.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement governance frameworks and audit procedures.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Ensure adherence to professional responsibility standards.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Policy Implementation Workshop</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Governance Framework Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>16</strong></td>
+        <td>
+          <strong>Capstone Project Review and Refinement</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate project security against industry standards.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Refine architecture and policies based on feedback.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate commitment to continuous improvement.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Peer Review Session</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Refinement Report Submission</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>17</strong></td>
+        <td>
+          <strong>Capstone Project Presentation Preparation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Prepare comprehensive presentation materials.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Deliver technical defense of the security architecture.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Communicate security concepts clearly to stakeholders.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Presentation Rehearsal</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Presentation Rubric Checklist</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>18</strong></td>
+        <td>
+          <strong>Final Examination &amp; Capstone Defense</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Demonstrate comprehensive knowledge of course content.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Defend the capstone project before the board.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Uphold academic integrity during final assessment.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Examination &amp; Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Written Final Exam &amp; Oral Defense</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- IV. Institutional Grading Scheme -->
+  <div class="section-title">IV. Institutional Grading System (UPHSD CCS 70/30 Formula)</div>
+  <table class="meta-table">
+    <tr>
+      <td>Class Standing (70%)</td>
+      <td>Quizzes &amp; Drills (30%) + Research / Case Analysis (20%) + Laboratory Hands-on Tasks (50%)</td>
+    </tr>
+    <tr>
+      <td>Major Examinations (30%)</td>
+      <td>Midterm Examination (Week 9) + Final Examination &amp; Defense (Week 18)</td>
+    </tr>
+    <tr>
+      <td>Passing Criterion</td>
+      <td>Final Computed Grade &ge; 75.0% (Transmuted Rating &ge; 3.00)</td>
+    </tr>
+  </table>
+
+  <!-- Signatory Blocks -->
+  <div class="sign-grid">
+    <div class="sign-box">
+      <div class="sign-title">Prepared by:</div>
+      <div class="sign-line">Christian Ezekiel L. Carvajal &amp; John Miko P. Sarsalijo</div>
+      <div class="sign-title">BSCS 3112 Lead Systems Architects</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Reviewed by:</div>
+      <div class="sign-line">Curriculum &amp; Instruction Committee</div>
+      <div class="sign-title">Department of Computer Science</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Approved by:</div>
+      <div class="sign-line">Prof. Roberto L. Malitao</div>
+      <div class="sign-title">Dean / Course Evaluator, College of Computer Studies</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

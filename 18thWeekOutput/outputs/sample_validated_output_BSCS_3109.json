@@ -1,0 +1,630 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3109",
+    "course_title": "Operating System Configuration and Use",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "CS 2108 (Computer Architecture and Organization)",
+    "course_description": "Comprehensive study of operating system architectures and system configuration, encompassing process scheduling, multithreading, concurrency synchronization, deadlock avoidance, memory virtualization, paging, file system structures, device management, and hands-on Linux/Unix shell administration."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Analyze complex OS architectures and process scheduling mechanisms to identify concurrency synchronization strategies.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO1"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Design memory virtualization schemes and file system structures to optimize resource allocation and performance.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Implement Linux/Unix shell administration protocols for device management and system configuration tasks.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO2"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Evaluate operating system security configurations and deadlock avoidance mechanisms to ensure system stability.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Operating Systems & System Architecture"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Analyze system architecture components and their interactions.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Design a conceptual OS model for resource management.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Appreciate the role of OS in modern computing environments.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on System Architecture",
+        "Group Discussion"
+      ],
+      "assessment_tasks": [
+        "Participation Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Process Management & Concurrency Basics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Analyze process states and scheduling algorithms.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Implement a basic scheduler in Python.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Demonstrate patience during concurrent task execution.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Process Scheduling"
+      ],
+      "assessment_tasks": [
+        "Quiz on Process States"
+      ],
+      "resources": [
+        "Python IDE",
+        "Simulation Software"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Thread Management & Synchronization"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Evaluate synchronization primitives for thread safety.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Design mutex and semaphore mechanisms.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Respect shared resource protocols in teams.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Thread Safety"
+      ],
+      "assessment_tasks": [
+        "Code Review"
+      ],
+      "resources": [
+        "IDE",
+        "Documentation"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Deadlock Prevention & Avoidance"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Analyze deadlock scenarios and prevention strategies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Formulate resource allocation graphs to detect cycles.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Prioritize system stability over speed.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Case Study on Deadlocks"
+      ],
+      "assessment_tasks": [
+        "Problem Set"
+      ],
+      "resources": [
+        "Graph Theory Tools"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Memory Management Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Analyze memory allocation strategies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Design virtual memory schemes for optimization.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Value efficient resource utilization.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Memory Allocation"
+      ],
+      "assessment_tasks": [
+        "Memory Management Quiz"
+      ],
+      "resources": [
+        "Virtual Machine Tools"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Virtual Memory Implementation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Evaluate paging and segmentation techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Implement page replacement algorithms.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Demonstrate commitment to code correctness.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Page Replacement"
+      ],
+      "assessment_tasks": [
+        "Algorithm Implementation"
+      ],
+      "resources": [
+        "OS Simulator"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "File System Structures & Hierarchy"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Analyze file system structures and organization.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Design directory structures for data storage.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Maintain organizational integrity in file systems.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on File Systems"
+      ],
+      "assessment_tasks": [
+        "Design Project Draft"
+      ],
+      "resources": [
+        "File System Tools"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Review & Preparation for Midterm"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Analyze key concepts from previous weeks.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Design study plans for assessment.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Demonstrate readiness for evaluation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Review Session"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam Preparation"
+      ],
+      "resources": [
+        "Past Exams"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Evaluate performance of OS concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Design solutions for process management.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Apply knowledge under pressure.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Written Midterm Exam"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Linux/Unix Shell Administration"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Analyze shell scripting capabilities.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Implement automation scripts for device management.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Adhere to system administration protocols.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Shell Scripting"
+      ],
+      "assessment_tasks": [
+        "Script Evaluation"
+      ],
+      "resources": [
+        "Linux Environment"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Device Management & Drivers"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Analyze hardware abstraction layers.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Configure device drivers for specific hardware.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Ensure compatibility with system standards.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Driver Configuration"
+      ],
+      "assessment_tasks": [
+        "Configuration Report"
+      ],
+      "resources": [
+        "Hardware Emulators"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "System Configuration Tasks"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Evaluate configuration parameters for performance.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Implement system tuning commands.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Demonstrate precision in configuration changes.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on System Tuning"
+      ],
+      "assessment_tasks": [
+        "Performance Test"
+      ],
+      "resources": [
+        "Linux Server"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Operating System Security Basics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Analyze security threats and vulnerabilities.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Design access control mechanisms.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Prioritize user data protection.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Security Hardening"
+      ],
+      "assessment_tasks": [
+        "Vulnerability Report"
+      ],
+      "resources": [
+        "Security Tools"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Access Control & Permissions"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Evaluate permission models (DAC/MAC).",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Implement file permissions using chmod.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Respect user privacy and access rights.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Permissions"
+      ],
+      "assessment_tasks": [
+        "Permission Audit"
+      ],
+      "resources": [
+        "File Manager"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Security Configuration & Auditing"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Analyze audit logs for security events.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Formulate security policies based on logs.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Maintain confidentiality and integrity standards.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Auditing"
+      ],
+      "assessment_tasks": [
+        "Policy Formulation"
+      ],
+      "resources": [
+        "Log Analyzer"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Project Development"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Evaluate project requirements against CLOs.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Design and implement OS configuration solutions.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Demonstrate professional project management.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Workshop"
+      ],
+      "assessment_tasks": [
+        "Project Progress Report"
+      ],
+      "resources": [
+        "Development Environment"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Capstone Project Testing & Refinement"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Analyze system stability and security.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Evaluate performance metrics of the project.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Ensure quality before final submission.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Testing Session"
+      ],
+      "assessment_tasks": [
+        "Final Project Review"
+      ],
+      "resources": [
+        "Test Environment"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Evaluate comprehensive OS knowledge.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Design and present final project solutions.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Defend project decisions with evidence.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Exam & Defense"
+      ],
+      "assessment_tasks": [
+        "Written Final Exam",
+        "Project Defense"
+      ],
+      "resources": [
+        "Examination Hall"
+      ]
+    }
+  ]
+}

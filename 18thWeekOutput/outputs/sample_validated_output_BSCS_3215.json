@@ -1,0 +1,634 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3215",
+    "course_title": "Parallel and Distributed Computing",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "BSCS 3109 (Operating System Configuration and Use)",
+    "course_description": "Foundational principles and architectures of concurrent, parallel, and distributed computing systems. Topics encompass Flynn's taxonomy, shared-memory programming (OpenMP/pthreads), distributed-memory message passing (MPI), massively parallel GPU programming (CUDA), distributed consensus algorithms, cloud cluster parallelism, and performance scalability metrics."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Analyze complex computing problems and evaluate parallel algorithm scalability using Flynn's taxonomy.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO1"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Implement high-performance shared-memory programs utilizing OpenMP and pthreads for concurrent execution.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO2"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO1",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Create optimized massively parallel GPU programming solutions using CUDA for large-scale data processing tasks.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Parallel Computing"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Define parallel computing architectures and compare execution models.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Design a basic parallel algorithm for task distribution.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Appreciate the efficiency of concurrent processing in modern systems.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Parallelism",
+        "Group Discussion"
+      ],
+      "assessment_tasks": [
+        "Participation Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Textbook"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Flynn's Taxonomy and Classification"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Analyze computing systems using Flynn's taxonomy categories.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Evaluate scalability based on system architecture types.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Respect hardware diversity in algorithm design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Case Study Analysis",
+        "Lab Simulation"
+      ],
+      "assessment_tasks": [
+        "Quiz on Taxonomy"
+      ],
+      "resources": [
+        "Online Repository",
+        "Hardware Specs"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Parallel Paradigms: Data vs Task Parallelism"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Differentiate between data and task parallelism strategies.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Implement a simple parallel loop using OpenMP directives.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Demonstrate ethical considerations in resource usage.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Code Lab",
+        "Peer Review"
+      ],
+      "assessment_tasks": [
+        "Lab Report"
+      ],
+      "resources": [
+        "IDE",
+        "Compiler"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Shared Memory Programming Models"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Describe shared memory concurrency mechanisms.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Formulate thread-safe data structures for concurrent access.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Value accuracy and correctness in shared memory operations.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on System Design"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "OpenMP Implementation Details"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Apply OpenMP directives for parallel execution.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Analyze performance bottlenecks in shared memory code.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Adhere to coding standards for maintainability.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Code Refactoring Workshop"
+      ],
+      "assessment_tasks": [
+        "Midterm Lab Grading"
+      ],
+      "resources": [
+        "Compiler Documentation"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Pthreads and Thread Management"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Implement high-performance shared-memory programs utilizing pthreads.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Evaluate thread synchronization mechanisms for correctness.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Demonstrate patience in debugging concurrency issues.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on System Design"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Distributed Computing Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Analyze complex computing problems and evaluate parallel algorithm scalability.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Design a distributed network topology for data exchange.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Appreciate the challenges of network latency.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Distributed Systems"
+      ],
+      "assessment_tasks": [
+        "Discussion Board Post"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Consensus Algorithms and Fault Tolerance"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Evaluate the efficiency of distributed consensus algorithms.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Implement a basic voting protocol for consensus.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Respect system reliability in distributed environments.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Simulation Lab"
+      ],
+      "assessment_tasks": [
+        "Lab Report"
+      ],
+      "resources": [
+        "Network Emulator"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Demonstrate mastery of parallel computing concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Apply knowledge to solve midterm problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Maintain academic integrity during assessment.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Midterm Exam Paper"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Cloud Cluster Parallelism and Workloads"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Evaluate the efficiency of distributed consensus algorithms under varying workloads.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Design cloud-based parallel processing pipelines.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Value cost-effectiveness in cloud resource allocation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Cloud Lab"
+      ],
+      "assessment_tasks": [
+        "Lab Report"
+      ],
+      "resources": [
+        "AWS/Azure Console"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "GPU Computing Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Create optimized massively parallel GPU programming solutions using CUDA.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Analyze hardware architecture for large-scale data processing.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Appreciate the power of GPU acceleration.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on GPU Architecture"
+      ],
+      "assessment_tasks": [
+        "Quiz"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "CUDA Programming and Kernels"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Implement high-performance shared-memory programs utilizing OpenMP and pthreads for concurrent execution.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Demonstrate precision in kernel optimization.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Code Lab"
+      ],
+      "assessment_tasks": [
+        "Lab Report"
+      ],
+      "resources": [
+        "NVIDIA SDK"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Memory Hierarchy and Optimization"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Create optimized massively parallel GPU programming solutions using CUDA for large-scale data processing tasks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Analyze memory access patterns for performance improvement.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Respect computational efficiency in resource-constrained environments.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Optimization Workshop"
+      ],
+      "assessment_tasks": [
+        "Performance Analysis Report"
+      ],
+      "resources": [
+        "NVIDIA SDK"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Capstone Project Proposal"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Formulate a comprehensive parallel computing project plan.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Design the architecture for the capstone solution.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Demonstrate commitment to project success.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Proposal Defense"
+      ],
+      "assessment_tasks": [
+        "Proposal Rubric"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Capstone Development and Testing"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Implement the capstone solution using parallel techniques.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Ensure quality assurance in software development.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Code Review"
+      ],
+      "assessment_tasks": [
+        "Development Log"
+      ],
+      "resources": [
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Capstone Integration and Debugging"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Create optimized massively parallel GPU programming solutions using CUDA for large-scale data processing tasks.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Analyze complex computing problems and evaluate parallel algorithm scalability using Flynn's taxonomy.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Demonstrate resilience in solving technical challenges.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Debugging Session"
+      ],
+      "assessment_tasks": [
+        "Bug Fix Report"
+      ],
+      "resources": [
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Final Project Review and Preparation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Evaluate the efficiency of distributed consensus algorithms and cloud cluster parallelism under varying workloads.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Prepare final documentation for capstone defense.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Demonstrate professionalism in academic presentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Review Meeting"
+      ],
+      "assessment_tasks": [
+        "Presentation Rubric"
+      ],
+      "resources": [
+        "Course LMS"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Demonstrate mastery of parallel computing concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Apply knowledge to solve final exam problems.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Maintain academic integrity during assessment.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Examination & Capstone Defense"
+      ],
+      "assessment_tasks": [
+        "Final Exam Paper",
+        "Defense Evaluation"
+      ],
+      "resources": [
+        "Exam Hall"
+      ]
+    }
+  ]
+}

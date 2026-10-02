@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSCS 3214 - Data Visualization | Official OBE Syllabus</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #0D9488;
+      --accent: #D97706;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+      --border: #CBD5E1;
+      --border-dark: #64748B;
+      --text: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #F1F5F9;
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    .syllabus-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      padding: 40px;
+    }
+
+    /* Institutional Header */
+    .inst-header {
+      text-align: center;
+      border-bottom: 3px double var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .inst-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .inst-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .inst-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-top: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #EFF6FF;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #F8FAFC;
+      font-weight: 700;
+      color: var(--dark);
+      text-align: left;
+    }
+
+    .meta-table td:first-child {
+      font-weight: 600;
+      background-color: #F8FAFC;
+      width: 25%;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-bloom {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 1px solid #C7D2FE;
+    }
+
+    .badge-k { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-s { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+    .badge-a { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+    .exam-row {
+      background-color: #FFFBEB;
+      font-weight: 600;
+    }
+
+    .exam-row td {
+      border-color: #FCD34D;
+    }
+
+    /* Signatory Box */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-dark);
+    }
+
+    .sign-box {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--dark);
+      margin-top: 45px;
+      padding-top: 5px;
+      font-weight: 700;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .syllabus-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="syllabus-container">
+  
+  <!-- Institutional Header -->
+  <div class="inst-header">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 12px;">
+      <img src="../assets/logo/uphsd.png" alt="UPHSD Seal" style="height: 70px; width: auto; object-fit: contain;" onerror="this.onerror=null; this.src='../assets/uphsd_header_logo.png';">
+      <div style="text-align: left;">
+        <h1 style="margin: 0; font-size: 20px; font-weight: 700; color: var(--primary); letter-spacing: 0.5px; text-transform: uppercase;">University of Perpetual Help System DALTA</h1>
+        <h2 style="margin: 2px 0 0 0; font-size: 13px; font-weight: 600; color: var(--text-muted);">Molino Campus &bull; Bacoor City, Cavite</h2>
+        <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #047857; text-transform: uppercase;">College of Computer Studies</h3>
+      </div>
+    </div>
+    <div class="doc-title">Course Syllabus: BSCS 3214</div>
+  </div>
+
+  <!-- I. Course Overview & Metadata -->
+  <div class="section-title">I. Course Identification &amp; Specification</div>
+  <table class="meta-table">
+    <tr>
+      <td>Course Code</td>
+      <td><strong>BSCS 3214</strong></td>
+      <td>Course Title</td>
+      <td><strong>Data Visualization</strong></td>
+    </tr>
+    <tr>
+      <td>Credit Units</td>
+      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>Prerequisites</td>
+      <td>BSCS 3111 (Data Mining)</td>
+    </tr>
+    <tr>
+      <td>Course Description</td>
+      <td colspan="3">Theories and hands-on practices of visual data analytics and graphical storytelling, including visual perception cognition, the Grammar of Graphics, interactive dashboard construction, exploratory plotting with modern tools (Plotly, D3.js, Seaborn), multidimensional and geospatial visualization, and effective communication of data insights.</td>
+    </tr>
+  </table>
+
+  <!-- II. Course Learning Outcomes -->
+  <div class="section-title">II. Course Learning Outcomes (CLOs)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 10%;">CLO ID</th>
+        <th style="width: 60%;">Outcome Statement (Measurable Bloom's Verb)</th>
+        <th style="width: 15%;">Cognitive Level</th>
+        <th style="width: 15%;">Mapped POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><strong>CLO1</strong></td>
+        <td>Design complex visual interfaces adhering to the Grammar of Graphics standards for optimal data representation.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO2, PLO5</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO2</strong></td>
+        <td>Implement interactive dashboards using Plotly and D3.js libraries to process multidimensional datasets.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO2, PLO5</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO3</strong></td>
+        <td>Analyze visual perception cognition to enhance the clarity and interpretability of graphical data presentations.</td>
+        <td><span class="badge badge-bloom">Analyze</span></td>
+        <td>PLO3, PLO5</td>
+      </tr>
+      
+      <tr>
+        <td><strong>CLO4</strong></td>
+        <td>Evaluate the efficacy of data storytelling techniques in conveying quantitative insights to diverse audiences.</td>
+        <td><span class="badge badge-bloom">Evaluate</span></td>
+        <td>PLO3</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- III. 18-Week Academic Schedule Matrix -->
+  <div class="section-title">III. 18-Week Semester Instructional Matrix</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 7%;">Wk</th>
+        <th style="width: 25%;">Topics Covered</th>
+        <th style="width: 32%;">Lesson Learning Outcomes (LLOs)</th>
+        <th style="width: 18%;">TLAs &amp; Exercises</th>
+        <th style="width: 18%;">Assessment &amp; Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>1</strong></td>
+        <td>
+          <strong>Introduction to Data Visualization &amp; Grammar of Graphics</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Define the principles of visual encoding for data representation.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Construct basic charts using Python and Pandas libraries.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate ethical considerations in data presentation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lecture on Visual Perception</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Quiz on Visualization Ethics</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>2</strong></td>
+        <td>
+          <strong>Data Types &amp; Encoding Scales</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Categorize data types and select appropriate encoding scales.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Map categorical and numerical data to visual channels.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Appreciate the impact of color on audience interpretation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Chart Selection</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>3</strong></td>
+        <td>
+          <strong>Visualizing Relationships &amp; Trends</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze correlations between variables using scatter plots.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement regression analysis visualizations in Python.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Evaluate the clarity of trend lines in complex datasets.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Correlation Analysis</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>4</strong></td>
+        <td>
+          <strong>Introduction to Plotly &amp; Interactive Elements</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Describe the architecture of interactive web dashboards.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Create static plots using Plotly Express library.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adhere to accessibility standards in dashboard design.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Plotly Basics</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>5</strong></td>
+        <td>
+          <strong>Interactive Dashboards &amp; Layouts</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design dashboard layouts for multidimensional datasets.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement interactive filters and zoom features in Plotly.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Collaborate effectively during group dashboard creation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Dashboard Layout</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>6</strong></td>
+        <td>
+          <strong>Advanced Plotly Features &amp; Geospatial Data</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Identify geospatial data requirements for visualization.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Map geospatial datasets using Plotly maps.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect privacy when visualizing sensitive location data.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Geospatial Mapping</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>7</strong></td>
+        <td>
+          <strong>Introduction to D3.js &amp; SVG Manipulation</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Explain the DOM structure required for D3.js.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Manipulate SVG elements using D3.js syntax.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate patience when debugging JavaScript code.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on D3.js Basics</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>8</strong></td>
+        <td>
+          <strong>Customizing Visuals with D3.js</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design custom visual encodings using D3 scales.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement custom transitions and animations in D3.js.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Critique the aesthetic impact of animation speed.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Custom Transitions</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>9</strong></td>
+        <td>
+          <strong>Midterm Examination</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess mastery of Grammar of Graphics concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Evaluate proficiency in Plotly and D3.js tools.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Reflect on personal learning progress regarding visualization ethics.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Midterm Examination</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Summative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>10</strong></td>
+        <td>
+          <strong>Data Storytelling Fundamentals</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Formulate a narrative arc for quantitative data.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Draft a story outline based on dataset insights.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Empathize with the audience&#39;s information needs.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Workshop on Story Arcs</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Story Outline Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>11</strong></td>
+        <td>
+          <strong>Visual Perception &amp; Cognitive Load</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze cognitive load in complex visual interfaces.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Reduce clutter to enhance interpretability of charts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Respect cognitive diversity in audience design.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Cognitive Load</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>12</strong></td>
+        <td>
+          <strong>Enhancing Clarity &amp; Interpretability</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficacy of visual hierarchy techniques.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Apply Gestalt principles to improve chart readability.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Value the user experience in data presentation.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Lab Exercise on Hierarchy</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>13</strong></td>
+        <td>
+          <strong>Capstone Project: Data Storytelling</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design complex visual interfaces for the capstone project.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement interactive dashboards using Plotly and D3.js.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Communicate project goals to the team effectively.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Capstone Project Kickoff</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Project Proposal Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>14</strong></td>
+        <td>
+          <strong>Iterative Development &amp; Testing</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Analyze user feedback on prototype visualizations.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Refactor code based on usability testing results.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Demonstrate resilience during iterative development.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Usability Testing Lab</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>15</strong></td>
+        <td>
+          <strong>Finalizing Data Storytelling Techniques</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Evaluate the efficacy of storytelling in conveying insights.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Polish final dashboards for presentation readiness.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Adhere to professional standards in public presentations.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Capstone Review Session</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>16</strong></td>
+        <td>
+          <strong>Review &amp; Preparation for Defense</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Review all visual encoding principles and standards.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Simulate defense presentation scenarios.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Prepare for critical questioning of visual choices.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Mock Defense Session</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="">
+        <td style="text-align: center;"><strong>17</strong></td>
+        <td>
+          <strong>Final Project Refinement</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Design final visual interfaces for capstone defense.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Implement final interactive dashboards using Plotly and D3.js.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Ensure all data storytelling techniques are optimized.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Project Refinement</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Formative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+      
+      <tr class="exam-row">
+        <td style="text-align: center;"><strong>18</strong></td>
+        <td>
+          <strong>Final Examination &amp; Capstone Defense</strong>
+        </td>
+        <td>
+          <ul style="padding-left: 16px;">
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-k">K</span>
+              Assess comprehensive understanding of data visualization concepts.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-s">S</span>
+              Demonstrate implementation skills through final defense.
+            </li>
+            
+            <li style="margin-bottom: 4px;">
+              <span class="badge badge-a">A</span>
+              Reflect on the efficacy of data storytelling techniques.
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li>Final Examination &amp; Capstone Defense</li>
+            
+          </ul>
+        </td>
+        <td>
+          <ul style="padding-left: 14px;">
+            
+            <li><strong>Summative Assessment Rubric</strong></li>
+            
+          </ul>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <!-- IV. Institutional Grading Scheme -->
+  <div class="section-title">IV. Institutional Grading System (UPHSD CCS 70/30 Formula)</div>
+  <table class="meta-table">
+    <tr>
+      <td>Class Standing (70%)</td>
+      <td>Quizzes &amp; Drills (30%) + Research / Case Analysis (20%) + Laboratory Hands-on Tasks (50%)</td>
+    </tr>
+    <tr>
+      <td>Major Examinations (30%)</td>
+      <td>Midterm Examination (Week 9) + Final Examination &amp; Defense (Week 18)</td>
+    </tr>
+    <tr>
+      <td>Passing Criterion</td>
+      <td>Final Computed Grade &ge; 75.0% (Transmuted Rating &ge; 3.00)</td>
+    </tr>
+  </table>
+
+  <!-- Signatory Blocks -->
+  <div class="sign-grid">
+    <div class="sign-box">
+      <div class="sign-title">Prepared by:</div>
+      <div class="sign-line">Christian Ezekiel L. Carvajal &amp; John Miko P. Sarsalijo</div>
+      <div class="sign-title">BSCS 3112 Lead Systems Architects</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Reviewed by:</div>
+      <div class="sign-line">Curriculum &amp; Instruction Committee</div>
+      <div class="sign-title">Department of Computer Science</div>
+    </div>
+    <div class="sign-box">
+      <div class="sign-title">Approved by:</div>
+      <div class="sign-line">Prof. Roberto L. Malitao</div>
+      <div class="sign-title">Dean / Course Evaluator, College of Computer Studies</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

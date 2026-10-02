@@ -1,0 +1,644 @@
+{
+  "course_metadata": {
+    "course_code": "BSCS 3214",
+    "course_title": "Data Visualization",
+    "credit_units": 3,
+    "lecture_hours": 2,
+    "lab_hours": 3,
+    "prerequisites": "BSCS 3111 (Data Mining)",
+    "course_description": "Theories and hands-on practices of visual data analytics and graphical storytelling, including visual perception cognition, the Grammar of Graphics, interactive dashboard construction, exploratory plotting with modern tools (Plotly, D3.js, Seaborn), multidimensional and geospatial visualization, and effective communication of data insights."
+  },
+  "course_outcomes": [
+    {
+      "clo_id": "CLO1",
+      "description": "Design complex visual interfaces adhering to the Grammar of Graphics standards for optimal data representation.",
+      "bloom_level": "Create",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO2",
+      "description": "Implement interactive dashboards using Plotly and D3.js libraries to process multidimensional datasets.",
+      "bloom_level": "Apply",
+      "program_outcomes_mapped": [
+        "PLO2",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO3",
+      "description": "Analyze visual perception cognition to enhance the clarity and interpretability of graphical data presentations.",
+      "bloom_level": "Analyze",
+      "program_outcomes_mapped": [
+        "PLO3",
+        "PLO5"
+      ]
+    },
+    {
+      "clo_id": "CLO4",
+      "description": "Evaluate the efficacy of data storytelling techniques in conveying quantitative insights to diverse audiences.",
+      "bloom_level": "Evaluate",
+      "program_outcomes_mapped": [
+        "PLO3"
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "topics": [
+        "Introduction to Data Visualization & Grammar of Graphics"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO1.1",
+          "description": "Define the principles of visual encoding for data representation.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO1.2",
+          "description": "Construct basic charts using Python and Pandas libraries.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO1.3",
+          "description": "Demonstrate ethical considerations in data presentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lecture on Visual Perception"
+      ],
+      "assessment_tasks": [
+        "Quiz on Visualization Ethics"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 2,
+      "topics": [
+        "Data Types & Encoding Scales"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO2.1",
+          "description": "Categorize data types and select appropriate encoding scales.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO2.2",
+          "description": "Map categorical and numerical data to visual channels.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO2.3",
+          "description": "Appreciate the impact of color on audience interpretation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Chart Selection"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 3,
+      "topics": [
+        "Visualizing Relationships & Trends"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO3.1",
+          "description": "Analyze correlations between variables using scatter plots.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO3.2",
+          "description": "Implement regression analysis visualizations in Python.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO3.3",
+          "description": "Evaluate the clarity of trend lines in complex datasets.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Correlation Analysis"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 4,
+      "topics": [
+        "Introduction to Plotly & Interactive Elements"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO4.1",
+          "description": "Describe the architecture of interactive web dashboards.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO4.2",
+          "description": "Create static plots using Plotly Express library.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO4.3",
+          "description": "Adhere to accessibility standards in dashboard design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Plotly Basics"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 5,
+      "topics": [
+        "Interactive Dashboards & Layouts"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO5.1",
+          "description": "Design dashboard layouts for multidimensional datasets.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO5.2",
+          "description": "Implement interactive filters and zoom features in Plotly.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO5.3",
+          "description": "Collaborate effectively during group dashboard creation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Dashboard Layout"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 6,
+      "topics": [
+        "Advanced Plotly Features & Geospatial Data"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO6.1",
+          "description": "Identify geospatial data requirements for visualization.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO6.2",
+          "description": "Map geospatial datasets using Plotly maps.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO6.3",
+          "description": "Respect privacy when visualizing sensitive location data.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Geospatial Mapping"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 7,
+      "topics": [
+        "Introduction to D3.js & SVG Manipulation"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO7.1",
+          "description": "Explain the DOM structure required for D3.js.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO7.2",
+          "description": "Manipulate SVG elements using D3.js syntax.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO7.3",
+          "description": "Demonstrate patience when debugging JavaScript code.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on D3.js Basics"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "VS Code"
+      ]
+    },
+    {
+      "week_number": 8,
+      "topics": [
+        "Customizing Visuals with D3.js"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO8.1",
+          "description": "Design custom visual encodings using D3 scales.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO8.2",
+          "description": "Implement custom transitions and animations in D3.js.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO8.3",
+          "description": "Critique the aesthetic impact of animation speed.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Custom Transitions"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "VS Code"
+      ]
+    },
+    {
+      "week_number": 9,
+      "topics": [
+        "Midterm Examination"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO9.1",
+          "description": "Assess mastery of Grammar of Graphics concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO9.2",
+          "description": "Evaluate proficiency in Plotly and D3.js tools.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO9.3",
+          "description": "Reflect on personal learning progress regarding visualization ethics.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Midterm Examination"
+      ],
+      "assessment_tasks": [
+        "Summative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Exam Hall"
+      ]
+    },
+    {
+      "week_number": 10,
+      "topics": [
+        "Data Storytelling Fundamentals"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO10.1",
+          "description": "Formulate a narrative arc for quantitative data.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO10.2",
+          "description": "Draft a story outline based on dataset insights.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO10.3",
+          "description": "Empathize with the audience's information needs.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Workshop on Story Arcs"
+      ],
+      "assessment_tasks": [
+        "Story Outline Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Presentation Tools"
+      ]
+    },
+    {
+      "week_number": 11,
+      "topics": [
+        "Visual Perception & Cognitive Load"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO11.1",
+          "description": "Analyze cognitive load in complex visual interfaces.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO11.2",
+          "description": "Reduce clutter to enhance interpretability of charts.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO11.3",
+          "description": "Respect cognitive diversity in audience design.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Cognitive Load"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 12,
+      "topics": [
+        "Enhancing Clarity & Interpretability"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO12.1",
+          "description": "Evaluate the efficacy of visual hierarchy techniques.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO12.2",
+          "description": "Apply Gestalt principles to improve chart readability.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO12.3",
+          "description": "Value the user experience in data presentation.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Lab Exercise on Hierarchy"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Python IDE"
+      ]
+    },
+    {
+      "week_number": 13,
+      "topics": [
+        "Capstone Project: Data Storytelling"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO13.1",
+          "description": "Design complex visual interfaces for the capstone project.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO13.2",
+          "description": "Implement interactive dashboards using Plotly and D3.js.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO13.3",
+          "description": "Communicate project goals to the team effectively.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Project Kickoff"
+      ],
+      "assessment_tasks": [
+        "Project Proposal Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 14,
+      "topics": [
+        "Iterative Development & Testing"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO14.1",
+          "description": "Analyze user feedback on prototype visualizations.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO14.2",
+          "description": "Refactor code based on usability testing results.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO14.3",
+          "description": "Demonstrate resilience during iterative development.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Usability Testing Lab"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 15,
+      "topics": [
+        "Finalizing Data Storytelling Techniques"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO15.1",
+          "description": "Evaluate the efficacy of storytelling in conveying insights.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO15.2",
+          "description": "Polish final dashboards for presentation readiness.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO15.3",
+          "description": "Adhere to professional standards in public presentations.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Capstone Review Session"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 16,
+      "topics": [
+        "Review & Preparation for Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO16.1",
+          "description": "Review all visual encoding principles and standards.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO16.2",
+          "description": "Simulate defense presentation scenarios.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO16.3",
+          "description": "Prepare for critical questioning of visual choices.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Mock Defense Session"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 17,
+      "topics": [
+        "Final Project Refinement"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO17.1",
+          "description": "Design final visual interfaces for capstone defense.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO17.2",
+          "description": "Implement final interactive dashboards using Plotly and D3.js.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO17.3",
+          "description": "Ensure all data storytelling techniques are optimized.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Project Refinement"
+      ],
+      "assessment_tasks": [
+        "Formative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "IDE"
+      ]
+    },
+    {
+      "week_number": 18,
+      "topics": [
+        "Final Examination & Capstone Defense"
+      ],
+      "lesson_outcomes": [
+        {
+          "llo_id": "LLO18.1",
+          "description": "Assess comprehensive understanding of data visualization concepts.",
+          "domain": "K"
+        },
+        {
+          "llo_id": "LLO18.2",
+          "description": "Demonstrate implementation skills through final defense.",
+          "domain": "S"
+        },
+        {
+          "llo_id": "LLO18.3",
+          "description": "Reflect on the efficacy of data storytelling techniques.",
+          "domain": "A"
+        }
+      ],
+      "teaching_learning_activities": [
+        "Final Examination & Capstone Defense"
+      ],
+      "assessment_tasks": [
+        "Summative Assessment Rubric"
+      ],
+      "resources": [
+        "Course LMS",
+        "Exam Hall"
+      ]
+    }
+  ]
+}
