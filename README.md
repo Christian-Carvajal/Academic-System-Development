@@ -24,7 +24,7 @@ From the root of `submission_deliverables`:
 :: Double-click or run from terminal:
 run_18thweek.bat
 ```
-*(Or `run_gui.bat` / `run_18th_week_gui.bat`. Launches the dedicated 18-Week Studio on `http://127.0.0.1:8001` with an automated 8-subject selector, live progress HUD, human-in-the-loop CLO editor, selective single-subject wipe, Command Palette `Ctrl + K`, SQLite live inspector, and built-in official HTML viewer).*
+*(Single dedicated 1-click launcher for the 18-Week Web Studio on `http://127.0.0.1:8001` with automated 8-subject selector, live progress HUD, human-in-the-loop CLO editor, selective single-subject wipe, Command Palette `Ctrl + K`, SQLite live inspector, and built-in official HTML viewer).*
 
 *Or navigate into `18thWeekOutput/` and launch directly:*
 ```bash
@@ -38,7 +38,7 @@ From the root of `submission_deliverables`:
 :: Double-click or run from terminal:
 run_18th_week.bat
 ```
-*(Or `run_pipeline.bat`. Executes the full 18-week pipeline for BSCS 3112: generation, SQLite ingestion, CRUD test, and HTML compilation).*
+*(Single dedicated 1-click launcher for the headless CLI pipeline: runs Milestone 1 LLM generation, Milestone 2 SQLite ingestion and CRUD verification, and Jinja2 institutional HTML compilation).*
 
 *Or navigate into `18thWeekOutput/` and execute each component directly:*
 ```bash
@@ -99,11 +99,9 @@ submission_deliverables/
 │   ├── export_engine.py         # Milestone 2: Jinja2 institutional HTML compilation engine
 │   ├── obe_schemas.py           # Pydantic v2 data contracts, Bloom validators & K/S/A domains
 │   ├── requirements.txt         # Pinned runtime dependencies
-│   ├── run_18thweek.bat         # Windows 1-click launcher for 18-Week Studio (Port 8001)
+│   ├── run_18thweek.bat         # Windows 1-click launcher for 18-Week Studio GUI (Port 8001)
 │   ├── run_18thweek.py          # Pre-flight verification & web server launcher
-│   ├── run_gui.bat              # Backward-compatible alias -> run_18thweek.bat
-│   ├── run_gui.py               # Backward-compatible alias -> run_18thweek.py
-│   ├── run_18th_week.bat        # Windows 1-click runner for headless 18-week pipeline
+│   ├── run_18th_week.bat        # Windows 1-click runner for headless 18-week CLI pipeline
 │   ├── database/                # Relational SQLite database directory
 │   │   ├── obe_syllabus.db      # Normalized SQLite database (courses, outcomes, schedules)
 │   │   └── schema.sql           # DDL schema with foreign keys & ON DELETE CASCADE
@@ -141,12 +139,9 @@ submission_deliverables/
 │
 ├── requirements.sh              # Linux/macOS/WSL automated bootstrap shell script
 ├── requirements.txt             # Master dependency manifest (pydantic, ollama, jinja2, requests)
-├── run_18thweek.bat             # Root 1-click delegator -> 18thWeekOutput\run_18thweek.bat (Port 8001)
-├── run_18th_week_gui.bat        # Root 1-click delegator -> 18thWeekOutput\run_18thweek.bat (Port 8001)
-├── run_18th_week.bat            # Root 1-click delegator -> 18thWeekOutput\run_18th_week.bat (CLI)
-├── run_14thweek.bat             # Root 1-click delegator -> 14thWeekOutput\run_14thweek.bat (Port 8000)
-├── run_gui.bat                  # Root 1-click delegator -> 14thWeekOutput\run_14thweek.bat (Port 8000)
-├── run_pipeline.bat             # Root 1-click delegator -> 14thWeekOutput\run_pipeline.bat
+├── run_18thweek.bat             # Root 1-click launcher -> 18-Week Interactive Studio with UI (Port 8001)
+├── run_18th_week.bat            # Root 1-click runner   -> 18-Week Headless CLI Pipeline (Milestones 1 & 2)
+├── run_14thweek.bat             # Root 1-click launcher -> 14-Week Studio (Port 8000)
 └── README.md                    # Master documentation (this file)
 ```
 

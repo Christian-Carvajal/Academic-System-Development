@@ -106,9 +106,10 @@
   - Wired quick-jump actions (Studio, Viewer, Audit, Batch Generate, Wipe Course).
 - [x] **Curriculum Pedagogy & PLO Alignment Matrix**:
   - Added educational legend to Tab 2 explaining CHED CMO 25 s.2015 distribution and preventing outcome inflation.
-- [x] **1-Click Launchers & Port Binding**:
-  - Fixed root batch delegators (`run_18thweek.bat`, `run_gui.bat`, `run_pipeline.bat`).
-  - Standardized on Port 8001 for Lesson 5 18-Week Studio.
+- [x] **1-Click Launchers Consolidation & Port Auto-Recovery**:
+  - Consolidated 18-week launchers down to two unambiguous scripts: `run_18thweek.bat` (With UI) and `run_18th_week.bat` (Without UI / CLI Only).
+  - Deleted redundant alias scripts (`run_18th_week_gui.bat`, `run_gui.bat`, `run_pipeline.bat`, `18thWeekOutput/run_gui.bat`, `18thWeekOutput/run_gui.py`).
+  - Implemented `ensure_port_available()` to automatically self-heal and release port 8001 from any orphaned processes.
   - Corrected `export_engine.py` default course parameter to `BSCS 3112`.
 - [x] **Autonomous Documentation Sync Protocol**:
   - Added Section 6 to `docs/AGENTS.md` obligating all agents to keep README and docs continuously updated on every code modification.

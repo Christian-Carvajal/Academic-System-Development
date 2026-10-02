@@ -26,7 +26,8 @@
 
 ```text
 submission_deliverables/
-├── run_18thweek.bat               # Windows batch launcher (Port 8001)
+├── run_18thweek.bat               # Windows batch launcher (With UI - Port 8001)
+├── run_18th_week.bat              # Windows batch runner   (Without UI - CLI Only)
 ├── run_18thweek.py                # Cross-platform Python launcher (Port 8001)
 ├── 18thWeekOutput/                # Complete self-contained microservice studio package
 │   ├── app.py                     # ThreadingHTTPServer backend & REST API dispatch
@@ -36,6 +37,8 @@ submission_deliverables/
 │   ├── llm_engine.py              # Ollama client, CoT stripper, self-healing loop
 │   ├── db_manager.py              # SQLite CRUD persistence layer
 │   ├── export_engine.py           # Jinja2 HTML compiler
+│   ├── run_18thweek.bat           # 18-Week Studio Launcher (With UI)
+│   ├── run_18th_week.bat          # 18-Week Headless CLI Pipeline (Without UI)
 │   ├── database/
 │   │   ├── schema.sql             # Normalized DDL (courses, clos, weeks, llos)
 │   │   └── obe_syllabus.db        # SQLite relational database
@@ -167,4 +170,5 @@ PASS: /outputs/official_syllabus_BSCS_3108.html returned status 200 (31,249 byte
 * **Pedagogical Alignment (PLO Matrix):** Added educational legend strip to Tab 2 explaining CHED CMO 25 s.2015 outcome distribution. Verified that specialized courses correctly map to subset PLOs to avoid outcome inflation.
 * **Launcher & Port Fixes:** Resolved port 8001 socket conflicts by clearing orphaned processes; unified `run_18thweek.bat`, `run_gui.bat`, and `run_pipeline.bat`; updated `export_engine.py` default course parameter to `BSCS 3112`.
 * **Launcher Diagnostics & Browser Race Fix:** Resolved empty log display by enforcing unbuffered output (`-u` flag in batch runners, `sys.stdout.reconfigure(line_buffering=True)`, `flush=True` on all console prints); replaced synchronous `webbrowser.open()` with `threading.Timer(1.0, ...)` eliminating `ERR_EMPTY_RESPONSE` browser race conditions before `serve_forever()` begins accepting socket connections.
+* **Workspace De-cluttering (Launcher Consolidation):** Permanently deleted redundant/confusing alias scripts (`run_18th_week_gui.bat`, `run_gui.bat`, `run_pipeline.bat`, `18thWeekOutput/run_gui.bat`, and `18thWeekOutput/run_gui.py`). Streamlined to exactly two 18th-week scripts: `run_18thweek.bat` (With UI) and `run_18th_week.bat` (Without UI / CLI Only).
 * **Agent Architecture Policy:** Enacted Section 6 in `docs/AGENTS.md` requiring all collaborating agents to continuously maintain `README.md` and documentation on every code change without waiting for user prompts.

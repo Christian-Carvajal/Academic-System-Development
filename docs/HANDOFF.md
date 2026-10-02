@@ -132,7 +132,7 @@ ollama serve
 ollama pull qwen2.5
 ```
 
-### 2. Launch the Web Studio:
+### 2. Launch the Web Studio (With UI):
 ```cmd
 run_18thweek.bat
 ```
@@ -141,6 +141,12 @@ Or with Python:
 python run_18thweek.py
 ```
 Open **`http://127.0.0.1:8001/`** in your browser.
+
+### 3. Run Headless CLI Pipeline (Without UI / CLI Only):
+```cmd
+run_18th_week.bat
+```
+*(Runs Milestone 1 generation, Milestone 2 SQLite persistence, CRUD test, and Jinja2 HTML syllabus export).*
 
 ### 3. Run Automated Validation Scripts:
 ```bash

@@ -37,7 +37,7 @@ echo.
 echo ======================================================================
 echo    [1/3] RUNNING MILESTONE 1: 18-Week Full Syllabus Engine (qwen3.5:4b)
 echo ======================================================================
-"%PY_EXE%" llm_engine.py %*
+"%PY_EXE%" -u llm_engine.py %*
 if errorlevel 1 (
     color 0C
     echo [ERROR] Milestone 1 LLM engine encountered an error.
@@ -50,7 +50,7 @@ echo.
 echo ======================================================================
 echo    [2/3] RUNNING MILESTONE 2: Relational SQLite Ingestion and CRUD Check
 echo ======================================================================
-"%PY_EXE%" db_manager.py
+"%PY_EXE%" -u db_manager.py
 if errorlevel 1 (
     color 0C
     echo [ERROR] Database manager encountered an error.
@@ -63,7 +63,7 @@ echo.
 echo ======================================================================
 echo    [3/3] RUNNING MILESTONE 2: Jinja2 Institutional HTML Compilation
 echo ======================================================================
-"%PY_EXE%" export_engine.py "BSCS 3112"
+"%PY_EXE%" -u export_engine.py "BSCS 3112"
 if errorlevel 1 (
     color 0C
     echo [ERROR] Document compilation encountered an error.

@@ -190,7 +190,7 @@ The system orchestrates local LLM inference via **Ollama (`qwen3.5:4b`)**, enfor
 * In Outcome-Based Education, courses are specialized. Not all dots in the PLO matrix are green because each course deliberately targets only specific Program Learning Outcomes (e.g., Automata targets PLO 1 & 5; Software Engineering targets PLO 2, 3, 4).
 * Claiming all green dots across all PLOs is classified as "outcome inflation" and is an accreditation violation. The matrix accurately reflects curricular scaffolding.
 
-### 7.4 Unified 1-Click Launchers & Port Binding
-* **Port 8001:** Dedicated to Lesson 5 18-Week Microservice Studio (`run_18thweek.bat` and `run_gui.bat`).
-* **Port 8000:** Reserved for Lesson 4 14-Week Studio (`run_14thweek.bat`).
-* **CLI Fallback:** `18thWeekOutput/export_engine.py` default course parameter updated from legacy `CS 3110` to official `BSCS 3112`.
+### 7.4 Streamlined 1-Click Launchers (Single UI & Single CLI)
+* **Interactive Studio (With UI):** `run_18thweek.bat` (Port 8001). Pre-flights environment, self-heals any zombie processes holding port 8001, and launches the browser after socket binding.
+* **Headless Pipeline (Without UI / CLI Only):** `run_18th_week.bat`. Sequentially runs Milestone 1 (`llm_engine.py`), Milestone 2 (`db_manager.py`), and Jinja2 compilation (`export_engine.py "BSCS 3112"`).
+* **De-cluttering & Alias Removal:** Removed all redundant/confusing alias files (`run_18th_week_gui.bat`, `run_gui.bat`, `run_pipeline.bat`, `18thWeekOutput/run_gui.bat`, and `18thWeekOutput/run_gui.py`).
