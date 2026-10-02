@@ -16,7 +16,7 @@ import json
 import time
 from pathlib import Path
 import requests
-from typing import Dict, Any, Optional, List, Tuple
+from typing import Dict, Any, Optional, List, Tuple, Callable
 from pydantic import ValidationError
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -91,21 +91,24 @@ def query_ollama_generate(
     model: Optional[str] = None,
     base_url: str = DEFAULT_OLLAMA_HOST,
     timeout: float = 240.0,
-    num_predict: int = 4096
+    num_predict: int = 4096,
+    token_callback: Optional[Callable[[int, str], None]] = None
 ) -> str:
     """
     Sends a POST request to Ollama /api/generate endpoint enforcing format='json'.
     Captures both 'response' and 'thinking' fields for reasoning models like qwen3.5:4b.
+    Supports real-time streaming feedback via token_callback.
     """
     target_model = model or MODEL_NAME
     endpoint = f"{base_url.rstrip('/')}/api/generate"
     
+    use_stream = token_callback is not None
     payload = {
         "model": target_model,
         "system": system_prompt,
         "prompt": prompt,
         "format": "json",
-        "stream": False,
+        "stream": use_stream,
         "options": {
             "temperature": 0.2,
             "num_ctx": 16384,
@@ -113,13 +116,40 @@ def query_ollama_generate(
         }
     }
     
-    response = requests.post(endpoint, json=payload, timeout=timeout)
-    response.raise_for_status()
-    result = response.json()
+    if use_stream:
+        response = requests.post(endpoint, json=payload, timeout=timeout, stream=True)
+        response.raise_for_status()
+        collected_response = []
+        collected_thinking = []
+        token_count = 0
+        last_callback_time = time.time()
+        for line in response.iter_lines():
+            if line:
+                try:
+                    chunk = json.loads(line.decode("utf-8"))
+                    resp_token = chunk.get("response", "")
+                    think_token = chunk.get("thinking", "")
+                    if resp_token:
+                        collected_response.append(resp_token)
+                    if think_token:
+                        collected_thinking.append(think_token)
+                    token_count += 1
+                    now = time.time()
+                    if now - last_callback_time >= 0.35 or chunk.get("done", False):
+                        last_callback_time = now
+                        token_callback(token_count, resp_token or think_token)
+                except Exception:
+                    continue
+        raw = "".join(collected_response).strip()
+        thinking = "".join(collected_thinking).strip()
+    else:
+        response = requests.post(endpoint, json=payload, timeout=timeout)
+        response.raise_for_status()
+        result = response.json()
+        raw = result.get("response", "").strip()
+        thinking = result.get("thinking", "").strip()
     
     # Check response first, fallback to thinking if response is empty or missing JSON
-    raw = result.get("response", "").strip()
-    thinking = result.get("thinking", "").strip()
     if not raw and thinking:
         raw = thinking
     elif raw and thinking and "{" not in raw and "{" in thinking:
@@ -136,7 +166,8 @@ def generate_course_outcomes_stage(
     model: str,
     base_url: str = DEFAULT_OLLAMA_HOST,
     max_attempts: int = 3,
-    target_pos: Optional[List[str]] = None
+    target_pos: Optional[List[str]] = None,
+    progress_callback: Optional[Callable[[int, str, Optional[str]], None]] = None
 ) -> List[CourseOutcomeSchema]:
     """
     Stage 1: Generates 3 to 5 Course Learning Outcomes (CLOs) with active Bloom's verbs.
@@ -165,8 +196,19 @@ def generate_course_outcomes_stage(
     for attempt in range(1, max_attempts + 1):
         full_prompt = prompt + history_feedback
         print(f"[*] [Stage 1: CLOs] Querying {model} (Attempt {attempt}/{max_attempts})...")
+
+        def on_clo_tokens(count: int, chunk_tok: str):
+            if progress_callback:
+                pct = min(44, 22 + int(count * 0.15))
+                progress_callback(pct, f"Qwen 3.5 4B: Formulating CLOs ({count} tokens)", f"[*] [Qwen 3.5 4B] Streaming outcome tokens ({count} tokens evaluated)...")
+
         try:
-            raw_resp = query_ollama_generate(full_prompt, model=model, base_url=base_url)
+            raw_resp = query_ollama_generate(
+                full_prompt,
+                model=model,
+                base_url=base_url,
+                token_callback=on_clo_tokens if progress_callback else None
+            )
             clean_json = extract_json_payload(raw_resp)
             data = json.loads(clean_json)
             
@@ -174,10 +216,16 @@ def generate_course_outcomes_stage(
             if not raw_clos and isinstance(data, list):
                 raw_clos = data
             
+            if progress_callback:
+                progress_callback(46, "Bloom Audit: Auditing Active Verbs (CLO 1-4)", "[*] Auditing CLOs against active Bloom verbs (Rejecting passive verbs)...")
+
             validated_clos = [CourseOutcomeSchema(**item) for item in raw_clos]
             if len(validated_clos) < 3:
                 raise ValueError("Expected at least 3 Course Learning Outcomes.")
             
+            if progress_callback:
+                progress_callback(48, "Bloom Audit: Outcomes Validated & Mapped", f"[+] [Bloom Audit] {len(validated_clos)} CLOs verified with cognitive levels and PLO mapping.")
+
             print(f"[+] [Stage 1: CLOs] Successfully validated {len(validated_clos)} Course Outcomes.")
             return validated_clos
             
@@ -196,6 +244,8 @@ def generate_course_outcomes_stage(
                 f"\n\n[CORRECTIVE INSTRUCTION]: Your previous output failed schema validation: {feedback_msg}. "
                 "Ensure every outcome starts with an active Bloom verb and output pure valid JSON strictly matching the schema."
             )
+            if progress_callback:
+                progress_callback(25, f"Qwen 3.5 4B: Self-Healing Retry (Attempt {attempt + 1})", f"[-] Retrying CLO generation: {feedback_msg[:60]}...")
             time.sleep(1.0)
 
     raise RuntimeError("Failed to generate valid Course Outcomes after maximum attempts.")
@@ -206,7 +256,8 @@ def generate_weekly_schedule_stage(
     course_outcomes: List[CourseOutcomeSchema],
     model: str,
     base_url: str = DEFAULT_OLLAMA_HOST,
-    max_attempts: int = 3
+    max_attempts: int = 3,
+    progress_callback: Optional[Callable[[int, str, Optional[str]], None]] = None
 ) -> List[WeeklyScheduleSchema]:
     """
     Stage 2: Generates the strict 18-week academic schedule ensuring tripartite K/S/A coverage.
@@ -247,8 +298,20 @@ def generate_weekly_schedule_stage(
     for attempt in range(1, max_attempts + 1):
         full_prompt = prompt + history_feedback
         print(f"[*] [Stage 2: Schedule] Querying {model} for 18-week matrix (Attempt {attempt}/{max_attempts})...")
+
+        def on_sched_tokens(count: int, chunk_tok: str):
+            if progress_callback:
+                pct = min(70, 52 + int(count * 0.05))
+                progress_callback(pct, f"Qwen 3.5 4B: Formulating 18-Week Schedule ({count} tokens)", f"[*] [Qwen 3.5 4B] Streaming 18-week schedule tokens ({count} tokens evaluated)...")
+
         try:
-            raw_resp = query_ollama_generate(full_prompt, model=model, base_url=base_url, num_predict=8192)
+            raw_resp = query_ollama_generate(
+                full_prompt,
+                model=model,
+                base_url=base_url,
+                num_predict=8192,
+                token_callback=on_sched_tokens if progress_callback else None
+            )
             clean_json = extract_json_payload(raw_resp)
             data = json.loads(clean_json)
             
@@ -258,7 +321,6 @@ def generate_weekly_schedule_stage(
                 
             # If the model generated a compressed schedule, normalize to 18 weeks
             if len(raw_weeks) < 18:
-                # Pad remaining weeks to meet the strict institutional requirement if minor drift occurred
                 print(f"[!] Model returned {len(raw_weeks)} weeks. Standardizing to 18 weeks...")
                 existing_nums = {w.get("week_number") for w in raw_weeks if isinstance(w, dict)}
                 for w_idx in range(1, 19):
@@ -301,6 +363,10 @@ def generate_weekly_schedule_stage(
 
             validated_weeks = [WeeklyScheduleSchema(**w) for w in raw_weeks]
             
+            if progress_callback:
+                progress_callback(72, "Bloom Audit: Auditing 18-Week Tripartite Coverage", "[+] [Bloom Audit] Tripartite K/S/A domain check verified across 18 weeks.")
+                progress_callback(75, "Bloom Audit: Verifying Exam Milestone Locks", "[+] [Bloom Audit] Exam locks verified: Week 9 (Midterm) & Week 18 (Final Defense).")
+
             print(f"[+] [Stage 2: Schedule] Successfully validated 18-week schedule.")
             return validated_weeks
             
@@ -319,6 +385,8 @@ def generate_weekly_schedule_stage(
                 f"\n\n[CORRECTIVE INSTRUCTION]: Your output failed validation: {feedback_msg}. "
                 "Regenerate the entire 18-week schedule JSON ensuring exactly 18 weeks and proper K/S/A domains."
             )
+            if progress_callback:
+                progress_callback(55, f"Qwen 3.5 4B: Corrective Retry (Attempt {attempt + 1})", f"[-] Retrying schedule generation: {feedback_msg[:60]}...")
             time.sleep(1.0)
 
     raise RuntimeError("Failed to generate valid 18-Week Schedule after maximum attempts.")
@@ -328,7 +396,11 @@ def generate_weekly_schedule_stage(
 # MAIN ORCHESTRATION PIPELINE
 # =============================================================================
 
-def generate_syllabus(course_data: Dict[str, Any], base_url: str = DEFAULT_OLLAMA_HOST) -> FullSyllabusSchema:
+def generate_syllabus(
+    course_data: Dict[str, Any],
+    base_url: str = DEFAULT_OLLAMA_HOST,
+    progress_callback: Optional[Callable[[int, str, Optional[str]], None]] = None
+) -> FullSyllabusSchema:
     """
     Main entry point: Accepts course metadata dictionary, resolves Ollama model,
     executes two-stage generation with self-healing retry logic, and returns FullSyllabusSchema.
@@ -351,16 +423,24 @@ def generate_syllabus(course_data: Dict[str, Any], base_url: str = DEFAULT_OLLAM
         )
     )
     print(f"[+] Metadata parsed: {metadata.course_code} - {metadata.course_title}")
-    
+    if progress_callback:
+        progress_callback(12, "Parameters: Validating Course Metadata", f"[*] Parameters validated for {metadata.course_code}: {metadata.course_title}")
+
     # 2. Stage 1: Generate Course Learning Outcomes (CLOs)
     target_pos = course_data.get("target_pos")
     if isinstance(target_pos, str):
         target_pos = [p.strip() for p in target_pos.split(",") if p.strip()]
 
-    clos = generate_course_outcomes_stage(metadata, model=model, base_url=base_url, target_pos=target_pos)
+    if progress_callback:
+        progress_callback(20, "Qwen 3.5 4B: Querying Model for CLOs", f"[*] Querying {model} for Bloom-compliant Course Learning Outcomes...")
+
+    clos = generate_course_outcomes_stage(metadata, model=model, base_url=base_url, target_pos=target_pos, progress_callback=progress_callback)
     
     # 3. Stage 2: Generate 18-Week Schedule with K/S/A coverage
-    schedule = generate_weekly_schedule_stage(metadata, clos, model=model, base_url=base_url)
+    if progress_callback:
+        progress_callback(52, "Qwen 3.5 4B: Formulating 18-Week Matrix", f"[*] Querying {model} for 18-Week Schedule and Lesson Outcomes...")
+
+    schedule = generate_weekly_schedule_stage(metadata, clos, model=model, base_url=base_url, progress_callback=progress_callback)
     
     # 4. Construct and validate root FullSyllabusSchema
     syllabus = FullSyllabusSchema(
@@ -378,7 +458,8 @@ def generate_custom_subject(
     course_code: str,
     custom_overrides: Optional[Dict[str, Any]] = None,
     out_filename: Optional[str] = None,
-    base_url: str = DEFAULT_OLLAMA_HOST
+    base_url: str = DEFAULT_OLLAMA_HOST,
+    progress_callback: Optional[Callable[[int, str, Optional[str]], None]] = None
 ) -> FullSyllabusSchema:
     """
     Generates an 18-week syllabus for course_code, applying any user-customized
@@ -433,8 +514,11 @@ def generate_custom_subject(
         "target_pos": target_pos
     }
 
+    if progress_callback:
+        progress_callback(8, f"Parameters: Resolving Constraints for {code}", f"[*] Target parameters: {units} Units, {lec} Lec / {lab} Lab, Prereq: {prereqs}")
+
     print(f"[*] Starting syllabus generation for {target_course['course_code']} ({target_course['course_title']})...")
-    result = generate_syllabus(target_course, base_url=base_url)
+    result = generate_syllabus(target_course, base_url=base_url, progress_callback=progress_callback)
 
     outputs_dir = BASE_DIR / "outputs"
     outputs_dir.mkdir(parents=True, exist_ok=True)
@@ -446,32 +530,65 @@ def generate_custom_subject(
         f.write(result.model_dump_json(indent=2))
     print(f"[+] Serialized deliverable saved to '{out_file}'.")
 
-    # Ingest into SQLite database
+    # Stage 4: Ingest into SQLite database
+    if progress_callback:
+        progress_callback(78, "SQLite Save: Ingesting Relational Entities", f"[*] Ingesting into database/obe_syllabus.db...")
+        time.sleep(0.35)
+
     try:
         from db_manager import init_db, save_syllabus, DEFAULT_DB_PATH
         init_db(DEFAULT_DB_PATH)
         cid = save_syllabus(result, db_path=DEFAULT_DB_PATH)
+        llo_count = sum(len(w.lesson_outcomes) for w in result.weekly_schedule)
         print(f"[+] Persisted to SQLite database '{DEFAULT_DB_PATH}' (Course ID: {cid}).")
+        if progress_callback:
+            progress_callback(86, "SQLite Save: Relational Persistence Committed", f"[+] Persisted to database/obe_syllabus.db: courses, {len(result.course_outcomes)} CLOs, {len(result.weekly_schedule)} schedules, {llo_count} LLOs.")
+            time.sleep(0.35)
     except Exception as dbe:
         print(f"[-] Database persistence warning: {dbe}")
+        if progress_callback:
+            progress_callback(86, "SQLite Save: Warning", f"[-] Database warning: {dbe}")
 
-    # Compile official Jinja2 HTML syllabus
+    # Stage 5: Compile official Jinja2 HTML syllabus
+    if progress_callback:
+        progress_callback(90, "Jinja2 HTML: Assembling Institutional Document", f"[*] Assembling official layout via templates/uphsd_ccs_template.html...")
+        time.sleep(0.35)
+
     try:
         from export_engine import export_to_file
         export_path = export_to_file(target_course["course_code"])
         print(f"[+] Compiled official institutional HTML syllabus: {export_path}")
+        if progress_callback:
+            progress_callback(96, "Jinja2 HTML: Syllabus File Exported", f"[+] Document assembled: outputs/official_syllabus_{clean_code}.html")
+            time.sleep(0.2)
     except Exception as ex:
         print(f"[-] HTML export warning: {ex}")
+        if progress_callback:
+            progress_callback(96, "Jinja2 HTML: Warning", f"[-] HTML export warning: {ex}")
+
+    if progress_callback:
+        progress_callback(100, "Complete", f"[+] 18-Week OBE Syllabus Generation & Persistence 100% complete for {target_course['course_code']}!")
 
     return result
 
 
-def generate_subject_by_code(course_code: str, out_filename: Optional[str] = None, base_url: str = DEFAULT_OLLAMA_HOST) -> FullSyllabusSchema:
+def generate_subject_by_code(
+    course_code: str,
+    out_filename: Optional[str] = None,
+    base_url: str = DEFAULT_OLLAMA_HOST,
+    progress_callback: Optional[Callable[[int, str, Optional[str]], None]] = None
+) -> FullSyllabusSchema:
     """
     Automated zero-typing generator: resolves catalog parameters for the subject code,
     runs the two-pass qwen3.5:4b engine, persists to SQLite DB, and exports official HTML.
     """
-    return generate_custom_subject(course_code=course_code, custom_overrides=None, out_filename=out_filename, base_url=base_url)
+    return generate_custom_subject(
+        course_code=course_code,
+        custom_overrides=None,
+        out_filename=out_filename,
+        base_url=base_url,
+        progress_callback=progress_callback
+    )
 
 
 def generate_all_curriculum_subjects(base_url: str = DEFAULT_OLLAMA_HOST) -> List[FullSyllabusSchema]:

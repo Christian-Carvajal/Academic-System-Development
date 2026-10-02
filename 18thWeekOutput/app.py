@@ -71,7 +71,7 @@ def check_ollama_status() -> Dict[str, Any]:
 
 
 def run_generation_worker(course_code: str, custom_overrides: Optional[Dict[str, Any]] = None):
-    """Background thread worker for generating a single course syllabus."""
+    """Background thread worker for generating a single course syllabus with live progress telemetry."""
     global generation_state
     
     title = (custom_overrides and custom_overrides.get("course_title")) or ""
@@ -82,40 +82,40 @@ def run_generation_worker(course_code: str, custom_overrides: Optional[Dict[str,
     with generation_lock:
         generation_state["status"] = "running"
         generation_state["course_code"] = course_code
-        generation_state["progress_pct"] = 10
-        generation_state["stage"] = f"Resolving course parameters for {course_code}..."
+        generation_state["progress_pct"] = 8
+        generation_state["stage"] = f"Parameters: Resolving constraints for {course_code}..."
         generation_state["message"] = f"Initializing generation for {course_code} ({title})..."
         generation_state["logs"] = [f"[*] Selected subject: {course_code} - {title}"]
         generation_state["error"] = None
         generation_state["result"] = None
 
+    def on_progress(pct: int, stage: str, log_msg: Optional[str] = None):
+        with generation_lock:
+            generation_state["progress_pct"] = pct
+            generation_state["stage"] = stage
+            generation_state["message"] = stage
+            if log_msg:
+                # Deduplicate identical consecutive log lines
+                if not generation_state["logs"] or generation_state["logs"][-1] != log_msg:
+                    generation_state["logs"].append(log_msg)
+                if len(generation_state["logs"]) > 60:
+                    generation_state["logs"] = generation_state["logs"][-60:]
+
     try:
-        with generation_lock:
-            generation_state["progress_pct"] = 25
-            generation_state["stage"] = f"Formulating Bloom-compliant CLOs & Tripartite Schedule with qwen3.5:4b..."
-            generation_state["logs"].append(f"[*] Querying qwen3.5:4b for {course_code} ({title})...")
+        on_progress(14, "Parameters: Resolving Academic Metadata", f"[*] Enforcing departmental parameters for {course_code} ({title})...")
 
-        # Run LLM generation with custom overrides if present
-        if custom_overrides:
-            result = llm_engine.generate_custom_subject(course_code, custom_overrides=custom_overrides)
-        else:
-            result = llm_engine.generate_subject_by_code(course_code)
+        # Run LLM generation with custom overrides and live progress callback
+        result = llm_engine.generate_custom_subject(
+            course_code=course_code,
+            custom_overrides=custom_overrides,
+            progress_callback=on_progress
+        )
 
-        with generation_lock:
-            generation_state["progress_pct"] = 75
-            generation_state["stage"] = "Persisting to SQLite database & compiling official HTML..."
-            generation_state["logs"].append(f"[+] Schema validation passed: {len(result.course_outcomes)} CLOs, {len(result.weekly_schedule)} weeks.")
-            generation_state["logs"].append(f"[+] Successfully persisted to database/obe_syllabus.db")
-
-        # Export HTML
-        export_to_file(course_code)
-        
         with generation_lock:
             generation_state["progress_pct"] = 100
             generation_state["status"] = "success"
             generation_state["stage"] = "Complete"
             generation_state["message"] = f"Successfully generated and compiled 18-week syllabus for {course_code}!"
-            generation_state["logs"].append(f"[+] Official HTML document compiled: outputs/official_syllabus_{course_code.replace(' ', '_')}.html")
             generation_state["result"] = result.model_dump()
 
     except Exception as exc:
@@ -129,7 +129,7 @@ def run_generation_worker(course_code: str, custom_overrides: Optional[Dict[str,
 
 
 def run_batch_generation_worker():
-    """Background thread worker for generating all 8 curriculum subjects sequentially."""
+    """Background thread worker for generating all 8 curriculum subjects sequentially with granular progress."""
     global generation_state
     subjects = get_all_subjects()
     total = len(subjects)
@@ -146,20 +146,30 @@ def run_batch_generation_worker():
     for idx, subj in enumerate(subjects, 1):
         code = subj["course_code"]
         title = subj["course_title"]
-        pct = int((idx / total) * 90)
-        with generation_lock:
-            generation_state["course_code"] = code
-            generation_state["progress_pct"] = pct
-            generation_state["stage"] = f"[{idx}/{total}] Processing {code}: {title}..."
-            generation_state["logs"].append(f"[*] [{idx}/{total}] Generating {code}...")
+        base_pct = int(((idx - 1) / total) * 100)
+        subj_weight = 100.0 / total
+
+        def make_batch_progress(b_idx=idx, b_code=code, b_title=title, b_base=base_pct, b_weight=subj_weight):
+            def b_on_progress(sub_pct: int, sub_stage: str, log_msg: Optional[str] = None):
+                overall_pct = min(99, int(b_base + (sub_pct / 100.0) * b_weight))
+                with generation_lock:
+                    generation_state["course_code"] = b_code
+                    generation_state["progress_pct"] = overall_pct
+                    generation_state["stage"] = f"[{b_idx}/{total}] {b_code}: {sub_stage}"
+                    if log_msg:
+                        if not generation_state["logs"] or generation_state["logs"][-1] != log_msg:
+                            generation_state["logs"].append(log_msg)
+                        if len(generation_state["logs"]) > 60:
+                            generation_state["logs"] = generation_state["logs"][-60:]
+            return b_on_progress
 
         try:
-            llm_engine.generate_subject_by_code(code)
+            llm_engine.generate_custom_subject(course_code=code, custom_overrides=None, progress_callback=make_batch_progress())
             with generation_lock:
-                generation_state["logs"].append(f"[+] Completed {code}.")
+                generation_state["logs"].append(f"[+] [{idx}/{total}] Completed {code} ({title}).")
         except Exception as e:
             with generation_lock:
-                generation_state["logs"].append(f"[-] Failed {code}: {e}")
+                generation_state["logs"].append(f"[-] [{idx}/{total}] Failed {code}: {e}")
 
     with generation_lock:
         generation_state["status"] = "success"

@@ -4602,24 +4602,45 @@
         if (s) { s.className = "step-node"; s.querySelector(".step-icon-badge").innerText = s.id.replace("step", ""); }
       });
 
-      if (pct >= 5 && pct < 20) {
+      const sText = (stageText || "").toLowerCase();
+
+      // Check for completion first
+      if (pct >= 100 || sText.includes("complete") || sText.includes("batch complete")) {
+        steps.forEach(s => {
+          if (s) { s.className = "step-node completed"; s.querySelector(".step-icon-badge").innerText = "✓"; }
+        });
+        return;
+      }
+
+      // Stage 1: Parameters (0 - 19%)
+      if (pct < 20 || sText.includes("parameter")) {
         if (step1) step1.className = "step-node active";
-      } else if (pct >= 20 && pct < 60) {
+      }
+      // Stage 2: Qwen 3.5 4B (20 - 47%)
+      else if (pct < 48 || (sText.includes("qwen") && !sText.includes("tripartite")) || sText.includes("outcome token")) {
         if (step1) { step1.className = "step-node completed"; step1.querySelector(".step-icon-badge").innerText = "✓"; }
         if (step2) step2.className = "step-node active";
-      } else if (pct >= 60 && pct < 75) {
+      }
+      // Stage 3: Bloom Audit & Schedule Validation (48 - 75%)
+      else if (pct < 76 || sText.includes("bloom") || sText.includes("audit") || sText.includes("schedule") || sText.includes("tripartite") || sText.includes("lock")) {
         if (step1) { step1.className = "step-node completed"; step1.querySelector(".step-icon-badge").innerText = "✓"; }
         if (step2) { step2.className = "step-node completed"; step2.querySelector(".step-icon-badge").innerText = "✓"; }
         if (step3) step3.className = "step-node active";
-      } else if (pct >= 75 && pct < 95) {
+      }
+      // Stage 4: SQLite Save (76 - 88%)
+      else if (pct < 89 || sText.includes("sqlite") || sText.includes("persist") || sText.includes("database")) {
         if (step1) { step1.className = "step-node completed"; step1.querySelector(".step-icon-badge").innerText = "✓"; }
         if (step2) { step2.className = "step-node completed"; step2.querySelector(".step-icon-badge").innerText = "✓"; }
         if (step3) { step3.className = "step-node completed"; step3.querySelector(".step-icon-badge").innerText = "✓"; }
         if (step4) step4.className = "step-node active";
-      } else if (pct >= 95) {
-        steps.forEach(s => {
-          if (s) { s.className = "step-node completed"; s.querySelector(".step-icon-badge").innerText = "✓"; }
-        });
+      }
+      // Stage 5: Jinja2 HTML (89 - 99%)
+      else {
+        if (step1) { step1.className = "step-node completed"; step1.querySelector(".step-icon-badge").innerText = "✓"; }
+        if (step2) { step2.className = "step-node completed"; step2.querySelector(".step-icon-badge").innerText = "✓"; }
+        if (step3) { step3.className = "step-node completed"; step3.querySelector(".step-icon-badge").innerText = "✓"; }
+        if (step4) { step4.className = "step-node completed"; step4.querySelector(".step-icon-badge").innerText = "✓"; }
+        if (step5) step5.className = "step-node active";
       }
     }
 
@@ -4686,8 +4707,8 @@
       const card = document.getElementById("progressCard");
       card.style.display = "block";
       document.getElementById("progressStage").innerText = initialMsg;
-      document.getElementById("progressPctText").innerText = "5%";
-      document.getElementById("progressBarFill").style.width = "5%";
+      document.getElementById("progressPctText").innerText = "8%";
+      document.getElementById("progressBarFill").style.width = "8%";
       document.getElementById("logBox").innerHTML = `<div>[*] ${initialMsg}</div>`;
       card.scrollIntoView({ behavior: "smooth" });
     }
@@ -4730,7 +4751,7 @@
         } catch (e) {
           console.error("Polling error:", e);
         }
-      }, 2000);
+      }, 350);
     }
 
     // =========================================================
