@@ -138,6 +138,7 @@ def run_generation_worker(course_code: str, custom_overrides: Optional[Dict[str,
 def is_subject_generated(course_code: str) -> bool:
     """Checks if a course has already been synthesized and persisted in SQLite or exists in outputs/."""
     code_norm = course_code.strip().upper()
+    nospace_norm = code_norm.replace(" ", "")
     clean_code = course_code.replace(" ", "_").replace("/", "-")
     has_html = (OUTPUTS_DIR / f"official_syllabus_{clean_code}.html").exists()
     has_json = (OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json").exists()
@@ -145,21 +146,27 @@ def is_subject_generated(course_code: str) -> bool:
     is_persisted = False
     try:
         with get_connection() as conn:
-            row = conn.execute("SELECT id FROM courses WHERE UPPER(course_code) = ?", (code_norm,)).fetchone()
+            row = conn.execute(
+                "SELECT id FROM courses WHERE UPPER(TRIM(course_code)) = ? OR UPPER(REPLACE(course_code, ' ', '')) = ?", 
+                (code_norm, nospace_norm)
+            ).fetchone()
             is_persisted = bool(row)
     except Exception:
         pass
 
     if not has_json:
-        default_cand = OUTPUTS_DIR / "sample_validated_output.json"
-        if default_cand.exists():
-            try:
-                with open(default_cand, "r", encoding="utf-8") as f:
-                    d = json.load(f)
-                if d.get("course_metadata", {}).get("course_code", "").strip().upper() == code_norm:
-                    has_json = True
-            except Exception:
-                pass
+        # Check outputs/sample_validated_output.json
+        for cand_path in (OUTPUTS_DIR / "sample_validated_output.json", BASE_DIR / "sample_validated_output.json"):
+            if cand_path.exists():
+                try:
+                    with open(cand_path, "r", encoding="utf-8") as f:
+                        d = json.load(f)
+                    c_meta = d.get("course_metadata", {}).get("course_code", "").strip().upper()
+                    if c_meta and (c_meta == code_norm or c_meta.replace(" ", "") == nospace_norm):
+                        has_json = True
+                        break
+                except Exception:
+                    pass
 
     return is_persisted or has_html or has_json
 
@@ -300,55 +307,101 @@ def perform_nuke() -> Dict[str, Any]:
 
 
 def perform_subject_wipe(course_code: str) -> Dict[str, Any]:
-    """Wipes all generated deliverable files, deletes SQLite database records, and resets state for a single course."""
+    """
+    Nuclear-wipes all generated deliverable files, deletes SQLite database records,
+    and resets in-memory pipeline state for a single course back to pending like brand new.
+    """
     norm_code = course_code.strip()
+    upper_code = norm_code.upper()
     clean_code = norm_code.replace(" ", "_").replace("/", "-")
+    dash_code = norm_code.replace(" ", "-").replace("/", "-")
+    nospace_code = norm_code.replace(" ", "").upper()
     deleted_files = []
 
-    # 1. Delete generated JSON and HTML deliverables for this course in outputs/
-    patterns = [
-        f"sample_validated_output_{clean_code}.json",
-        f"official_syllabus_{clean_code}.html",
-        f"official_syllabus_{clean_code}.pdf"
+    # 1. Comprehensive nuclear purge in OUTPUTS_DIR
+    if OUTPUTS_DIR.exists():
+        for fpath in OUTPUTS_DIR.iterdir():
+            if not fpath.is_file() or fpath.name == ".gitkeep":
+                continue
+
+            fname_upper = fpath.name.upper()
+            should_delete = False
+
+            # Match exact slug tokens (e.g. BSCS_3112, BSCS-3112, BSCS3112, BSCS 3112)
+            if (clean_code.upper() in fname_upper or 
+                dash_code.upper() in fname_upper or 
+                nospace_code in fname_upper or 
+                upper_code in fname_upper):
+                should_delete = True
+
+            # If it's a JSON file, inspect metadata inside
+            elif fpath.suffix.lower() == ".json":
+                try:
+                    with open(fpath, "r", encoding="utf-8") as jf:
+                        jd = json.load(jf)
+                    jcode = jd.get("course_metadata", {}).get("course_code", "").strip().upper()
+                    if jcode and (jcode == upper_code or jcode.replace(" ", "") == nospace_code):
+                        should_delete = True
+                except Exception:
+                    pass
+
+            if should_delete:
+                try:
+                    fpath.unlink()
+                    deleted_files.append(f"outputs/{fpath.name}")
+                    print(f"[+] Nuclear wiped deliverable file: {fpath.name}")
+                except Exception as e:
+                    print(f"[!] Warning deleting {fpath}: {e}")
+
+    # 2. Check BASE_DIR (root of 18thWeekOutput) for any lingering course outputs
+    base_candidates = [
+        BASE_DIR / f"sample_validated_output_{clean_code}.json",
+        BASE_DIR / f"official_syllabus_{clean_code}.html",
+        BASE_DIR / "sample_validated_output.json"
     ]
-    for fname in patterns:
-        fpath = OUTPUTS_DIR / fname
-        if fpath.exists():
-            try:
-                fpath.unlink()
-                deleted_files.append(fname)
-            except Exception as e:
-                print(f"[!] Warning deleting {fpath}: {e}")
+    for bpath in base_candidates:
+        if bpath.exists() and bpath.is_file():
+            should_del_base = False
+            if bpath.name == "sample_validated_output.json":
+                try:
+                    with open(bpath, "r", encoding="utf-8") as bf:
+                        bd = json.load(bf)
+                    bcode = bd.get("course_metadata", {}).get("course_code", "").strip().upper()
+                    if bcode and (bcode == upper_code or bcode.replace(" ", "") == nospace_code):
+                        should_del_base = True
+                except Exception:
+                    pass
+            else:
+                should_del_base = True
 
-    # Check default sample_validated_output.json
-    default_json = OUTPUTS_DIR / "sample_validated_output.json"
-    if default_json.exists():
-        try:
-            with open(default_json, "r", encoding="utf-8") as f:
-                d = json.load(f)
-            if d.get("course_metadata", {}).get("course_code", "").strip().upper() == norm_code.upper():
-                default_json.unlink()
-                deleted_files.append("sample_validated_output.json")
-        except Exception as e:
-            print(f"[!] Warning inspecting default json: {e}")
+            if should_del_base:
+                try:
+                    bpath.unlink()
+                    deleted_files.append(bpath.name)
+                    print(f"[+] Nuclear wiped base directory artifact: {bpath.name}")
+                except Exception as e:
+                    print(f"[!] Warning deleting {bpath}: {e}")
 
-    # 2. Delete database records via db_manager
+    # 3. Nuclear delete database records via enhanced db_manager
     db_cleared = delete_course(norm_code)
 
-    # 3. Reset in-memory state if this course was active
+    # 4. Reset in-memory state if this course was active
     with generation_lock:
-        if generation_state.get("course_code") == norm_code:
+        active_code = generation_state.get("course_code")
+        if active_code and (active_code.strip().upper() == upper_code or active_code.replace(" ", "").upper() == nospace_code):
             generation_state["status"] = "idle"
             generation_state["progress_pct"] = 0
-            generation_state["stage"] = f"Course {norm_code} Wiped"
-            generation_state["message"] = f"Course {norm_code} wiped clean. Ready for fresh generation."
+            generation_state["stage"] = f"Course {norm_code} Wiped Clean"
+            generation_state["message"] = f"Course {norm_code} completely wiped. Returned to pending state like brand new."
             generation_state["course_code"] = None
             generation_state["result"] = None
+            generation_state["error"] = None
+            generation_state["logs"].append(f"[!] {norm_code} nuclear wiped. All outputs and database records deleted.")
 
     return {
         "success": True,
         "course_code": norm_code,
-        "message": f"Successfully wiped syllabus deliverables and SQLite database records for {norm_code}.",
+        "message": f"Successfully nuclear-wiped all generated deliverables, HTML views, and SQLite database records for {norm_code}. Course returned to pending.",
         "deleted": deleted_files,
         "db_cleared": db_cleared
     }
@@ -371,6 +424,10 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
+        # Strict anti-cache headers guaranteeing instant real-time UI synchronization
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
         self.end_headers()
         self.wfile.write(body)
 
@@ -433,28 +490,33 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             # Enrich with generated & DB persistence status
             with get_connection() as conn:
                 db_rows = conn.execute("SELECT course_code FROM courses").fetchall()
-                persisted_codes = {r["course_code"].upper() for r in db_rows}
+                persisted_codes = {r["course_code"].strip().upper() for r in db_rows}
+                persisted_nospace = {c.replace(" ", "") for c in persisted_codes}
             
-            # Check default sample_validated_output.json course code once
-            default_cand = OUTPUTS_DIR / "sample_validated_output.json"
+            # Check default sample_validated_output.json in outputs/ and base dir
             default_course_code = None
-            if default_cand.exists():
-                try:
-                    with open(default_cand, "r", encoding="utf-8") as f:
-                        d = json.load(f)
-                    default_course_code = d.get("course_metadata", {}).get("course_code", "").strip().upper()
-                except Exception:
-                    pass
+            for cand_path in (OUTPUTS_DIR / "sample_validated_output.json", BASE_DIR / "sample_validated_output.json"):
+                if cand_path.exists():
+                    try:
+                        with open(cand_path, "r", encoding="utf-8") as f:
+                            d = json.load(f)
+                        c_meta = d.get("course_metadata", {}).get("course_code", "").strip().upper()
+                        if c_meta:
+                            default_course_code = c_meta
+                            break
+                    except Exception:
+                        pass
 
             for s in subjects:
-                code_norm = s["course_code"].upper()
+                code_norm = s["course_code"].strip().upper()
+                nospace = code_norm.replace(" ", "")
                 clean_code = s["course_code"].replace(" ", "_").replace("/", "-")
                 course_json_exists = (OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json").exists()
-                if not course_json_exists and default_course_code == code_norm:
+                if not course_json_exists and default_course_code and (default_course_code == code_norm or default_course_code.replace(" ", "") == nospace):
                     course_json_exists = True
 
                 has_html = (OUTPUTS_DIR / f"official_syllabus_{clean_code}.html").exists()
-                s["is_persisted"] = code_norm in persisted_codes
+                s["is_persisted"] = (code_norm in persisted_codes) or (nospace in persisted_nospace)
                 s["has_json"] = course_json_exists
                 s["has_html"] = has_html
                 s["html_filename"] = f"official_syllabus_{clean_code}.html" if has_html else None

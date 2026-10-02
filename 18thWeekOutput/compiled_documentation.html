@@ -467,7 +467,146 @@ for attempt in range(1, max_retries + 1):
 
   <div class="page-break"></div>
 
-  <h3>3.4 Relational Persistence & Human-in-the-Loop CRUD (<code>db_manager.py</code>)</h3>
+  <h3>3.3 Deliverable 3: Official Institutional Jinja2 Layout (<code>templates/uphsd_ccs_template.html</code>)</h3>
+  <p>
+    Institutional template rendering relational SQLite course records into a publication-grade syllabus layout with CHED CMO 25 alignments, cognitive taxonomy badges, tripartite domain indicators, and signatory blocks:
+  </p>
+  <div class="code-container">
+<pre>&lt;!-- Institutional Header with UPHSD Molino Seal --&gt;
+&lt;div class="inst-header"&gt;
+  &lt;div style="display:flex; align-items:center; justify-content:center; gap:18px;"&gt;
+    &lt;img src="../assets/logo/uphsd.png" alt="UPHSD Seal" style="height:70px;"&gt;
+    &lt;div&gt;
+      &lt;h1&gt;University of Perpetual Help System DALTA&lt;/h1&gt;
+      &lt;h2&gt;Molino Campus &bull; Bacoor City, Cavite&lt;/h2&gt;
+      &lt;h3&gt;College of Computer Studies&lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="doc-title"&gt;Course Syllabus: {{ course.course_code }}&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Section I: Course Overview &amp; Specifications --&gt;
+&lt;div class="section-title"&gt;I. Course Identification &amp; Specification&lt;/div&gt;
+&lt;table class="meta-table"&gt;
+  &lt;tr&gt;&lt;td&gt;Course Code&lt;/td&gt;&lt;td&gt;&lt;strong&gt;{{ course.course_code }}&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Course Title&lt;/td&gt;&lt;td&gt;&lt;strong&gt;{{ course.course_title }}&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Credit Units&lt;/td&gt;&lt;td&gt;{{ course.credit_units }}.0 Units ({{ course.lecture_hours }} Lec / {{ course.lab_hours }} Lab)&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Prerequisites&lt;/td&gt;&lt;td&gt;{{ course.prerequisites }}&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Course Description&lt;/td&gt;&lt;td&gt;{{ course.course_description }}&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Section II: Course Learning Outcomes (CLOs) --&gt;
+&lt;div class="section-title"&gt;II. Course Learning Outcomes (CLOs)&lt;/div&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;CLO ID&lt;/th&gt;&lt;th&gt;Outcome Statement&lt;/th&gt;&lt;th&gt;Bloom's Taxonomy&lt;/th&gt;&lt;th&gt;PLOs Mapped&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    {% for clo in clos %}
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;{{ clo.clo_id }}&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;{{ clo.description }}&lt;/td&gt;
+      &lt;td&gt;&lt;span class="badge badge-bloom"&gt;{{ clo.bloom_level }}&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;{{ clo.program_outcomes_mapped | join(', ') }}&lt;/td&gt;
+    &lt;/tr&gt;
+    {% endfor %}
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- Section III: 18-Week Detailed Schedule with Tripartite Domains --&gt;
+&lt;div class="section-title"&gt;III. 18-Week Detailed Teaching-Learning Schedule&lt;/div&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Week&lt;/th&gt;&lt;th&gt;Topics / Subject Matter&lt;/th&gt;&lt;th&gt;Lesson Outcomes (K/S/A)&lt;/th&gt;
+      &lt;th&gt;TLAs&lt;/th&gt;&lt;th&gt;Assessment Tasks&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    {% for w in schedule %}
+    &lt;tr class="{% if w.week_number in [9, 18] %}exam-row{% endif %}"&gt;
+      &lt;td&gt;&lt;strong&gt;Week {{ w.week_number }}&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;{{ w.topics | join('; ') }}&lt;/td&gt;
+      &lt;td&gt;
+        {% for llo in w.lesson_outcomes %}
+        &lt;div&gt;&lt;span class="badge badge-{{ llo.domain | lower }}"&gt;{{ llo.domain }}&lt;/span&gt; {{ llo.description }}&lt;/div&gt;
+        {% endfor %}
+      &lt;/td&gt;
+      &lt;td&gt;{{ w.teaching_learning_activities | join('; ') }}&lt;/td&gt;
+      &lt;td&gt;{{ w.assessment_tasks | join('; ') }}&lt;/td&gt;
+    &lt;/tr&gt;
+    {% endfor %}
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- Institutional Signatories --&gt;
+&lt;div class="sign-grid"&gt;
+  &lt;div class="sign-box"&gt;&lt;div class="sign-line"&gt;Faculty Member&lt;/div&gt;&lt;div class="sign-title"&gt;Prepared By&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="sign-box"&gt;&lt;div class="sign-line"&gt;Department Chair, CS&lt;/div&gt;&lt;div class="sign-title"&gt;Verified &amp; Recommended&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="sign-box"&gt;&lt;div class="sign-line"&gt;Dean, CCS&lt;/div&gt;&lt;div class="sign-title"&gt;Approved By&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h3>3.4 Deliverable 4: SQLite Query &amp; HTML/PDF Syllabus Compilation (<code>export_engine.py</code>)</h3>
+  <p>
+    Queries the SQLite relational database by <code>course_code</code> and renders an official, browser-ready HTML/PDF syllabus document using Jinja2:
+  </p>
+  <div class="code-container">
+<pre>from pathlib import Path
+from typing import Optional
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+from db_manager import get_syllabus, DEFAULT_DB_PATH
+from obe_schemas import FullSyllabusSchema
+
+BASE_DIR = Path(__file__).resolve().parent
+TEMPLATES_DIR = BASE_DIR / "templates"
+TEMPLATE_FILENAME = "uphsd_ccs_template.html"
+
+def get_jinja_env() -> Environment:
+    '''Configures and returns the Jinja2 template environment with autoescaping.'''
+    if not TEMPLATES_DIR.exists():
+        raise FileNotFoundError(f"Templates directory not found at '{TEMPLATES_DIR}'.")
+    return Environment(
+        loader=FileSystemLoader(str(TEMPLATES_DIR)),
+        autoescape=select_autoescape(["html", "xml"])
+    )
+
+def render_syllabus_html(course_code: str, db_path: str = DEFAULT_DB_PATH) -> str:
+    '''Queries SQLite for course_code and compiles the official UPHSD CCS syllabus HTML.'''
+    syllabus: Optional[FullSyllabusSchema] = get_syllabus(course_code, db_path=db_path)
+    if not syllabus:
+        raise ValueError(f"No syllabus records found in database for course code '{course_code}'.")
+
+    env = get_jinja_env()
+    template = env.get_template(TEMPLATE_FILENAME)
+    return template.render(
+        course=syllabus.course_metadata,
+        clos=syllabus.course_outcomes,
+        schedule=syllabus.weekly_schedule
+    )
+
+def export_to_file(course_code: str, output_path: Optional[str] = None, db_path: str = DEFAULT_DB_PATH) -> str:
+    '''Compiles HTML syllabus and saves it to a persistent output deliverable file.'''
+    html_content = render_syllabus_html(course_code, db_path=db_path)
+    if not output_path:
+        clean_code = course_code.replace(" ", "_").replace("/", "-")
+        outputs_dir = BASE_DIR / "outputs"
+        outputs_dir.mkdir(parents=True, exist_ok=True)
+        output_file = outputs_dir / f"official_syllabus_{clean_code}.html"
+    else:
+        output_file = Path(output_path)
+
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"[+] Successfully exported official syllabus to '{output_file}'.")
+    return str(output_file.resolve())</pre>
+  </div>
+
+  <h3>3.5 Relational Persistence &amp; Human-in-the-Loop CRUD (<code>db_manager.py</code>)</h3>
   <p>
     Provides transactional persistence, atomic parent-child cascade deletions, and faculty CLO editing:
   </p>
@@ -518,10 +657,27 @@ def update_clo(clo_id: str, new_description: str, db_path: str = DEFAULT_DB_PATH
         with conn:
             conn.execute("UPDATE course_outcomes SET description = ? WHERE clo_id = ?", 
                          (new_description, clo_id))
+    return True
+
+def delete_course(course_code: str, db_path: str = DEFAULT_DB_PATH) -> bool:
+    '''Nuclear deletes a specific course and all its cascaded relational records.'''
+    norm_code = course_code.strip()
+    with get_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM courses WHERE UPPER(TRIM(course_code)) = UPPER(?);", (norm_code,))
+        rows = cursor.fetchall()
+        for row in rows:
+            cid = row["id"]
+            cursor.execute("DELETE FROM lesson_outcomes WHERE schedule_id IN (SELECT id FROM weekly_schedules WHERE course_id = ?);", (cid,))
+            cursor.execute("DELETE FROM weekly_schedules WHERE course_id = ?;", (cid,))
+            cursor.execute("DELETE FROM course_outcomes WHERE course_id = ?;", (cid,))
+            cursor.execute("DELETE FROM courses WHERE id = ?;", (cid,))
+        conn.commit()
+        conn.execute("VACUUM;")
     return True</pre>
   </div>
 
-  <h3>3.5 Selective Synthesis & Batch Worker (<code>app.py</code>)</h3>
+  <h3>3.6 Selective Synthesis &amp; Batch Worker (<code>app.py</code>)</h3>
   <p>
     Enables selective batch generation that skips existing courses to save computation time:
   </p>

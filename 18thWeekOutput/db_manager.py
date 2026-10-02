@@ -287,30 +287,53 @@ def update_clo(clo_id: str, new_description: str, course_code: Optional[str] = N
 
 def delete_course(course_code: str, db_path: str = DEFAULT_DB_PATH) -> bool:
     """
-    Deletes a specific course and all its cascaded relational records
+    Nuclear deletes a specific course and all its cascaded relational records
     (course_outcomes, weekly_schedules, lesson_outcomes) from the SQLite database.
-    Returns True if the course was found and deleted, False otherwise.
+    Handles spacing and casing variations defensively, ensuring total cleanup.
+    Returns True if records were found and deleted or verified clean.
     """
     norm_code = course_code.strip()
+    nospace_code = norm_code.replace(" ", "").upper()
+    upper_code = norm_code.upper()
+
     with get_connection(db_path) as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT id FROM courses WHERE UPPER(course_code) = UPPER(?);", (norm_code,))
-        row = cursor.fetchone()
-        if not row:
+        # Find all matching course IDs (exact upper, trimmed, or space-insensitive)
+        cursor.execute(
+            """
+            SELECT id, course_code FROM courses 
+            WHERE UPPER(TRIM(course_code)) = ? 
+               OR UPPER(REPLACE(course_code, ' ', '')) = ?;
+            """, 
+            (upper_code, nospace_code)
+        )
+        rows = cursor.fetchall()
+        if not rows:
+            print(f"[*] Course '{norm_code}' not present in SQLite database (already clean).")
             return False
 
-        course_id = row["id"]
-        # Explicit clean-up for defensive guarantee
-        cursor.execute("""
-            DELETE FROM lesson_outcomes 
-            WHERE schedule_id IN (SELECT id FROM weekly_schedules WHERE course_id = ?);
-        """, (course_id,))
-        cursor.execute("DELETE FROM weekly_schedules WHERE course_id = ?;", (course_id,))
-        cursor.execute("DELETE FROM course_outcomes WHERE course_id = ?;", (course_id,))
-        cursor.execute("DELETE FROM courses WHERE id = ?;", (course_id,))
-        conn.commit()
+        for row in rows:
+            cid = row["id"]
+            code_found = row["course_code"]
+            # 1. Delete LLOs linked to weekly schedules for this course
+            cursor.execute("""
+                DELETE FROM lesson_outcomes 
+                WHERE schedule_id IN (SELECT id FROM weekly_schedules WHERE course_id = ?);
+            """, (cid,))
+            # 2. Delete weekly schedules for this course
+            cursor.execute("DELETE FROM weekly_schedules WHERE course_id = ?;", (cid,))
+            # 3. Delete course outcomes for this course
+            cursor.execute("DELETE FROM course_outcomes WHERE course_id = ?;", (cid,))
+            # 4. Delete parent course record
+            cursor.execute("DELETE FROM courses WHERE id = ?;", (cid,))
+            print(f"[+] Nuclear wiped course '{code_found}' (ID {cid}) from SQLite database.")
 
-    print(f"[+] Successfully deleted course '{norm_code}' (ID {course_id}) from SQLite database.")
+        conn.commit()
+        try:
+            conn.execute("VACUUM;")
+        except Exception:
+            pass
+
     return True
 
 
