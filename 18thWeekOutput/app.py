@@ -135,22 +135,84 @@ def run_generation_worker(course_code: str, custom_overrides: Optional[Dict[str,
             generation_state["logs"].append(f"[-] Error: {str(exc)}")
 
 
-def run_batch_generation_worker():
-    """Background thread worker for generating all 8 curriculum subjects sequentially with granular progress."""
-    global generation_state
-    subjects = get_all_subjects()
-    total = len(subjects)
+def is_subject_generated(course_code: str) -> bool:
+    """Checks if a course has already been synthesized and persisted in SQLite or exists in outputs/."""
+    code_norm = course_code.strip().upper()
+    clean_code = course_code.replace(" ", "_").replace("/", "-")
+    has_html = (OUTPUTS_DIR / f"official_syllabus_{clean_code}.html").exists()
+    has_json = (OUTPUTS_DIR / f"sample_validated_output_{clean_code}.json").exists()
+
+    is_persisted = False
+    try:
+        with get_connection() as conn:
+            row = conn.execute("SELECT id FROM courses WHERE UPPER(course_code) = ?", (code_norm,)).fetchone()
+            is_persisted = bool(row)
+    except Exception:
+        pass
+
+    if not has_json:
+        default_cand = OUTPUTS_DIR / "sample_validated_output.json"
+        if default_cand.exists():
+            try:
+                with open(default_cand, "r", encoding="utf-8") as f:
+                    d = json.load(f)
+                if d.get("course_metadata", {}).get("course_code", "").strip().upper() == code_norm:
+                    has_json = True
+            except Exception:
+                pass
+
+    return is_persisted or has_html or has_json
+
+
+def run_batch_generation_worker(skip_existing: bool = False):
+    """Background thread worker for generating curriculum subjects sequentially with granular progress.
     
+    If skip_existing is True, courses that already have persisted records or deliverables
+    are preserved and skipped, processing only remaining pending subjects.
+    If False, all subjects in the catalog are freshly re-synthesized.
+    """
+    global generation_state
+    all_subjects = get_all_subjects()
+    
+    if skip_existing:
+        subjects_to_generate = [s for s in all_subjects if not is_subject_generated(s["course_code"])]
+        skipped_subjects = [s for s in all_subjects if is_subject_generated(s["course_code"])]
+    else:
+        subjects_to_generate = all_subjects
+        skipped_subjects = []
+
+    total = len(subjects_to_generate)
+    skipped_count = len(skipped_subjects)
+    all_total = len(all_subjects)
+
+    if total == 0:
+        with generation_lock:
+            generation_state["status"] = "success"
+            generation_state["course_code"] = "BATCH_COMPLETE"
+            generation_state["progress_pct"] = 100
+            generation_state["stage"] = "Batch Complete"
+            generation_state["message"] = f"All {all_total} curriculum subjects are already generated. No pending courses."
+            generation_state["logs"] = [
+                f"[i] Skipped all {skipped_count} courses because they are already generated.",
+                "[+] Batch queue finished immediately with 0 pending."
+            ]
+            generation_state["error"] = None
+        return
+
     with generation_lock:
         generation_state["status"] = "running"
-        generation_state["course_code"] = "BATCH_ALL"
+        generation_state["course_code"] = "BATCH_PENDING" if skip_existing else "BATCH_ALL"
         generation_state["progress_pct"] = 5
-        generation_state["stage"] = f"Starting Batch Generation for all {total} curriculum subjects..."
-        generation_state["message"] = f"Batch processing 8 courses..."
-        generation_state["logs"] = [f"[*] Starting batch queue for {total} subjects."]
+        mode_desc = f"{total} pending subjects (skipping {skipped_count} existing)" if skip_existing else f"all {total} curriculum subjects"
+        generation_state["stage"] = f"Starting Batch Generation for {mode_desc}..."
+        generation_state["message"] = f"Batch processing {total} course(s)..."
+        init_logs = [f"[*] Starting batch queue for {total} subject(s)."]
+        if skipped_count > 0:
+            init_logs.append(f"[i] Preserving {skipped_count} existing course(s): {', '.join(s['course_code'] for s in skipped_subjects)}")
+        generation_state["logs"] = init_logs
         generation_state["error"] = None
 
-    for idx, subj in enumerate(subjects, 1):
+    for idx, subj in enumerate(subjects_to_generate, 1):
         code = subj["course_code"]
         title = subj["course_title"]
         base_pct = int(((idx - 1) / total) * 100)
@@ -182,8 +244,12 @@ def run_batch_generation_worker():
         generation_state["status"] = "success"
         generation_state["progress_pct"] = 100
         generation_state["stage"] = "Batch Complete"
-        generation_state["message"] = f"Batch generation of all {total} subjects finished!"
-        generation_state["logs"].append(f"[+] All {total} subjects generated and persisted to SQLite.")
+        if skip_existing:
+            generation_state["message"] = f"Batch generation of {total} pending course(s) finished!"
+            generation_state["logs"].append(f"[+] {total} pending course(s) generated. All {all_total} curriculum subjects are now complete.")
+        else:
+            generation_state["message"] = f"Batch generation of all {total} subjects finished!"
+            generation_state["logs"].append(f"[+] All {total} subjects generated and persisted to SQLite.")
 
 
 def perform_nuke() -> Dict[str, Any]:
@@ -720,12 +786,14 @@ class OBE18WeekHttpHandler(BaseHTTPRequestHandler):
             custom_overrides = {k: v for k, v in custom_overrides.items() if v not in (None, "")}
 
             if is_batch:
-                t = threading.Thread(target=run_batch_generation_worker, daemon=True)
+                skip_existing = bool(payload.get("skip_existing", False) or payload.get("mode") == "remaining_only")
+                t = threading.Thread(target=run_batch_generation_worker, args=(skip_existing,), daemon=True)
                 t.start()
                 self.send_json(HTTPStatus.ACCEPTED, {
                     "status": "started",
                     "mode": "batch",
-                    "message": "Batch generation across all curriculum subjects initiated."
+                    "skip_existing": skip_existing,
+                    "message": f"Batch generation ({'Remaining Pending Courses' if skip_existing else 'All 8 Curriculum Subjects'}) initiated."
                 })
                 return
             else:

@@ -113,6 +113,11 @@
   - Corrected `export_engine.py` default course parameter to `BSCS 3112`.
 - [x] **Autonomous Documentation Sync Protocol**:
   - Added Section 6 to `docs/AGENTS.md` obligating all agents to keep README and docs continuously updated on every code modification.
+- [x] **Intelligent Batch Generation Dispatcher & Selective Synthesis (`#batchModalOverlay`)**:
+  - Implemented interactive modal dispatcher detecting completed vs pending curriculum courses.
+  - Dynamically offers selective execution: `⚡ Generate Remaining Only` (skips completed courses, preserves SQLite records) vs `🔄 Regenerate All 8 Courses` (fresh re-synthesis).
+  - Handles edge states gracefully: $N = 0$ (all pending), $0 < N < 8$ (partial), and $N = 8$ (all completed).
+  - Wired into both the sidebar Batch Generate button and the Universal Command Palette (`Ctrl + K`).
 
 ---
 

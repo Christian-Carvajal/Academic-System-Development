@@ -62,7 +62,7 @@ The backend server (`18thWeekOutput/app.py`) exposes simple JSON endpoints that 
 | `GET /api/database` | `GET` | Returns persisted courses list from SQLite (`obe_syllabus.db`) |
 | `GET /api/audit?code={code}` | `GET` | Evaluates syllabus against the 7 CHED CMO 25 invariants (returns compliance score and checklist) |
 | `GET /api/generation-state` | `GET` | Polls real-time progress percentage (`0..100%`), current stage, and terminal logs |
-| `POST /api/generate` | `POST` | Starts background AI generation for a single subject or all 8 subjects in batch |
+| `POST /api/generate` | `POST` | Starts background AI generation for a single subject, or batch queue across curriculum with `skip_existing` flag |
 | `POST /api/update-clo` | `POST` | Updates a CLO statement in SQLite after validating active Bloom's verbs |
 | `POST /api/subject/wipe` | `POST` | Selectively deletes a single course from SQLite and deletes its output artifacts without touching others |
 | `POST /api/nuke` | `POST` | Wipes ALL generated files, resets SQLite database, and clears caches |
@@ -73,6 +73,7 @@ A fully functional reference implementation is already running in `18thWeekOutpu
 * **View 1 (`#view-studio`)**: Curriculum cards, Image 5 specification form with zero-typing autofill and faculty editing, generation HUD, selective **`🗑️ Wipe Course`** reset button, and CLO/Schedule inspection tabs.
 * **View 2 (`#view-viewer`)**: Dedicated master-detail syllabus viewer with instant search, filter pills, and a one-click **`🖨️ Print / Save Vector PDF`** button.
 * **View 3 (`#view-audit`)**: SQLite database table with active **`📄 View Official Syllabus`** CTA and live CHED CMO 25 accreditation badges.
+* **Batch Generation Dispatcher Modal (`#batchModalOverlay`)**: Intelligent window handling when "Batch Generate All Courses (Queue)" or `Ctrl + K` is triggered; dynamically detects generated courses ($N$) and offers selective choices: `⚡ Generate Remaining Only` (skips completed, preserves existing SQLite records) vs. `🔄 Regenerate All 8 Courses` (full re-synthesis).
 * **Universal Command Palette (`Ctrl + K`)**: Instant keyboard navigation searching across course codes, titles, descriptions, categories, and direct action shortcuts.
 * **Tab 2: PLO Alignment Matrix**: Displays pedagogical mapping against CHED CMO 25 s.2015 Program Outcomes. Not all dots are green by design — courses specialize in targeted outcomes to prevent academic outcome inflation.
 

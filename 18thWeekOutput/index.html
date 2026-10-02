@@ -1850,6 +1850,229 @@
     .btn-nuke-confirm { background: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%); color: #fff; border: 1px solid #f87171; font-weight: 700; padding: 0.6rem 1.3rem; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; }
     .btn-nuke-confirm:hover { background: linear-gradient(135deg, #dc2626 0%, #f87171 100%); box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6); }
 
+    /* Batch Generation Dispatcher Modal */
+    .batch-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1.5rem;
+    }
+    .batch-modal {
+      background: #0d1527;
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      max-width: 580px;
+      width: 100%;
+      padding: 1.75rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.2);
+      animation: batchModalAnim 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes batchModalAnim {
+      from { opacity: 0; transform: scale(0.96) translateY(-8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .batch-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.1rem;
+    }
+    .batch-modal-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .batch-modal-icon {
+      font-size: 1.85rem;
+      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.7));
+    }
+    .batch-modal-header h3 {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-gold);
+      margin: 0;
+      font-family: var(--font-heading);
+    }
+    .batch-modal-header .batch-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+    .batch-close-btn {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+    }
+    .batch-close-btn:hover {
+      color: #fff;
+      border-color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .batch-modal-body {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .batch-status-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      padding: 0.7rem 0.95rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      flex-wrap: wrap;
+    }
+    .batch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 5px;
+    }
+    .batch-badge.badge-completed {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+    .batch-badge.badge-pending {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+    .batch-badge.badge-total {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+    }
+    .batch-catalog-preview {
+      margin: 0.85rem 0 1rem 0;
+      padding: 0.7rem 0.9rem;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+    .batch-catalog-label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.45rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .batch-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .batch-course-chip {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .batch-course-chip.chip-done {
+      background: rgba(16, 185, 129, 0.12);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .batch-course-chip.chip-pending {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .batch-option-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0.9rem 1.05rem;
+      margin-top: 0.75rem;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      text-align: left;
+      width: 100%;
+    }
+    .batch-option-card:hover {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: var(--gold-bright);
+      transform: translateY(-1px);
+    }
+    .batch-option-card.option-recommended {
+      border-color: rgba(245, 158, 11, 0.6);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(0, 0, 0, 0.25));
+    }
+    .batch-option-icon {
+      font-size: 1.4rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .batch-option-content {
+      flex: 1;
+    }
+    .batch-option-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .batch-option-title .rec-pill {
+      font-size: 0.65rem;
+      background: var(--gold-primary);
+      color: #000;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .batch-option-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      line-height: 1.45;
+    }
+    .batch-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
     /* Toast Notifications System */
     .toast-container {
       position: fixed;
@@ -2466,6 +2689,56 @@
     [data-theme="light"] .palette-item { color: #1e293b; }
     [data-theme="light"] .palette-item:hover, [data-theme="light"] .palette-item.active { background: #fef3c7; color: #92400e; border-left-color: #d97706; }
     [data-theme="light"] .palette-footer { background: #f8fafc; border-color: #e2e8f0; }
+
+    /* Light Theme Overrides for Batch Modal */
+    [data-theme="light"] .batch-modal {
+      background: #ffffff;
+      border-color: #d97706;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+    [data-theme="light"] .batch-modal-header {
+      border-bottom-color: #e2e8f0;
+    }
+    [data-theme="light"] .batch-modal-header h3 {
+      color: #92400e;
+    }
+    [data-theme="light"] .batch-close-btn {
+      color: #64748b;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .batch-close-btn:hover {
+      color: #0f172a;
+      background: #f1f5f9;
+    }
+    [data-theme="light"] .batch-status-banner {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .batch-catalog-preview {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    [data-theme="light"] .batch-option-card {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+    [data-theme="light"] .batch-option-card:hover {
+      background: #fef3c7;
+      border-color: #d97706;
+    }
+    [data-theme="light"] .batch-option-card.option-recommended {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border-color: #d97706;
+    }
+    [data-theme="light"] .batch-option-title {
+      color: #0f172a;
+    }
+    [data-theme="light"] .batch-option-desc {
+      color: #475569;
+    }
+    [data-theme="light"] .batch-modal-actions {
+      border-top-color: #e2e8f0;
+    }
 
 
     /* Refined Typography Hierarchy & Anti-Aliasing */
@@ -3546,6 +3819,28 @@
     </div>
   </div>
 
+  <!-- Batch Generation Dispatcher Modal -->
+  <div id="batchModalOverlay" class="batch-modal-overlay" style="display: none;" onclick="handleOverlayClick(event)">
+    <div class="batch-modal" role="dialog" aria-modal="true" aria-labelledby="batchModalTitle">
+      <div class="batch-modal-header">
+        <div class="batch-modal-title-group">
+          <span class="batch-modal-icon">⚡</span>
+          <div>
+            <h3 id="batchModalTitle">Batch Curriculum Generation</h3>
+            <div class="batch-subtitle">Autonomous Multi-Course AI Synthesis (Qwen 2.5 4B)</div>
+          </div>
+        </div>
+        <button type="button" class="batch-close-btn" onclick="closeBatchModal()" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="batch-modal-body" id="batchModalBody">
+        <!-- Injected dynamically by openBatchModal() -->
+      </div>
+      <div class="batch-modal-actions" id="batchModalActions">
+        <!-- Injected dynamically by openBatchModal() -->
+      </div>
+    </div>
+  </div>
+
   <!-- Nuke Confirmation Modal Dialog -->
   <div id="nukeModalOverlay" class="nuke-modal-overlay" style="display: none;" onclick="handleOverlayClick(event)">
     <div class="nuke-modal" role="dialog" aria-modal="true" aria-labelledby="nukeModalTitle">
@@ -3643,8 +3938,18 @@
     const BANNED_PASSIVE_VERBS = ["understand", "know", "learn", "study", "familiarize", "appreciate", "grasp", "comprehend"];
 
     // =========================================================
-    // 0. TOAST NOTIFICATION UTILITY
+    // 0. TOAST NOTIFICATION & TEXT UTILITIES
     // =========================================================
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
     function showToast(message, type = "info", duration = 3500) {
       const container = document.getElementById("toastContainer");
       if (!container) return;
@@ -4862,26 +5167,225 @@
       }
     }
 
-    async function triggerBatchGenerate() {
-      if (!confirm("Are you sure you want to batch-generate all 8 curriculum subjects? This will run qwen3.5:4b sequentially for each subject.")) {
-        return;
+    async function openBatchModal() {
+      const modal = document.getElementById('batchModalOverlay');
+      const body = document.getElementById('batchModalBody');
+      const actions = document.getElementById('batchModalActions');
+      if (!modal || !body || !actions) return;
+
+      if (!subjects || subjects.length === 0) {
+        await loadSubjects(false);
       }
 
-      showProgressHUD("Starting Batch Generation Queue for all 8 subjects...");
+      const completed = subjects.filter(s => s.is_persisted || s.has_html);
+      const pending = subjects.filter(s => !s.is_persisted && !s.has_html);
+      const completedCount = completed.length;
+      const pendingCount = pending.length;
+      const totalCount = subjects.length || 8;
+
+      // Render catalog chips preview
+      const chipsHtml = subjects.map(s => {
+        const isDone = s.is_persisted || s.has_html;
+        return `<span class="batch-course-chip ${isDone ? 'chip-done' : 'chip-pending'}">
+          ${isDone ? '✓' : '⏳'} ${escapeHtml(s.course_code)}
+        </span>`;
+      }).join('');
+
+      let contentHtml = '';
+      let actionsHtml = '';
+
+      if (completedCount > 0 && pendingCount > 0) {
+        // Case 1: Partial completion (1 to 7 generated, rest pending)
+        contentHtml = `
+          <div class="batch-status-banner">
+            <span class="batch-badge badge-total">📚 Total: ${totalCount} Subjects</span>
+            <span class="batch-badge badge-completed">✓ ${completedCount} Already Generated</span>
+            <span class="batch-badge badge-pending">⏳ ${pendingCount} Pending Synthesis</span>
+          </div>
+
+          <p style="margin-bottom:0.75rem;">
+            The microservice detected <strong>${completedCount} of ${totalCount} curriculum courses</strong> already synthesized and persisted in SQLite.
+          </p>
+
+          <div class="batch-catalog-preview">
+            <div class="batch-catalog-label">
+              <span>Curriculum Catalog Status</span>
+              <span>${completedCount}/${totalCount} Complete</span>
+            </div>
+            <div class="batch-chips-grid">${chipsHtml}</div>
+          </div>
+
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">
+            Choose how you would like to proceed with the batch generation pipeline:
+          </p>
+
+          <button type="button" class="batch-option-card option-recommended" onclick="executeBatchGenerate('remaining_only')">
+            <span class="batch-option-icon">⚡</span>
+            <div class="batch-option-content">
+              <div class="batch-option-title">
+                Generate Remaining Only (${pendingCount} Pending)
+                <span class="rec-pill">Recommended</span>
+              </div>
+              <div class="batch-option-desc">
+                Synthesize only the <strong>${pendingCount} pending courses</strong> and skip the <strong>${completedCount} completed course(s)</strong>. Preserves existing SQLite records and HTML outputs without redundant re-generation.
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="batch-option-card" onclick="executeBatchGenerate('all')">
+            <span class="batch-option-icon">🔄</span>
+            <div class="batch-option-content">
+              <div class="batch-option-title">
+                Regenerate All 8 Courses (${completedCount} Overwritten)
+              </div>
+              <div class="batch-option-desc">
+                Execute a complete batch re-synthesis across <strong>all 8 curriculum courses</strong> from scratch via Qwen 2.5 4B, freshly overwriting existing course records in SQLite and updating deliverables.
+              </div>
+            </div>
+          </button>
+        `;
+
+        actionsHtml = `
+          <button type="button" class="btn btn-secondary" onclick="closeBatchModal()">Cancel</button>
+        `;
+      } else if (completedCount === 0) {
+        // Case 2: 0 generated, all 8 pending
+        contentHtml = `
+          <div class="batch-status-banner">
+            <span class="batch-badge badge-total">📚 Total: ${totalCount} Subjects</span>
+            <span class="batch-badge badge-pending">⏳ All ${pendingCount} Pending</span>
+          </div>
+
+          <p style="margin-bottom:0.75rem;">
+            None of the <strong>${totalCount} curriculum courses</strong> have been generated yet.
+          </p>
+
+          <div class="batch-catalog-preview">
+            <div class="batch-catalog-label">
+              <span>Curriculum Catalog Status</span>
+              <span>0/${totalCount} Complete</span>
+            </div>
+            <div class="batch-chips-grid">${chipsHtml}</div>
+          </div>
+
+          <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+            The microservice will sequentially queue all 8 subjects through local Qwen 2.5 4B, generating complete OBE learning outcomes, weekly schedules, Bloom's verb compliance, and official HTML/JSON deliverables.
+          </p>
+
+          <button type="button" class="batch-option-card option-recommended" onclick="executeBatchGenerate('all')">
+            <span class="batch-option-icon">🚀</span>
+            <div class="batch-option-content">
+              <div class="batch-option-title">
+                Start Full Batch Generation (All 8 Courses)
+              </div>
+              <div class="batch-option-desc">
+                Queue and synthesize all 8 curriculum courses sequentially. Live progress telemetry and logs will track each course in real-time.
+              </div>
+            </div>
+          </button>
+        `;
+
+        actionsHtml = `
+          <button type="button" class="btn btn-secondary" onclick="closeBatchModal()">Cancel</button>
+        `;
+      } else {
+        // Case 3: All 8 already generated
+        contentHtml = `
+          <div class="batch-status-banner">
+            <span class="batch-badge badge-completed">✓ All ${completedCount} Courses Complete</span>
+            <span class="batch-badge badge-total">📚 100% Persisted in SQLite</span>
+          </div>
+
+          <p style="margin-bottom:0.75rem;">
+            All <strong>${totalCount} curriculum courses</strong> have already been synthesized and persisted in the local SQLite database.
+          </p>
+
+          <div class="batch-catalog-preview">
+            <div class="batch-catalog-label">
+              <span>Curriculum Catalog Status</span>
+              <span>${totalCount}/${totalCount} Complete</span>
+            </div>
+            <div class="batch-chips-grid">${chipsHtml}</div>
+          </div>
+
+          <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+            Starting batch generation will perform a full re-synthesis across all 8 courses, prompting Qwen 2.5 4B and updating SQLite tables and official HTML deliverables.
+          </p>
+
+          <button type="button" class="batch-option-card option-recommended" onclick="executeBatchGenerate('all')">
+            <span class="batch-option-icon">🔄</span>
+            <div class="batch-option-content">
+              <div class="batch-option-title">
+                Regenerate All 8 Courses (Fresh Overwrite)
+              </div>
+              <div class="batch-option-desc">
+                Re-synthesize all 8 courses from scratch and overwrite current database records with fresh AI outputs.
+              </div>
+            </div>
+          </button>
+        `;
+
+        actionsHtml = `
+          <button type="button" class="btn btn-secondary" onclick="closeBatchModal()">Cancel</button>
+        `;
+      }
+
+      body.innerHTML = contentHtml;
+      actions.innerHTML = actionsHtml;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBatchModal() {
+      const modal = document.getElementById('batchModalOverlay');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    async function executeBatchGenerate(mode) {
+      closeBatchModal();
+      const isRemaining = (mode === 'remaining_only');
+      const completed = subjects.filter(s => s.is_persisted || s.has_html);
+      const pending = subjects.filter(s => !s.is_persisted && !s.has_html);
+      const pendingCount = pending.length;
+      
+      const hudMsg = isRemaining
+        ? `Starting Batch Generation for ${pendingCount} remaining course(s)...`
+        : "Starting Batch Generation Queue for all 8 subjects...";
+
+      showProgressHUD(hudMsg);
       updateStepperStage(5, "Batch Init");
+
       try {
         const res = await fetch(`${API_BASE}/api/generate`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ batch: true })
+          body: JSON.stringify({
+            batch: true,
+            skip_existing: isRemaining,
+            mode: mode
+          })
         });
+
         if (res.ok) {
           startProgressPolling();
-          showToast("Batch generation across all 8 subjects initiated", "info");
+          const toastMsg = isRemaining
+            ? `Batch generation queued for ${pendingCount} remaining course(s)`
+            : "Batch generation across all 8 subjects initiated";
+          showToast(toastMsg, "info");
+        } else {
+          const err = await res.json();
+          showToast("Could not start batch generation: " + (err.error || "Server error"), "error");
         }
       } catch (e) {
         showToast("Error starting batch generation: " + e, "error");
       }
+    }
+
+    function triggerBatchGenerate() {
+      openBatchModal();
     }
 
     function showProgressHUD(initialMsg) {
@@ -5076,12 +5580,16 @@
       if (event.target && event.target.id === 'nukeModalOverlay') {
         closeNukeModal();
       }
+      if (event.target && event.target.id === 'batchModalOverlay') {
+        closeBatchModal();
+      }
     }
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeNukeModal();
         closeCloModal();
+        closeBatchModal();
       }
     });
 

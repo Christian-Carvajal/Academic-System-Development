@@ -176,8 +176,7 @@ Built for enterprise curriculum engineering, relational persistence, and institu
 - **Interactive Web Studio & Ergonomics (`index.html` on Port 8001):**
   - **Zero-Typing Curriculum Catalog:** 8 pre-configured 3rd-Year BSCS courses with instant autofill and faculty customization.
   - **Selective Single-Subject Wipe (`🗑️ Wipe Course`):** Reset an individual course back to pending without wiping other generated syllabi.
-  - **Universal Command Palette (`Ctrl + K`):** Instant keyboard palette searching across course code, title, description, and category.
-  - **Sequential Batch Generator:** 1-click batch generation for all 8 catalog courses with live progress HUD.
+  - **Intelligent Batch Generation Dispatcher (`#batchModalOverlay`):** When clicking "Batch Generate All Courses (Queue)" or pressing `Ctrl + K`, opens an intelligent modal dialog displaying current progress ($N$ completed vs $M$ pending). Offers faculty the choice to either: (1) **⚡ Generate Remaining Only** (skips completed subjects, preserving SQLite records and deliverables while saving computation time), or (2) **🔄 Regenerate All 8 Courses** (fresh re-synthesis from scratch overwriting existing records). Includes interactive catalog chips, completed badges, and handles all edge cases ($N=0$, $0 < N < 8$, $N=8$).
   - **PLO Alignment Matrix (CHED CMO 25 s.2015):** Curricular scaffolding displaying specialized outcomes per course (intentional selective mapping preventing academic outcome inflation).
   - **Accreditation QA Invariant Auditor:** Automated 7-point CHED CMO 25 compliance check with live pass/fail badges.
 

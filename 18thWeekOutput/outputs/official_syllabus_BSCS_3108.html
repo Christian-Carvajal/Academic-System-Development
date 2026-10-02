@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BSCS 3112 - Artificial Intelligence | Official OBE Syllabus</title>
+  <title>BSCS 3108 - Automata Theory and Formal Languages | Official OBE Syllabus</title>
   <style>
     :root {
       --primary: #1E3A8A;
@@ -213,7 +213,7 @@
         <h3 style="margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #047857; text-transform: uppercase;">College of Computer Studies</h3>
       </div>
     </div>
-    <div class="doc-title">Course Syllabus: BSCS 3112</div>
+    <div class="doc-title">Course Syllabus: BSCS 3108</div>
   </div>
 
   <!-- I. Course Overview & Metadata -->
@@ -221,19 +221,19 @@
   <table class="meta-table">
     <tr>
       <td>Course Code</td>
-      <td><strong>BSCS 3112</strong></td>
+      <td><strong>BSCS 3108</strong></td>
       <td>Course Title</td>
-      <td><strong>Artificial Intelligence</strong></td>
+      <td><strong>Automata Theory and Formal Languages</strong></td>
     </tr>
     <tr>
       <td>Credit Units</td>
-      <td>3 Units (Lecture: 2 hrs/wk, Lab: 3 hrs/wk)</td>
+      <td>3 Units (Lecture: 3 hrs/wk, Lab: 3 hrs/wk)</td>
       <td>Prerequisites</td>
-      <td>CS 3110 (Data Structures and Algorithms)</td>
+      <td>CS 2106 (Discrete Mathematics)</td>
     </tr>
     <tr>
       <td>Course Description</td>
-      <td colspan="3">Foundational and modern principles of artificial intelligence, including intelligent agents, state-space search heuristics (A*, Minimax), knowledge representation, first-order logic, probabilistic reasoning, machine learning pipelines, deep neural networks, computer vision, natural language processing, and ethical considerations in autonomous systems.</td>
+      <td colspan="3">Rigorous theoretical exploration of computational models and formal grammars, covering regular expressions, deterministic and non-deterministic finite automata (DFA/NFA), context-free grammars, pushdown automata, Turing machines, decidability, the Halting problem, and the Chomsky hierarchy.</td>
     </tr>
   </table>
 
@@ -252,30 +252,30 @@
       
       <tr>
         <td><strong>CLO1</strong></td>
-        <td>Analyze complex computing problems and apply principles of AI search algorithms.</td>
+        <td>Analyze computational models to construct deterministic finite automata (DFA) and regular expressions for language recognition.</td>
         <td><span class="badge badge-bloom">Analyze</span></td>
         <td>PLO1, PLO5</td>
       </tr>
       
       <tr>
         <td><strong>CLO2</strong></td>
-        <td>Design machine learning pipelines and deep neural network architectures for specific tasks.</td>
-        <td><span class="badge badge-bloom">Create</span></td>
-        <td>PLO1, PLO2</td>
+        <td>Apply context-free grammars to design pushdown automata and solve parsing problems for formal languages.</td>
+        <td><span class="badge badge-bloom">Apply</span></td>
+        <td>PLO1, PLO5</td>
       </tr>
       
       <tr>
         <td><strong>CLO3</strong></td>
-        <td>Implement computer vision and natural language processing systems using Python frameworks.</td>
-        <td><span class="badge badge-bloom">Apply</span></td>
-        <td>PLO2, PLO5</td>
+        <td>Evaluate the decidability of computational problems using Turing machines and assess the Halting problem constraints.</td>
+        <td><span class="badge badge-bloom">Evaluate</span></td>
+        <td>PLO1, PLO5</td>
       </tr>
       
       <tr>
         <td><strong>CLO4</strong></td>
-        <td>Evaluate ethical considerations in autonomous systems and formulate responsible AI policies.</td>
-        <td><span class="badge badge-bloom">Evaluate</span></td>
-        <td>PLO1, PLO3, PLO5</td>
+        <td>Design formal grammars within the Chomsky hierarchy to create new computational models for complex systems.</td>
+        <td><span class="badge badge-bloom">Create</span></td>
+        <td>PLO1, PLO5</td>
       </tr>
       
     </tbody>
@@ -299,24 +299,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>1</strong></td>
         <td>
-          <strong>Introduction to AI and History</strong>
+          <strong>Introduction to Automata &amp; Regular Languages</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Define key concepts of Artificial Intelligence.
+              Define formal languages and construct deterministic finite automata (DFA) from regular expressions.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Construct a basic Python environment for AI.
+              Convert regular expressions to equivalent DFAs using Thompson&#39;s construction.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Appreciate the societal impact of emerging technologies.
+              Demonstrate appreciation for logical precision in computational modeling.
             </li>
             
           </ul>
@@ -324,14 +324,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lecture on AI History</li>
+            <li>Lecture on Formal Systems</li>
+            
+            <li>Lab: DFA Construction</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Participation Rubric</strong></li>
+            <li><strong>Quiz on Regular Expressions</strong></li>
             
           </ul>
         </td>
@@ -341,24 +343,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>2</strong></td>
         <td>
-          <strong>Search Algorithms Fundamentals</strong>
+          <strong>DFA Minimization and Properties</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze problem-solving approaches in computing.
+              Analyze DFA states to minimize automata using Hopcroft&#39;s algorithm.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Implement Breadth-First Search (BFS) logic.
+              Implement state minimization procedures in simulation software.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Evaluate efficiency of different search strategies.
+              Value efficiency and optimization in system design.
             </li>
             
           </ul>
@@ -366,14 +368,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Algorithm Workshop</li>
+            
+            <li>Group Discussion</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Lab Report on Minimization</strong></li>
             
           </ul>
         </td>
@@ -383,24 +387,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>3</strong></td>
         <td>
-          <strong>Heuristic Search and A*</strong>
+          <strong>Regular Language Closure Properties</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Formulate cost functions for pathfinding.
+              Evaluate closure properties of regular languages under union and concatenation.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Design an A* algorithm implementation.
+              Construct DFAs for complex expressions derived from simple ones.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Critique the limitations of heuristic methods.
+              Respect mathematical rigor in logical proofs.
             </li>
             
           </ul>
@@ -408,14 +412,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Proof Writing Exercise</li>
+            
+            <li>Case Study</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Short Answer Quiz</strong></li>
             
           </ul>
         </td>
@@ -425,24 +431,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>4</strong></td>
         <td>
-          <strong>Supervised Learning Basics</strong>
+          <strong>Nondeterministic Finite Automata (NFA)</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Identify datasets for regression and classification.
+              Convert NFAs to equivalent DFAs using subset construction.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Construct training pipelines using scikit-learn.
+              Design NFA models for pattern matching applications.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Respect data privacy standards during processing.
+              Appreciate the trade-offs between determinism and flexibility.
             </li>
             
           </ul>
@@ -450,14 +456,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Conversion Lab</li>
+            
+            <li>Peer Review</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Lab Submission</strong></li>
             
           </ul>
         </td>
@@ -467,24 +475,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>5</strong></td>
         <td>
-          <strong>Machine Learning Pipelines</strong>
+          <strong>Context-Free Grammars (CFG) Basics</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze data preprocessing requirements.
+              Formulate context-free grammars to generate specific formal languages.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Design automated feature engineering workflows.
+              Parse strings using recursive descent parsing algorithms.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate commitment to reproducible research.
+              Cultivate creativity in language structure design.
             </li>
             
           </ul>
@@ -492,14 +500,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Grammar Design Workshop</li>
+            
+            <li>Demo</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Assignment on Grammar Creation</strong></li>
             
           </ul>
         </td>
@@ -509,24 +519,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>6</strong></td>
         <td>
-          <strong>Deep Neural Networks Intro</strong>
+          <strong>Pushdown Automata (PDA) and Parsing</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Describe architecture components of DNNs.
+              Analyze the relationship between CFGs and Pushdown Automata.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Implement a basic Neural Network model.
+              Design PDAs to recognize non-regular languages.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Appreciate the complexity of training processes.
+              Value the importance of memory in computation.
             </li>
             
           </ul>
@@ -534,14 +544,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Simulation Lab</li>
+            
+            <li>Group Project</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Lab Report</strong></li>
             
           </ul>
         </td>
@@ -551,24 +563,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>7</strong></td>
         <td>
-          <strong>Computer Vision Applications</strong>
+          <strong>Ambiguity in Context-Free Grammars</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze image data for object detection.
+              Evaluate grammars for ambiguity and resolve conflicts.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Apply OpenCV libraries for image processing.
+              Refactor ambiguous CFGs into unambiguous forms.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Evaluate accuracy of visual recognition systems.
+              Demonstrate commitment to clarity in communication.
             </li>
             
           </ul>
@@ -576,14 +588,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Refactoring Exercise</li>
+            
+            <li>Presentation</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Peer Evaluation</strong></li>
             
           </ul>
         </td>
@@ -593,24 +607,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>8</strong></td>
         <td>
-          <strong>Natural Language Processing</strong>
+          <strong>Chomsky Hierarchy Overview</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Formulate text processing tasks.
+              Classify grammars within the Chomsky hierarchy.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Implement NLP models using TensorFlow.
+              Map computational models to specific grammar types.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Critique bias in language models.
+              Appreciate the complexity of formal systems.
             </li>
             
           </ul>
@@ -618,14 +632,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Classification Activity</li>
+            
+            <li>Discussion</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Quiz on Hierarchy</strong></li>
             
           </ul>
         </td>
@@ -642,17 +658,17 @@
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Demonstrate mastery of Search and ML concepts.
+              Assess mastery of DFA and CFG concepts through comprehensive testing.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Assess understanding through written testing.
+              Demonstrate problem-solving skills under examination conditions.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Reflect on learning progress during assessment.
+              Maintain academic integrity and time management during assessment.
             </li>
             
           </ul>
@@ -667,7 +683,7 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Summative Assessment Rubric</strong></li>
+            <li><strong>Midterm Exam</strong></li>
             
           </ul>
         </td>
@@ -677,24 +693,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>10</strong></td>
         <td>
-          <strong>AI Ethics and Bias</strong>
+          <strong>Turing Machines and Computability</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze ethical dilemmas in autonomous systems.
+              Formulate Turing Machine models for algorithmic execution.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Formulate mitigation strategies for algorithmic bias.
+              Implement basic Turing Machine operations in simulation.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Adhere to professional codes of conduct.
+              Respect the limits of computational power.
             </li>
             
           </ul>
@@ -702,14 +718,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Seminar on AI Ethics</li>
+            <li>Lab: TM Simulation</li>
+            
+            <li>Tutorial</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Discussion Rubric</strong></li>
+            <li><strong>Lab Submission</strong></li>
             
           </ul>
         </td>
@@ -719,24 +737,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>11</strong></td>
         <td>
-          <strong>Responsible AI Policies</strong>
+          <strong>Decidability and Undecidability</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Evaluate regulatory frameworks for AI.
+              Evaluate problems for decidability using reduction techniques.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Design policy guidelines for deployment.
+              Construct proofs of undecidability via diagonalization.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Advocate for transparency in system usage.
+              Acknowledge the boundaries of knowledge and computation.
             </li>
             
           </ul>
@@ -744,14 +762,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Policy Workshop</li>
+            <li>Proof Workshop</li>
+            
+            <li>Seminar</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Draft Policy Rubric</strong></li>
+            <li><strong>Written Proof Assignment</strong></li>
             
           </ul>
         </td>
@@ -761,24 +781,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>12</strong></td>
         <td>
-          <strong>Autonomous Systems Review</strong>
+          <strong>The Halting Problem</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Critique safety mechanisms in robotics.
+              Analyze constraints imposed by the Halting problem on software verification.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Implement fail-safe protocols in code.
+              Design safety checks acknowledging undecidable limits.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate responsibility for system outcomes.
+              Value humility in the face of unsolvable problems.
             </li>
             
           </ul>
@@ -786,14 +806,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Lab Exercise on System Design</li>
+            <li>Case Study</li>
+            
+            <li>Debate</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Formative Assessment Rubric</strong></li>
+            <li><strong>Discussion Paper</strong></li>
             
           </ul>
         </td>
@@ -803,24 +825,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>13</strong></td>
         <td>
-          <strong>Capstone Project Planning</strong>
+          <strong>Recursive Functions and Recursion</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Define project scope and objectives.
+              Design recursive algorithms corresponding to formal grammars.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Construct a project timeline using Gantt charts.
+              Implement recursive functions in programming languages.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Commit to collaborative team goals.
+              Appreciate the elegance of self-referential logic.
             </li>
             
           </ul>
@@ -828,14 +850,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Project Planning Session</li>
+            <li>Coding Lab</li>
+            
+            <li>Code Review</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Proposal Rubric</strong></li>
+            <li><strong>Lab Submission</strong></li>
             
           </ul>
         </td>
@@ -845,24 +869,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>14</strong></td>
         <td>
-          <strong>Capstone Development Phase 1</strong>
+          <strong>Computational Complexity Classes</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Analyze requirements for the final system.
+              Classify problems into P, NP, and undecidable categories.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Implement core functionality modules.
+              Evaluate algorithm efficiency relative to problem complexity.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Ensure adherence to ethical guidelines.
+              Demonstrate critical thinking regarding resource usage.
             </li>
             
           </ul>
@@ -870,14 +894,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Group Coding Session</li>
+            <li>Complexity Analysis</li>
+            
+            <li>Group Work</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Code Review Rubric</strong></li>
+            <li><strong>Analysis Report</strong></li>
             
           </ul>
         </td>
@@ -887,24 +913,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>15</strong></td>
         <td>
-          <strong>Capstone Development Phase 2</strong>
+          <strong>Capstone Project Design</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Evaluate system performance metrics.
+              Formulate a computational model for a real-world system.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Optimize algorithms for efficiency.
+              Design the architecture of an automata-based solution.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate resilience in problem-solving.
+              Showcase innovation and practical application skills.
             </li>
             
           </ul>
@@ -912,14 +938,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Debugging Workshop</li>
+            <li>Project Planning</li>
+            
+            <li>Brainstorming</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Performance Test Rubric</strong></li>
+            <li><strong>Design Proposal</strong></li>
             
           </ul>
         </td>
@@ -929,24 +957,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>16</strong></td>
         <td>
-          <strong>Capstone Documentation</strong>
+          <strong>Capstone Project Implementation</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Formulate technical documentation standards.
+              Implement the designed computational model using formal methods.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Create user manuals and API specs.
+              Debug and optimize the automata system for performance.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Communicate findings clearly to stakeholders.
+              Ensure reliability and ethical use of computational tools.
             </li>
             
           </ul>
@@ -954,14 +982,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Documentation Workshop</li>
+            <li>Coding Sprint</li>
+            
+            <li>Testing</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Documentation Rubric</strong></li>
+            <li><strong>System Demo</strong></li>
             
           </ul>
         </td>
@@ -971,24 +1001,24 @@
       <tr class="">
         <td style="text-align: center;"><strong>17</strong></td>
         <td>
-          <strong>Final Project Review</strong>
+          <strong>Capstone Project Finalization</strong>
         </td>
         <td>
           <ul style="padding-left: 16px;">
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Critique peer project submissions.
+              Evaluate the final system against original design specifications.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Refine code based on feedback.
+              Prepare comprehensive documentation and presentation materials.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Reflect on team dynamics and ethics.
+              Demonstrate professionalism in project delivery.
             </li>
             
           </ul>
@@ -996,14 +1026,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Peer Review Session</li>
+            <li>Final Review</li>
+            
+            <li>Documentation</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Feedback Rubric</strong></li>
+            <li><strong>Rubric Checklist</strong></li>
             
           </ul>
         </td>
@@ -1020,17 +1052,17 @@
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-k">K</span>
-              Synthesize knowledge of AI concepts.
+              Assess comprehensive understanding of automata theory through final exam.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-s">S</span>
-              Present and defend the capstone project.
+              Defend the capstone project against technical scrutiny.
             </li>
             
             <li style="margin-bottom: 4px;">
               <span class="badge badge-a">A</span>
-              Demonstrate professional conduct during defense.
+              Exhibit confidence and integrity in academic defense.
             </li>
             
           </ul>
@@ -1038,14 +1070,16 @@
         <td>
           <ul style="padding-left: 14px;">
             
-            <li>Final Examination &amp; Capstone Defense</li>
+            <li>Final Exam</li>
+            
+            <li>Capstone Defense</li>
             
           </ul>
         </td>
         <td>
           <ul style="padding-left: 14px;">
             
-            <li><strong>Summative Assessment Rubric</strong></li>
+            <li><strong>Final Exam &amp; Defense</strong></li>
             
           </ul>
         </td>
